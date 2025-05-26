@@ -62,6 +62,86 @@ line_loop:
 	sub x15, x15, 1
 	cbnz x15, line_loop
 
+	// ------------------- PROTOTIPO DEL FONDO CELESTE CENTRADO -------------------	
+
+loop2:
+	mov x0, x20		// guardo la posición base del framebuffer de nuevo
+
+	//color celeste claro = 0xFF339BC7
+	movz x10, 0x9BC7, lsl 0	
+	movk x10, 0xFF33, lsl 16
+
+	// Constantes a usar
+	mov x5, #640              // SCREEN_WIDTH
+	mov x6, #100              // x_start
+	mov x7, #540              // x_end 
+	mov x8, #50              // y_start
+	mov x9, #239              // y_end 
+
+	mov x3, x8                // y = 100, posición inicial
+
+loop2_y:
+	mov x2, x6                // x = 100, posición inicial
+
+loop2_x_1:
+	// offset = ((y * 640) + x) * 4
+	mul x1, x3, x5
+	add x1, x1, x2		
+	lsl x1, x1, #2
+	add x4, x20, x1
+	str w10, [x4]             // pintar pixel
+
+	add x2, x2, #1
+	cmp x2, x7
+	b.lt loop2_x_1			// Repetir el ciclo hasta llegar a x = 540
+	
+	mov x2, x8
+
+	add x3, x3, #1
+	cmp x3, x9
+	b.lt loop2_y		// Repetir el ciclo hasta llegar a y = 239
+	
+	// ------------------- PROTOTIPO DEL FONDO PÚRPURA DEBAJO DEL CELESTE -------------------	
+
+	//color púrpura = 0xFF2B3DA1
+	movz x10, 0x3DA1, lsl 0	
+	movk x10, 0xFF2B, lsl 16
+
+	// Constantes
+	mov x5, #640              // SCREEN_WIDTH
+	mov x6, #150              // x_start
+	mov x7, #490              // x_end 
+	mov x8, #130              // y_start
+	mov x9, #239              // y_end 
+
+	mov x3, x8                // y = 130
+
+loop3_y:
+	mov x2, x6                // x = 150
+
+loop3_x_1:
+	// offset = ((y * 640) + x) * 4
+	mul x1, x3, x5
+	add x1, x1, x2
+	lsl x1, x1, #2
+	add x4, x20, x1
+	str w10, [x4]             // pintar pixel
+
+	add x2, x2, #1
+	cmp x2, x7
+	b.lt loop3_x_1		// Repetir el ciclo hasta llegar a x = 490
+	
+	mov x2, x8
+
+	add x3, x3, #1
+	cmp x3, x9
+	b.lt loop3_y		// Repetir el ciclo hasta llegar a y = 239
+
+
+
+
+
+
 
 	// Ejemplo de uso de gpios
 	mov x9, GPIO_BASE

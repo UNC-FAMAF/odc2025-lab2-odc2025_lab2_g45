@@ -563,52 +563,10 @@ loop3_x_1:
 	mov x12, #240              // y_end
 	bl loop4_process
 	
-	    // Variables
-    mov x5, #640       // SCREEN_WIDTH
-    mov x6, #400       // x_start
-    mov x7, #460       // x_end (40px ancho)
-    mov x8, #380       // y_start
-    mov x9, #420       // y_end (40px alto)
-
-    // Colores ARGB
-	//violeta oscuro 491c66
-
-	movz w10, 0x4278, lsl 0
-	movk w10, 0xFF07, lsl 16
-//074278
-	//violeta claro a334bf
-	movz w11, 0x34BF
-	movk w11, 0xFFA3, lsl 16
-
-
-    // Pinta cabeza negra 40x40
-    mov x3, x8         // y inicial
-
-loop_head_y:
-    mov x2, x6         // x inicial
-
-loop_head_x:
-    mul x1, x3, x5
-    add x1, x1, x2
-    lsl x1, x1, #2
-    add x4, x20, x1
-    str w10, [x4]     
-
-    add x2, x2, #1
-    cmp x2, x7
-    b.lt loop_head_x
-
-    add x3, x3, #1
-    cmp x3, x9
-    b.lt loop_head_y
-
-
-
-
 	// personajes
 
 
-	// Rectángulo 1
+	// dustin
 	mov x0, x20
 	mov x1, #80       // x start
 	mov x2, #160      // y start
@@ -618,7 +576,7 @@ loop_head_x:
 	movk w5, #0xFFFF, lsl #16      
 	bl draw_rect
 
-	// Rectángulo 2
+	// will
 	mov x0, x20
 	mov x1, #160
 	mov x2, #240
@@ -628,7 +586,7 @@ loop_head_x:
 	movk w5, #0xFFE3, lsl #16       
 	bl draw_rect
 //e3cea3
-	// Rectángulo 3
+	// max
 	mov x0, x20
 	mov x1, #240
 	mov x2, #160
@@ -649,7 +607,7 @@ loop_head_x:
 	bl draw_rect
 	//4d370b
 
-	// Rectángulo 5
+	// eleven
 	mov x0, x20
 	mov x1, #400
 	mov x2, #160
@@ -659,9 +617,9 @@ loop_head_x:
 	movk w5, #0xFFFF, lsl #16
 	bl draw_rect
 
-	// Rectángulo 6
+	// mike
 	mov x0, x20
-	mov x1, #240
+	mov x1, #480
 	mov x2, #160
 	mov x3, #60
 	mov x4, #80
@@ -671,11 +629,11 @@ loop_head_x:
 
 	// PELIRROJA
 	mov x0, x20
-	mov x1, #480
+	mov x1, #240
 	mov x2, #160
 	mov x3, #60
-	mov x4, #80
-	movz w5, #0xCCAA, lsl #0
+	mov x4, #30
+	movz w5, #0x0000, lsl #0
 	movk w5, #0xFFFF, lsl #16
 	bl draw_rect
 
@@ -723,6 +681,58 @@ loop_x:
     ret
 
 
+
+// Entradas:
+// x0 -> framebuffer
+// x1 -> cx
+// x2 -> cy
+// x3 -> radio
+// w5 -> color
+
+draw_circle:
+    sub x6, x1, x3          // x_min = cx - r
+    add x7, x1, x3          // x_max = cx + r
+    sub x8, x2, x3          // y_min = cy - r
+    add x9, x2, x3          // y_max = cy + r
+    mov x11, #640           // ancho pantalla
+
+    mov x10, x8             // y = y_min
+circle_loop_y:
+    cmp x10, x9
+    bgt circle_end
+
+    mov x12, x6             // x = x_min
+circle_loop_x:
+    cmp x12, x7
+    bgt circle_next_y
+
+    sub x13, x12, x1        // dx = x - cx
+    sub x14, x10, x2        // dy = y - cy
+    mul x15, x13, x13       // dx²
+    mul x16, x14, x14       // dy²
+    add x17, x15, x16       // dx² + dy²
+
+    mul x18, x3, x3         // r²
+    cmp x17, x18
+    bgt circle_skip_pixel
+
+    // framebuffer + (y * 640 + x) * 4
+    mul x19, x10, x11
+    add x19, x19, x12
+    lsl x19, x19, #2
+    add x19, x0, x19
+    str w5, [x19]
+
+circle_skip_pixel:
+    add x12, x12, #1
+    b circle_loop_x
+
+circle_next_y:
+    add x10, x10, #1
+    b circle_loop_y
+
+circle_end:
+    ret
 
 
 

@@ -24,7 +24,6 @@ loop1:
 	// Color negro = 0xFF000000
 	movz x10, 0x0000, lsl 0
 	movk x10, 0x0000, lsl 16
-	movk x10, 0x0000, lsl 32
 	movk x10, 0xFF00, lsl 32     //
 
 	mov x2, SCREEN_HEIGH         // Y Size
@@ -38,11 +37,12 @@ loop_fill_x:
 	sub x2,x2,1	   // Decrementar contador Y
 	cbnz x2,loop_fill  // Si no es la última fila, salto
 
-	// ------------------- PINTAR LINEA BLANCA ----------------------
+	// ------------------- PINTAR LINEA verde* ----------------------
 
-	// Color blanco = 0xFFFFFFFF
-	movz x11, 0xFFFF, lsl 16
-	movk x11, 0xFFFF, lsl 0
+	// Color verde = 0xFF00FF00
+	movz x11, 0xFF23, lsl 0     // parte baja (los dos bytes bajos)
+	movk x11, 0x631F, lsl 16    // parte alta (los dos bytes altos)
+
 
 	// fila donde va la linea
 	mov x12, SCREEN_HEIGH
@@ -54,13 +54,14 @@ loop_fill_x:
 	lsl x13, x13, 2          // *4 bytes por pixel
 
 	add x14, x20, x13        // dirección base del pixel de la fila 240
-
 	mov x15, SCREEN_WIDTH    // ancho de la pantalla para pintar la línea
 
 line_loop:
 	str w11, [x14], #4       //  pixel blanco y avanzo 4 bytes osea 1 pixel
 	sub x15, x15, 1
 	cbnz x15, line_loop
+
+
 
 	// ------------------- PROTOTIPO DEL FONDO CELESTE CENTRADO -------------------	
 
@@ -142,6 +143,9 @@ loop3_x_1:
 	//color negro = 0xFF000000
 	movz x10, 0x0000, lsl 0	
 	movk x10, 0xFF00, lsl 16
+
+
+
 
 	// En todas las siguientes instrucciones uso el color negro, estoy dibujando las siluetas del fondo
 
@@ -559,7 +563,170 @@ loop3_x_1:
 	mov x12, #240              // y_end
 	bl loop4_process
 	
-	
+	    // Variables
+    mov x5, #640       // SCREEN_WIDTH
+    mov x6, #400       // x_start
+    mov x7, #460       // x_end (40px ancho)
+    mov x8, #380       // y_start
+    mov x9, #420       // y_end (40px alto)
+
+    // Colores ARGB
+	//violeta oscuro 491c66
+
+	movz w10, 0x4278, lsl 0
+	movk w10, 0xFF07, lsl 16
+//074278
+	//violeta claro a334bf
+	movz w11, 0x34BF
+	movk w11, 0xFFA3, lsl 16
+
+
+    // Pinta cabeza negra 40x40
+    mov x3, x8         // y inicial
+
+loop_head_y:
+    mov x2, x6         // x inicial
+
+loop_head_x:
+    mul x1, x3, x5
+    add x1, x1, x2
+    lsl x1, x1, #2
+    add x4, x20, x1
+    str w10, [x4]     
+
+    add x2, x2, #1
+    cmp x2, x7
+    b.lt loop_head_x
+
+    add x3, x3, #1
+    cmp x3, x9
+    b.lt loop_head_y
+
+
+
+
+	// personajes
+
+
+	// Rectángulo 1
+	mov x0, x20
+	mov x1, #80       // x start
+	mov x2, #160      // y start
+	mov x3, #60       // ancho
+	mov x4, #80       // alto
+	movz w5, #0xCCAA, lsl #0        
+	movk w5, #0xFFFF, lsl #16      
+	bl draw_rect
+
+	// Rectángulo 2
+	mov x0, x20
+	mov x1, #160
+	mov x2, #240
+	mov x3, #60
+	mov x4, #80
+	movz w5, #0xCEA3, lsl #0        
+	movk w5, #0xFFE3, lsl #16       
+	bl draw_rect
+//e3cea3
+	// Rectángulo 3
+	mov x0, x20
+	mov x1, #240
+	mov x2, #160
+	mov x3, #60
+	mov x4, #80
+	movz w5, #0xCCAA, lsl #0
+	movk w5, #0xFFFF, lsl #16
+	bl draw_rect
+
+	// Rectángulo 4
+	mov x0, x20
+	mov x1, #320
+	mov x2, #160
+	mov x3, #60
+	mov x4, #80
+	movz w5, #0x370B, lsl #0
+	movk w5, #0xFF4D, lsl #16
+	bl draw_rect
+	//4d370b
+
+	// Rectángulo 5
+	mov x0, x20
+	mov x1, #400
+	mov x2, #160
+	mov x3, #60
+	mov x4, #80
+	movz w5, #0xCCAA, lsl #0
+	movk w5, #0xFFFF, lsl #16
+	bl draw_rect
+
+	// Rectángulo 6
+	mov x0, x20
+	mov x1, #240
+	mov x2, #160
+	mov x3, #60
+	mov x4, #80
+	movz w5, #0xCCAA, lsl #0
+	movk w5, #0xFFFF, lsl #16
+	bl draw_rect
+
+	// PELIRROJA
+	mov x0, x20
+	mov x1, #480
+	mov x2, #160
+	mov x3, #60
+	mov x4, #80
+	movz w5, #0xCCAA, lsl #0
+	movk w5, #0xFFFF, lsl #16
+	bl draw_rect
+
+// draw_rect:
+// Entrada:
+// x0 = puntero framebuffer base
+// x1 = x_start
+// x2 = y_start
+// x3 = ancho
+// x4 = alto
+// w5 = color
+
+draw_rect:
+    mov x6, x1              // x_start
+    mov x7, x2              // y_start
+    mov x8, x3              // ancho
+    mov x9, x4              // alto
+    mov w10, w5             // color
+    mov x11, #640           // SCREEN_WIDTH (puede ser .equ y usar registro)
+
+    add x12, x6, x8         // x_end = x_start + ancho
+    add x13, x7, x9         // y_end = y_start + alto
+
+    mov x14, x7             // y = y_start
+
+loop_y:
+    mov x15, x6             // x = x_start
+
+loop_x:
+    mul x16, x14, x11       // y * SCREEN_WIDTH
+    add x16, x16, x15       // x + y*SCREEN_WIDTH
+    lsl x16, x16, #2        // *4 bytes por pixel
+
+    add x17, x0, x16        // dirección pixel en framebuffer
+    str w10, [x17]          // escribir color
+
+    add x15, x15, #1
+    cmp x15, x12
+    b.lt loop_x
+
+    add x14, x14, #1
+    cmp x14, x13
+    b.lt loop_y
+
+    ret
+
+
+
+
+
+
 
 loop4_process:
 	mov x3, x11
@@ -594,6 +761,12 @@ loop4_x:
 	b.lt loop4_y		
 
 	ret
+
+
+
+
+
+
 
 
 

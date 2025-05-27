@@ -563,8 +563,11 @@ loop3_x_1:
 	mov x12, #240              // y_end
 	bl loop4_process
 	
-	// personajes
 
+
+
+
+	// personajes
 
 	// dustin
 	mov x0, x20
@@ -637,6 +640,16 @@ loop3_x_1:
 	movk w5, #0xFFFF, lsl #16
 	bl draw_rect
 
+
+		// demogorgon.1
+		mov x0, x20
+	mov x1, #400
+	mov x2, #360
+	mov x3, #60
+	mov x4, #30
+	movz w5, #0x0014, lsl #0
+	movk w5, #0xFF00, lsl #16
+	bl draw_rect
 // draw_rect:
 // Entrada:
 // x0 = puntero framebuffer base

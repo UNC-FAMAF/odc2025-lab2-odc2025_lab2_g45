@@ -605,285 +605,35 @@ loop2:
 
 
 // demogorgon
+// Círculo 1: Rojo
+// mov x0, x20 ; (Asumimos x20 contiene el puntero al framebuffer base)
+    mov x1, #150        // center_x = 150
+    mov x2, #150        // center_y = 150
+    mov x3, #40         // radio = 40
+    movz w5, #0x0000, lsl #0 // color = 0xFFFF0000 (Rojo)
+    movk w5, #0xFFFF, lsl #16
+    bl draw_circle      // Llama a la función draw_circle
 
-//cabeza
-	mov x0, x20
-	mov x1, #420
-	mov x2, #400
-	mov x3, #30
-	mov x4, #30
-	movz w5, #0x1B49, lsl #0
-	movk w5, #0xFF00, lsl #16
-	bl draw_rect
+// Círculo 2: Azul
+// mov x0, x20 ; (FrameBuffer base ya está en x0)
+    mov x1, #320        // center_x = 320
+    mov x2, #240        // center_y = 240
+    mov x3, #50         // radio = 50
+    movz w5, #0x00FF, lsl #0 // color = 0xFF0000FF (Azul)
+    movk w5, #0xFF00, lsl #16
+    bl draw_circle      // Llama a la función draw_circle
 
-	mov x0, x20
-	mov x1, #427
-	mov x2, #406
-	mov x3, #20
-	mov x4, #23
-	movz w5, #0x0000, lsl #0
-	movk w5, #0xFF00, lsl #16
-	bl draw_rect
-
-	mov x0, x20
-	mov x1, #420
-	mov x2, #410
-	mov x3, #29
-	mov x4, #13
-	movz w5, #0x0000, lsl #0
-	movk w5, #0xFF00, lsl #16
-	bl draw_rect
-
-	mov x0, x20
-	mov x1, #430
-	mov x2, #400
-	mov x3, #15
-	mov x4, #30
-	movz w5, #0x0000, lsl #0
-	movk w5, #0xFF00, lsl #16
-	bl draw_rect
-
-	mov x0, x20
-	mov x1, #425
-	mov x2, #403
-	mov x3, #20
-	mov x4, #25
-	movz w5, #0x0000, lsl #0
-	movk w5, #0xFF00, lsl #16
-	bl draw_rect
-
-	mov x0, x20
-	mov x1, #434
-	mov x2, #406
-	mov x3, #5
-	mov x4, #1
-	movz w5, #0x0000, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
+// Círculo 3: Verde
+// mov x0, x20 ; (FrameBuffer base ya está en x0)
+    mov x1, #490        // center_x = 490
+    mov x2, #330        // center_y = 330
+    mov x3, #35         // radio = 35
+    movz w5, #0xFF00, lsl #0 // color = 0xFF00FF00 (Verde)
+    movk w5, #0xFF00, lsl #16
+    bl draw_circle      // Llama a la función draw_circle
 
 
-
-//labios?
-//labio 1
-	mov x0, x20
-	mov x1, #400
-	mov x2, #384
-	mov x3, #14
-	mov x4, #12
-	movz w5, #0x1735, lsl #0
-	movk w5, #0xFF00, lsl #16
-	bl draw_rect
-
-	mov x0, x20
-	mov x1, #404
-	mov x2, #386
-	mov x3, #18
-	mov x4, #16
-	movz w5, #0x1735, lsl #0
-	movk w5, #0xFF00, lsl #16
-	bl draw_rect
-
-	mov x0, x20
-	mov x1, #410
-	mov x2, #394
-	mov x3, #18
-	mov x4, #16
-	movz w5, #0x1735, lsl #0
-	movk w5, #0xFF00, lsl #16
-	bl draw_rect
-
-//labio 2 
-
-	mov x0, x20
-	mov x1, #410
-	mov x2, #394
-	mov x3, #18
-	mov x4, #16
-	movz w5, #0x1735, lsl #0
-	movk w5, #0xFF00, lsl #16
-	bl draw_rect
-
-
-    // Supongamos que x0 ya tiene la dirección base del framebuffer
-
-    mov x1, #320          // cx = 320
-    mov x2, #240          // cy = 240
-    mov x3, #50           // radio = 50
-    mov w4, #0x00FF00FF   // color (magenta)
-    mov x5, #640          // SCREEN_WIDTH
-
-    bl draw_circle        // llamar a la función para dibujar el círculo
-
-
-
-
-//////////////////////////////////subrutinas/////////////////////////////////////
-
-// draw_rect:
-// Entrada:
-// x0 = puntero framebuffer base
-// x1 = x_start
-// x2 = y_start
-// x3 = ancho
-// x4 = alto
-// w5 = color
-
-draw_rect:
-    mov x6, x1              // x_start
-    mov x7, x2              // y_start
-    mov x8, x3              // ancho
-    mov x9, x4              // alto
-    mov w10, w5             // color
-    mov x11, #640           // SCREEN_WIDTH (puede ser .equ y usar registro)
-
-    add x12, x6, x8         // x_end = x_start + ancho
-    add x13, x7, x9         // y_end = y_start + alto
-
-    mov x14, x7             // y = y_start
-
-loop_y:
-    mov x15, x6             // x = x_start
-
-loop_x:
-    mul x16, x14, x11       // y * SCREEN_WIDTH
-    add x16, x16, x15       // x + y*SCREEN_WIDTH
-    lsl x16, x16, #2        // *4 bytes por pixel
-
-    add x17, x0, x16        // dirección pixel en framebuffer
-    str w10, [x17]          // escribir color
-
-    add x15, x15, #1
-    cmp x15, x12
-    b.lt loop_x
-
-    add x14, x14, #1
-    cmp x14, x13
-    b.lt loop_y
-
-    ret
-
-draw_circle:
-    // Entradas:
-    // x0 = dirección framebuffer
-    // x1 = cx (centro x)
-    // x2 = cy (centro y)
-    // x3 = radio (r)
-    // w4 = color
-    // x5 = SCREEN_WIDTH (ej: 640)
-
-    // Conservar registros callee-saved si se modifican
-    // (Ejemplo: si este código se llama como una función y modifica registros que el llamador espera conservar)
-    // stp x19, x20, [sp, #-16]! // Guardar x19, x20
-    // stp x21, x22, [sp, #-16]! // Guardar x21, x22
-
-    mov x6, x1                  // cx
-    mov x7, x2                  // cy
-    mov x8, x3                  // radio
-    mov w9, w4                  // color
-    mov x10, x5                 // SCREEN_WIDTH
-
-    // Calcular límites del cuadro que contiene el círculo
-    // Asegurarse de que los límites estén dentro de la pantalla
-    // x_start = max(0, cx - r)
-    // x_end   = min(SCREEN_WIDTH, cx + r + 1)
-    sub x11, x6, x8             // x_start_temp = cx - r
-    cmp x11, #0
-    b.lt .set_x_start_zero      // Si x_start_temp < 0, x_start = 0
-    mov x18, x11                // x_start = x_start_temp
-    b .x_start_ok
-.set_x_start_zero:
-    mov x18, #0                 // x_start = 0
-.x_start_ok:
-
-    add x12, x6, x8             // x_end_temp = cx + r
-    add x12, x12, #1            // x_end_temp = cx + r + 1 (no inclusivo)
-    cmp x12, x10                // Comparar con SCREEN_WIDTH
-    b.gt .set_x_end_width       // Si x_end_temp > SCREEN_WIDTH, x_end = SCREEN_WIDTH
-    mov x19, x12                // x_end = x_end_temp
-    b .x_end_ok
-.set_x_end_width:
-    mov x19, x10                // x_end = SCREEN_WIDTH
-.x_end_ok:
-
-    // y_start = max(0, cy - r)
-    // y_end   = min(SCREEN_HEIGHT, cy + r + 1) - Asumiendo que sabes SCREEN_HEIGHT
-    // Para simplificar, asumo un SCREEN_HEIGHT implícito o que la lógica es similar a SCREEN_WIDTH
-    // Si SCREEN_HEIGHT no se pasa, necesitarías un registro para ello o un valor hardcodeado.
-    sub x13, x7, x8             // y_start_temp = cy - r
-    cmp x13, #0
-    b.lt .set_y_start_zero      // Si y_start_temp < 0, y_start = 0
-    mov x20, x13                // y_start = y_start_temp
-    b .y_start_ok
-.set_y_start_zero:
-    mov x20, #0                 // y_start = 0
-.y_start_ok:
-
-    add x14, x7, x8             // y_end_temp = cy + r
-    add x14, x14, #1            // y_end_temp = cy + r + 1 (no inclusivo)
-    // Aquí necesitarías un SCREEN_HEIGHT para hacer la misma comprobación que con SCREEN_WIDTH
-    // Por ahora, asumiré que y_end no excede los límites si no se proporciona SCREEN_HEIGHT.
-    // Si tienes SCREEN_HEIGHT, la lógica sería:
-    // cmp x14, X_SCREEN_HEIGHT_REG
-    // b.gt .set_y_end_height
-    // mov x21, x14
-    // b .y_end_ok
-    // .set_y_end_height:
-    // mov x21, X_SCREEN_HEIGHT_REG
-    // .y_end_ok:
-    mov x21, x14                // y_end = y_end_temp (sin clamp a SCREEN_HEIGHT por ahora)
-
-
-    mul x15, x8, x8             // r^2, para comparar distancia
-
-    mov x22, x20                // y = y_start (usamos x22 para el contador y)
-
-loop_y_circle:
-    cmp x22, x21
-    b.ge end_circle             // Si y >= y_end, salir
-
-    mov x23, x18                // x = x_start (usamos x23 para el contador x)
-
-loop_x_circle:
-    cmp x23, x19
-    b.ge next_y_circle          // Si x >= x_end, ir a la siguiente fila
-
-    // Calcular dx = x - cx
-    sub x24, x23, x6
-    // Calcular dy = y - cy
-    sub x25, x22, x7
-
-    // Calcular dx*dx + dy*dy
-    smull x26, w24, w24         // dx*dx (usar w24 para multiplicación 32x32 -> 64)
-    smull x27, w25, w25         // dy*dy (usar w25 para multiplicación 32x32 -> 64)
-    add x28, x26, x27           // distancia_cuadrada = dx*dx + dy*dy
-
-    // Comparar con r^2
-    cmp x28, x15
-    b.gt skip_pixel             // Si distancia_cuadrada > r^2, no pintar
-
-    // Pintar pixel:
-    // Calcular índice del pixel: (y * SCREEN_WIDTH + x) * BYTES_PER_PIXEL
-    // Asumiendo que cada pixel es un word (4 bytes), como indica lsl #2
-    mul x29, x22, x10           // y * SCREEN_WIDTH
-    add x29, x29, x23           // (y * SCREEN_WIDTH) + x
-    lsl x29, x29, #2            // * 4 (para bytes) -> offset en bytes
-    add x30, x0, x29            // dirección del pixel en framebuffer = framebuffer_base + offset
-    str w9, [x30]               // Almacenar el color en la dirección del pixel
-
-skip_pixel:
-    add x23, x23, #1            // x++
-    b loop_x_circle
-
-next_y_circle:
-    add x22, x22, #1            // y++
-    b loop_y_circle
-
-end_circle:
-    // Ldps para restaurar registros callee-saved si fueron guardados
-    // ldp x21, x22, [sp], #16
-    // ldp x19, x20, [sp], #16
-    ret
-
+//////////////////////////////////subrutinas//////////////////////////////
 mirror_loop:			// ----Loops para pintar en reflejo respecto a X----
 	mov x3, x11
 
@@ -966,6 +716,158 @@ double_mirror_loop_x:
 	b.lt double_mirror_loop_y		
 
 	ret
+
+// draw_rect:
+// Entrada:
+// x0 = puntero framebuffer base
+// x1 = x_start
+// x2 = y_start
+// x3 = ancho
+// x4 = alto
+// w5 = color
+
+draw_rect:
+
+    mov x6, x1                  // x_start
+    mov x7, x2                  // y_start
+    mov x8, x3                  // ancho
+    mov x9, x4                  // alto
+    mov w10, w5                 // color (from w5 argument)
+    mov x11, #640               // SCREEN_WIDTH (hardcoded, consider passing as argument or global .equ)
+
+    // Calculate end coordinates
+    add x12, x6, x8             // x_end = x_start + ancho
+    add x13, x7, x9             // y_end = y_start + alto
+
+    // Loop through y-coordinates
+    mov x14, x7                 // y = y_start
+
+loop_y_rect:
+    cmp x14, x13                // Compare y with y_end
+    b.ge end_draw_rect          // If y >= y_end, exit y-loop
+
+    // Loop through x-coordinates
+    mov x15, x6                 // x = x_start (reset for each row)
+
+loop_x_rect:
+    cmp x15, x12                // Compare x with x_end
+    b.ge next_y_rect            // If x >= x_end, go to next row
+
+    // Calculate pixel address
+    mul x16, x14, x11           // y * SCREEN_WIDTH
+    add x16, x16, x15           // (y * SCREEN_WIDTH) + x
+    lsl x16, x16, #2            // * 4 bytes per pixel (assuming 32-bit color)
+
+    add x17, x0, x16            // pixel_address = framebuffer_base + offset
+    str w10, [x17]              // Write color to pixel
+
+    add x15, x15, #1            // x++
+    b loop_x_rect               // Continue x-loop
+
+next_y_rect:
+    add x14, x14, #1            // y++
+    b loop_y_rect               // Continue y-loop
+
+end_draw_rect:
+    // Restore callee-saved registers if they were saved at the beginning
+    // ldp x21, x22, [sp], #16
+    // ldp x19, x20, [sp], #16
+    ret
+
+
+// draw_circle:
+// Entrada:
+// x0 = puntero framebuffer base
+// x1 = center_x (coordenada X del centro del círculo)
+// x2 = center_y (coordenada Y del centro del círculo)
+// x3 = radio (radio del círculo)
+// w5 = color (color del círculo, formato de 32 bits)
+
+draw_circle:
+
+    // Mover argumentos a registros de trabajo para claridad y consistencia
+    mov x6, x1                  // x6 = center_x
+    mov x7, x2                  // x7 = center_y
+    mov x8, x3                  // x8 = radio
+    mov w9, w5                  // w9 = color
+
+    // Definir el ancho de la pantalla (asumiendo 640 píxeles, como en draw_rect)
+    mov x10, #640               // x10 = SCREEN_WIDTH
+
+    // Calcular el radio al cuadrado (radio * radio) para la comparación de distancia
+    // Esto evita la necesidad de calcular la raíz cuadrada en cada píxel.
+    mul x11, x8, x8             // x11 = radio_squared
+
+    // Calcular las coordenadas del cuadro delimitador (bounding box) del círculo
+    // Esto define el área rectangular mínima que contiene el círculo.
+    sub x12, x6, x8             // x12 = x_start (center_x - radio)
+    add x13, x6, x8             // x13 = x_end   (center_x + radio)
+    sub x14, x7, x8             // x14 = y_start (center_y - radio)
+    add x15, x7, x8             // x15 = y_end   (center_y + radio)
+
+    // Bucle principal para las coordenadas Y (filas) dentro del cuadro delimitador
+    mov x16, x14                // x16 = current_y (inicializar con y_start)
+
+loop_y_circle:
+    cmp x16, x15                // Comparar current_y con y_end
+    b.ge end_draw_circle        // Si current_y >= y_end, salir del bucle Y
+
+    // Bucle anidado para las coordenadas X (columnas) dentro del cuadro delimitador
+    mov x17, x12                // x17 = current_x (reiniciar con x_start para cada nueva fila)
+
+loop_x_circle:
+    cmp x17, x13                // Comparar current_x con x_end
+    b.ge next_y_circle          // Si current_x >= x_end, pasar a la siguiente fila (siguiente Y)
+
+    // Calcular dx = current_x - center_x
+    // dx es la distancia horizontal del píxel actual al centro del círculo.
+    sub x18, x17, x6            // x18 = dx
+
+    // Calcular dy = current_y - center_y
+    // dy es la distancia vertical del píxel actual al centro del círculo.
+    sub x19, x16, x7            // x19 = dy
+
+    // Calcular dx_squared = dx * dx
+    mul x20, x18, x18           // x20 = dx_squared
+
+    // Calcular dy_squared = dy * dy
+    mul x21, x19, x19           // x21 = dy_squared
+
+    // Calcular distance_squared = dx_squared + dy_squared
+    // Esta es la distancia euclidiana al cuadrado desde el centro del círculo al píxel actual.
+    add x22, x20, x21           // x22 = distance_squared
+
+    // Comparar distance_squared con radio_squared
+    // Si la distancia al cuadrado es mayor que el radio al cuadrado, el píxel está fuera del círculo.
+    cmp x22, x11                // Comparar distance_squared con radio_squared
+    b.gt skip_pixel_circle      // Si distance_squared > radio_squared, saltar el dibujo de este píxel
+
+    // Si el píxel está dentro del círculo, calcular su dirección en el framebuffer y dibujarlo
+    // Calcular el desplazamiento del píxel: (current_y * SCREEN_WIDTH) + current_x
+    mul x23, x16, x10           // x23 = current_y * SCREEN_WIDTH
+    add x23, x23, x17           // x23 = (current_y * SCREEN_WIDTH) + current_x
+
+    // Multiplicar por 4 para obtener el desplazamiento en bytes (asumiendo 32 bits por píxel)
+    lsl x23, x23, #2            // x23 = offset_in_bytes
+
+    // Calcular la dirección de memoria del píxel: framebuffer_base + offset_in_bytes
+    add x24, x0, x23            // x24 = pixel_address
+
+    // Almacenar el color en la dirección de memoria del píxel
+    str w9, [x24]               // Escribir el color (w9) en la dirección [x24]
+
+skip_pixel_circle:
+    add x17, x17, #1            // Incrementar current_x (x++)
+    b loop_x_circle             // Continuar con el bucle X
+
+next_y_circle:
+    add x16, x16, #1            // Incrementar current_y (y++)
+    b loop_y_circle             // Continuar con el bucle Y
+
+end_draw_circle:
+    // Restaurar registros guardados por la función si fuera necesario.
+    // (Siguiendo el ejemplo de draw_rect, no se realizan operaciones de guardar/restaurar explícitas aquí)
+    ret                         // Retornar de la función
 
 
 

@@ -753,6 +753,89 @@ loop_x:
 
 
 
+// Dibuja un círculo centrado en (cx, cy) con radio r y color en x19
+// Entradas:
+// x0 = cx, x1 = cy, x2 = r
+
+draw_circle:
+    stp x3, x4, [sp, #-16]!     // guardar registros temporales
+    stp x5, x6, [sp, #-16]!
+    stp x7, x8, [sp, #-16]!
+
+    neg x3, x2                  // x3 = -r (inicio de x)
+
+x_loopcirc:
+    cmp x3, x2                  // while x <= r
+    bgt end_circle
+
+    neg x4, x2                  // y = -r
+
+y_loopcirc:
+    cmp x4, x2                  // while y <= r
+    bgt next_x
+
+    // calcular x^2 + y^2
+    mul x5, x3, x3              // x^2
+    mul x6, x4, x4              // y^2
+    add x7, x5, x6              // x^2 + y^2
+    mul x8, x2, x2              // r^2
+
+    cmp x7, x8
+    bgt skip_pixel              // si x^2 + y^2 > r^2, no dibujar
+
+    // calcular coordenadas absolutas
+    add x5, x0, x3              // x_abs = cx + x
+    add x6, x1, x4              // y_abs = cy + y
+
+    bl draw_pixel               // usa x5 (x), x6 (y), x19 (color)
+
+skip_pixel:
+    add x4, x4, #1
+    b y_loopcirc
+
+next_x:
+    add x3, x3, #1
+    b x_loopcirc
+
+end_circle:
+    ldp x7, x8, [sp], #16
+    ldp x5, x6, [sp], #16
+    ldp x3, x4, [sp], #16
+    ret
+
+
+
+// Dibuja un píxel en (x0, x1) con color x19
+// Usa: x0 = x, x1 = y, x19 = color, x20 = framebuffer base
+
+draw_pixel:
+    stp x2, x3, [sp, #-16]!     // guardar temporales
+
+    // verificar que x e y están en el rango visible
+    cmp x0, #0
+    blt end_draw_pixel
+    cmp x0, #639
+    bgt end_draw_pixel
+    cmp x1, #0
+    blt end_draw_pixel
+    cmp x1, #479
+    bgt end_draw_pixel
+
+    // calcular dirección del píxel: addr = framebuffer + y * 2560 + x * 4
+    mov x2, #2560
+    mul x2, x2, x1              // y * stride (2560)
+    lsl x3, x0, #2              // x * 4
+    add x2, x2, x3              // offset total
+    add x2, x20, x2             // addr = base + offset
+
+    str w19, [x2]               // escribir color (solo 4 bytes)
+
+end_draw_pixel:
+    ldp x2, x3, [sp], #16
+    ret
+
+
+
 
 mirror_loop:			// ----Loops para pintar en reflejo respecto a X----
 	mov x3, x11

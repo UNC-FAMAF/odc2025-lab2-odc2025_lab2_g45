@@ -703,7 +703,21 @@ loop2:
 	movk w5, #0xFF00, lsl #16
 	bl draw_rect
 
-//////////////////////////////////branches/////////////////////////////////////
+
+    // Supongamos que x0 ya tiene la dirección base del framebuffer
+
+    mov x1, #320          // cx = 320
+    mov x2, #240          // cy = 240
+    mov x3, #50           // radio = 50
+    mov w4, #0x00FF00FF   // color (magenta)
+    mov x5, #640          // SCREEN_WIDTH
+
+    bl draw_circle        // llamar a la función para dibujar el círculo
+
+
+
+
+//////////////////////////////////subrutinas/////////////////////////////////////
 
 // draw_rect:
 // Entrada:
@@ -748,91 +762,127 @@ loop_x:
 
     ret
 
-
-
-// Dibuja un círculo centrado en (cx, cy) con radio r y color en x19
-// Entradas:
-// x0 = cx, x1 = cy, x2 = r
-
 draw_circle:
-    stp x3, x4, [sp, #-16]!     // guardar registros temporales
-    stp x5, x6, [sp, #-16]!
-    stp x7, x8, [sp, #-16]!
+    // Entradas:
+    // x0 = dirección framebuffer
+    // x1 = cx (centro x)
+    // x2 = cy (centro y)
+    // x3 = radio (r)
+    // w4 = color
+    // x5 = SCREEN_WIDTH (ej: 640)
 
-    neg x3, x2                  // x3 = -r (inicio de x)
+    // Conservar registros callee-saved si se modifican
+    // (Ejemplo: si este código se llama como una función y modifica registros que el llamador espera conservar)
+    // stp x19, x20, [sp, #-16]! // Guardar x19, x20
+    // stp x21, x22, [sp, #-16]! // Guardar x21, x22
 
-x_loopcirc:
-    cmp x3, x2                  // while x <= r
-    bgt end_circle
+    mov x6, x1                  // cx
+    mov x7, x2                  // cy
+    mov x8, x3                  // radio
+    mov w9, w4                  // color
+    mov x10, x5                 // SCREEN_WIDTH
 
-    neg x4, x2                  // y = -r
+    // Calcular límites del cuadro que contiene el círculo
+    // Asegurarse de que los límites estén dentro de la pantalla
+    // x_start = max(0, cx - r)
+    // x_end   = min(SCREEN_WIDTH, cx + r + 1)
+    sub x11, x6, x8             // x_start_temp = cx - r
+    cmp x11, #0
+    b.lt .set_x_start_zero      // Si x_start_temp < 0, x_start = 0
+    mov x18, x11                // x_start = x_start_temp
+    b .x_start_ok
+.set_x_start_zero:
+    mov x18, #0                 // x_start = 0
+.x_start_ok:
 
-y_loopcirc:
-    cmp x4, x2                  // while y <= r
-    bgt next_x
+    add x12, x6, x8             // x_end_temp = cx + r
+    add x12, x12, #1            // x_end_temp = cx + r + 1 (no inclusivo)
+    cmp x12, x10                // Comparar con SCREEN_WIDTH
+    b.gt .set_x_end_width       // Si x_end_temp > SCREEN_WIDTH, x_end = SCREEN_WIDTH
+    mov x19, x12                // x_end = x_end_temp
+    b .x_end_ok
+.set_x_end_width:
+    mov x19, x10                // x_end = SCREEN_WIDTH
+.x_end_ok:
 
-    // calcular x^2 + y^2
-    mul x5, x3, x3              // x^2
-    mul x6, x4, x4              // y^2
-    add x7, x5, x6              // x^2 + y^2
-    mul x8, x2, x2              // r^2
+    // y_start = max(0, cy - r)
+    // y_end   = min(SCREEN_HEIGHT, cy + r + 1) - Asumiendo que sabes SCREEN_HEIGHT
+    // Para simplificar, asumo un SCREEN_HEIGHT implícito o que la lógica es similar a SCREEN_WIDTH
+    // Si SCREEN_HEIGHT no se pasa, necesitarías un registro para ello o un valor hardcodeado.
+    sub x13, x7, x8             // y_start_temp = cy - r
+    cmp x13, #0
+    b.lt .set_y_start_zero      // Si y_start_temp < 0, y_start = 0
+    mov x20, x13                // y_start = y_start_temp
+    b .y_start_ok
+.set_y_start_zero:
+    mov x20, #0                 // y_start = 0
+.y_start_ok:
 
-    cmp x7, x8
-    bgt skip_pixel              // si x^2 + y^2 > r^2, no dibujar
+    add x14, x7, x8             // y_end_temp = cy + r
+    add x14, x14, #1            // y_end_temp = cy + r + 1 (no inclusivo)
+    // Aquí necesitarías un SCREEN_HEIGHT para hacer la misma comprobación que con SCREEN_WIDTH
+    // Por ahora, asumiré que y_end no excede los límites si no se proporciona SCREEN_HEIGHT.
+    // Si tienes SCREEN_HEIGHT, la lógica sería:
+    // cmp x14, X_SCREEN_HEIGHT_REG
+    // b.gt .set_y_end_height
+    // mov x21, x14
+    // b .y_end_ok
+    // .set_y_end_height:
+    // mov x21, X_SCREEN_HEIGHT_REG
+    // .y_end_ok:
+    mov x21, x14                // y_end = y_end_temp (sin clamp a SCREEN_HEIGHT por ahora)
 
-    // calcular coordenadas absolutas
-    add x5, x0, x3              // x_abs = cx + x
-    add x6, x1, x4              // y_abs = cy + y
 
-    bl draw_pixel               // usa x5 (x), x6 (y), x19 (color)
+    mul x15, x8, x8             // r^2, para comparar distancia
+
+    mov x22, x20                // y = y_start (usamos x22 para el contador y)
+
+loop_y_circle:
+    cmp x22, x21
+    b.ge end_circle             // Si y >= y_end, salir
+
+    mov x23, x18                // x = x_start (usamos x23 para el contador x)
+
+loop_x_circle:
+    cmp x23, x19
+    b.ge next_y_circle          // Si x >= x_end, ir a la siguiente fila
+
+    // Calcular dx = x - cx
+    sub x24, x23, x6
+    // Calcular dy = y - cy
+    sub x25, x22, x7
+
+    // Calcular dx*dx + dy*dy
+    smull x26, w24, w24         // dx*dx (usar w24 para multiplicación 32x32 -> 64)
+    smull x27, w25, w25         // dy*dy (usar w25 para multiplicación 32x32 -> 64)
+    add x28, x26, x27           // distancia_cuadrada = dx*dx + dy*dy
+
+    // Comparar con r^2
+    cmp x28, x15
+    b.gt skip_pixel             // Si distancia_cuadrada > r^2, no pintar
+
+    // Pintar pixel:
+    // Calcular índice del pixel: (y * SCREEN_WIDTH + x) * BYTES_PER_PIXEL
+    // Asumiendo que cada pixel es un word (4 bytes), como indica lsl #2
+    mul x29, x22, x10           // y * SCREEN_WIDTH
+    add x29, x29, x23           // (y * SCREEN_WIDTH) + x
+    lsl x29, x29, #2            // * 4 (para bytes) -> offset en bytes
+    add x30, x0, x29            // dirección del pixel en framebuffer = framebuffer_base + offset
+    str w9, [x30]               // Almacenar el color en la dirección del pixel
 
 skip_pixel:
-    add x4, x4, #1
-    b y_loopcirc
+    add x23, x23, #1            // x++
+    b loop_x_circle
 
-next_x:
-    add x3, x3, #1
-    b x_loopcirc
+next_y_circle:
+    add x22, x22, #1            // y++
+    b loop_y_circle
 
 end_circle:
-    ldp x7, x8, [sp], #16
-    ldp x5, x6, [sp], #16
-    ldp x3, x4, [sp], #16
+    // Ldps para restaurar registros callee-saved si fueron guardados
+    // ldp x21, x22, [sp], #16
+    // ldp x19, x20, [sp], #16
     ret
-
-
-
-// Dibuja un píxel en (x0, x1) con color x19
-// Usa: x0 = x, x1 = y, x19 = color, x20 = framebuffer base
-
-draw_pixel:
-    stp x2, x3, [sp, #-16]!     // guardar temporales
-
-    // verificar que x e y están en el rango visible
-    cmp x0, #0
-    blt end_draw_pixel
-    cmp x0, #639
-    bgt end_draw_pixel
-    cmp x1, #0
-    blt end_draw_pixel
-    cmp x1, #479
-    bgt end_draw_pixel
-
-    // calcular dirección del píxel: addr = framebuffer + y * 2560 + x * 4
-    mov x2, #2560
-    mul x2, x2, x1              // y * stride (2560)
-    lsl x3, x0, #2              // x * 4
-    add x2, x2, x3              // offset total
-    add x2, x20, x2             // addr = base + offset
-
-    str w19, [x2]               // escribir color (solo 4 bytes)
-
-end_draw_pixel:
-    ldp x2, x3, [sp], #16
-    ret
-
-
-
 
 mirror_loop:			// ----Loops para pintar en reflejo respecto a X----
 	mov x3, x11

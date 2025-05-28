@@ -1,4 +1,4 @@
-	.equ SCREEN_WIDTH, 		640
+.equ SCREEN_WIDTH, 		640
 	.equ SCREEN_HEIGH, 		480
 	.equ BITS_PER_PIXEL,  	32
 
@@ -607,15 +607,107 @@ loop2:
 	bl draw_rect
 
 
-		// demogorgon.1
-		mov x0, x20
-	mov x1, #400
-	mov x2, #360
-	mov x3, #60
+// demogorgon
+
+//cabeza
+	mov x0, x20
+	mov x1, #420
+	mov x2, #400
+	mov x3, #30
 	mov x4, #30
-	movz w5, #0x0014, lsl #0
+	movz w5, #0x1B49, lsl #0
 	movk w5, #0xFF00, lsl #16
 	bl draw_rect
+
+	mov x0, x20
+	mov x1, #427
+	mov x2, #406
+	mov x3, #20
+	mov x4, #23
+	movz w5, #0x0000, lsl #0
+	movk w5, #0xFF00, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #420
+	mov x2, #410
+	mov x3, #29
+	mov x4, #13
+	movz w5, #0x0000, lsl #0
+	movk w5, #0xFF00, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #430
+	mov x2, #400
+	mov x3, #15
+	mov x4, #30
+	movz w5, #0x0000, lsl #0
+	movk w5, #0xFF00, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #425
+	mov x2, #403
+	mov x3, #20
+	mov x4, #25
+	movz w5, #0x0000, lsl #0
+	movk w5, #0xFF00, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #434
+	mov x2, #406
+	mov x3, #5
+	mov x4, #1
+	movz w5, #0x0000, lsl #0
+	movk w5, #0xFFFF, lsl #16
+	bl draw_rect
+
+
+
+//labios?
+//labio 1
+	mov x0, x20
+	mov x1, #400
+	mov x2, #384
+	mov x3, #14
+	mov x4, #12
+	movz w5, #0x1735, lsl #0
+	movk w5, #0xFF00, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #404
+	mov x2, #386
+	mov x3, #18
+	mov x4, #16
+	movz w5, #0x1735, lsl #0
+	movk w5, #0xFF00, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #410
+	mov x2, #394
+	mov x3, #18
+	mov x4, #16
+	movz w5, #0x1735, lsl #0
+	movk w5, #0xFF00, lsl #16
+	bl draw_rect
+
+//labio 2 
+
+	mov x0, x20
+	mov x1, #410
+	mov x2, #394
+	mov x3, #18
+	mov x4, #16
+	movz w5, #0x1735, lsl #0
+	movk w5, #0xFF00, lsl #16
+	bl draw_rect
+
+//////////////////////////////////branches/////////////////////////////////////
+
 // draw_rect:
 // Entrada:
 // x0 = puntero framebuffer base
@@ -658,61 +750,6 @@ loop_x:
     b.lt loop_y
 
     ret
-
-
-
-// Entradas:
-// x0 -> framebuffer
-// x1 -> cx
-// x2 -> cy
-// x3 -> radio
-// w5 -> color
-
-draw_circle:
-    sub x6, x1, x3          // x_min = cx - r
-    add x7, x1, x3          // x_max = cx + r
-    sub x8, x2, x3          // y_min = cy - r
-    add x9, x2, x3          // y_max = cy + r
-    mov x11, #640           // ancho pantalla
-
-    mov x10, x8             // y = y_min
-circle_loop_y:
-    cmp x10, x9
-    bgt circle_end
-
-    mov x12, x6             // x = x_min
-circle_loop_x:
-    cmp x12, x7
-    bgt circle_next_y
-
-    sub x13, x12, x1        // dx = x - cx
-    sub x14, x10, x2        // dy = y - cy
-    mul x15, x13, x13       // dx²
-    mul x16, x14, x14       // dy²
-    add x17, x15, x16       // dx² + dy²
-
-    mul x18, x3, x3         // r²
-    cmp x17, x18
-    bgt circle_skip_pixel
-
-    // framebuffer + (y * 640 + x) * 4
-    mul x19, x10, x11
-    add x19, x19, x12
-    lsl x19, x19, #2
-    add x19, x0, x19
-    str w5, [x19]
-
-circle_skip_pixel:
-    add x12, x12, #1
-    b circle_loop_x
-
-circle_next_y:
-    add x10, x10, #1
-    b circle_loop_y
-
-circle_end:
-    ret
-
 
 
 
@@ -799,14 +836,6 @@ double_mirror_loop_x:
 	b.lt double_mirror_loop_y		
 
 	ret
-
-
-
-
-
-
-
-
 
 
 

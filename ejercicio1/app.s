@@ -63,89 +63,54 @@ line_loop:
 
 
 
-	// ------------------- PROTOTIPO DEL FONDO CELESTE CENTRADO -------------------	
+	// ------------------- PROTOTIPO DEL FONDO CELESTE DE ARRIBA Y ABAJO -------------------	
 
 loop2:
 	mov x0, x20		// guardo la posición base del framebuffer de nuevo
 
-	//color celeste claro = 0xFF339BC7
-	movz x10, 0x9BC7, lsl 0	
-	movk x10, 0xFF33, lsl 16
+	//color celeste claro de abajo = 0xFF4A667E
+	movz x10, 0x667E, lsl 0	
+	movk x10, 0xFF4A, lsl 16
 
 	// Constantes a usar
+	mov x20, x0
 	mov x5, #640              // SCREEN_WIDTH
 	mov x6, #80              // x_start
 	mov x7, #560              // x_end 
-	mov x8, #40              // y_start
-	mov x9, #239              // y_end 
+	mov x11, #40              // y_start
+	mov x12, #239              // y_end 
+	bl double_mirror_loop			// pinto el fondo de abajo
 
-	mov x3, x8                // y = 40, posición inicial
+	//color celeste claro de abajo = 0xFF339BC7
+	movz x10, 0x9BC7, lsl 0	
+	movk x10, 0xFF33, lsl 16
+	bl mirror_loop		// pinto el fondo de arriba
 
-loop2_y:
-	mov x2, x6                // x = 80, posición inicial
+	// ------------------- PROTOTIPO DEL FONDO PÚRPURA -------------------	
 
-loop2_x_1:
-	// offset = ((y * 640) + x) * 4
-	mul x1, x3, x5
-	add x1, x1, x2		
-	lsl x1, x1, #2
-	add x4, x20, x1
-	str w10, [x4]             // pintar pixel
-
-	add x2, x2, #1
-	cmp x2, x7
-	b.lt loop2_x_1			// Repetir el ciclo hasta llegar a x = 560
-	
-	mov x2, x8
-
-	add x3, x3, #1
-	cmp x3, x9
-	b.lt loop2_y		// Repetir el ciclo hasta llegar a y = 239
-	
-	// ------------------- PROTOTIPO DEL FONDO PÚRPURA DEBAJO DEL CELESTE -------------------	
-
-	//color púrpura = 0xFF2B3DA1
-	movz x10, 0x3DA1, lsl 0	
-	movk x10, 0xFF2B, lsl 16
+	//color púrpura inferior = 0xFF1F1D44
+	movz x10, 0x1D44, lsl 0	
+	movk x10, 0xFF1F, lsl 16
 
 	// Constantes
 	mov x5, #640              // SCREEN_WIDTH
 	mov x6, #80               // x_start
 	mov x7, #560              // x_end 
-	mov x8, #130              // y_start
-	mov x9, #239              // y_end 
+	mov x11, #130              // y_start
+	mov x12, #239              // y_end 
+	bl double_mirror_loop	
 
-	mov x3, x8                // y = 130
+	//color púrpura superior = 0xFF2B3DA1
+	movz x10, 0x3DA1, lsl 0	
+	movk x10, 0xFF2B, lsl 16
 
-loop3_y:
-	mov x2, x6                // x = 80
-
-loop3_x_1:
-	// offset = ((y * 640) + x) * 4
-	mul x1, x3, x5
-	add x1, x1, x2
-	lsl x1, x1, #2
-	add x4, x20, x1
-	str w10, [x4]             // pintar pixel
-
-	add x2, x2, #1
-	cmp x2, x7
-	b.lt loop3_x_1		// Repetir el ciclo hasta llegar a x = 560
-	
-	mov x2, x8
-
-	add x3, x3, #1
-	cmp x3, x9
-	b.lt loop3_y		// Repetir el ciclo hasta llegar a y = 239
+	bl mirror_loop
 
 	// ------------------- PROTOTIPO DE LA FORMA DEL FONDO, LA PARTE DE LOS ARBUSTOS Y LA PARTE NEGRA DE ARRIBA DEL FONDO -------------------
 
 	//color negro = 0xFF000000
 	movz x10, 0x0000, lsl 0	
 	movk x10, 0xFF00, lsl 16
-
-
-
 
 	// En todas las siguientes instrucciones uso el color negro, estoy dibujando las siluetas del fondo
 
@@ -157,112 +122,113 @@ loop3_x_1:
 	mov x7, #84              // x_end
 	mov x11, #30              // y_start
 	mov x12, #220              // y_end
-	bl loop4_process
+	mov x13, #480			//SCREEN_HEIGHT
+	bl double_mirror_loop
 
 	// Repetición 2-1
 	mov x6, #84              // x_start
 	mov x7, #92              // x_end
 	mov x11, #30              // y_start
 	mov x12, #150              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 3-1
 	mov x6, #92              // x_start
 	mov x7, #96              // x_end
 	mov x11, #30              // y_start
 	mov x12, #130              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 3-1
 	mov x6, #96              // x_start
 	mov x7, #104              // x_end
 	mov x11, #30              // y_start
 	mov x12, #100              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 4-1
 	mov x6, #104              // x_start
 	mov x7, #106              // x_end
 	mov x11, #30              // y_start
 	mov x12, #86              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 5-1
 	mov x6, #106              // x_start
 	mov x7, #108              // x_end
 	mov x11, #30              // y_start
 	mov x12, #82              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 6-1
 	mov x6, #108              // x_start
 	mov x7, #112              // x_end
 	mov x11, #30              // y_start
 	mov x12, #72              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 7-1
 	mov x6, #112              // x_start
 	mov x7, #114              // x_end
 	mov x11, #30              // y_start
 	mov x12, #66              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 8-1
 	mov x6, #114              // x_start
 	mov x7, #120              // x_end
 	mov x11, #30              // y_start
 	mov x12, #62              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 9-1
 	mov x6, #120              // x_start
 	mov x7, #130              // x_end
 	mov x11, #30              // y_start
 	mov x12, #56              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 10-1
 	mov x6, #130              // x_start
 	mov x7, #136              // x_end
 	mov x11, #30              // y_start
 	mov x12, #54              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 11-1
 	mov x6, #136              // x_start
 	mov x7, #148              // x_end
 	mov x11, #30              // y_start
 	mov x12, #52              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 12-1
 	mov x6, #148              // x_start
 	mov x7, #160              // x_end
 	mov x11, #30              // y_start
 	mov x12, #48              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 13-1
 	mov x6, #160              // x_start
 	mov x7, #180              // x_end
 	mov x11, #30              // y_start
 	mov x12, #46              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 14-1
 	mov x6, #180              // x_start
 	mov x7, #220              // x_end
 	mov x11, #30              // y_start
 	mov x12, #44              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 15-1
 	mov x6, #220              // x_start
 	mov x7, #250              // x_end
 	mov x11, #30              // y_start
 	mov x12, #42              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Las siguientes repeticiones son de arbustos
 
@@ -273,42 +239,42 @@ loop3_x_1:
 	mov x7, #86              // x_end
 	mov x11, #160              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 2-2
 	mov x6, #86              // x_start
 	mov x7, #94              // x_end
 	mov x11, #164              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 3-2
 	mov x6, #94              // x_start
 	mov x7, #98              // x_end
 	mov x11, #168              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 4-2
 	mov x6, #98              // x_start
 	mov x7, #102              // x_end
 	mov x11, #172              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 5-2
 	mov x6, #102              // x_start
 	mov x7, #114              // x_end
 	mov x11, #176              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 6-2
 	mov x6, #114              // x_start
 	mov x7, #118              // x_end
 	mov x11, #180              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 
 	// Repetición 7-2
@@ -316,42 +282,42 @@ loop3_x_1:
 	mov x7, #122              // x_end
 	mov x11, #184              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 8-2
 	mov x6, #122              // x_start
 	mov x7, #126              // x_end
 	mov x11, #188              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 9-2
 	mov x6, #126              // x_start
 	mov x7, #130              // x_end
 	mov x11, #192              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 10-2
 	mov x6, #130              // x_start
 	mov x7, #142              // x_end
 	mov x11, #196              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 11-2
 	mov x6, #142              // x_start
 	mov x7, #146              // x_end
 	mov x11, #200              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 12-2
 	mov x6, #146              // x_start
 	mov x7, #154              // x_end
 	mov x11, #204              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// En las repeticiones -----x-3----- dibujo el segundo arbusto de izquierda a derecha (Reflejado en el lado derecho también). 
 
@@ -360,98 +326,98 @@ loop3_x_1:
 	mov x7, #158              // x_end
 	mov x11, #200              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 2-3
 	mov x6, #158              // x_start
 	mov x7, #162              // x_end
 	mov x11, #196              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 3-3
 	mov x6, #162              // x_start
 	mov x7, #166              // x_end
 	mov x11, #192              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 4-3
 	mov x6, #166              // x_start
 	mov x7, #174              // x_end
 	mov x11, #188              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 5-3
 	mov x6, #174              // x_start
 	mov x7, #186              // x_end
 	mov x11, #184              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 6-3
 	mov x6, #186              // x_start
 	mov x7, #190              // x_end
 	mov x11, #188              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 	
 	// Repetición 7-3
 	mov x6, #190              // x_start
 	mov x7, #198              // x_end
 	mov x11, #192              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 	
 	// Repetición 8-3
 	mov x6, #198              // x_start
 	mov x7, #202              // x_end
 	mov x11, #196              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 9-3
 	mov x6, #202              // x_start
 	mov x7, #206              // x_end
 	mov x11, #200              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 10-3
 	mov x6, #206              // x_start
 	mov x7, #210              // x_end
 	mov x11, #204              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 11-3
 	mov x6, #210              // x_start
 	mov x7, #214              // x_end
 	mov x11, #208              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 12-3
 	mov x6, #214              // x_start
 	mov x7, #218              // x_end
 	mov x11, #208              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 13-3
 	mov x6, #218              // x_start
 	mov x7, #222              // x_end
 	mov x11, #212              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 14-3
 	mov x6, #222              // x_start
 	mov x7, #226              // x_end
 	mov x11, #216              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// En las repeticiones ----x-4---- dibujo el tercer arbusto de izquierda a derecha (Reflejado en el lado derecho también). 
 
@@ -460,42 +426,42 @@ loop3_x_1:
 	mov x7, #230              // x_end
 	mov x11, #212              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 2-4
 	mov x6, #230              // x_start
 	mov x7, #234              // x_end
 	mov x11, #208              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 3-4
 	mov x6, #234              // x_start
 	mov x7, #242              // x_end
 	mov x11, #204              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 4-4
 	mov x6, #242              // x_start
 	mov x7, #250              // x_end
 	mov x11, #208              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 5-4
 	mov x6, #250              // x_start
 	mov x7, #266              // x_end
 	mov x11, #212              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 6-4
 	mov x6, #266              // x_start
 	mov x7, #274              // x_end
 	mov x11, #216              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// En las repeticiones ----x-5---- dibujo el cuarto arbusto de izquierda a derecha (Reflejado en el lado derecho también). 
 
@@ -504,14 +470,14 @@ loop3_x_1:
 	mov x7, #278              // x_end
 	mov x11, #212              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 2-5
 	mov x6, #278              // x_start
 	mov x7, #282              // x_end
 	mov x11, #208              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 
 	// Repetición 3-5
@@ -519,49 +485,49 @@ loop3_x_1:
 	mov x7, #290              // x_end
 	mov x11, #204              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 4-5
 	mov x6, #290              // x_start
 	mov x7, #298              // x_end
 	mov x11, #208              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 4-5
 	mov x6, #298              // x_start
 	mov x7, #302              // x_end
 	mov x11, #212              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 5-5
 	mov x6, #302              // x_start
 	mov x7, #306              // x_end
 	mov x11, #216              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 	
 	// Repetición 6-5
 	mov x6, #306              // x_start
 	mov x7, #314              // x_end
 	mov x11, #220              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 	
 	// Repetición 7-5
 	mov x6, #314              // x_start
 	mov x7, #318              // x_end
 	mov x11, #224              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 
 	// Repetición 8-5
 	mov x6, #318              // x_start
 	mov x7, #326              // x_end
 	mov x11, #228              // y_start
 	mov x12, #240              // y_end
-	bl loop4_process
+	bl double_mirror_loop
 	
 
 
@@ -751,13 +717,13 @@ circle_end:
 
 
 
-loop4_process:
+mirror_loop:			// ----Loops para pintar en reflejo respecto a X----
 	mov x3, x11
 
-loop4_y:
+mirror_loop_y:
 	mov x2, x6
 
-loop4_x:
+mirror_loop_x:
 	// offset = ((y * 640) + x) * 4
 	mul x1, x3, x5
 	add x1, x1, x2
@@ -773,15 +739,64 @@ loop4_x:
 	add x1, x1, x8
 	lsl x1, x1, #2
 	add x4, x20, x1
-	str w10, [x4]		// Pinto del lado derecho de la pantalla           
+	str w10, [x4]		// Pinto del lado derecho de la pantalla
 
 	add x2, x2, #1
 	cmp x2, x7
-	b.lt loop4_x		
+	b.lt mirror_loop_x		
 
 	add x3, x3, #1
 	cmp x3, x12
-	b.lt loop4_y		
+	b.lt mirror_loop_y		
+
+	ret
+
+double_mirror_loop:			// ----Loops para pintar en reflejo respecto a X e Y al mismo tiempo----
+	mov x3, x11
+
+double_mirror_loop_y:
+	mov x2, x6
+
+double_mirror_loop_x:
+	// offset = ((y * 640) + x) * 4
+	mul x1, x3, x5
+	add x1, x1, x2
+	lsl x1, x1, #2
+	add x4, x20, x1
+	str w10, [x4]             // Pinto del lado izquierdo de la pantalla
+
+	mov x9, x5
+	sub x8, x9, #1
+	sub x8, x8, x2		// Calculo auxiliar para pintar en reflejo del lado derecho
+
+	mul x1, x3, x5
+	add x1, x1, x8
+	lsl x1, x1, #2
+	add x4, x20, x1
+	str w10, [x4]		// Pinto del lado derecho de la pantalla
+
+	mov x9, #479          // 480 - 1
+	sub x15, x9, x3       // 479 - y es el reflejo vertical
+
+	mul x1, x15, x5
+	add x1, x1, x2
+	lsl x1, x1, #2
+	add x4, x20, x1
+	str w10, [x4]             // Pinto del lado izquierdo de la pantalla
+
+	mul x1, x15, x5
+	add x1, x1, x8
+	lsl x1, x1, #2
+	add x4, x20, x1
+	str w10, [x4]		// Pinto del lado derecho de la pantalla	
+
+	add x2, x2, #1
+	cmp x2, x7
+	b.lt double_mirror_loop_x		
+
+	add x3, x3, #1
+	cmp x3, x12
+	b.lt double_mirror_loop_y		
 
 	ret
 

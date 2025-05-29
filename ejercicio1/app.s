@@ -70,10 +70,9 @@ loop2:
 	movk x10, 0xFF4A, lsl 16
 
 	// Constantes a usar
-	mov x20, x0
 	mov x5, #640              // SCREEN_WIDTH
-	mov x6, #80              // x_start
-	mov x7, #560              // x_end 
+	mov x6, #50              // x_start
+	mov x7, #590              // x_end 
 	mov x11, #40              // y_start
 	mov x12, #239              // y_end 
 	bl double_mirror_loop			// pinto el fondo de abajo
@@ -91,8 +90,8 @@ loop2:
 
 	// Constantes
 	mov x5, #640              // SCREEN_WIDTH
-	mov x6, #80               // x_start
-	mov x7, #560              // x_end 
+	mov x6, #50               // x_start
+	mov x7, #590              // x_end 
 	mov x11, #130              // y_start
 	mov x12, #239              // y_end 
 	bl double_mirror_loop	
@@ -115,114 +114,114 @@ loop2:
 
 	// Repetición 1-1
 	mov x5, #640              // SCREEN_WIDTH
-	mov x6, #80              // x_start
-	mov x7, #84              // x_end
+	mov x6, #50              // x_start
+	mov x7, #54              // x_end
 	mov x11, #30              // y_start
 	mov x12, #220              // y_end
 	mov x13, #480			//SCREEN_HEIGHT
 	bl double_mirror_loop
 
 	// Repetición 2-1
-	mov x6, #84              // x_start
-	mov x7, #92              // x_end
+	mov x6, #54              // x_start
+	mov x7, #62              // x_end
 	mov x11, #30              // y_start
 	mov x12, #150              // y_end
 	bl double_mirror_loop
 
 	// Repetición 3-1
-	mov x6, #92              // x_start
-	mov x7, #96              // x_end
+	mov x6, #62              // x_start
+	mov x7, #66              // x_end
 	mov x11, #30              // y_start
 	mov x12, #130              // y_end
 	bl double_mirror_loop
 
 	// Repetición 3-1
-	mov x6, #96              // x_start
-	mov x7, #104              // x_end
+	mov x6, #66              // x_start
+	mov x7, #74              // x_end
 	mov x11, #30              // y_start
 	mov x12, #100              // y_end
 	bl double_mirror_loop
 
 	// Repetición 4-1
-	mov x6, #104              // x_start
-	mov x7, #106              // x_end
+	mov x6, #74              // x_start
+	mov x7, #76              // x_end
 	mov x11, #30              // y_start
-	mov x12, #86              // y_end
+	mov x12, #90              // y_end
 	bl double_mirror_loop
 
 	// Repetición 5-1
-	mov x6, #106              // x_start
-	mov x7, #108              // x_end
+	mov x6, #76              // x_start
+	mov x7, #78              // x_end
 	mov x11, #30              // y_start
-	mov x12, #82              // y_end
+	mov x12, #85              // y_end
 	bl double_mirror_loop
 
 	// Repetición 6-1
-	mov x6, #108              // x_start
-	mov x7, #112              // x_end
+	mov x6, #78              // x_start
+	mov x7, #82              // x_end
 	mov x11, #30              // y_start
-	mov x12, #72              // y_end
+	mov x12, #75              // y_end
 	bl double_mirror_loop
 
 	// Repetición 7-1
-	mov x6, #112              // x_start
-	mov x7, #114              // x_end
+	mov x6, #82              // x_start
+	mov x7, #84              // x_end
 	mov x11, #30              // y_start
-	mov x12, #66              // y_end
+	mov x12, #69              // y_end
 	bl double_mirror_loop
 
 	// Repetición 8-1
-	mov x6, #114              // x_start
-	mov x7, #120              // x_end
+	mov x6, #84              // x_start
+	mov x7, #90              // x_end
 	mov x11, #30              // y_start
-	mov x12, #62              // y_end
+	mov x12, #63              // y_end
 	bl double_mirror_loop
 
 	// Repetición 9-1
-	mov x6, #120              // x_start
-	mov x7, #130              // x_end
+	mov x6, #90              // x_start
+	mov x7, #100              // x_end
 	mov x11, #30              // y_start
-	mov x12, #56              // y_end
+	mov x12, #58              // y_end
 	bl double_mirror_loop
 
 	// Repetición 10-1
-	mov x6, #130              // x_start
-	mov x7, #136              // x_end
+	mov x6, #100              // x_start
+	mov x7, #106              // x_end
 	mov x11, #30              // y_start
 	mov x12, #54              // y_end
 	bl double_mirror_loop
 
 	// Repetición 11-1
-	mov x6, #136              // x_start
-	mov x7, #148              // x_end
+	mov x6, #106              // x_start
+	mov x7, #118              // x_end
 	mov x11, #30              // y_start
-	mov x12, #52              // y_end
+	mov x12, #50              // y_end
 	bl double_mirror_loop
 
 	// Repetición 12-1
-	mov x6, #148              // x_start
-	mov x7, #160              // x_end
+	mov x6, #118              // x_start
+	mov x7, #130              // x_end
 	mov x11, #30              // y_start
 	mov x12, #48              // y_end
 	bl double_mirror_loop
 
 	// Repetición 13-1
-	mov x6, #160              // x_start
-	mov x7, #180              // x_end
+	mov x6, #130              // x_start
+	mov x7, #150              // x_end
 	mov x11, #30              // y_start
 	mov x12, #46              // y_end
 	bl double_mirror_loop
 
 	// Repetición 14-1
-	mov x6, #180              // x_start
-	mov x7, #220              // x_end
+	mov x6, #150              // x_start
+	mov x7, #190              // x_end
 	mov x11, #30              // y_start
 	mov x12, #44              // y_end
 	bl double_mirror_loop
 
 	// Repetición 15-1
-	mov x6, #220              // x_start
-	mov x7, #250              // x_end
+	mov x6, #190              // x_start
+	mov x7, #220              // x_end
 	mov x11, #30              // y_start
 	mov x12, #42              // y_end
 	bl double_mirror_loop
@@ -313,6 +312,48 @@ loop2:
 	mov x6, #146              // x_start
 	mov x7, #154              // x_end
 	mov x11, #204              // y_start
+	mov x12, #240              // y_end
+	bl double_mirror_loop
+
+	// Repetición 13-2
+	mov x6, #50              // x_start
+	mov x7, #54              // x_end
+	mov x11, #178              // y_start
+	mov x12, #240              // y_end
+	bl double_mirror_loop
+
+	// Repetición 14-2
+	mov x6, #54              // x_start
+	mov x7, #58              // x_end
+	mov x11, #174              // y_start
+	mov x12, #240              // y_end
+	bl double_mirror_loop
+
+	// Repetición 15-2
+	mov x6, #58              // x_start
+	mov x7, #64              // x_end
+	mov x11, #170              // y_start
+	mov x12, #240              // y_end
+	bl double_mirror_loop
+
+	// Repetición 16-2
+	mov x6, #64              // x_start
+	mov x7, #72              // x_end
+	mov x11, #166              // y_start
+	mov x12, #240              // y_end
+	bl double_mirror_loop
+
+	// Repetición 17-2
+	mov x6, #72              // x_start
+	mov x7, #76              // x_end
+	mov x11, #162              // y_start
+	mov x12, #240              // y_end
+	bl double_mirror_loop
+
+	// Repetición 18-2
+	mov x6, #76              // x_start
+	mov x7, #84              // x_end
+	mov x11, #160              // y_start
 	mov x12, #240              // y_end
 	bl double_mirror_loop
 
@@ -526,6 +567,203 @@ loop2:
 	mov x12, #240              // y_end
 	bl double_mirror_loop
 	
+	// ------------------- ÁRBOLES DEL FONDO, REFLEJADOS ARRIBA Y ABAJO -------------------
+
+	// Determino que x10 sea el color negro = 0xFF000000
+	movz x10, 0x0000, lsl #0
+	movk x10, 0xFF00, lsl #16
+
+	// --- El siguiente código es para los árboles de la izquierda hacia la derecha --- 
+
+	// NOSEQUEHACERACA
+	mov x6, #78              // x_start
+	mov x7, #92              // x_end
+	mov x11, #144              // y_start
+	mov x12, #164              // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA
+	mov x6, #82              // x_start
+	mov x7, #94              // x_end
+	mov x11, #108              // y_start
+	mov x12, #144              // y_end
+	bl only_y_mirror_loop
+
+// NOSEQUEHACERACA
+	mov x6, #78              // x_start
+	mov x7, #86              // x_end
+	mov x11, #80              // y_start
+	mov x12, #108              // y_end
+	bl only_y_mirror_loop
+
+// NOSEQUEHACERACA
+	mov x6, #72              // x_start
+	mov x7, #78              // x_end
+	mov x11, #72              // y_start
+	mov x12, #80              // y_end
+	bl only_y_mirror_loop
+
+// NOSEQUEHACERACA
+	mov x6, #86              // x_start
+	mov x7, #90              // x_end
+	mov x11, #60              // y_start
+	mov x12, #80              // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA
+	mov x6, #92              // x_start
+	mov x7, #100              // x_end
+	mov x11, #90              // y_start
+	mov x12, #112              // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA
+	mov x6, #100              // x_start
+	mov x7, #108              // x_end
+	mov x11, #82              // y_start
+	mov x12, #100              // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA
+	mov x6, #92              // x_start
+	mov x7, #96              // x_end
+	mov x11, #58              // y_start
+	mov x12, #70              // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA
+	mov x6, #96              // x_start
+	mov x7, #100              // x_end
+	mov x11, #70              // y_start
+	mov x12, #74              // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA
+	mov x6, #100              // x_start
+	mov x7, #104              // x_end
+	mov x11, #74              // y_start
+	mov x12, #78              // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA
+	mov x6, #104              // x_start
+	mov x7, #108              // x_end
+	mov x11, #78              // y_start
+	mov x12, #82              // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA
+	mov x6, #108              // x_start
+	mov x7, #112              // x_end
+	mov x11, #62              // y_start
+	mov x12, #86              // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA
+	mov x6, #112              // x_start
+	mov x7, #116              // x_end
+	mov x11, #46              // y_start
+	mov x12, #58              // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA
+	mov x6, #104              // x_start
+	mov x7, #112              // x_end
+	mov x11, #58              // y_start
+	mov x12, #62              // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA
+	mov x6, #100              // x_start
+	mov x7, #104              // x_end
+	mov x11, #50              // y_start
+	mov x12, #62            // y_end
+	bl only_y_mirror_loop
+
+
+	// NOSEQUEHACERACA-2
+	mov x6, #132              // x_start
+	mov x7, #140              // x_end
+	mov x11, #160              // y_start
+	mov x12, #200           // y_end
+	bl only_y_mirror_loop
+	
+	// NOSEQUEHACERACA-2
+	mov x6, #128              // x_start
+	mov x7, #132              // x_end
+	mov x11, #100              // y_start
+	mov x12, #160           // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-2
+	mov x6, #128              // x_start
+	mov x7, #136              // x_end
+	mov x11, #88              // y_start
+	mov x12, #100           // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-2
+	mov x6, #136              // x_start
+	mov x7, #140              // x_end
+	mov x11, #64              // y_start
+	mov x12, #88           // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-2
+	mov x6, #140              // x_start
+	mov x7, #144              // x_end
+	mov x11, #52              // y_start
+	mov x12, #64           // y_end
+	bl only_y_mirror_loop
+	
+	// NOSEQUEHACERACA-2
+	mov x6, #140              // x_start
+	mov x7, #148              // x_end
+	mov x11, #48              // y_start
+	mov x12, #52           // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-2
+	mov x6, #148              // x_start
+	mov x7, #152              // x_end
+	mov x11, #44              // y_start
+	mov x12, #48           // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-2
+	mov x6, #124              // x_start
+	mov x7, #128              // x_end
+	mov x11, #72              // y_start
+	mov x12, #88           // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-2
+	mov x6, #120              // x_start
+	mov x7, #124              // x_end
+	mov x11, #60             // y_start
+	mov x12, #72           // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-2
+	mov x6, #124              // x_start
+	mov x7, #128              // x_end
+	mov x11, #64            // y_start
+	mov x12, #68           // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-2
+	mov x6, #128              // x_start
+	mov x7, #132              // x_end
+	mov x11, #60            // y_start
+	mov x12, #64           // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-2
+	mov x6, #128              // x_start
+	mov x7, #132              // x_end
+	mov x11, #60            // y_start
+	mov x12, #64           // y_end
+	bl only_y_mirror_loop
 
 
 
@@ -634,7 +872,20 @@ loop2:
 
 
 //////////////////////////////////subrutinas//////////////////////////////
-mirror_loop:			// ----Loops para pintar en reflejo respecto a X----
+
+//--Método de uso de mirror_loop--
+//	movz x10, 0x667E, lsl 0		---> Establecer el color a usar
+//	movk x10, 0xFF4A, lsl 16
+//
+//	mov x5, #640	---> Ancho total de la pantalla
+//	mov x6, #80		---> Dirección de inicio de x para pintar
+//	mov x7, #560	---> Dirección de fin de x para pintar
+//	mov x11, #40	---> Dirección de inicio de y para pintar
+//	mov x12, #239	---> Dirección de fin de y para pintar
+//	bl mirror_loop	---> Llamado a la función
+
+
+mirror_loop:			// ----Loops para pintar en reflejo respecto al eje Y----
 	mov x3, x11
 
 mirror_loop_y:
@@ -645,7 +896,7 @@ mirror_loop_x:
 	mul x1, x3, x5
 	add x1, x1, x2
 	lsl x1, x1, #2
-	add x4, x20, x1
+	add x4, x0, x1
 	str w10, [x4]             // Pinto del lado izquierdo de la pantalla
 
 	mov x9, x5
@@ -655,7 +906,7 @@ mirror_loop_x:
 	mul x1, x3, x5
 	add x1, x1, x8
 	lsl x1, x1, #2
-	add x4, x20, x1
+	add x4, x0, x1
 	str w10, [x4]		// Pinto del lado derecho de la pantalla
 
 	add x2, x2, #1
@@ -668,7 +919,21 @@ mirror_loop_x:
 
 	ret
 
-double_mirror_loop:			// ----Loops para pintar en reflejo respecto a X e Y al mismo tiempo----
+
+//--Método de uso de double_mirror_loop--
+//	movz x10, 0x667E, lsl 0		---> Establecer el color a usar
+//	movk x10, 0xFF4A, lsl 16x0
+//
+//	mov x5, #640	---> Ancho total de la pantalla
+//	mov x6, #80		---> Dirección de inicio de x para pintar
+//	mov x7, #560	---> Dirección de fin de x para pintar
+//	mov x11, #40	---> Dirección de inicio de y para pintar
+//	mov x12, #239	---> Dirección de fin de y para pintar
+//
+//	bl double_mirror_loop		----> Llamado a la función
+
+
+double_mirror_loop:			// ----Loops para pintar en reflejo respecto a los ejes X e Y al mismo tiempo----
 	mov x3, x11
 
 double_mirror_loop_y:
@@ -679,7 +944,7 @@ double_mirror_loop_x:
 	mul x1, x3, x5
 	add x1, x1, x2
 	lsl x1, x1, #2
-	add x4, x20, x1
+	add x4, x0, x1
 	str w10, [x4]             // Pinto del lado izquierdo de la pantalla
 
 	mov x9, x5
@@ -689,22 +954,22 @@ double_mirror_loop_x:
 	mul x1, x3, x5
 	add x1, x1, x8
 	lsl x1, x1, #2
-	add x4, x20, x1
+	add x4, x0, x1
 	str w10, [x4]		// Pinto del lado derecho de la pantalla
 
-	mov x9, #479          // 480 - 1
+	mov x9, #479          // 480 - 1..........Cálculo auxiliar para pintar en reflejo respecto al eje X
 	sub x15, x9, x3       // 479 - y es el reflejo vertical
 
 	mul x1, x15, x5
 	add x1, x1, x2
 	lsl x1, x1, #2
-	add x4, x20, x1
+	add x4, x0, x1
 	str w10, [x4]             // Pinto del lado izquierdo de la pantalla
 
 	mul x1, x15, x5
 	add x1, x1, x8
 	lsl x1, x1, #2
-	add x4, x20, x1
+	add x4, x0, x1
 	str w10, [x4]		// Pinto del lado derecho de la pantalla	
 
 	add x2, x2, #1
@@ -716,6 +981,102 @@ double_mirror_loop_x:
 	b.lt double_mirror_loop_y		
 
 	ret
+
+//--Método de uso de inverted_mirror_loop--
+//	movz x10, 0x667E, lsl 0		--->Establecer el color a usar
+//	movk x10, 0xFF4A, lsl 16
+//
+//	mov x5, #640	---> Ancho total de la pantalla
+//	mov x6, #80		---> Dirección de inicio de x para pintar
+//	mov x7, #560	---> Dirección de fin de x para pintar
+//	mov x11, #40	---> Dirección de inicio de y para pintar
+//	mov x12, #239	---> Dirección de fin de y para pintar
+//	bl double_mirror_loop		----> Llamado a la función
+
+
+inverted_mirror_loop:			// ----Loops para pintar en reflejo, solo usando la diagonal respecto a X e Y al mismo tiempo----
+	mov x3, x11					// Por ejemplo, si pinto un pixel arriba izquierda, ese mismo va a reflejarse SOLO abajo derecha respecto al eje X e Y
+
+inverted_mirror_loop_y:
+	mov x2, x6
+
+inverted_mirror_loop_x:
+	// offset = ((y * 640) + x) * 4
+	mul x1, x3, x5
+	add x1, x1, x2
+	lsl x1, x1, #2
+	add x4, x0, x1
+	str w10, [x4]             // Pinto del lado izquierdo de la pantalla
+
+	mov x9, x5
+	sub x8, x9, #1
+	sub x8, x8, x2		// Calculo auxiliar para pintar en reflejo del lado derecho
+
+	mov x9, #479          // 480 - 1........ Cálculo auxiliar para pintar en reflejo respecto al eje X
+	sub x15, x9, x3       // 479 - y es el reflejo vertical
+
+	mul x1, x15, x5
+	add x1, x1, x8
+	lsl x1, x1, #2
+	add x4, x0, x1
+	str w10, [x4]		// Pinto del lado derecho de la pantalla	
+
+	add x2, x2, #1
+	cmp x2, x7
+	b.lt inverted_mirror_loop_x		
+
+	add x3, x3, #1
+	cmp x3, x12
+	b.lt inverted_mirror_loop_y		
+
+	ret
+
+//--Método de uso de only_y_mirror_loop--
+//	movz x10, 0x667E, lsl 0		---> Establecer el color a usar
+//	movk x10, 0xFF4A, lsl 16x0
+//
+//	mov x5, #640	---> Ancho total de la pantalla
+//	mov x6, #80		---> Dirección de inicio de x para pintar
+//	mov x7, #560	---> Dirección de fin de x para pintar
+//	mov x11, #40	---> Dirección de inicio de y para pintar
+//	mov x12, #239	---> Dirección de fin de y para pintar
+//
+//	bl only_y_mirror_loop		----> Llamado a la función
+
+
+only_y_mirror_loop:			// ----Loops para pintar en reflejo SOLO respecto al eje X ----
+	mov x3, x11
+
+only_y_mirror_loop_y:
+	mov x2, x6
+
+only_y_mirror_loop_x:
+	// offset = ((y * 640) + x) * 4
+	mul x1, x3, x5
+	add x1, x1, x2
+	lsl x1, x1, #2
+	add x4, x0, x1
+	str w10, [x4]             // Pinto del lado izquierdo de la pantalla
+
+	mov x9, #479          // 480 - 1..........Cálculo auxiliar para pintar en reflejo respecto al eje X
+	sub x15, x9, x3       // 479 - y es el reflejo vertical
+
+	mul x1, x15, x5
+	add x1, x1, x2
+	lsl x1, x1, #2
+	add x4, x0, x1
+	str w10, [x4]             // Pinto invertido respecto al eje X
+
+	add x2, x2, #1
+	cmp x2, x7
+	b.lt only_y_mirror_loop_x		
+
+	add x3, x3, #1
+	cmp x3, x12
+	b.lt only_y_mirror_loop_y		
+
+	ret
+ 
 
 // draw_rect:
 // Entrada:

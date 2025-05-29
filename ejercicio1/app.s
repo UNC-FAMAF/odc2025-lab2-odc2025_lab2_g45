@@ -843,33 +843,6 @@ loop2:
 
 
 // demogorgon
-// Círculo 1: Rojo
-// mov x0, x20 ; (Asumimos x20 contiene el puntero al framebuffer base)
-    mov x1, #150        // center_x = 150
-    mov x2, #150        // center_y = 150
-    mov x3, #40         // radio = 40
-    movz w5, #0x0000, lsl #0 // color = 0xFFFF0000 (Rojo)
-    movk w5, #0xFFFF, lsl #16
-    bl draw_circle      // Llama a la función draw_circle
-
-// Círculo 2: Azul
-// mov x0, x20 ; (FrameBuffer base ya está en x0)
-    mov x1, #320        // center_x = 320
-    mov x2, #240        // center_y = 240
-    mov x3, #50         // radio = 50
-    movz w5, #0x00FF, lsl #0 // color = 0xFF0000FF (Azul)
-    movk w5, #0xFF00, lsl #16
-    bl draw_circle      // Llama a la función draw_circle
-
-// Círculo 3: Verde
-// mov x0, x20 ; (FrameBuffer base ya está en x0)
-    mov x1, #490        // center_x = 490
-    mov x2, #330        // center_y = 330
-    mov x3, #35         // radio = 35
-    movz w5, #0xFF00, lsl #0 // color = 0xFF00FF00 (Verde)
-    movk w5, #0xFF00, lsl #16
-    bl draw_circle      // Llama a la función draw_circle
-
 
 //////////////////////////////////subrutinas//////////////////////////////
 

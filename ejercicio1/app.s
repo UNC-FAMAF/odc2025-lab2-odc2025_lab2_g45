@@ -90,19 +90,381 @@ loop2:
 
 	// Constantes
 	mov x5, #640              // SCREEN_WIDTH
-	mov x6, #50               // x_start
-	mov x7, #590              // x_end 
-	mov x11, #130              // y_start
+	mov x6, #52               // x_start
+	mov x7, #68              // x_end 
+	mov x11, #128              // y_start
 	mov x12, #239              // y_end 
-	bl double_mirror_loop	
+	bl double_mirror_loop
+	
+	// A partir de acá, dejaré de poner los registros x5 y x12 en la llamada, ya que los mismos no van a cambiar nunca. (x12 significa que siempre se pintará hasta la mitad de la pantalla)
 
-	//color púrpura superior = 0xFF2B3DA1
+	// Constantes
+	mov x6, #68               // x_start
+	mov x7, #72              // x_end 
+	mov x11, #136              // y_start
+	bl double_mirror_loop
+		
+	// Constantes
+	mov x6, #72               // x_start
+	mov x7, #84              // x_end 
+	mov x11, #140              // y_start
+	bl double_mirror_loop
+
+	// Constantes
+	mov x6, #84               // x_start
+	mov x7, #92              // x_end 
+	mov x11, #144              // y_start
+	bl double_mirror_loop
+
+	// Constantes
+	mov x6, #92               // x_start
+	mov x7, #104              // x_end 
+	mov x11, #152              // y_start
+	bl double_mirror_loop
+
+	// Constantes
+	mov x6, #104               // x_start
+	mov x7, #108              // x_end 
+	mov x11, #156              // y_start
+	bl double_mirror_loop
+
+	// Constantes
+	mov x6, #108               // x_start
+	mov x7, #116              // x_end 
+	mov x11, #160              // y_start
+	bl double_mirror_loop
+
+	// Constantes
+	mov x6, #116               // x_start
+	mov x7, #128             // x_end 
+	mov x11, #164              // y_start
+	bl double_mirror_loop
+
+	// Constantes
+	mov x6, #128               // x_start
+	mov x7, #132             // x_end 
+	mov x11, #168              // y_start
+	bl double_mirror_loop
+
+	// Constantes
+	mov x6, #132               // x_start
+	mov x7, #140             // x_end 
+	mov x11, #172              // y_start
+	bl double_mirror_loop
+
+	// Constantes
+	mov x6, #140               // x_start
+	mov x7, #148             // x_end 
+	mov x11, #176              // y_start
+	bl double_mirror_loop
+
+	// Constantes
+	mov x6, #148               // x_start
+	mov x7, #156             // x_end 
+	mov x11, #180              // y_start
+	bl double_mirror_loop
+
+	// Constantes
+	mov x6, #156               // x_start
+	mov x7, #172             // x_end 
+	mov x11, #176              // y_start
+	bl double_mirror_loop
+
+	// Constantes
+	mov x6, #172               // x_start
+	mov x7, #180             // x_end 
+	mov x11, #172              // y_start
+	bl double_mirror_loop
+
+	// Constantes
+	mov x6, #180               // x_start
+	mov x7, #188             // x_end 
+	mov x11, #168              // y_start
+	bl double_mirror_loop
+
+	// Constantes
+	mov x6, #188               // x_start
+	mov x7, #196             // x_end 
+	mov x11, #176            // y_start
+	bl double_mirror_loop
+
+	// Constantes
+	mov x6, #196               // x_start
+	mov x7, #208             // x_end 
+	mov x11, #180            // y_start
+	bl double_mirror_loop
+
+	// Constantes
+	mov x6, #208               // x_start
+	mov x7, #228             // x_end 
+	mov x11, #184            // y_start
+	bl double_mirror_loop
+
+	// Constantes
+	mov x6, #228               // x_start
+	mov x7, #232             // x_end 
+	mov x11, #188            // y_start
+	bl double_mirror_loop
+
+	// Constantes
+	mov x6, #232               // x_start
+	mov x7, #240             // x_end 
+	mov x11, #184            // y_start
+	bl double_mirror_loop
+
+	// Constantes
+	mov x6, #240               // x_start
+	mov x7, #244             // x_end 
+	mov x11, #188            // y_start
+	bl double_mirror_loop
+
+	// Constantes
+	mov x6, #244               // x_start
+	mov x7, #248             // x_end 
+	mov x11, #192            // y_start
+	bl double_mirror_loop
+
+	// Constantes
+	mov x6, #248               // x_start
+	mov x7, #252            // x_end 
+	mov x11, #196            // y_start
+	bl double_mirror_loop
+
+	// Constantes
+	mov x6, #252               // x_start
+	mov x7, #264            // x_end 
+	mov x11, #200            // y_start
+	bl double_mirror_loop
+
+	// Constantes
+	mov x6, #264               // x_start
+	mov x7, #280            // x_end 
+	mov x11, #196            // y_start
+	bl double_mirror_loop
+
+	// Constantes
+	mov x6, #280               // x_start
+	mov x7, #284            // x_end 
+	mov x11, #192            // y_start
+	bl double_mirror_loop
+
+	// Constantes
+	mov x6, #284               // x_start
+	mov x7, #288            // x_end 
+	mov x11, #188            // y_start
+	bl double_mirror_loop
+
+	// Constantes
+	mov x6, #288               // x_start
+	mov x7, #300            // x_end 
+	mov x11, #192            // y_start
+	bl double_mirror_loop
+
+	// Constantes
+	mov x6, #300               // x_start
+	mov x7, #312            // x_end 
+	mov x11, #196            // y_start
+	bl double_mirror_loop
+
+	// Constantes
+	mov x6, #312               // x_start
+	mov x7, #320            // x_end 
+	mov x11, #200            // y_start
+	bl double_mirror_loop
+
+
+
+	//---- color púrpura superior = 0xFF2B3DA1 ----
 	movz x10, 0x3DA1, lsl 0	
 	movk x10, 0xFF2B, lsl 16
 
+	// Para lograr el efecto de que arriba sea un tono más claro de púrpura, y abajo sea un tono más oscuro, lo que hago es utilizar mi función
+	// double_mirror_loop para pintar primero con el color púrpura más oscuro. Esto hace que ya tenga pintado arriba y abajo un reflejo exactamente igual.
+	// Luego, con la función mirror_loop pinto solo en la parte de arriba (con color púrpura claro) por encima de lo pintado anteriormente con púrpura oscuro.
+	// De esta forma logro el efecto de que arriba sean colores más claros y luminosos, mientras que abajo son más oscuros y apagados.
+
+	// Constantes
+	mov x6, #52               // x_start
+	mov x7, #68              // x_end 
+	mov x11, #128              // y_start
+	mov x12, #239              // y_end 
 	bl mirror_loop
 
-	// ------------------- PROTOTIPO DE LA FORMA DEL FONDO, LA PARTE DE LOS ARBUSTOS Y LA PARTE NEGRA DE ARRIBA DEL FONDO -------------------
+	// Constantes
+	mov x6, #68               // x_start
+	mov x7, #72              // x_end 
+	mov x11, #136              // y_start
+	bl mirror_loop
+		
+	// Constantes
+	mov x6, #72               // x_start
+	mov x7, #84              // x_end 
+	mov x11, #140              // y_start
+	bl mirror_loop
+
+	// Constantes
+	mov x6, #84               // x_start
+	mov x7, #92              // x_end 
+	mov x11, #144              // y_start
+	bl mirror_loop
+
+	// Constantes
+	mov x6, #92               // x_start
+	mov x7, #104              // x_end 
+	mov x11, #152              // y_start
+	bl mirror_loop
+
+	// Constantes
+	mov x6, #104               // x_start
+	mov x7, #108              // x_end 
+	mov x11, #156              // y_start
+	bl mirror_loop
+
+	// Constantes
+	mov x6, #108               // x_start
+	mov x7, #116              // x_end 
+	mov x11, #160              // y_start
+	bl mirror_loop
+
+	// Constantes
+	mov x6, #116               // x_start
+	mov x7, #128             // x_end 
+	mov x11, #164              // y_start
+	bl mirror_loop
+
+	// Constantes
+	mov x6, #128               // x_start
+	mov x7, #132             // x_end 
+	mov x11, #168              // y_start
+	bl mirror_loop
+
+	// Constantes
+	mov x6, #132               // x_start
+	mov x7, #140             // x_end 
+	mov x11, #172              // y_start
+	bl mirror_loop
+
+	// Constantes
+	mov x6, #140               // x_start
+	mov x7, #148             // x_end 
+	mov x11, #176              // y_start
+	bl mirror_loop
+
+	// Constantes
+	mov x6, #148               // x_start
+	mov x7, #156             // x_end 
+	mov x11, #180              // y_start
+	bl mirror_loop
+
+	// Constantes
+	mov x6, #156               // x_start
+	mov x7, #172             // x_end 
+	mov x11, #176              // y_start
+	bl mirror_loop
+
+	// Constantes
+	mov x6, #172               // x_start
+	mov x7, #180             // x_end 
+	mov x11, #172              // y_start
+	bl mirror_loop
+
+	// Constantes
+	mov x6, #180               // x_start
+	mov x7, #188             // x_end 
+	mov x11, #168              // y_start
+	bl mirror_loop
+
+	// Constantes
+	mov x6, #188               // x_start
+	mov x7, #196             // x_end 
+	mov x11, #176            // y_start
+	bl mirror_loop
+
+	// Constantes
+	mov x6, #196               // x_start
+	mov x7, #208             // x_end 
+	mov x11, #180            // y_start
+	bl mirror_loop
+
+	// Constantes
+	mov x6, #208               // x_start
+	mov x7, #228             // x_end 
+	mov x11, #184            // y_start
+	bl mirror_loop
+
+	// Constantes
+	mov x6, #228               // x_start
+	mov x7, #232             // x_end 
+	mov x11, #188            // y_start
+	bl mirror_loop
+
+	// Constantes
+	mov x6, #232               // x_start
+	mov x7, #240             // x_end 
+	mov x11, #184            // y_start
+	bl mirror_loop
+
+	// Constantes
+	mov x6, #240               // x_start
+	mov x7, #244             // x_end 
+	mov x11, #188            // y_start
+	bl mirror_loop
+
+	// Constantes
+	mov x6, #244               // x_start
+	mov x7, #248             // x_end 
+	mov x11, #192            // y_start
+	bl mirror_loop
+
+	// Constantes
+	mov x6, #248               // x_start
+	mov x7, #252            // x_end 
+	mov x11, #196            // y_start
+	bl mirror_loop
+
+	// Constantes
+	mov x6, #252               // x_start
+	mov x7, #264            // x_end 
+	mov x11, #200            // y_start
+	bl mirror_loop
+
+	// Constantes
+	mov x6, #264               // x_start
+	mov x7, #280            // x_end 
+	mov x11, #196            // y_start
+	bl mirror_loop
+
+	// Constantes
+	mov x6, #280               // x_start
+	mov x7, #284            // x_end 
+	mov x11, #192            // y_start
+	bl mirror_loop
+
+	// Constantes
+	mov x6, #284               // x_start
+	mov x7, #288            // x_end 
+	mov x11, #188            // y_start
+	bl mirror_loop
+
+	// Constantes
+	mov x6, #288               // x_start
+	mov x7, #300            // x_end 
+	mov x11, #192            // y_start
+	bl mirror_loop
+
+	// Constantes
+	mov x6, #300               // x_start
+	mov x7, #312            // x_end 
+	mov x11, #196            // y_start
+	bl mirror_loop
+
+	// Constantes
+	mov x6, #312               // x_start
+	mov x7, #320            // x_end 
+	mov x11, #200            // y_start
+	bl mirror_loop
+
+		// ------------------- PROTOTIPO DE LA FORMA DEL FONDO, LA PARTE DE LOS ARBUSTOS Y LA PARTE NEGRA DE ARRIBA DEL FONDO -------------------
 
 	//color negro = 0xFF000000
 	movz x10, 0x0000, lsl 0	
@@ -231,7 +593,7 @@ loop2:
 	// En las repeticiones -----x-2----- dibujo el primer arbusto de izquierda a derecha (Reflejado en el lado derecho también). 
 
 	// Repetición 1-2
-	mov x6, #84              // x_start
+	mov x6, #82              // x_start
 	mov x7, #86              // x_end
 	mov x11, #160              // y_start
 	mov x12, #240              // y_end
@@ -583,13 +945,135 @@ loop2:
 	bl only_y_mirror_loop
 
 	// NOSEQUEHACERACA
+	mov x6, #66              // x_start
+	mov x7, #70              // x_end
+	mov x11, #120              // y_start
+	mov x12, #128              // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA
+	mov x6, #70              // x_start
+	mov x7, #74              // x_end
+	mov x11, #100              // y_start
+	mov x12, #120              // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA
+	mov x6, #66              // x_start
+	mov x7, #70              // x_end
+	mov x11, #96              // y_start
+	mov x12, #112              // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA
 	mov x6, #82              // x_start
 	mov x7, #94              // x_end
 	mov x11, #108              // y_start
 	mov x12, #144              // y_end
 	bl only_y_mirror_loop
 
-// NOSEQUEHACERACA
+
+
+	// NOSEQUEHACERACA
+	mov x6, #94              // x_start
+	mov x7, #98              // x_end
+	mov x11, #124              // y_start
+	mov x12, #132              // y_end
+	bl only_y_mirror_loop
+	
+	// NOSEQUEHACERACA
+	mov x6, #98              // x_start
+	mov x7, #102              // x_end
+	mov x11, #120              // y_start
+	mov x12, #124              // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA
+	mov x6, #102              // x_start
+	mov x7, #106              // x_end
+	mov x11, #116              // y_start
+	mov x12, #120              // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA
+	mov x6, #94              // x_start
+	mov x7, #102              // x_end
+	mov x11, #112              // y_start
+	mov x12, #116              // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA
+	mov x6, #102              // x_start
+	mov x7, #106              // x_end
+	mov x11, #140              // y_start
+	mov x12, #160              // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA
+	mov x6, #98              // x_start
+	mov x7, #102              // x_end
+	mov x11, #136              // y_start
+	mov x12, #140              // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA
+	mov x6, #106              // x_start
+	mov x7, #110              // x_end
+	mov x11, #120              // y_start
+	mov x12, #140              // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA
+	mov x6, #108              // x_start
+	mov x7, #112              // x_end
+	mov x11, #92              // y_start
+	mov x12, #100              // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA
+	mov x6, #112              // x_start
+	mov x7, #116              // x_end
+	mov x11, #100              // y_start
+	mov x12, #104             // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA
+	mov x6, #116              // x_start
+	mov x7, #124              // x_end
+	mov x11, #96              // y_start
+	mov x12, #100             // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA
+	mov x6, #120              // x_start
+	mov x7, #124              // x_end
+	mov x11, #92              // y_start
+	mov x12, #96             // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA
+	mov x6, #116              // x_start
+	mov x7, #120              // x_end
+	mov x11, #80              // y_start
+	mov x12, #92             // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA
+	mov x6, #110              // x_start
+	mov x7, #114              // x_end
+	mov x11, #132              // y_start
+	mov x12, #136              // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA
+	mov x6, #114              // x_start
+	mov x7, #118              // x_end
+	mov x11, #112              // y_start
+	mov x12, #132              // y_end
+	bl only_y_mirror_loop
+
+
+	// NOSEQUEHACERACA
 	mov x6, #78              // x_start
 	mov x7, #86              // x_end
 	mov x11, #80              // y_start
@@ -683,9 +1167,9 @@ loop2:
 
 	// NOSEQUEHACERACA-2
 	mov x6, #132              // x_start
-	mov x7, #140              // x_end
+	mov x7, #136              // x_end
 	mov x11, #160              // y_start
-	mov x12, #200           // y_end
+	mov x12, #240           // y_end
 	bl only_y_mirror_loop
 	
 	// NOSEQUEHACERACA-2
@@ -764,6 +1248,192 @@ loop2:
 	mov x11, #60            // y_start
 	mov x12, #64           // y_end
 	bl only_y_mirror_loop
+
+
+	// NOSEQUEHACERACA-3
+	mov x6, #144              // x_start
+	mov x7, #152              // x_end
+	mov x11, #140            // y_start
+	mov x12, #220           // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-3
+	mov x6, #152              // x_start
+	mov x7, #156              // x_end
+	mov x11, #108            // y_start
+	mov x12, #152           // y_end
+	bl only_y_mirror_loop
+	
+	// NOSEQUEHACERACA-3
+	mov x6, #156              // x_start
+	mov x7, #160              // x_end
+	mov x11, #96            // y_start
+	mov x12, #112           // y_end
+	bl only_y_mirror_loop
+	
+	// NOSEQUEHACERACA-3
+	mov x6, #160              // x_start
+	mov x7, #164              // x_end
+	mov x11, #80            // y_start
+	mov x12, #96           // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-3
+	mov x6, #160              // x_start
+	mov x7, #168              // x_end
+	mov x11, #76            // y_start
+	mov x12, #80           // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-3
+	mov x6, #164              // x_start
+	mov x7, #168              // x_end
+	mov x11, #72            // y_start
+	mov x12, #76           // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-3
+	mov x6, #136              // x_start
+	mov x7, #140              // x_end
+	mov x11, #108            // y_start
+	mov x12, #128           // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-3
+	mov x6, #140              // x_start
+	mov x7, #144              // x_end
+	mov x11, #128            // y_start
+	mov x12, #132           // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-3
+	mov x6, #144              // x_start
+	mov x7, #148              // x_end
+	mov x11, #132            // y_start
+	mov x12, #144           // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-3
+	mov x6, #156              // x_start
+	mov x7, #160              // x_end
+	mov x11, #140            // y_start
+	mov x12, #144           // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-3
+	mov x6, #160              // x_start
+	mov x7, #164              // x_end
+	mov x11, #136            // y_start
+	mov x12, #140           // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-3
+	mov x6, #164              // x_start
+	mov x7, #168              // x_end
+	mov x11, #132            // y_start
+	mov x12, #136           // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-3
+	mov x6, #168              // x_start
+	mov x7, #172              // x_end
+	mov x11, #128            // y_start
+	mov x12, #132           // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-3
+	mov x6, #172              // x_start
+	mov x7, #176              // x_end
+	mov x11, #112            // y_start
+	mov x12, #128           // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-3
+	mov x6, #172              // x_start
+	mov x7, #180              // x_end
+	mov x11, #112            // y_start
+	mov x12, #116           // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-3
+	mov x6, #152              // x_start
+	mov x7, #160              // x_end
+	mov x11, #180            // y_start
+	mov x12, #184           // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-3
+	mov x6, #160              // x_start
+	mov x7, #164              // x_end
+	mov x11, #176            // y_start
+	mov x12, #180           // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-3
+	mov x6, #164              // x_start
+	mov x7, #168              // x_end
+	mov x11, #172            // y_start
+	mov x12, #176           // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-3
+	mov x6, #168              // x_start
+	mov x7, #172              // x_end
+	mov x11, #168            // y_start
+	mov x12, #172           // y_end
+	bl only_y_mirror_loop
+	
+	// NOSEQUEHACERACA-3
+	mov x6, #168              // x_start
+	mov x7, #172              // x_end
+	mov x11, #156            // y_start
+	mov x12, #168           // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-3
+	mov x6, #164              // x_start
+	mov x7, #168              // x_end
+	mov x11, #144            // y_start
+	mov x12, #156           // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-3
+	mov x6, #168              // x_start
+	mov x7, #176              // x_end
+	mov x11, #156            // y_start
+	mov x12, #160           // y_end
+	bl only_y_mirror_loop
+
+
+
+	//LÍNEA REFERENCIA
+	mov x6, #150              // x_start
+	mov x7, #151              // x_end
+	mov x11, #40              // y_start
+	mov x12, #239              // y_end
+	bl double_mirror_loop
+
+	//LÍNEA REFERENCIA
+	mov x6, #200              // x_start
+	mov x7, #201              // x_end
+	mov x11, #40              // y_start
+	mov x12, #239              // y_end
+	bl double_mirror_loop
+
+	//LÍNEA REFERENCIA
+	mov x6, #100              // x_start
+	mov x7, #101              // x_end
+	mov x11, #40              // y_start
+	mov x12, #239              // y_end
+	bl double_mirror_loop
+
+	//LÍNEA REFERENCIA
+	mov x6, #250              // x_start
+	mov x7, #251              // x_end
+	mov x11, #40              // y_start
+	mov x12, #239              // y_end
+	bl double_mirror_loop
+
 
 
 

@@ -438,6 +438,209 @@ loop2:
 	mov x11, #200            // y_start
 	bl mirror_loop
 
+
+//estrellas
+
+	mov x0, x20 
+	mov x5, #640  
+
+
+	movz x10, 0x91B9, lsl 0
+	movk x10, 0xFF2E, lsl 16
+
+	// --- ZONA SUPERIOR-IZQUIERDA MEDIA 
+
+	// Estrellas pequeñas y medianas (1x1 a 5x5)
+	mov x6, #65; mov x7, #66; mov x11, #45; mov x12, #46; bl double_mirror_loop
+	mov x6, #80; mov x7, #81; mov x11, #55; mov x12, #56; bl double_mirror_loop
+	mov x6, #100; mov x7, #102; mov x11, #40; mov x12, #42; bl double_mirror_loop
+	mov x6, #120; mov x7, #121; mov x11, #70; mov x12, #71; bl double_mirror_loop
+	mov x6, #140; mov x7, #142; mov x11, #85; mov x12, #87; bl double_mirror_loop
+	mov x6, #160; mov x7, #161; mov x11, #50; mov x12, #51; bl double_mirror_loop
+	mov x6, #180; mov x7, #182; mov x11, #75; mov x12, #77; bl double_mirror_loop
+	mov x6, #200; mov x7, #201; mov x11, #90; mov x12, #91; bl double_mirror_loop
+	mov x6, #220; mov x7, #222; mov x11, #110; mov x12, #112; bl double_mirror_loop
+	mov x6, #240; mov x7, #241; mov x11, #130; mov x12, #131; bl double_mirror_loop
+	mov x6, #260; mov x7, #262; mov x11, #150; mov x12, #152; bl double_mirror_loop
+	mov x6, #280; mov x7, #281; mov x11, #170; mov x12, #171; bl double_mirror_loop
+	mov x6, #60; mov x7, #62; mov x11, #100; mov x12, #102; bl double_mirror_loop
+	mov x6, #90; mov x7, #91; mov x11, #120; mov x12, #121; bl double_mirror_loop
+	mov x6, #130; mov x7, #131; mov x11, #140; mov x12, #141; bl double_mirror_loop
+	mov x6, #170; mov x7, #172; mov x11, #160; mov x12, #162; bl double_mirror_loop
+	mov x6, #210; mov x7, #211; mov x11, #180; mov x12, #181; bl double_mirror_loop
+	mov x6, #250; mov x7, #252; mov x11, #200; mov x12, #202; bl double_mirror_loop
+	mov x6, #290; mov x7, #291; mov x11, #220; mov x12, #221; bl double_mirror_loop
+	mov x6, #60; mov x7, #61; mov x11, #230; mov x12, #231; bl double_mirror_loop
+	mov x6, #70; mov x7, #72; mov x11, #110; mov x12, #112; bl double_mirror_loop
+	mov x6, #110; mov x7, #111; mov x11, #90; mov x12, #91; bl double_mirror_loop
+	mov x6, #150; mov x7, #152; mov x11, #130; mov x12, #132; bl double_mirror_loop
+	mov x6, #190; mov x7, #191; mov x11, #100; mov x12, #101; bl double_mirror_loop
+	mov x6, #230; mov x7, #232; mov x11, #170; mov x12, #172; bl double_mirror_loop
+	mov x6, #270; mov x7, #271; mov x11, #190; mov x12, #191; bl double_mirror_loop
+	mov x6, #85; mov x7, #86; mov x11, #200; mov x12, #201; bl double_mirror_loop
+	mov x6, #165; mov x7, #166; mov x11, #210; mov x12, #211; bl double_mirror_loop
+	mov x6, #245; mov x7, #246; mov x11, #230; mov x12, #231; bl double_mirror_loop
+
+	// Más estrellas en el medio para X
+	mov x6, #285; mov x7, #286; mov x11, #45; mov x12, #46; bl double_mirror_loop
+	mov x6, #280; mov x7, #281; mov x11, #60; mov x12, #61; bl double_mirror_loop
+	mov x6, #275; mov x7, #276; mov x11, #80; mov x12, #81; bl double_mirror_loop
+	mov x6, #270; mov x7, #271; mov x11, #100; mov x12, #101; bl double_mirror_loop
+	mov x6, #265; mov x7, #266; mov x11, #120; mov x12, #121; bl double_mirror_loop
+	mov x6, #260; mov x7, #261; mov x11, #140; mov x12, #141; bl double_mirror_loop
+	mov x6, #255; mov x7, #256; mov x11, #160; mov x12, #161; bl double_mirror_loop
+	mov x6, #250; mov x7, #251; mov x11, #180; mov x12, #181; bl double_mirror_loop
+	mov x6, #245; mov x7, #246; mov x11, #200; mov x12, #201; bl double_mirror_loop
+	mov x6, #240; mov x7, #241; mov x11, #220; mov x12, #221; bl double_mirror_loop
+
+	// Estrellas un poco más grandes (5x5)
+	mov x6, #75; mov x7, #80; mov x11, #190; mov x12, #195; bl double_mirror_loop
+	mov x6, #200; mov x7, #205; mov x11, #60; mov x12, #65; bl double_mirror_loop
+
+
+	// --- ZONA SUPERIOR-DERECHA MEDIA
+
+	// Muchas estrellas pequeñas y medianas (1x1 a 5x5)
+	mov x6, #350; mov x7, #351; mov x11, #45; mov x12, #46; bl double_mirror_loop
+	mov x6, #370; mov x7, #371; mov x11, #55; mov x12, #56; bl double_mirror_loop
+	mov x6, #390; mov x7, #392; mov x11, #40; mov x12, #42; bl double_mirror_loop
+	mov x6, #410; mov x7, #411; mov x11, #70; mov x12, #71; bl double_mirror_loop
+	mov x6, #430; mov x7, #432; mov x11, #85; mov x12, #87; bl double_mirror_loop
+	mov x6, #450; mov x7, #451; mov x11, #50; mov x12, #51; bl double_mirror_loop
+	mov x6, #470; mov x7, #472; mov x11, #75; mov x12, #77; bl double_mirror_loop
+	mov x6, #490; mov x7, #491; mov x11, #90; mov x12, #91; bl double_mirror_loop
+	mov x6, #510; mov x7, #512; mov x11, #110; mov x12, #112; bl double_mirror_loop
+	mov x6, #530; mov x7, #531; mov x11, #130; mov x12, #131; bl double_mirror_loop
+	mov x6, #550; mov x7, #552; mov x11, #150; mov x12, #152; bl double_mirror_loop
+	mov x6, #570; mov x7, #571; mov x11, #170; mov x12, #171; bl double_mirror_loop
+	mov x6, #345; mov x7, #347; mov x11, #100; mov x12, #102; bl double_mirror_loop
+	mov x6, #375; mov x7, #376; mov x11, #120; mov x12, #121; bl double_mirror_loop
+	mov x6, #415; mov x7, #416; mov x11, #140; mov x12, #141; bl double_mirror_loop
+	mov x6, #455; mov x7, #457; mov x11, #160; mov x12, #162; bl double_mirror_loop
+	mov x6, #495; mov x7, #496; mov x11, #180; mov x12, #181; bl double_mirror_loop
+	mov x6, #535; mov x7, #537; mov x11, #200; mov x12, #202; bl double_mirror_loop
+	mov x6, #580; mov x7, #581; mov x11, #220; mov x12, #221; bl double_mirror_loop
+	mov x6, #345; mov x7, #346; mov x11, #230; mov x12, #231; bl double_mirror_loop
+	mov x6, #360; mov x7, #362; mov x11, #110; mov x12, #112; bl double_mirror_loop
+	mov x6, #400; mov x7, #401; mov x11, #90; mov x12, #91; bl double_mirror_loop
+	mov x6, #440; mov x7, #442; mov x11, #130; mov x12, #132; bl double_mirror_loop
+	mov x6, #480; mov x7, #481; mov x11, #100; mov x12, #101; bl double_mirror_loop
+	mov x6, #520; mov x7, #522; mov x11, #170; mov x12, #172; bl double_mirror_loop
+	mov x6, #560; mov x7, #561; mov x11, #190; mov x12, #191; bl double_mirror_loop
+	mov x6, #385; mov x7, #386; mov x11, #200; mov x12, #201; bl double_mirror_loop
+	mov x6, #465; mov x7, #466; mov x11, #210; mov x12, #211; bl double_mirror_loop
+	mov x6, #545; mov x7, #546; mov x11, #230; mov x12, #231; bl double_mirror_loop
+
+	// Más estrellas en el medio para X
+	mov x6, #355; mov x7, #356; mov x11, #45; mov x12, #46; bl double_mirror_loop
+	mov x6, #360; mov x7, #361; mov x11, #60; mov x12, #61; bl double_mirror_loop
+	mov x6, #365; mov x7, #366; mov x11, #80; mov x12, #81; bl double_mirror_loop
+	mov x6, #370; mov x7, #371; mov x11, #100; mov x12, #101; bl double_mirror_loop
+	mov x6, #375; mov x7, #376; mov x11, #120; mov x12, #121; bl double_mirror_loop
+	mov x6, #380; mov x7, #381; mov x11, #140; mov x12, #141; bl double_mirror_loop
+	mov x6, #385; mov x7, #386; mov x11, #160; mov x12, #161; bl double_mirror_loop
+	mov x6, #390; mov x7, #391; mov x11, #180; mov x12, #181; bl double_mirror_loop
+	mov x6, #395; mov x7, #396; mov x11, #200; mov x12, #201; bl double_mirror_loop
+	mov x6, #400; mov x7, #401; mov x11, #220; mov x12, #221; bl double_mirror_loop
+
+	// Estrellas un poco más grandes (5x5)
+	mov x6, #360; mov x7, #365; mov x11, #190; mov x12, #195; bl double_mirror_loop
+	mov x6, #500; mov x7, #505; mov x11, #60; mov x12, #65; bl double_mirror_loop
+
+
+	//  ZONA INFERIOR-IZQUIERDA MEDIA (
+
+	// Muchas estrellas pequeñas y medianas (1x1 a 5x5)
+	mov x6, #65; mov x7, #66; mov x11, #335; mov x12, #336; bl double_mirror_loop
+	mov x6, #80; mov x7, #81; mov x11, #345; mov x12, #346; bl double_mirror_loop
+	mov x6, #100; mov x7, #102; mov x11, #330; mov x12, #332; bl double_mirror_loop
+	mov x6, #120; mov x7, #121; mov x11, #360; mov x12, #361; bl double_mirror_loop
+	mov x6, #140; mov x7, #142; mov x11, #375; mov x12, #377; bl double_mirror_loop
+	mov x6, #160; mov x7, #161; mov x11, #340; mov x12, #341; bl double_mirror_loop
+	mov x6, #180; mov x7, #182; mov x11, #365; mov x12, #367; bl double_mirror_loop
+	mov x6, #200; mov x7, #201; mov x11, #380; mov x12, #381; bl double_mirror_loop
+	mov x6, #220; mov x7, #222; mov x11, #400; mov x12, #402; bl double_mirror_loop
+	mov x6, #240; mov x7, #241; mov x11, #420; mov x12, #421; bl double_mirror_loop
+	mov x6, #260; mov x7, #262; mov x11, #430; mov x12, #432; bl double_mirror_loop
+	mov x6, #280; mov x7, #281; mov x11, #350; mov x12, #351; bl double_mirror_loop
+	mov x6, #60; mov x7, #62; mov x11, #390; mov x12, #392; bl double_mirror_loop
+	mov x6, #90; mov x7, #91; mov x11, #410; mov x12, #411; bl double_mirror_loop
+	mov x6, #130; mov x7, #131; mov x11, #330; mov x12, #331; bl double_mirror_loop
+	mov x6, #170; mov x7, #172; mov x11, #350; mov x12, #352; bl double_mirror_loop
+	mov x6, #210; mov x7, #211; mov x11, #370; mov x12, #371; bl double_mirror_loop
+	mov x6, #250; mov x7, #252; mov x11, #390; mov x12, #392; bl double_mirror_loop
+	mov x6, #290; mov x7, #291; mov x11, #410; mov x12, #411; bl double_mirror_loop
+	mov x6, #60; mov x7, #61; mov x11, #430; mov x12, #431; bl double_mirror_loop
+	mov x6, #70; mov x7, #72; mov x11, #380; mov x12, #382; bl double_mirror_loop
+	mov x6, #110; mov x7, #111; mov x11, #360; mov x12, #361; bl double_mirror_loop
+	mov x6, #150; mov x7, #152; mov x11, #400; mov x12, #402; bl double_mirror_loop
+	mov x6, #190; mov x7, #191; mov x11, #370; mov x12, #371; bl double_mirror_loop
+	mov x6, #230; mov x7, #232; mov x11, #410; mov x12, #412; bl double_mirror_loop
+	mov x6, #270; mov x7, #271; mov x11, #430; mov x12, #431; bl double_mirror_loop
+	mov x6, #85; mov x7, #86; mov x11, #420; mov x12, #421; bl double_mirror_loop
+	mov x6, #165; mov x7, #166; mov x11, #330; mov x12, #331; bl double_mirror_loop
+	mov x6, #245; mov x7, #246; mov x11, #350; mov x12, #351; bl double_mirror_loop
+
+	// Más estrellas en el medio para X
+	mov x6, #285; mov x7, #286; mov x11, #335; mov x12, #336; bl double_mirror_loop
+	mov x6, #280; mov x7, #281; mov x11, #350; mov x12, #351; bl double_mirror_loop
+	mov x6, #275; mov x7, #276; mov x11, #370; mov x12, #371; bl double_mirror_loop
+	mov x6, #270; mov x7, #271; mov x11, #390; mov x12, #391; bl double_mirror_loop
+	mov x6, #265; mov x7, #266; mov x11, #410; mov x12, #411; bl double_mirror_loop
+	mov x6, #260; mov x7, #261; mov x11, #430; mov x12, #431; bl double_mirror_loop
+
+	// Estrellas un poco m grandes (5x5)
+	mov x6, #75; mov x7, #80; mov x11, #360; mov x12, #365; bl double_mirror_loop
+	mov x6, #200; mov x7, #205; mov x11, #340; mov x12, #345; bl double_mirror_loop
+
+
+	// --- ZONA INFERIOR-DERECHA MEDIA 
+
+	// Muchas estrellas pequeñas y medianas (1x1 a 5x5)
+	mov x6, #350; mov x7, #351; mov x11, #335; mov x12, #336; bl double_mirror_loop
+	mov x6, #370; mov x7, #371; mov x11, #345; mov x12, #346; bl double_mirror_loop
+	mov x6, #390; mov x7, #392; mov x11, #330; mov x12, #332; bl double_mirror_loop
+	mov x6, #410; mov x7, #411; mov x11, #360; mov x12, #361; bl double_mirror_loop
+	mov x6, #430; mov x7, #432; mov x11, #375; mov x12, #377; bl double_mirror_loop
+	mov x6, #450; mov x7, #451; mov x11, #340; mov x12, #341; bl double_mirror_loop
+	mov x6, #470; mov x7, #472; mov x11, #365; mov x12, #367; bl double_mirror_loop
+	mov x6, #490; mov x7, #491; mov x11, #380; mov x12, #381; bl double_mirror_loop
+	mov x6, #510; mov x7, #512; mov x11, #400; mov x12, #402; bl double_mirror_loop
+	mov x6, #530; mov x7, #531; mov x11, #420; mov x12, #421; bl double_mirror_loop
+	mov x6, #550; mov x7, #552; mov x11, #430; mov x12, #432; bl double_mirror_loop
+	mov x6, #570; mov x7, #571; mov x11, #350; mov x12, #351; bl double_mirror_loop
+	mov x6, #345; mov x7, #347; mov x11, #390; mov x12, #392; bl double_mirror_loop
+	mov x6, #375; mov x7, #376; mov x11, #410; mov x12, #411; bl double_mirror_loop
+	mov x6, #415; mov x7, #416; mov x11, #330; mov x12, #331; bl double_mirror_loop
+	mov x6, #455; mov x7, #457; mov x11, #350; mov x12, #352; bl double_mirror_loop
+	mov x6, #495; mov x7, #496; mov x11, #370; mov x12, #371; bl double_mirror_loop
+	mov x6, #535; mov x7, #537; mov x11, #390; mov x12, #392; bl double_mirror_loop
+	mov x6, #580; mov x7, #581; mov x11, #410; mov x12, #411; bl double_mirror_loop
+	mov x6, #345; mov x7, #346; mov x11, #430; mov x12, #431; bl double_mirror_loop
+	mov x6, #360; mov x7, #362; mov x11, #380; mov x12, #382; bl double_mirror_loop
+	mov x6, #400; mov x7, #401; mov x11, #360; mov x12, #361; bl double_mirror_loop
+	mov x6, #440; mov x7, #442; mov x11, #400; mov x12, #402; bl double_mirror_loop
+	mov x6, #480; mov x7, #481; mov x11, #370; mov x12, #371; bl double_mirror_loop
+	mov x6, #520; mov x7, #522; mov x11, #410; mov x12, #412; bl double_mirror_loop
+	mov x6, #560; mov x7, #561; mov x11, #430; mov x12, #431; bl double_mirror_loop
+	mov x6, #385; mov x7, #386; mov x11, #420; mov x12, #421; bl double_mirror_loop
+	mov x6, #465; mov x7, #466; mov x11, #330; mov x12, #331; bl double_mirror_loop
+	mov x6, #545; mov x7, #546; mov x11, #350; mov x12, #351; bl double_mirror_loop
+
+	// Más estrellas en el medio para X
+	mov x6, #355; mov x7, #356; mov x11, #335; mov x12, #336; bl double_mirror_loop
+	mov x6, #360; mov x7, #361; mov x11, #350; mov x12, #351; bl double_mirror_loop
+	mov x6, #365; mov x7, #366; mov x11, #370; mov x12, #371; bl double_mirror_loop
+	mov x6, #370; mov x7, #371; mov x11, #390; mov x12, #391; bl double_mirror_loop
+	mov x6, #375; mov x7, #376; mov x11, #410; mov x12, #411; bl double_mirror_loop
+	mov x6, #380; mov x7, #381; mov x11, #430; mov x12, #431; bl double_mirror_loop
+
+	// Estrellas un poco más grandes (5x5)
+	mov x6, #360; mov x7, #365; mov x11, #360; mov x12, #365; bl double_mirror_loop
+	mov x6, #500; mov x7, #505; mov x11, #340; mov x12, #345; bl double_mirror_loop
+
+
+
 		// ------------------- PROTOTIPO DE LA FORMA DEL FONDO, LA PARTE DE LOS ARBUSTOS Y LA PARTE NEGRA DE ARRIBA DEL FONDO -------------------
 
 	//color negro = 0xFF000000
@@ -902,6 +1105,7 @@ loop2:
 	mov x12, #240              // y_end
 	bl double_mirror_loop
 	
+
 	// ------------------- ÁRBOLES DEL FONDO, REFLEJADOS ARRIBA Y ABAJO -------------------
 
 	// Determino que x10 sea el color negro = 0xFF000000
@@ -2561,7 +2765,7 @@ loop2:
 
 
 
-
+////////////////////PERSONAJES////////////////////
 	// personajes
 
 	// dustin
@@ -2637,6 +2841,135 @@ loop2:
 
 
 // demogorgon
+
+
+
+
+
+  // Asume que el framebuffer base está en la dirección  (ejemplo)
+    mov x0, x20
+//petalo derecha arriba
+    mov x1, #445
+    mov x2, #387
+    mov x3, #10
+    movz w5, #0x1637, lsl #0
+    bl draw_circle
+
+    mov x1, #448
+    mov x2, #386
+    mov x3, #10
+    movz w5, #0x1637, lsl #0
+    bl draw_circle
+
+	mov x1, #447
+    mov x2, #388
+    mov x3, #10
+    movz w5, #0x1637, lsl #0
+    bl draw_circle
+
+
+//petalo derecha abajo
+    mov x1, #445
+    mov x2, #405
+    mov x3, #10
+    movz w5, #0x1637, lsl #0
+    bl draw_circle
+
+    mov x1, #452
+    mov x2, #406
+    mov x3, #10
+    movz w5, #0x1637, lsl #0
+    bl draw_circle
+
+	mov x1, #448
+    mov x2, #406
+    mov x3, #10
+    movz w5, #0x1637, lsl #0
+    bl draw_circle
+
+//petalo izquierda arriba (reflejo de derecha arriba)
+    mov x1, #415 // 
+    mov x2, #387
+    mov x3, #10
+    movz w5, #0x1637, lsl #0
+    bl draw_circle
+
+    mov x1, #412 // 
+    mov x2, #386
+    mov x3, #10
+    movz w5, #0x1637, lsl #0
+    bl draw_circle
+
+    mov x1, #413 // 
+    mov x2, #388
+    mov x3, #10
+    movz w5, #0x1637, lsl #0
+    bl draw_circle
+
+
+// petalo izquierda abajo 
+    mov x1, #415 // (430 - (445-430)) = 415
+    mov x2, #405
+    mov x3, #10
+    movz w5, #0x1637, lsl #0
+    bl draw_circle
+
+    mov x1, #408 // 
+    mov x2, #406
+    mov x3, #10
+    movz w5, #0x1637, lsl #0
+    bl draw_circle
+
+    mov x1, #412 // 
+    mov x2, #406
+    mov x3, #10
+    movz w5, #0x1637, lsl #0
+    bl draw_circle
+
+
+//Gran pétalo hacia abajo
+    mov x1, #425         
+    mov x2, #415          
+    mov x3, #12           
+    movz w5, #0x1637, lsl #0 
+    bl draw_circle
+
+    mov x1, #435         
+    mov x2, #415          
+    mov x3, #12           
+    movz w5, #0x1637, lsl #0 
+    bl draw_circle
+
+	mov x1, #430         
+    mov x2, #420          
+    mov x3, #15           
+    movz w5, #0x1637, lsl #0 
+    bl draw_circle
+
+//centro de la cabeza
+    mov x1, #430
+    mov x2, #400
+    mov x3, #20
+    movz w5, #0x1C4A, lsl #0
+    bl draw_circle
+
+
+    mov x1, #430
+    mov x2, #400
+    mov x3, #15
+    movz w5, #0x0014, lsl #0
+    bl draw_circle
+
+
+
+
+
+//estrellas 
+
+
+
+
+
 
 //////////////////////////////////subrutinas//////////////////////////////
 
@@ -2913,89 +3246,77 @@ end_draw_rect:
 draw_circle:
 
     // Mover argumentos a registros de trabajo para claridad y consistencia
-    mov x6, x1                  // x6 = center_x
-    mov x7, x2                  // x7 = center_y
-    mov x8, x3                  // x8 = radio
-    mov w9, w5                  // w9 = color
+    mov x6, x1
+    mov x7, x2
+    mov x8, x3
+    mov w9, w5
 
-    // Definir el ancho de la pantalla (asumiendo 640 píxeles, como en draw_rect)
-    mov x10, #640               // x10 = SCREEN_WIDTH
+    // Definir el ancho de la pantalla (asumiendo 640 píxeles)
+    mov x10, #640
 
-    // Calcular el radio al cuadrado (radio * radio) para la comparación de distancia
-    // Esto evita la necesidad de calcular la raíz cuadrada en cada píxel.
-    mul x11, x8, x8             // x11 = radio_squared
+    // Calcular el radio al cuadrado (radio * radio)
+    mul x11, x8, x8
 
-    // Calcular las coordenadas del cuadro delimitador (bounding box) del círculo
-    // Esto define el área rectangular mínima que contiene el círculo.
-    sub x12, x6, x8             // x12 = x_start (center_x - radio)
-    add x13, x6, x8             // x13 = x_end   (center_x + radio)
-    sub x14, x7, x8             // x14 = y_start (center_y - radio)
-    add x15, x7, x8             // x15 = y_end   (center_y + radio)
+    // Calcular las coordenadas del cuadro delimitador
+    sub x12, x6, x8
+    add x13, x6, x8
+    sub x14, x7, x8
+    add x15, x7, x8
 
-    // Bucle principal para las coordenadas Y (filas) dentro del cuadro delimitador
-    mov x16, x14                // x16 = current_y (inicializar con y_start)
+    // Bucle principal para las coordenadas Y (filas)
+    mov x16, x14
 
 loop_y_circle:
-    cmp x16, x15                // Comparar current_y con y_end
-    b.ge end_draw_circle        // Si current_y >= y_end, salir del bucle Y
+    cmp x16, x15
+    b.ge end_draw_circle
 
-    // Bucle anidado para las coordenadas X (columnas) dentro del cuadro delimitador
-    mov x17, x12                // x17 = current_x (reiniciar con x_start para cada nueva fila)
+    // Bucle anidado para las coordenadas X (columnas)
+    mov x17, x12
 
 loop_x_circle:
-    cmp x17, x13                // Comparar current_x con x_end
-    b.ge next_y_circle          // Si current_x >= x_end, pasar a la siguiente fila (siguiente Y)
+    cmp x17, x13
+    b.ge next_y_circle
 
     // Calcular dx = current_x - center_x
-    // dx es la distancia horizontal del píxel actual al centro del círculo.
-    sub x18, x17, x6            // x18 = dx
+    sub x18, x17, x6
 
     // Calcular dy = current_y - center_y
-    // dy es la distancia vertical del píxel actual al centro del círculo.
-    sub x19, x16, x7            // x19 = dy
+    sub x19, x16, x7
 
     // Calcular dx_squared = dx * dx
-    mul x20, x18, x18           // x20 = dx_squared
+    mul x25, x18, x18   // <-- CAMBIO AQUÍ: Usamos x25 en lugar de x20
 
     // Calcular dy_squared = dy * dy
-    mul x21, x19, x19           // x21 = dy_squared
+    mul x21, x19, x19
 
     // Calcular distance_squared = dx_squared + dy_squared
-    // Esta es la distancia euclidiana al cuadrado desde el centro del círculo al píxel actual.
-    add x22, x20, x21           // x22 = distance_squared
+    add x22, x25, x21   // <-- CAMBIO AQUÍ: Usamos x25 en lugar de x20
 
     // Comparar distance_squared con radio_squared
-    // Si la distancia al cuadrado es mayor que el radio al cuadrado, el píxel está fuera del círculo.
-    cmp x22, x11                // Comparar distance_squared con radio_squared
-    b.gt skip_pixel_circle      // Si distance_squared > radio_squared, saltar el dibujo de este píxel
+    cmp x22, x11
+    b.gt skip_pixel_circle
 
-    // Si el píxel está dentro del círculo, calcular su dirección en el framebuffer y dibujarlo
-    // Calcular el desplazamiento del píxel: (current_y * SCREEN_WIDTH) + current_x
-    mul x23, x16, x10           // x23 = current_y * SCREEN_WIDTH
-    add x23, x23, x17           // x23 = (current_y * SCREEN_WIDTH) + current_x
+    // Calcular el desplazamiento del píxel y dibujarlo
+    mul x23, x16, x10
+    add x23, x23, x17
+    lsl x23, x23, #2
 
-    // Multiplicar por 4 para obtener el desplazamiento en bytes (asumiendo 32 bits por píxel)
-    lsl x23, x23, #2            // x23 = offset_in_bytes
-
-    // Calcular la dirección de memoria del píxel: framebuffer_base + offset_in_bytes
-    add x24, x0, x23            // x24 = pixel_address
+    // Calcular la dirección de memoria del píxel: framebuffer_base (x0) + offset_in_bytes (x23)
+    add x24, x0, x23
 
     // Almacenar el color en la dirección de memoria del píxel
-    str w9, [x24]               // Escribir el color (w9) en la dirección [x24]
+    str w9, [x24]
 
 skip_pixel_circle:
-    add x17, x17, #1            // Incrementar current_x (x++)
-    b loop_x_circle             // Continuar con el bucle X
+    add x17, x17, #1
+    b loop_x_circle
 
 next_y_circle:
-    add x16, x16, #1            // Incrementar current_y (y++)
-    b loop_y_circle             // Continuar con el bucle Y
+    add x16, x16, #1
+    b loop_y_circle
 
 end_draw_circle:
-    // Restaurar registros guardados por la función si fuera necesario.
-    // (Siguiendo el ejemplo de draw_rect, no se realizan operaciones de guardar/restaurar explícitas aquí)
-    ret                         // Retornar de la función
-
+    ret
 
 
 	// Ejemplo de uso de gpios

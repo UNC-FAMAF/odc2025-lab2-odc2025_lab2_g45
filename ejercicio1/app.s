@@ -2461,6 +2461,149 @@ loop2:
 	bl double_mirror_loop
 
 
+
+	// ---------------------- PARTE DE ODC ---------------------
+
+	// ÁRBOL DE BASE
+	mov x6, #310            // x_start
+	mov x7, #314             // x_end
+	mov x11, #156        // y_start
+	mov x12, #180         // y_end
+	bl double_mirror_loop
+
+	// ÁRBOL DE BASE
+	mov x6, #306            // x_start
+	mov x7, #310             // x_end
+	mov x11, #180        // y_start
+	mov x12, #220         // y_end
+	bl double_mirror_loop
+
+	// ÁRBOL DE BASE
+	mov x6, #306            // x_start
+	mov x7, #310             // x_end
+	mov x11, #180        // y_start
+	mov x12, #220         // y_end
+	bl double_mirror_loop
+
+	// ÁRBOL DE BASE
+	mov x6, #284            // x_start
+	mov x7, #288             // x_end
+	mov x11, #180        // y_start
+	mov x12, #220         // y_end
+	bl double_mirror_loop
+	
+	// ÁRBOL DE BASE
+	mov x6, #288            // x_start
+	mov x7, #292             // x_end
+	mov x11, #152        // y_start
+	mov x12, #180         // y_end
+	bl double_mirror_loop
+
+	// --------- la letra 'o'---------
+
+	// LETRA 'O'
+	mov x6, #280            // x_start
+	mov x7, #284             // x_end
+	mov x11, #140        // y_start
+	mov x12, #148         // y_end
+	bl only_y_mirror_loop
+
+	// LETRA 'O'
+	mov x6, #284            // x_start
+	mov x7, #288             // x_end
+	mov x11, #148        // y_start
+	mov x12, #152         // y_end
+	bl only_y_mirror_loop
+
+	// LETRA 'O'
+	mov x6, #284            // x_start
+	mov x7, #288             // x_end
+	mov x11, #136        // y_start
+	mov x12, #140         // y_end
+	bl only_y_mirror_loop
+
+	// LETRA 'O'
+	mov x6, #288            // x_start
+	mov x7, #292             // x_end
+	mov x11, #140        // y_start
+	mov x12, #148         // y_end
+	bl only_y_mirror_loop
+
+
+	// LETRA 'D'
+	mov x6, #296            // x_start
+	mov x7, #300             // x_end
+	mov x11, #136        // y_start
+	mov x12, #152         // y_end
+	bl only_y_mirror_loop
+
+	// LETRA 'D'
+	mov x6, #300            // x_start
+	mov x7, #304             // x_end
+	mov x11, #136        // y_start
+	mov x12, #140         // y_end
+	bl only_y_mirror_loop
+
+	// LETRA 'D'
+	mov x6, #300            // x_start
+	mov x7, #304             // x_end
+	mov x11, #148        // y_start
+	mov x12, #152         // y_end
+	bl only_y_mirror_loop
+
+
+	// RAMA DE APOYO
+	mov x6, #304            // x_start
+	mov x7, #308             // x_end
+	mov x11, #140        // y_start
+	mov x12, #148       // y_end
+	bl only_y_mirror_loop
+
+	// RAMA DE APOYO
+	mov x6, #304            // x_start
+	mov x7, #312             // x_end
+	mov x11, #156        // y_start
+	mov x12, #160         // y_end
+	bl only_y_mirror_loop
+
+	// RAMA DE APOYO
+	mov x6, #304            // x_start
+	mov x7, #308             // x_end
+	mov x11, #152        // y_start
+	mov x12, #156         // y_end
+	bl only_y_mirror_loop
+
+	// RAMA DE APOYO
+	mov x6, #314            // x_start
+	mov x7, #318             // x_end
+	mov x11, #152        // y_start
+	mov x12, #156         // y_end
+	bl only_y_mirror_loop
+	
+
+	// LETRA 'C'
+	mov x6, #310            // x_start
+	mov x7, #314             // x_end
+	mov x11, #140        // y_start
+	mov x12, #148         // y_end
+	bl only_y_mirror_loop
+
+	// LETRA 'C'
+	mov x6, #314            // x_start
+	mov x7, #322             // x_end
+	mov x11, #136        // y_start
+	mov x12, #140         // y_end
+	bl only_y_mirror_loop
+
+	// LETRA 'C'
+	mov x6, #314            // x_start
+	mov x7, #322             // x_end
+	mov x11, #148        // y_start
+	mov x12, #152         // y_end
+	bl only_y_mirror_loop
+
+
+
 	// ------------------- PASTO EN EL QUE SE APOYAN LOS PERSONAJES -------------------
 
 	// Pintaré el pasto utilizando la función draw_rect. Elegí esta ya que al ser una imagen pixelada, y el pasto no tener un patrón definido, es lo que más cómodo queda.
@@ -2762,6 +2905,8 @@ loop2:
 	mov x3, #12        // ancho
 	mov x4, #4         // alto
 	bl draw_rect
+
+ 
 
 
 

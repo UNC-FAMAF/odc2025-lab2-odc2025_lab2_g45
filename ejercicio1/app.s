@@ -34,32 +34,6 @@ loop_fill_x:
 	sub x2,x2,1	   // Decrementar contador Y
 	cbnz x2,loop_fill  // Si no es la última fila, salto
 
-	// ------------------- PINTAR LINEA verde* ----------------------
-
-	// Color verde = 0xFF00FF00
-	movz x11, 0xFF23, lsl 0     // parte baja (los dos bytes bajos)
-	movk x11, 0x631F, lsl 16    // parte alta (los dos bytes altos)
-
-
-	// fila donde va la linea
-	mov x12, SCREEN_HEIGH
-	lsr x12, x12, 1          // x12 = SCREEN_HEIGH / 2 = 240
-
-	// índice base de la fila: (240 * 640) * 4 bytes
-	mov x13, SCREEN_WIDTH
-	mul x13, x13, x12        // x13 = 240 * 640 (cantidad de pixels previos
-	lsl x13, x13, 2          // *4 bytes por pixel
-
-	add x14, x20, x13        // dirección base del pixel de la fila 240
-	mov x15, SCREEN_WIDTH    // ancho de la pantalla para pintar la línea
-
-line_loop:
-	str w11, [x14], #4       //  pixel blanco y avanzo 4 bytes osea 1 pixel
-	sub x15, x15, 1
-	cbnz x15, line_loop
-
-
-
 	// ------------------- PROTOTIPO DEL FONDO CELESTE DE ARRIBA Y ABAJO -------------------	
 
 loop2:
@@ -77,9 +51,9 @@ loop2:
 	mov x12, #239              // y_end 
 	bl double_mirror_loop			// pinto el fondo de abajo
 
-	//color celeste claro de abajo = 0xFF339BC7
-	movz x10, 0x9BC7, lsl 0	
-	movk x10, 0xFF33, lsl 16
+	//color celeste claro de arriba = 0xFF2E91B9
+	movz x10, 0x91B9, lsl 0	
+	movk x10, 0xFF2E, lsl 16
 	bl mirror_loop		// pinto el fondo de arriba
 
 	// ------------------- PROTOTIPO DEL FONDO PÚRPURA -------------------	
@@ -942,35 +916,35 @@ loop2:
 	mov x7, #92              // x_end
 	mov x11, #144              // y_start
 	mov x12, #164              // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA
 	mov x6, #66              // x_start
 	mov x7, #70              // x_end
 	mov x11, #120              // y_start
 	mov x12, #128              // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA
 	mov x6, #70              // x_start
 	mov x7, #74              // x_end
 	mov x11, #100              // y_start
 	mov x12, #120              // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA
 	mov x6, #66              // x_start
 	mov x7, #70              // x_end
 	mov x11, #96              // y_start
 	mov x12, #112              // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA
 	mov x6, #82              // x_start
 	mov x7, #94              // x_end
 	mov x11, #108              // y_start
 	mov x12, #144              // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 
 
@@ -979,98 +953,98 @@ loop2:
 	mov x7, #98              // x_end
 	mov x11, #124              // y_start
 	mov x12, #132              // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 	
 	// NOSEQUEHACERACA
 	mov x6, #98              // x_start
 	mov x7, #102              // x_end
 	mov x11, #120              // y_start
 	mov x12, #124              // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA
 	mov x6, #102              // x_start
 	mov x7, #106              // x_end
 	mov x11, #116              // y_start
 	mov x12, #120              // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA
 	mov x6, #94              // x_start
 	mov x7, #102              // x_end
 	mov x11, #112              // y_start
 	mov x12, #116              // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA
 	mov x6, #102              // x_start
 	mov x7, #106              // x_end
 	mov x11, #140              // y_start
 	mov x12, #160              // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA
 	mov x6, #98              // x_start
 	mov x7, #102              // x_end
 	mov x11, #136              // y_start
 	mov x12, #140              // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA
 	mov x6, #106              // x_start
 	mov x7, #110              // x_end
 	mov x11, #120              // y_start
 	mov x12, #140              // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA
 	mov x6, #108              // x_start
 	mov x7, #112              // x_end
 	mov x11, #92              // y_start
 	mov x12, #100              // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA
 	mov x6, #112              // x_start
 	mov x7, #116              // x_end
 	mov x11, #100              // y_start
 	mov x12, #104             // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA
 	mov x6, #116              // x_start
 	mov x7, #124              // x_end
 	mov x11, #96              // y_start
 	mov x12, #100             // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA
 	mov x6, #120              // x_start
 	mov x7, #124              // x_end
 	mov x11, #92              // y_start
 	mov x12, #96             // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA
 	mov x6, #116              // x_start
 	mov x7, #120              // x_end
 	mov x11, #80              // y_start
 	mov x12, #92             // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA
 	mov x6, #110              // x_start
 	mov x7, #114              // x_end
 	mov x11, #132              // y_start
 	mov x12, #136              // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA
 	mov x6, #114              // x_start
 	mov x7, #118              // x_end
 	mov x11, #112              // y_start
 	mov x12, #132              // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 
 	// NOSEQUEHACERACA
@@ -1078,91 +1052,91 @@ loop2:
 	mov x7, #86              // x_end
 	mov x11, #80              // y_start
 	mov x12, #108              // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 // NOSEQUEHACERACA
 	mov x6, #72              // x_start
 	mov x7, #78              // x_end
 	mov x11, #72              // y_start
 	mov x12, #80              // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 // NOSEQUEHACERACA
 	mov x6, #86              // x_start
 	mov x7, #90              // x_end
 	mov x11, #60              // y_start
 	mov x12, #80              // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA
 	mov x6, #92              // x_start
 	mov x7, #100              // x_end
 	mov x11, #90              // y_start
 	mov x12, #112              // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA
 	mov x6, #100              // x_start
 	mov x7, #108              // x_end
 	mov x11, #82              // y_start
 	mov x12, #100              // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA
 	mov x6, #92              // x_start
 	mov x7, #96              // x_end
 	mov x11, #58              // y_start
 	mov x12, #70              // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA
 	mov x6, #96              // x_start
 	mov x7, #100              // x_end
 	mov x11, #70              // y_start
 	mov x12, #74              // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA
 	mov x6, #100              // x_start
 	mov x7, #104              // x_end
 	mov x11, #74              // y_start
 	mov x12, #78              // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA
 	mov x6, #104              // x_start
 	mov x7, #108              // x_end
 	mov x11, #78              // y_start
 	mov x12, #82              // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA
 	mov x6, #108              // x_start
 	mov x7, #112              // x_end
 	mov x11, #62              // y_start
 	mov x12, #86              // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA
 	mov x6, #112              // x_start
 	mov x7, #116              // x_end
 	mov x11, #46              // y_start
 	mov x12, #58              // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA
 	mov x6, #104              // x_start
 	mov x7, #112              // x_end
 	mov x11, #58              // y_start
 	mov x12, #62              // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA
 	mov x6, #100              // x_start
 	mov x7, #104              // x_end
 	mov x11, #50              // y_start
 	mov x12, #62            // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 
 	// NOSEQUEHACERACA-2
@@ -1170,84 +1144,84 @@ loop2:
 	mov x7, #136              // x_end
 	mov x11, #160              // y_start
 	mov x12, #240           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 	
 	// NOSEQUEHACERACA-2
 	mov x6, #128              // x_start
 	mov x7, #132              // x_end
 	mov x11, #100              // y_start
 	mov x12, #160           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA-2
 	mov x6, #128              // x_start
 	mov x7, #136              // x_end
 	mov x11, #88              // y_start
 	mov x12, #100           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA-2
 	mov x6, #136              // x_start
 	mov x7, #140              // x_end
 	mov x11, #64              // y_start
 	mov x12, #88           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA-2
 	mov x6, #140              // x_start
 	mov x7, #144              // x_end
 	mov x11, #52              // y_start
 	mov x12, #64           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 	
 	// NOSEQUEHACERACA-2
 	mov x6, #140              // x_start
 	mov x7, #148              // x_end
 	mov x11, #48              // y_start
 	mov x12, #52           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA-2
 	mov x6, #148              // x_start
 	mov x7, #152              // x_end
 	mov x11, #44              // y_start
 	mov x12, #48           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA-2
 	mov x6, #124              // x_start
 	mov x7, #128              // x_end
 	mov x11, #72              // y_start
 	mov x12, #88           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA-2
 	mov x6, #120              // x_start
 	mov x7, #124              // x_end
 	mov x11, #60             // y_start
 	mov x12, #72           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA-2
 	mov x6, #124              // x_start
 	mov x7, #128              // x_end
 	mov x11, #64            // y_start
 	mov x12, #68           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA-2
 	mov x6, #128              // x_start
 	mov x7, #132              // x_end
 	mov x11, #60            // y_start
 	mov x12, #64           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA-2
 	mov x6, #128              // x_start
 	mov x7, #132              // x_end
 	mov x11, #60            // y_start
 	mov x12, #64           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 
 	// NOSEQUEHACERACA-3
@@ -1255,184 +1229,1128 @@ loop2:
 	mov x7, #152              // x_end
 	mov x11, #140            // y_start
 	mov x12, #220           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA-3
 	mov x6, #152              // x_start
 	mov x7, #156              // x_end
 	mov x11, #108            // y_start
 	mov x12, #152           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 	
 	// NOSEQUEHACERACA-3
 	mov x6, #156              // x_start
 	mov x7, #160              // x_end
 	mov x11, #96            // y_start
 	mov x12, #112           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 	
 	// NOSEQUEHACERACA-3
 	mov x6, #160              // x_start
 	mov x7, #164              // x_end
 	mov x11, #80            // y_start
 	mov x12, #96           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA-3
 	mov x6, #160              // x_start
 	mov x7, #168              // x_end
 	mov x11, #76            // y_start
 	mov x12, #80           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA-3
 	mov x6, #164              // x_start
 	mov x7, #168              // x_end
 	mov x11, #72            // y_start
 	mov x12, #76           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA-3
 	mov x6, #136              // x_start
 	mov x7, #140              // x_end
 	mov x11, #108            // y_start
 	mov x12, #128           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA-3
 	mov x6, #140              // x_start
 	mov x7, #144              // x_end
 	mov x11, #128            // y_start
 	mov x12, #132           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA-3
 	mov x6, #144              // x_start
 	mov x7, #148              // x_end
 	mov x11, #132            // y_start
 	mov x12, #144           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA-3
 	mov x6, #156              // x_start
 	mov x7, #160              // x_end
 	mov x11, #140            // y_start
 	mov x12, #144           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA-3
 	mov x6, #160              // x_start
 	mov x7, #164              // x_end
 	mov x11, #136            // y_start
 	mov x12, #140           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA-3
 	mov x6, #164              // x_start
 	mov x7, #168              // x_end
 	mov x11, #132            // y_start
 	mov x12, #136           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA-3
 	mov x6, #168              // x_start
 	mov x7, #172              // x_end
 	mov x11, #128            // y_start
 	mov x12, #132           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA-3
 	mov x6, #172              // x_start
 	mov x7, #176              // x_end
 	mov x11, #112            // y_start
 	mov x12, #128           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA-3
 	mov x6, #172              // x_start
 	mov x7, #180              // x_end
 	mov x11, #112            // y_start
 	mov x12, #116           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA-3
 	mov x6, #152              // x_start
 	mov x7, #160              // x_end
 	mov x11, #180            // y_start
 	mov x12, #184           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA-3
 	mov x6, #160              // x_start
 	mov x7, #164              // x_end
 	mov x11, #176            // y_start
 	mov x12, #180           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA-3
 	mov x6, #164              // x_start
 	mov x7, #168              // x_end
 	mov x11, #172            // y_start
 	mov x12, #176           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA-3
 	mov x6, #168              // x_start
 	mov x7, #172              // x_end
 	mov x11, #168            // y_start
 	mov x12, #172           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 	
 	// NOSEQUEHACERACA-3
 	mov x6, #168              // x_start
 	mov x7, #172              // x_end
 	mov x11, #156            // y_start
 	mov x12, #168           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA-3
 	mov x6, #164              // x_start
 	mov x7, #168              // x_end
 	mov x11, #144            // y_start
 	mov x12, #156           // y_end
-	bl only_y_mirror_loop
+	bl double_mirror_loop
 
 	// NOSEQUEHACERACA-3
 	mov x6, #168              // x_start
 	mov x7, #176              // x_end
 	mov x11, #156            // y_start
 	mov x12, #160           // y_end
+	bl double_mirror_loop
+
+
+
+	// NOSEQUEHACERACA-4
+	mov x6, #164              // x_start
+	mov x7, #192              // x_end
+	mov x11, #40            // y_start
+	mov x12, #60           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-4
+	mov x6, #152              // x_start
+	mov x7, #164              // x_end
+	mov x11, #52            // y_start
+	mov x12, #56           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-4
+	mov x6, #156              // x_start
+	mov x7, #160              // x_end
+	mov x11, #44            // y_start
+	mov x12, #48           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-4
+	mov x6, #160              // x_start
+	mov x7, #164              // x_end
+	mov x11, #48            // y_start
+	mov x12, #52           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-4
+	mov x6, #120              // x_start
+	mov x7, #128              // x_end
+	mov x11, #52            // y_start
+	mov x12, #56           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-4
+	mov x6, #124              // x_start
+	mov x7, #136              // x_end
+	mov x11, #44            // y_start
+	mov x12, #52           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-4
+	mov x6, #136              // x_start
+	mov x7, #140              // x_end
+	mov x11, #52            // y_start
+	mov x12, #56           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-4
+	mov x6, #180              // x_start
+	mov x7, #184              // x_end
+	mov x11, #60            // y_start
+	mov x12, #64           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-4
+	mov x6, #176              // x_start
+	mov x7, #180              // x_end
+	mov x11, #64            // y_start
+	mov x12, #68           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-4
+	mov x6, #164              // x_start
+	mov x7, #168              // x_end
+	mov x11, #60            // y_start
+	mov x12, #64           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-4
+	mov x6, #168              // x_start
+	mov x7, #172              // x_end
+	mov x11, #64            // y_start
+	mov x12, #68           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-4
+	mov x6, #192              // x_start
+	mov x7, #196              // x_end
+	mov x11, #56            // y_start
+	mov x12, #60           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-4
+	mov x6, #192              // x_start
+	mov x7, #196              // x_end
+	mov x11, #40            // y_start
+	mov x12, #52           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-4
+	mov x6, #196              // x_start
+	mov x7, #200              // x_end
+	mov x11, #52            // y_start
+	mov x12, #56           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-4
+	mov x6, #200              // x_start
+	mov x7, #204              // x_end
+	mov x11, #48            // y_start
+	mov x12, #52           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-4
+	mov x6, #196              // x_start
+	mov x7, #200              // x_end
+	mov x11, #44            // y_start
+	mov x12, #48           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-4
+	mov x6, #204              // x_start
+	mov x7, #216              // x_end
+	mov x11, #48            // y_start
+	mov x12, #64           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-4
+	mov x6, #204              // x_start
+	mov x7, #212              // x_end
+	mov x11, #36            // y_start
+	mov x12, #52           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-4
+	mov x6, #220              // x_start
+	mov x7, #224              // x_end
+	mov x11, #40            // y_start
+	mov x12, #44           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-4
+	mov x6, #216              // x_start
+	mov x7, #220              // x_end
+	mov x11, #40            // y_start
+	mov x12, #48           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-4
+	mov x6, #216              // x_start
+	mov x7, #220              // x_end
+	mov x11, #52            // y_start
+	mov x12, #56           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-4
+	mov x6, #220             // x_start
+	mov x7, #224              // x_end
+	mov x11, #48            // y_start
+	mov x12, #52           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-4
+	mov x6, #224             // x_start
+	mov x7, #228              // x_end
+	mov x11, #44            // y_start
+	mov x12, #48           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-4
+	mov x6, #228             // x_start
+	mov x7, #232              // x_end
+	mov x11, #40            // y_start
+	mov x12, #60           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-4
+	mov x6, #228             // x_start
+	mov x7, #236              // x_end
+	mov x11, #40            // y_start
+	mov x12, #44           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-4
+	mov x6, #236             // x_start
+	mov x7, #240              // x_end
+	mov x11, #40            // y_start
+	mov x12, #52           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-4
+	mov x6, #232             // x_start
+	mov x7, #236              // x_end
+	mov x11, #44            // y_start
+	mov x12, #48           // y_end
+	bl double_mirror_loop
+
+
+	// NOSEQUEHACERACA-5
+	mov x6, #216              // x_start
+	mov x7, #220              // x_end
+	mov x11, #180            // y_start
+	mov x12, #220           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #212              // x_start
+	mov x7, #216              // x_end
+	mov x11, #152            // y_start
+	mov x12, #184           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #208              // x_start
+	mov x7, #212              // x_end
+	mov x11, #144             // y_start
+	mov x12, #152           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #208              // x_start
+	mov x7, #212              // x_end
+	mov x11, #144             // y_start
+	mov x12, #152           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #204              // x_start
+	mov x7, #208              // x_end
+	mov x11, #140             // y_start
+	mov x12, #144           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #200              // x_start
+	mov x7, #204              // x_end
+	mov x11, #128             // y_start
+	mov x12, #140           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #216              // x_start
+	mov x7, #220              // x_end
+	mov x11, #148             // y_start
+	mov x12, #152           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #220              // x_start
+	mov x7, #232              // x_end
+	mov x11, #144             // y_start
+	mov x12, #148           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #216              // x_start
+	mov x7, #220              // x_end
+	mov x11, #132             // y_start
+	mov x12, #144           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #212              // x_start
+	mov x7, #216              // x_end
+	mov x11, #132             // y_start
+	mov x12, #136           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #208              // x_start
+	mov x7, #212              // x_end
+	mov x11, #116             // y_start
+	mov x12, #132           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #204             // x_start
+	mov x7, #208              // x_end
+	mov x11, #116          // y_start
+	mov x12, #120           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #204             // x_start
+	mov x7, #208              // x_end
+	mov x11, #124          // y_start
+	mov x12, #128           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #200             // x_start
+	mov x7, #204              // x_end
+	mov x11, #112          // y_start
+	mov x12, #116           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #228             // x_start
+	mov x7, #232              // x_end
+	mov x11, #104          // y_start
+	mov x12, #148           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #232             // x_start
+	mov x7, #236              // x_end
+	mov x11, #112          // y_start
+	mov x12, #120           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #232             // x_start
+	mov x7, #236              // x_end
+	mov x11, #128          // y_start
+	mov x12, #136           // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #224             // x_start
+	mov x7, #228              // x_end
+	mov x11, #116          // y_start
+	mov x12, #120         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #220             // x_start
+	mov x7, #224              // x_end
+	mov x11, #112          // y_start
+	mov x12, #116         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #208             // x_start
+	mov x7, #220              // x_end
+	mov x11, #108          // y_start
+	mov x12, #112         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #204             // x_start
+	mov x7, #208              // x_end
+	mov x11, #104         // y_start
+	mov x12, #108         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #200             // x_start
+	mov x7, #204              // x_end
+	mov x11, #100          // y_start
+	mov x12, #104        // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #216             // x_start
+	mov x7, #224              // x_end
+	mov x11, #160          // y_start
+	mov x12, #164         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #220             // x_start
+	mov x7, #224              // x_end
+	mov x11, #152          // y_start
+	mov x12, #160         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #224             // x_start
+	mov x7, #228              // x_end
+	mov x11, #148        // y_start
+	mov x12, #152         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #224            // x_start
+	mov x7, #228              // x_end
+	mov x11, #108        // y_start
+	mov x12, #112         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #220            // x_start
+	mov x7, #224              // x_end
+	mov x11, #104        // y_start
+	mov x12, #108         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #216            // x_start
+	mov x7, #220              // x_end
+	mov x11, #100        // y_start
+	mov x12, #104         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #212            // x_start
+	mov x7, #216              // x_end
+	mov x11, #84        // y_start
+	mov x12, #100         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #208            // x_start
+	mov x7, #212              // x_end
+	mov x11, #84        // y_start
+	mov x12, #88         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #204            // x_start
+	mov x7, #208              // x_end
+	mov x11, #76        // y_start
+	mov x12, #84         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #232            // x_start
+	mov x7, #236              // x_end
+	mov x11, #96        // y_start
+	mov x12, #104         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #236            // x_start
+	mov x7, #240              // x_end
+	mov x11, #108        // y_start
+	mov x12, #116         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #240            // x_start
+	mov x7, #244              // x_end
+	mov x11, #104        // y_start
+	mov x12, #108         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #260            // x_start
+	mov x7, #272              // x_end
+	mov x11, #148        // y_start
+	mov x12, #192         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #260            // x_start
+	mov x7, #276              // x_end
+	mov x11, #192        // y_start
+	mov x12, #220         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #256            // x_start
+	mov x7, #260              // x_end
+	mov x11, #152        // y_start
+	mov x12, #164         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #252            // x_start
+	mov x7, #256              // x_end
+	mov x11, #148        // y_start
+	mov x12, #156         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #248            // x_start
+	mov x7, #252              // x_end
+	mov x11, #128        // y_start
+	mov x12, #152         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #244            // x_start
+	mov x7, #248              // x_end
+	mov x11, #140        // y_start
+	mov x12, #148         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #240            // x_start
+	mov x7, #244              // x_end
+	mov x11, #140        // y_start
+	mov x12, #144         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #240            // x_start
+	mov x7, #244              // x_end
+	mov x11, #132        // y_start
+	mov x12, #136         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #244            // x_start
+	mov x7, #248              // x_end
+	mov x11, #136        // y_start
+	mov x12, #140         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #244            // x_start
+	mov x7, #248              // x_end
+	mov x11, #116        // y_start
+	mov x12, #128         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #248            // x_start
+	mov x7, #260              // x_end
+	mov x11, #128        // y_start
+	mov x12, #132         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #252           // x_start
+	mov x7, #256              // x_end
+	mov x11, #124        // y_start
+	mov x12, #128         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #260            // x_start
+	mov x7, #268             // x_end
+	mov x11, #100        // y_start
+	mov x12, #148         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #264            // x_start
+	mov x7, #268             // x_end
+	mov x11, #88        // y_start
+	mov x12, #108         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #268            // x_start
+	mov x7, #276             // x_end
+	mov x11, #60        // y_start
+	mov x12, #104         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #272            // x_start
+	mov x7, #280             // x_end
+	mov x11, #40        // y_start
+	mov x12, #64         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #280            // x_start
+	mov x7, #284             // x_end
+	mov x11, #52        // y_start
+	mov x12, #60         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #284            // x_start
+	mov x7, #288             // x_end
+	mov x11, #44        // y_start
+	mov x12, #52         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #280            // x_start
+	mov x7, #284             // x_end
+	mov x11, #40        // y_start
+	mov x12, #44         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #288            // x_start
+	mov x7, #292             // x_end
+	mov x11, #40        // y_start
+	mov x12, #44         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #260            // x_start
+	mov x7, #272             // x_end
+	mov x11, #44        // y_start
+	mov x12, #48         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #256            // x_start
+	mov x7, #260             // x_end
+	mov x11, #40        // y_start
+	mov x12, #44         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #264            // x_start
+	mov x7, #272             // x_end
+	mov x11, #36        // y_start
+	mov x12, #52         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #264            // x_start
+	mov x7, #272             // x_end
+	mov x11, #68        // y_start
+	mov x12, #80         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #260            // x_start
+	mov x7, #264             // x_end
+	mov x11, #56        // y_start
+	mov x12, #72         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #244            // x_start
+	mov x7, #260             // x_end
+	mov x11, #52        // y_start
+	mov x12, #56         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #256            // x_start
+	mov x7, #260             // x_end
+	mov x11, #60        // y_start
+	mov x12, #64         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #252            // x_start
+	mov x7, #256             // x_end
+	mov x11, #56        // y_start
+	mov x12, #60         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #248            // x_start
+	mov x7, #252             // x_end
+	mov x11, #52        // y_start
+	mov x12, #56         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #252            // x_start
+	mov x7, #256             // x_end
+	mov x11, #48        // y_start
+	mov x12, #52         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #248            // x_start
+	mov x7, #252             // x_end
+	mov x11, #44        // y_start
+	mov x12, #48         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #276            // x_start
+	mov x7, #280             // x_end
+	mov x11, #80        // y_start
+	mov x12, #100         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #280            // x_start
+	mov x7, #284             // x_end
+	mov x11, #76        // y_start
+	mov x12, #96         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #284            // x_start
+	mov x7, #288             // x_end
+	mov x11, #60        // y_start
+	mov x12, #88         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #280            // x_start
+	mov x7, #284             // x_end
+	mov x11, #64        // y_start
+	mov x12, #72         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #276            // x_start
+	mov x7, #280             // x_end
+	mov x11, #60        // y_start
+	mov x12, #64         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #288            // x_start
+	mov x7, #296             // x_end
+	mov x11, #84        // y_start
+	mov x12, #88         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #296            // x_start
+	mov x7, #300             // x_end
+	mov x11, #72        // y_start
+	mov x12, #84         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #292            // x_start
+	mov x7, #296             // x_end
+	mov x11, #64        // y_start
+	mov x12, #72         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #300            // x_start
+	mov x7, #304             // x_end
+	mov x11, #64        // y_start
+	mov x12, #72         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #296            // x_start
+	mov x7, #300             // x_end
+	mov x11, #52        // y_start
+	mov x12, #64         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #292            // x_start
+	mov x7, #296             // x_end
+	mov x11, #48        // y_start
+	mov x12, #52         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #288            // x_start
+	mov x7, #292             // x_end
+	mov x11, #44        // y_start
+	mov x12, #48         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #284            // x_start
+	mov x7, #288             // x_end
+	mov x11, #36        // y_start
+	mov x12, #44         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #300            // x_start
+	mov x7, #304             // x_end
+	mov x11, #72        // y_start
+	mov x12, #80         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #304            // x_start
+	mov x7, #312             // x_end
+	mov x11, #68        // y_start
+	mov x12, #72         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #312            // x_start
+	mov x7, #316             // x_end
+	mov x11, #60        // y_start
+	mov x12, #68         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #316            // x_start
+	mov x7, #320             // x_end
+	mov x11, #52        // y_start
+	mov x12, #60         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #324            // x_start
+	mov x7, #328             // x_end
+	mov x11, #44        // y_start
+	mov x12, #52         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #328            // x_start
+	mov x7, #332             // x_end
+	mov x11, #36        // y_start
+	mov x12, #44         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #310            // x_start
+	mov x7, #314             // x_end
+	mov x11, #156        // y_start
+	mov x12, #180         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #306            // x_start
+	mov x7, #310             // x_end
+	mov x11, #180        // y_start
+	mov x12, #220         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #306            // x_start
+	mov x7, #310             // x_end
+	mov x11, #144        // y_start
+	mov x12, #156         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #298            // x_start
+	mov x7, #306             // x_end
+	mov x11, #148        // y_start
+	mov x12, #152         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #294            // x_start
+	mov x7, #298             // x_end
+	mov x11, #140        // y_start
+	mov x12, #148         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #290            // x_start
+	mov x7, #294             // x_end
+	mov x11, #136        // y_start
+	mov x12, #140         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #286            // x_start
+	mov x7, #290             // x_end
+	mov x11, #132        // y_start
+	mov x12, #136         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #302            // x_start
+	mov x7, #306             // x_end
+	mov x11, #128        // y_start
+	mov x12, #144         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #306            // x_start
+	mov x7, #310             // x_end
+	mov x11, #124        // y_start
+	mov x12, #128         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #306            // x_start
+	mov x7, #310             // x_end
+	mov x11, #132        // y_start
+	mov x12, #136         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #314            // x_start
+	mov x7, #318             // x_end
+	mov x11, #160        // y_start
+	mov x12, #164         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #318            // x_start
+	mov x7, #322             // x_end
+	mov x11, #148        // y_start
+	mov x12, #160         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #314            // x_start
+	mov x7, #318             // x_end
+	mov x11, #140        // y_start
+	mov x12, #148         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #310            // x_start
+	mov x7, #314             // x_end
+	mov x11, #136        // y_start
+	mov x12, #144         // y_end
+	bl double_mirror_loop
+
+
+	// ------------------- PASTO EN EL QUE SE APOYAN LOS PERSONAJES -------------------
+
+	// Usaré las funciones inverted_mirror_loop y double_mirror_loop para lograr un pasto que no sea tan espejo de derecha a izquierda
+	//Haré también el mismo truco que hice anteriormente con el celeste y púrpura para lograr que el pasto de arriba se vea más vivo y claro que el de abajo
+
+	//color verde oscuro = 0xFF35656F
+	movz x10, 0x656F, lsl 0	
+	movk x10, 0xFF35, lsl 16
+
+	// NOSEQUEHACERACA-5
+	mov x6, #52            // x_start
+	mov x7, #56             // x_end
+	mov x11, #228        // y_start
+	mov x12, #232         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #56            // x_start
+	mov x7, #60             // x_end
+	mov x11, #224        // y_start
+	mov x12, #228         // y_end
+	bl double_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #60            // x_start
+	mov x7, #340             // x_end
+	mov x11, #228        // y_start
+	mov x12, #232         // y_end
 	bl only_y_mirror_loop
 
+	// NOSEQUEHACERACA-5
+	mov x6, #368            // x_start
+	mov x7, #560             // x_end
+	mov x11, #228        // y_start
+	mov x12, #232         // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #560            // x_start
+	mov x7, #572             // x_end
+	mov x11, #232        // y_start
+	mov x12, #236         // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #572            // x_start
+	mov x7, #580             // x_end
+	mov x11, #228        // y_start
+	mov x12, #232         // y_end
+	bl only_y_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #64            // x_start
+	mov x7, #72             // x_end
+	mov x11, #232        // y_start
+	mov x12, #236         // y_end
+	bl inverted_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #88            // x_start
+	mov x7, #92             // x_end
+	mov x11, #232        // y_start
+	mov x12, #240         // y_end
+	bl inverted_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #112            // x_start
+	mov x7, #116             // x_end
+	mov x11, #232        // y_start
+	mov x12, #240         // y_end
+	bl inverted_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #136            // x_start
+	mov x7, #140             // x_end
+	mov x11, #232        // y_start
+	mov x12, #244         // y_end
+	bl inverted_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #144            // x_start
+	mov x7, #148             // x_end
+	mov x11, #232        // y_start
+	mov x12, #252         // y_end
+	bl inverted_mirror_loop
+
+	// NOSEQUEHACERACA-5
+	mov x6, #164            // x_start
+	mov x7, #224             // x_end
+	mov x11, #232        // y_start
+	mov x12, #236         // y_end
+	bl inverted_mirror_loop
 
 
-	//LÍNEA REFERENCIA
-	mov x6, #150              // x_start
-	mov x7, #151              // x_end
-	mov x11, #40              // y_start
-	mov x12, #239              // y_end
-	bl double_mirror_loop
-
-	//LÍNEA REFERENCIA
-	mov x6, #200              // x_start
-	mov x7, #201              // x_end
-	mov x11, #40              // y_start
-	mov x12, #239              // y_end
-	bl double_mirror_loop
-
-	//LÍNEA REFERENCIA
-	mov x6, #100              // x_start
-	mov x7, #101              // x_end
-	mov x11, #40              // y_start
-	mov x12, #239              // y_end
-	bl double_mirror_loop
-
-	//LÍNEA REFERENCIA
-	mov x6, #250              // x_start
-	mov x7, #251              // x_end
-	mov x11, #40              // y_start
-	mov x12, #239              // y_end
-	bl double_mirror_loop
 
 
 

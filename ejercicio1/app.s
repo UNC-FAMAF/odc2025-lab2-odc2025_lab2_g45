@@ -4138,6 +4138,8 @@ loop2:
 
 
 	//piernas
+
+	
 	movz w5, #0x4379, lsl #0
 	movk w5, #0xFF06, lsl #16
 
@@ -4171,6 +4173,7 @@ loop2:
 	mov x4, #9
 	bl draw_rect
 
+
 	mov x1, #413
 	mov x2, #317
 	mov x3, #6
@@ -4179,49 +4182,144 @@ loop2:
 
 	mov x1, #407
 	mov x2, #308
-	mov x3, #6
+	mov x3, #9
 	mov x4, #18
 	bl draw_rect
 
 	mov x1, #410
-	mov x2, #399
+	mov x2, #299
 	mov x3, #6
 	mov x4, #9
 	bl draw_rect
 
 	mov x1, #413
-	mov x2, #396
+	mov x2, #296
 	mov x3, #6
 	mov x4, #6
 	bl draw_rect
-
-	mov x1, #416
-	mov x2, #388
+	
+	mov x0, x20
+	mov x1, #413
+	mov x2, #300
 	mov x3, #6
 	mov x4, #12
 	bl draw_rect
 
+	mov x0, x20
+	mov x1, #413
+	mov x2, #288
+	mov x3, #6
+	mov x4, #24
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #410
+	mov x2, #295
+	mov x3, #6
+	mov x4, #6
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #417
+	mov x2, #273
+	mov x3, #4
+	mov x4, #15
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #420
+	mov x2, #270
+	mov x3, #6
+	mov x4, #6
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #410
+	mov x2, #267
+	mov x3, #15
+	mov x4, #6
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #410
+	mov x2, #267
+	mov x3, #4
+	mov x4, #8
+	bl draw_rect
 
 //detalles pierna izquierda
 	movz w5, #0x1738, lsl #0
 	movk w5, #0xFF00, lsl #16
 	mov x1, #413
-	mov x2, #308
+	mov x2, #296 
 	mov x3, #6
 	mov x4, #9
 	bl draw_rect
 
 	mov x1, #416
-	mov x2, #302
+	mov x2, #290
 	mov x3, #3
 	mov x4, #6
 	bl draw_rect
 
 	mov x1, #419
-	mov x2, #396
+	mov x2, #284
 	mov x3, #3
 	mov x4, #9
 	bl draw_rect
+
+
+//pierna derecha
+
+	movz w5, #0x4379, lsl #0
+	movk w5, #0xFF06, lsl #16
+
+	mov x1, #440
+	mov x2, #320
+	mov x3, #9
+	mov x4, #9
+	bl draw_rect
+
+	mov x1, #446
+	mov x2, #314
+	mov x3, #9
+	mov x4, #9
+	bl draw_rect
+
+	mov x1, #449
+	mov x2, #308
+	mov x3, #12
+	mov x4, #6
+	bl draw_rect
+
+	mov x1, #452
+	mov x2, #300
+	mov x3, #15
+	mov x4, #9
+	bl draw_rect
+
+	mov x1, #458
+	mov x2, #291
+	mov x3, #9
+	mov x4, #18
+	bl draw_rect
+
+	mov x1, #458
+	mov x2, #282
+	mov x3, #6
+	mov x4, #9
+	bl draw_rect
+
+	mov x1, #458
+	mov x2, #279
+	mov x3, #3
+	mov x4, #3
+	bl draw_rect
+
+//otro color para detalles
+	movz w5, #0x1738, lsl #0
+	movk w5, #0xFF00, lsl #16
+
 
 //brazo derecho
 
@@ -4298,6 +4396,9 @@ loop2:
 
 
 //mano derecha
+
+	movz w5, #0x4379, lsl #0
+	movk w5, #0xFF06, lsl #16
 	mov x1, #490
 	mov x2, #312
 	mov x3, #6

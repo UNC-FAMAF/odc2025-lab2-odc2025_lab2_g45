@@ -3446,12 +3446,12 @@ loop2:
 	
  	// Eleven
 	// Cabeza
-	mov x1, #418      // eje x
-	mov x2, #140      // eje y
-	mov x3, #24       // ancho
-	mov x4, #4        // alto
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
+	mov x1, #418
+	mov x2, #140
+	mov x3, #24
+	mov x4, #4
+	movz w5, #0xA58A, lsl #0
+	movk w5, #0xFFF4, lsl #16
 	bl draw_rect
 
 	mov x1, #414
@@ -3462,10 +3462,49 @@ loop2:
 	movk w5, #0xFFFF, lsl #16
 	bl draw_rect
 
+	mov x1, #414
+	mov x2, #144
+	mov x3, #32
+	mov x4, #8
+	movz w5, #0xA58A, lsl #0
+	movk w5, #0xFFF4, lsl #16
+	bl draw_rect
+
+	mov x1, #422
+	mov x2, #152
+	mov x3, #16
+	mov x4, #4
+	movz w5, #0xA58A, lsl #0
+	movk w5, #0xFFF4, lsl #16
+	bl draw_rect
+	// Ojos
+	mov x1, #418
+	mov x2, #160
+	mov x3, #4
+	mov x4, #4
+	movz w5, #0x0000, lsl #0
+	movk w5, #0xFF00, lsl #16
+	bl draw_rect
+	mov x1, #438
+	mov x2, #160
+	mov x3, #4
+	mov x4, #4
+	movz w5, #0x0000, lsl #0
+	movk w5, #0xFF00, lsl #16
+	bl draw_rect
+	//
 	mov x1, #410
 	mov x2, #148
 	mov x3, #4
 	mov x4, #20
+	movz w5, #0xA58A, lsl #0
+	movk w5, #0xFFF4, lsl #16
+	bl draw_rect
+
+	mov x1, #410
+	mov x2, #168
+	mov x3, #4
+	mov x4, #4
 	movz w5, #0xCCAA, lsl #0
 	movk w5, #0xFFFF, lsl #16
 	bl draw_rect
@@ -3474,6 +3513,14 @@ loop2:
 	mov x2, #148
 	mov x3, #4
 	mov x4, #20
+	movz w5, #0xA58A, lsl #0
+	movk w5, #0xFFF4, lsl #16
+	bl draw_rect
+
+	mov x1, #410
+	mov x2, #168
+	mov x3, #4
+	mov x4, #4
 	movz w5, #0xCCAA, lsl #0
 	movk w5, #0xFFFF, lsl #16
 	bl draw_rect
@@ -3500,85 +3547,109 @@ loop2:
 	mov x2, #180
 	mov x3, #4
 	mov x4, #4
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	movz w5, #0x3DC4, lsl #0
+	movk w5, #0xFF5F, lsl #16
 	bl draw_rect
 
 	mov x1, #434
 	mov x2, #180
 	mov x3, #4
 	mov x4, #4
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	movz w5, #0x3DC4, lsl #0
+	movk w5, #0xFF5F, lsl #16
 	bl draw_rect
 
 	// Hombros
-	mov x1, #414
+	mov x1, #418
 	mov x2, #184
-	mov x3, #32
+	mov x3, #24
 	mov x4, #8
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	movz w5, #0x3DC4, lsl #0
+	movk w5, #0xFF5F, lsl #16
 	bl draw_rect
 
 	// Panza
-	mov x1, #418
-	mov x2, #192
-	mov x3, #24
-	mov x4, #20
+	mov x1, #422
+	mov x2, #184
+	mov x3, #16
+	mov x4, #36
+	movz w5, #0xA6A3, lsl #0
+	movk w5, #0xFFD8, lsl #16
+	bl draw_rect
+
+	mov x1, #426
+	mov x2, #184
+	mov x3, #8
+	mov x4, #4
 	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	movk w5, #0xFFFF, lsl #16
+	bl draw_rect
+
+	mov x1, #422
+	mov x2, #184
+	mov x3, #4
+	mov x4, #20
+	movz w5, #0x3DC4, lsl #0
+	movk w5, #0xFF5F, lsl #16
+	bl draw_rect
+
+	mov x1, #430
+	mov x2, #184
+	mov x3, #4
+	mov x4, #20
+	movz w5, #0x3DC4, lsl #0
+	movk w5, #0xFF5F, lsl #16
 	bl draw_rect
 
 	// Brazo
-	mov x1, #408
+	mov x1, #414
 	mov x2, #188
-	mov x3, #6
+	mov x3, #4
 	mov x4, #24
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	movz w5, #0x3DC4, lsl #0
+	movk w5, #0xFF5F, lsl #16
 	bl draw_rect
 
-	mov x1, #446
+	mov x1, #438
 	mov x2, #188
-	mov x3, #6
+	mov x3, #4
 	mov x4, #24
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	movz w5, #0x3DC4, lsl #0
+	movk w5, #0xFF5F, lsl #16
 	bl draw_rect
 
 	// Manos 
-	mov x1, #412
+	mov x1, #418
 	mov x2, #212
-	mov x3, #6
-	mov x4, #6
+	mov x3, #4
+	mov x4, #4
 	movz w5, #0xCCAA, lsl #0
 	movk w5, #0xFFFF, lsl #16
 	bl draw_rect
 
-	mov x1, #442
+	mov x1, #434
 	mov x2, #212
-	mov x3, #6
-	mov x4, #6
+	mov x3, #4
+	mov x4, #4
 	movz w5, #0xCCAA, lsl #0
 	movk w5, #0xFFFF, lsl #16
 	bl draw_rect
 
 	// Piernas
 	mov x1, #422
-	mov x2, #212
-	mov x3, #6
-	mov x4, #24
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	mov x2, #220
+	mov x3, #4
+	mov x4, #16
+	movz w5, #0xCCAA, lsl #0
+	movk w5, #0xFFFF, lsl #16
 	bl draw_rect
 
-	mov x1, #432
-	mov x2, #212
-	mov x3, #6
-	mov x4, #24
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	mov x1, #430
+	mov x2, #220
+	mov x3, #4
+	mov x4, #16
+	movz w5, #0xCCAA, lsl #0
+	movk w5, #0xFFFF, lsl #16
 	bl draw_rect
 
 	// Pies
@@ -3597,7 +3668,7 @@ loop2:
 	movz w5, #0xFFFF, lsl #0
 	movk w5, #0xFFFF, lsl #16
 	bl draw_rect
-
+ 
 	// Mike
 	// Cabeza
 	mov x1, #498

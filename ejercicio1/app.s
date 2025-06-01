@@ -3517,7 +3517,7 @@ loop2:
 	movk w5, #0xFFF4, lsl #16
 	bl draw_rect
 
-	mov x1, #410
+	mov x1, #450
 	mov x2, #168
 	mov x3, #4
 	mov x4, #4

@@ -3601,13 +3601,21 @@ loop2:
 	// Mike
 	// Cabeza
 	mov x1, #498
-	mov x2, #140
-	mov x3, #24
+	mov x2, #136
+	mov x3, #20
 	mov x4, #4
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
+	movz w5, #0x1C1C, lsl #0
+	movk w5, #0xFF1C, lsl #16
 	bl draw_rect
-
+	
+	mov x1, #490
+	mov x2, #140
+	mov x3, #32
+	mov x4, #4
+	movz w5, #0x1C1C, lsl #0
+	movk w5, #0xFF1C, lsl #16
+	bl draw_rect
+	
 	mov x1, #494
 	mov x2, #144
 	mov x3, #32
@@ -3616,22 +3624,146 @@ loop2:
 	movk w5, #0xFFFF, lsl #16
 	bl draw_rect
 
-	mov x1, #490
-	mov x2, #148
-	mov x3, #4
-	mov x4, #20
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
+	mov x1, #486
+	mov x2, #144
+	mov x3, #40
+	mov x4, #4
+	movz w5, #0x1C1C, lsl #0
+	movk w5, #0xFF1C, lsl #16
 	bl draw_rect
-	
-	mov x1, #526
-	mov x2, #148
+
+	mov x1, #514
+	mov x2, #144
 	mov x3, #4
-	mov x4, #20
+	mov x4, #4
 	movz w5, #0xCCAA, lsl #0
 	movk w5, #0xFFFF, lsl #16
 	bl draw_rect
 
+	mov x1, #486
+	mov x2, #148
+	mov x3, #44
+	mov x4, #4
+	movz w5, #0x1C1C, lsl #0
+	movk w5, #0xFF1C, lsl #16
+	bl draw_rect
+
+	mov x1, #510
+	mov x2, #148
+	mov x3, #8
+	mov x4, #4
+	movz w5, #0xCCAA, lsl #0
+	movk w5, #0xFFFF, lsl #16
+	bl draw_rect
+
+	mov x1, #486
+	mov x2, #152
+	mov x3, #48
+	mov x4, #4
+	movz w5, #0x1C1C, lsl #0
+	movk w5, #0xFF1C, lsl #16
+	bl draw_rect
+
+	mov x1, #506
+	mov x2, #152
+	mov x3, #20
+	mov x4, #4
+	movz w5, #0xCCAA, lsl #0
+	movk w5, #0xFFFF, lsl #16
+	bl draw_rect
+
+	mov x1, #486
+	mov x2, #156
+	mov x3, #48
+	mov x4, #4
+	movz w5, #0x1C1C, lsl #0
+	movk w5, #0xFF1C, lsl #16
+	bl draw_rect
+
+	mov x1, #498
+	mov x2, #156
+	mov x3, #28
+	mov x4, #4
+	movz w5, #0xCCAA, lsl #0
+	movk w5, #0xFFFF, lsl #16
+	bl draw_rect
+
+	mov x1, #486
+	mov x2, #160
+	mov x3, #4
+	mov x4, #16
+	movz w5, #0x1C1C, lsl #0
+	movk w5, #0xFF1C, lsl #16
+	bl draw_rect
+
+	mov x1, #530
+	mov x2, #160
+	mov x3, #4
+	mov x4, #12
+	movz w5, #0x1C1C, lsl #0
+	movk w5, #0xFF1C, lsl #16
+	bl draw_rect
+
+	mov x1, #490
+	mov x2, #160
+	mov x3, #4
+	mov x4, #8
+	movz w5, #0xCCAA, lsl #0
+	movk w5, #0xFFFF, lsl #16
+	bl draw_rect
+
+	mov x1, #526
+	mov x2, #160
+	mov x3, #4
+	mov x4, #8
+	movz w5, #0xCCAA, lsl #0
+	movk w5, #0xFFFF, lsl #16
+	bl draw_rect
+	// OJASOS
+	mov x1, #550
+	mov x2, #164
+	mov x3, #4
+	mov x4, #4
+	movz w5, #0x0000, lsl #0
+	movk w5, #0xFF00, lsl #16
+	bl draw_rect
+	
+	mov x1, #534
+	mov x2, #164
+	mov x3, #4
+	mov x4, #4
+	movz w5, #0x0000, lsl #0
+	movk w5, #0xFF00, lsl #16
+	bl draw_rect
+	
+	mov x1, #526
+	mov x2, #168
+	mov x3, #4
+	mov x4, #12
+	movz w5, #0x1C1C, lsl #0
+	movk w5, #0xFF1C, lsl #16
+
+	mov x1, #530
+	mov x2, #176
+	mov x3, #4
+	mov x4, #4
+	movz w5, #0x1C1C, lsl #0
+	movk w5, #0xFF1C, lsl #16
+
+	mov x1, #558
+	mov x2, #168
+	mov x3, #4
+	mov x4, #12
+	movz w5, #0x1C1C, lsl #0
+	movk w5, #0xFF1C, lsl #16
+
+	mov x1, #554
+	mov x2, #176
+	mov x3, #4
+	mov x4, #4
+	movz w5, #0x1C1C, lsl #0
+	movk w5, #0xFF1C, lsl #16
+	
 	mov x1, #498
 	mov x2, #176
 	mov x3, #24
@@ -3654,48 +3786,72 @@ loop2:
 	mov x2, #180
 	mov x3, #4
 	mov x4, #4
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	movz w5, #0xB78D, lsl #0
+	movk w5, #0xFFA5, lsl #16
 	bl draw_rect
 
 	mov x1, #514
 	mov x2, #180
 	mov x3, #4
 	mov x4, #4
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	movz w5, #0xB78D, lsl #0
+	movk w5, #0xFFA5, lsl #16
 	bl draw_rect
 	// Hombros
 	mov x1, #494
 	mov x2, #184
 	mov x3, #32
 	mov x4, #8
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	movz w5, #0xB78D, lsl #0
+	movk w5, #0xFFA5, lsl #16
 	bl draw_rect
 	// Panza
 	mov x1, #498
 	mov x2, #192
 	mov x3, #24
 	mov x4, #20
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	movz w5, #0xB78D, lsl #0
+	movk w5, #0xFFA5, lsl #16
 	bl draw_rect
-	// Brazo
+
+	mov x1, #506
+	mov x2, #184
+	mov x3, #8
+	mov x4, #28
+	movz w5, #0xFFFF, lsl #0
+	movk w5, #0xFFFF, lsl #16
+	bl draw_rect
+
+	mov x1, #506
+	mov x2, #192
+	mov x3, #8
+	mov x4, #16
+	movz w5, #0x3286, lsl #0
+	movk w5, #0xFF0D, lsl #16
+	bl draw_rect
+
+	mov x1, #506
+	mov x2, #196
+	mov x3, #8
+	mov x4, #8
+	movz w5, #0xD038, lsl #0
+	movk w5, #0xFFF7, lsl #16
+	bl draw_rect
+	// Brazos
 	mov x1, #488
 	mov x2, #188
 	mov x3, #6
 	mov x4, #24
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	movz w5, #0xB78D, lsl #0
+	movk w5, #0xFFA5, lsl #16
 	bl draw_rect
-	
+
 	mov x1, #526
 	mov x2, #188
 	mov x3, #6
 	mov x4, #24
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	movz w5, #0xB78D, lsl #0
+	movk w5, #0xFFA5, lsl #16
 	bl draw_rect
 	// Manos 
 	mov x1, #492
@@ -3718,16 +3874,16 @@ loop2:
 	mov x2, #212
 	mov x3, #6
 	mov x4, #24
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	movz w5, #0x3DC4, lsl #0
+	movk w5, #0xFF5F, lsl #16
 	bl draw_rect
 
 	mov x1, #512
 	mov x2, #212
 	mov x3, #6
 	mov x4, #24
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	movz w5, #0x3DC4, lsl #0
+	movk w5, #0xFF5F, lsl #16
 	bl draw_rect
 	// Pies
 	mov x1, #498
@@ -3745,7 +3901,7 @@ loop2:
 	movz w5, #0xFFFF, lsl #0
 	movk w5, #0xFFFF, lsl #16
 	bl draw_rect
-
+ 
 // demogorgon
 
 //Demogorgon - cuerpo

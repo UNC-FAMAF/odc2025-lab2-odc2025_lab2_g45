@@ -3186,9 +3186,363 @@ loop2:
 
 // demogorgon
 
-    mov x0, x20
+//Demogorgon - cuerpo
+
+//tronco
+	mov x0, x20
+	mov x1, #410
+	mov x2, #365
+	mov x3, #42
+	mov x4, #15
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
 
 
+	mov x0, x20
+	mov x1, #420
+	mov x2, #370
+	mov x3, #20
+	mov x4, #20
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+
+//brazo derecho
+
+	mov x0, x20
+	mov x1, #450
+	mov x2, #373
+	mov x3, #6
+	mov x4, #6
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #452
+	mov x2, #370
+	mov x3, #15
+	mov x4, #6
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #455
+	mov x2, #364
+	mov x3, #12
+	mov x4, #12
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #460
+	mov x2, #360
+	mov x3, #12
+	mov x4, #6
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #463
+	mov x2, #354
+	mov x3, #12
+	mov x4, #12
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+
+	mov x0, x20
+	mov x1, #466
+	mov x2, #348
+	mov x3, #12
+	mov x4, #6
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #469
+	mov x2, #342
+	mov x3, #12
+	mov x4, #6
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #472
+	mov x2, #336
+	mov x3, #12
+	mov x4, #6
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #478
+	mov x2, #330
+	mov x3, #12
+	mov x4, #6
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #484
+	mov x2, #324
+	mov x3, #12
+	mov x4, #6
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #490
+	mov x2, #328
+	mov x3, #6
+	mov x4, #3
+	movz w5, #0x1637, lsl #0
+	movk w5, #0xFF00, lsl #16
+	bl draw_rect
+
+
+//mano derecha
+	mov x0, x20
+	mov x1, #490
+	mov x2, #312
+	mov x3, #6
+	mov x4, #18
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #490
+	mov x2, #306
+	mov x3, #3
+	mov x4, #6
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #487
+	mov x2, #303
+	mov x3, #3
+	mov x4, #6
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #496
+	mov x2, #315
+	mov x3, #3
+	mov x4, #6
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #499
+	mov x2, #315
+	mov x3, #3
+	mov x4, #3
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #499
+	mov x2, #309
+	mov x3, #6
+	mov x4, #6
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #504
+	mov x2, #309
+	mov x3, #3
+	mov x4, #3
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #504
+	mov x2, #306
+	mov x3, #9
+	mov x4, #3
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #504
+	mov x2, #300
+	mov x3, #3
+	mov x4, #12
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #510
+	mov x2, #300
+	mov x3, #3
+	mov x4, #9
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+
+// brazo izquierdo
+	mov x0, x20
+	mov x1, #398
+	mov x2, #370
+	mov x3, #12
+	mov x4, #6
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #395
+	mov x2, #349
+	mov x3, #9
+	mov x4, #21
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #389
+	mov x2, #345
+	mov x3, #12
+	mov x4, #6
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #386
+	mov x2, #339
+	mov x3, #9
+	mov x4, #9
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #383
+	mov x2, #336
+	mov x3, #6
+	mov x4, #6
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #383
+	mov x2, #334
+	mov x3, #3
+	mov x4, #3
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+
+	mov x0, x20
+	mov x1, #377
+	mov x2, #332
+	mov x3, #6
+	mov x4, #6
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	//mano izquierda
+	mov x0, x20
+	mov x1, #377
+	mov x2, #311
+	mov x3, #3
+	mov x4, #21
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #380
+	mov x2, #305
+	mov x3, #3
+	mov x4, #12
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #371
+	mov x2, #317
+	mov x3, #9
+	mov x4, #9
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #368
+	mov x2, #314
+	mov x3, #6
+	mov x4, #6
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #365
+	mov x2, #305
+	mov x3, #3
+	mov x4, #15
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #365
+	mov x2, #305
+	mov x3, #3
+	mov x4, #15
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #359
+	mov x2, #305
+	mov x3, #3
+	mov x4, #9
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+	mov x0, x20
+	mov x1, #362
+	mov x2, #311
+	mov x3, #6
+	mov x4, #6
+	movz w5, #0x4277, lsl #0
+	movk w5, #0xFF06, lsl #16
+	bl draw_rect
+
+// DEMOGORGON - CABEZA
 // PETALO DERECHA ARRIBA
 
     mov x1, #445

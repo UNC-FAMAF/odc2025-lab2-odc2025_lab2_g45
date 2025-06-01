@@ -3572,11 +3572,11 @@ loop2:
 	mov x1, #422
 	mov x2, #184
 	mov x3, #16
-	mov x4, #36
+	mov x4, #40
 	movz w5, #0xA6A3, lsl #0
 	movk w5, #0xFFD8, lsl #16
 	bl draw_rect
-
+	
 	mov x1, #426
 	mov x2, #184
 	mov x3, #8
@@ -3593,7 +3593,7 @@ loop2:
 	movk w5, #0xFF5F, lsl #16
 	bl draw_rect
 
-	mov x1, #430
+	mov x1, #434
 	mov x2, #184
 	mov x3, #4
 	mov x4, #20
@@ -3610,7 +3610,7 @@ loop2:
 	movk w5, #0xFF5F, lsl #16
 	bl draw_rect
 
-	mov x1, #438
+	mov x1, #442
 	mov x2, #188
 	mov x3, #4
 	mov x4, #24
@@ -3627,7 +3627,7 @@ loop2:
 	movk w5, #0xFFFF, lsl #16
 	bl draw_rect
 
-	mov x1, #434
+	mov x1, #438
 	mov x2, #212
 	mov x3, #4
 	mov x4, #4
@@ -3637,17 +3637,17 @@ loop2:
 
 	// Piernas
 	mov x1, #422
-	mov x2, #220
+	mov x2, #224
 	mov x3, #4
-	mov x4, #16
+	mov x4, #12
 	movz w5, #0xCCAA, lsl #0
 	movk w5, #0xFFFF, lsl #16
 	bl draw_rect
 
-	mov x1, #430
-	mov x2, #220
+	mov x1, #434
+	mov x2, #224
 	mov x3, #4
-	mov x4, #16
+	mov x4, #12
 	movz w5, #0xCCAA, lsl #0
 	movk w5, #0xFFFF, lsl #16
 	bl draw_rect

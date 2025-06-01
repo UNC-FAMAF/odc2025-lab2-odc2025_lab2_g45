@@ -2900,16 +2900,13 @@ loop2:
 	movk w5, #0xFFFF, lsl #16
 	bl draw_rect
 
-
 // demogorgon
 
-
-
-
-
-  // Asume que el framebuffer base está en la dirección  (ejemplo)
     mov x0, x20
-//petalo derecha arriba
+
+
+// PETALO DERECHA ARRIBA
+
     mov x1, #445
     mov x2, #387
     mov x3, #10
@@ -2922,14 +2919,47 @@ loop2:
     movz w5, #0x1637, lsl #0
     bl draw_circle
 
-	mov x1, #447
+    mov x1, #447
     mov x2, #388
     mov x3, #10
     movz w5, #0x1637, lsl #0
     bl draw_circle
 
 
-//petalo derecha abajo
+//detalles
+    mov x1, #450
+    mov x2, #384
+    mov x3, #5
+    movz w5, #0x8BD1, lsl #0
+    movk w5, #0xFF1A, lsl #16
+    bl draw_circle
+
+    mov x1, #446
+    mov x2, #388
+    mov x3, #8
+    movz w5, #0x3A6C, lsl #0
+    movk w5, #0xFF04, lsl #16
+    bl draw_circle
+
+    mov x1, #453
+    mov x2, #387
+    mov x3, #2
+    movz w5, #0x7BBC, lsl #0
+    movk w5, #0xFF14, lsl #16
+    bl draw_circle
+
+    mov x1, #446
+    mov x2, #384
+    mov x3, #1
+    movz w5, #0x7BBC, lsl #0
+    movk w5, #0xFF14, lsl #16
+    bl draw_circle
+
+
+
+
+// PETALO DERECHA ABAJO
+
     mov x1, #445
     mov x2, #405
     mov x3, #10
@@ -2942,78 +2972,250 @@ loop2:
     movz w5, #0x1637, lsl #0
     bl draw_circle
 
-	mov x1, #448
+    mov x1, #448
     mov x2, #406
     mov x3, #10
     movz w5, #0x1637, lsl #0
     bl draw_circle
 
-//petalo izquierda arriba (reflejo de derecha arriba)
-    mov x1, #415 // 
+
+//detalles
+    mov x1, #455
+    mov x2, #405
+    mov x3, #5
+    movz w5, #0x8BD1, lsl #0
+    movk w5, #0xFF1A, lsl #16
+    bl draw_circle
+
+    mov x1, #455
+    mov x2, #406
+    mov x3, #5
+    movz w5, #0x8BD1, lsl #0
+    movk w5, #0xFF1A, lsl #16
+    bl draw_circle
+
+    mov x1, #449
+    mov x2, #406
+    mov x3, #8
+    movz w5, #0x3A6C, lsl #0
+    movk w5, #0xFF04, lsl #16
+    bl draw_circle
+
+    mov x1, #450
+    mov x2, #410
+    mov x3, #1
+    movz w5, #0x7BBC, lsl #0
+    movk w5, #0xFF14, lsl #16
+    bl draw_circle
+
+    mov x1, #454
+    mov x2, #403
+    mov x3, #2
+    movz w5, #0x7BBC, lsl #0
+    movk w5, #0xFF14, lsl #16
+    bl draw_circle
+
+
+
+
+// PETALO IZQUIERDA ARRIBA
+
+    mov x1, #415
     mov x2, #387
     mov x3, #10
     movz w5, #0x1637, lsl #0
     bl draw_circle
 
-    mov x1, #412 // 
+    mov x1, #412
     mov x2, #386
     mov x3, #10
     movz w5, #0x1637, lsl #0
     bl draw_circle
 
-    mov x1, #413 // 
+    mov x1, #413
     mov x2, #388
     mov x3, #10
     movz w5, #0x1637, lsl #0
     bl draw_circle
 
 
-// petalo izquierda abajo 
-    mov x1, #415 // (430 - (445-430)) = 415
+//detalles (reflejo de los de DERECHA ARRIBA)
+    mov x1, #410 // 430 - (450 - 430) = 410
+    mov x2, #384
+    mov x3, #5
+    movz w5, #0x8BD1, lsl #0
+    movk w5, #0xFF1A, lsl #16
+    bl draw_circle
+
+    mov x1, #414 // 430 - (446 - 430) = 414
+    mov x2, #388
+    mov x3, #8
+    movz w5, #0x3A6C, lsl #0
+    movk w5, #0xFF04, lsl #16
+    bl draw_circle
+
+    mov x1, #409 //
+    mov x2, #388
+    mov x3, #2
+    movz w5, #0x7BBC, lsl #0
+    movk w5, #0xFF14, lsl #16
+    bl draw_circle
+
+    mov x1, #414 // 430 - (446 - 430) = 414
+    mov x2, #384
+    mov x3, #1
+    movz w5, #0x7BBC, lsl #0
+    movk w5, #0xFF14, lsl #16
+    bl draw_circle
+
+
+// PETALO IZQUIERDA ABAJO
+
+    mov x1, #415
     mov x2, #405
     mov x3, #10
     movz w5, #0x1637, lsl #0
     bl draw_circle
 
-    mov x1, #408 // 
+    mov x1, #408
     mov x2, #406
     mov x3, #10
     movz w5, #0x1637, lsl #0
     bl draw_circle
 
-    mov x1, #412 // 
+    mov x1, #412
     mov x2, #406
     mov x3, #10
     movz w5, #0x1637, lsl #0
     bl draw_circle
 
 
-//Gran pétalo hacia abajo
-    mov x1, #425         
-    mov x2, #415          
-    mov x3, #12           
-    movz w5, #0x1637, lsl #0 
+//detalles (reflejo de los de DERECHA ABAJO)
+    mov x1, #405 // 430 - (455 - 430) = 405
+    mov x2, #405
+    mov x3, #5
+    movz w5, #0x8BD1, lsl #0
+    movk w5, #0xFF1A, lsl #16
     bl draw_circle
 
-    mov x1, #435         
-    mov x2, #415          
-    mov x3, #12           
-    movz w5, #0x1637, lsl #0 
+    mov x1, #405 // 430 - (455 - 430) = 405
+    mov x2, #406
+    mov x3, #5
+    movz w5, #0x8BD1, lsl #0
+    movk w5, #0xFF1A, lsl #16
     bl draw_circle
 
-	mov x1, #430         
-    mov x2, #420          
-    mov x3, #15           
-    movz w5, #0x1637, lsl #0 
+    mov x1, #411 // 430 - (449 - 430) = 411
+    mov x2, #406
+    mov x3, #8
+    movz w5, #0x3A6C, lsl #0
+    movk w5, #0xFF04, lsl #16
     bl draw_circle
 
-//centro de la cabeza
+    mov x1, #410 // 430 - (450 - 430) = 410
+    mov x2, #407
+    mov x3, #1
+    movz w5, #0x7BBC, lsl #0
+    movk w5, #0xFF14, lsl #16
+    bl draw_circle
+
+    mov x1, #408 //
+    mov x2, #403
+    mov x3, #1
+    movz w5, #0x7BBC, lsl #0
+    movk w5, #0xFF14, lsl #16
+    bl draw_circle
+
+// Gran pétalo hacia abajo
+
+    mov x1, #425
+    mov x2, #415
+    mov x3, #12
+    movz w5, #0x1637, lsl #0
+    bl draw_circle
+
+    mov x1, #435
+    mov x2, #415
+    mov x3, #12
+    movz w5, #0x1637, lsl #0
+    bl draw_circle
+
+    mov x1, #430
+    mov x2, #420
+    mov x3, #15
+    movz w5, #0x1637, lsl #0
+    bl draw_circle
+
+
+
+  // Detalles 
+
+    mov x1, #430
+    mov x2, #418
+    mov x3, #13
+    movz w5, #0x7BBC, lsl #0
+    movk w5, #0xFF14, lsl #16
+    bl draw_circle
+
+
+    mov x1, #427
+    mov x2, #413
+    mov x3, #12
+    movz w5, #0x3A6C, lsl #0
+    movk w5, #0xFF04, lsl #16
+    bl draw_circle
+
+    mov x1, #432
+    mov x2, #413
+    mov x3, #12
+    movz w5, #0x3A6C, lsl #0
+    movk w5, #0xFF04, lsl #16
+    bl draw_circle
+
+    mov x1, #430
+    mov x2, #416
+    mov x3, #12
+    movz w5, #0x3A6C, lsl #0
+    movk w5, #0xFF04, lsl #16
+    bl draw_circle
+
+
+
+    mov x1, #436
+    mov x2, #423
+    mov x3, #1
+    movz w5, #0x7BBC, lsl #0
+    movk w5, #0xFF14, lsl #16
+    bl draw_circle
+
+    mov x1, #423
+    mov x2, #422
+    mov x3, #1
+    movz w5, #0x7BBC, lsl #0
+    movk w5, #0xFF14, lsl #16
+    bl draw_circle
+
+    mov x1, #430
+    mov x2, #419
+    mov x3, #1
+    movz w5, #0x7BBC, lsl #0
+    movk w5, #0xFF14, lsl #16
+    bl draw_circle
+
+    mov x1, #427
+    mov x2, #425
+    mov x3, #1
+    movz w5, #0x7BBC, lsl #0
+    movk w5, #0xFF14, lsl #16
+    bl draw_circle
+
+// Centro de la cabeza
+
     mov x1, #430
     mov x2, #400
     mov x3, #20
     movz w5, #0x1C4A, lsl #0
     bl draw_circle
-
 
     mov x1, #430
     mov x2, #400
@@ -3021,16 +3223,87 @@ loop2:
     movz w5, #0x0014, lsl #0
     bl draw_circle
 
+// Centro de la cabeza con profundidad
+// Degradado
+    //  Azul oscuro
+    movz w5, #0x1C4A, lsl #0  
+    movk w5, #0xFF00, lsl #16   
+    mov x1, #430
+    mov x2, #400
+    mov x3, #20
+    bl draw_circle
 
+    // Azul más oscuro, un poco menos azul
+    movz w5, #0x163D, lsl #0  
+    movk w5, #0xFF00, lsl #16  
+    mov x1, #430
+    mov x2, #400
+    mov x3, #18
+    bl draw_circle
 
+    // Azul casi negro
+    movz w5, #0x0A21, lsl #0   
+    movk w5, #0xFF00, lsl #16    
+    mov x1, #430
+    mov x2, #400
+    mov x3, #16
+    bl draw_circle
 
+    //  Negro con un poco de azul
+    movz w5, #0x0408, lsl #0 
+    movk w5, #0xFF00, lsl #16  
+    mov x1, #430
+    mov x2, #400
+    mov x3, #14
+    bl draw_circle
 
-//estrellas 
+    // Negro puro
+    movz w5, #0x0000, lsl #0 
+    movk w5, #0xFF00, lsl #16
+    mov x1, #430
+    mov x2, #400
+    mov x3, #12
+    bl draw_circle
 
+    // Negro con rojo leve 
+    movz w5, #0x0100, lsl #0  
+    movk w5, #0xFF00, lsl #16     
+    mov x1, #430
+    mov x2, #400
+    mov x3, #10
+    bl draw_circle
 
+    // Capa 7 
+    movz w5, #0x0000, lsl #0
+    movk w5, #0xFF33, lsl #16     
+    mov x1, #430
+    mov x2, #400
+    mov x3, #8
+    bl draw_circle
 
+    // Capa 8 - Rojo bordó oscuro
+    movz w5, #0x0000, lsl #0
+    movk w5, #0xFF55, lsl #16 
+    mov x1, #430
+    mov x2, #400
+    mov x3, #6
+    bl draw_circle
 
+    // 
+    movz w5, #0x0000, lsl #0
+    movk w5, #0xFF77, lsl #16 
+    mov x1, #430
+    mov x2, #400
+    mov x3, #4
+    bl draw_circle
 
+    //  Rojo bordó 
+    movz w5, #0x0000, lsl #0
+    movk w5, #0xFF99, lsl #16 
+    mov x1, #430
+    mov x2, #400
+    mov x3, #2
+    bl draw_circle
 
 //////////////////////////////////subrutinas//////////////////////////////
 

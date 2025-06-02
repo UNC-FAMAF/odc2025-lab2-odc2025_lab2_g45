@@ -2518,7 +2518,147 @@ loop2:
 	mov x12, #152         // y_end
 	bl only_y_mirror_loop
 
+	// ------- HARÉ QUE LOS NÚMEROS "2025" SE VEAN REFLEJADOS EN EL LADO DE ABAJO DE LA PANTALLA, COMO SI FUESEN EL OTRO MUNDO ---------- 
 
+	// Voy a ponerlo con un color apagado, una especie de gris = 0xFF577496
+	movz x5, 0x7496, lsl 0	
+	movk x5, 0xFF57, lsl 16
+
+	// NÚMERO 2
+	mov x1, #284            // x_start
+	mov x2, #364             // y_start
+	mov x3, #8        // ancho
+	mov x4, #4         // alto
+	bl draw_rect
+
+	// NÚMERO 2
+	mov x1, #284            // x_start
+	mov x2, #356             // y_start
+	mov x3, #4        // ancho
+	mov x4, #8         // alto
+	bl draw_rect
+
+	// NÚMERO 2
+	mov x1, #284            // x_start
+	mov x2, #356             // y_start
+	mov x3, #8        // ancho
+	mov x4, #4         // alto
+	bl draw_rect
+
+	// NÚMERO 2
+	mov x1, #288            // x_start
+	mov x2, #348             // y_start
+	mov x3, #4        // ancho
+	mov x4, #8         // alto
+	bl draw_rect
+
+	// NÚMERO 2
+	mov x1, #284            // x_start
+	mov x2, #348             // y_start
+	mov x3, #8        // ancho
+	mov x4, #4         // alto
+	bl draw_rect
+
+
+	// NÚMERO 0
+	mov x1, #296            // x_start
+	mov x2, #352             // y_start
+	mov x3, #4        // ancho
+	mov x4, #12         // alto
+	bl draw_rect
+
+	// NÚMERO 0
+	mov x1, #300            // x_start
+	mov x2, #348             // y_start
+	mov x3, #4        // ancho
+	mov x4, #4         // alto
+	bl draw_rect
+
+	// NÚMERO 0
+	mov x1, #300            // x_start
+	mov x2, #364             // y_start
+	mov x3, #4        // ancho
+	mov x4, #4         // alto
+	bl draw_rect
+
+	// NÚMERO 0
+	mov x1, #304            // x_start
+	mov x2, #352             // y_start
+	mov x3, #4        // ancho
+	mov x4, #12         // alto
+	bl draw_rect
+
+
+	// NÚMERO 2
+	mov x1, #312            // x_start
+	mov x2, #364             // y_start
+	mov x3, #8        // ancho
+	mov x4, #4         // alto
+	bl draw_rect
+
+	// NÚMERO 2
+	mov x1, #312            // x_start
+	mov x2, #356             // y_start
+	mov x3, #4        // ancho
+	mov x4, #8         // alto
+	bl draw_rect
+
+	// NÚMERO 2
+	mov x1, #312            // x_start
+	mov x2, #356             // y_start
+	mov x3, #8        // ancho
+	mov x4, #4         // alto
+	bl draw_rect
+
+	// NÚMERO 2
+	mov x1, #316            // x_start
+	mov x2, #348             // y_start
+	mov x3, #4        // ancho
+	mov x4, #8         // alto
+	bl draw_rect
+
+	// NÚMERO 2
+	mov x1, #312            // x_start
+	mov x2, #348             // y_start
+	mov x3, #8        // ancho
+	mov x4, #4         // alto
+	bl draw_rect
+
+
+	// NÚMERO 5
+	mov x1, #324            // x_start
+	mov x2, #348             // y_start
+	mov x3, #8        // ancho
+	mov x4, #4         // alto
+	bl draw_rect
+
+	// NÚMERO 5
+	mov x1, #324            // x_start
+	mov x2, #348             // y_start
+	mov x3, #4        // ancho
+	mov x4, #8         // alto
+	bl draw_rect
+
+	// NÚMERO 5
+	mov x1, #324            // x_start
+	mov x2, #356             // y_start
+	mov x3, #8        // ancho
+	mov x4, #4         // alto
+	bl draw_rect
+
+	// NÚMERO 5
+	mov x1, #328            // x_start
+	mov x2, #356             // y_start
+	mov x3, #4        // ancho
+	mov x4, #8         // alto
+	bl draw_rect
+
+	// NÚMERO 5
+	mov x1, #324            // x_start
+	mov x2, #364             // y_start
+	mov x3, #8        // ancho
+	mov x4, #4         // alto
+	bl draw_rect
 
 	// ------------------- PASTO EN EL QUE SE APOYAN LOS PERSONAJES -------------------
 

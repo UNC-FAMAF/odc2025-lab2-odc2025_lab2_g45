@@ -2520,9 +2520,8 @@ loop2:
 
 	// ------- HARÉ QUE LOS NÚMEROS "2025" SE VEAN REFLEJADOS EN EL LADO DE ABAJO DE LA PANTALLA, COMO SI FUESEN EL OTRO MUNDO ---------- 
 
-	// Voy a ponerlo con un color apagado, una especie de gris = 0xFF577496
-	movz x5, 0x7496, lsl 0	
-	movk x5, 0xFF57, lsl 16
+	movz x5, 0x0000, lsl 0	
+	movk x5, 0xFF00, lsl 16
 
 	// NÚMERO 2
 	mov x1, #284            // x_start
@@ -2658,6 +2657,72 @@ loop2:
 	mov x2, #364             // y_start
 	mov x3, #8        // ancho
 	mov x4, #4         // alto
+	bl draw_rect
+
+
+	// RAMAS AUXILIARES PARA CONECTARLO AL ÁRBOL DE ODC
+
+	// RAMA
+	mov x1, #320            // x_start
+	mov x2, #344             // y_start
+	mov x3, #4        // ancho
+	mov x4, #4         // alto
+	bl draw_rect
+
+	// RAMA
+	mov x1, #280            // x_start
+	mov x2, #344             // y_start
+	mov x3, #4        // ancho
+	mov x4, #4         // alto
+	bl draw_rect
+
+	// RAMA
+	mov x1, #304            // x_start
+	mov x2, #344             // y_start
+	mov x3, #4        // ancho
+	mov x4, #4         // alto
+	bl draw_rect
+
+	// RAMA
+	mov x1, #340            // x_start
+	mov x2, #336             // y_start
+	mov x3, #4        // ancho
+	mov x4, #4         // alto
+	bl draw_rect
+
+	// RAMA
+	mov x1, #344            // x_start
+	mov x2, #332             // y_start
+	mov x3, #4        // ancho
+	mov x4, #4         // alto
+	bl draw_rect
+
+	// RAMA
+	mov x1, #348            // x_start
+	mov x2, #328             // y_start
+	mov x3, #4        // ancho
+	mov x4, #8         // alto
+	bl draw_rect
+
+	// RAMA
+	mov x1, #332            // x_start
+	mov x2, #340             // y_start
+	mov x3, #8        // ancho
+	mov x4, #4         // alto
+	bl draw_rect
+
+	// RAMA
+	mov x1, #328            // x_start
+	mov x2, #344             // y_start
+	mov x3, #4        // ancho
+	mov x4, #4         // alto
+	bl draw_rect
+
+	// RAMA
+	mov x1, #328            // x_start
+	mov x2, #324             // y_start
+	mov x3, #4        // ancho
+	mov x4, #16         // alto
 	bl draw_rect
 
 	// ------------------- PASTO EN EL QUE SE APOYAN LOS PERSONAJES -------------------

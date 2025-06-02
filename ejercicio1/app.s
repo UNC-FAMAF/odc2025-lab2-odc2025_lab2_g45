@@ -4196,7 +4196,7 @@ loop2:
 	movk w5, #0xFFFF, lsl #16
 	bl draw_rect
 	// OJASOS
-	mov x1, #550
+	mov x1, #498
 	mov x2, #164
 	mov x3, #4
 	mov x4, #4
@@ -4204,7 +4204,7 @@ loop2:
 	movk w5, #0xFF00, lsl #16
 	bl draw_rect
 	
-	mov x1, #534
+	mov x1, #518
 	mov x2, #164
 	mov x3, #4
 	mov x4, #4

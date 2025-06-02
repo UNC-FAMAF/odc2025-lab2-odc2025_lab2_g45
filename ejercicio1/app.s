@@ -3650,7 +3650,7 @@ loop2:
 	movk w5, #0xFF41, lsl #16
 	bl draw_rect
 
-	mov x1, #340
+	mov x1, #330
 	mov x2, #148
 	mov x3, #4
 	mov x4, #4
@@ -3739,7 +3739,7 @@ loop2:
 	movk w5, #0xFF93, lsl #16
 	bl draw_rect
 
-	mov x1, #340
+	mov x1, #330
 	mov x2, #156
 	mov x3, #4
 	mov x4, #4
@@ -3756,7 +3756,7 @@ loop2:
 	bl draw_rect
 
 	//Verde cla
-	mov x1, #340
+	mov x1, #330
 	mov x2, #152
 	mov x3, #4
 	mov x4, #4

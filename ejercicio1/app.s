@@ -3513,22 +3513,6 @@ loop2:
 	movk w5, #0xFFA9, lsl #16
 	bl draw_rect
 
-	mov x1, #330
-	mov x2, #148
-	mov x3, #4
-	mov x4, #20
-	movz w5, #0x7253, lsl #0
-	movk w5, #0xFFA9, lsl #16
-	bl draw_rect
-
-	mov x1, #366
-	mov x2, #148
-	mov x3, #4
-	mov x4, #20
-	movz w5, #0x7253, lsl #0
-	movk w5, #0xFFA9, lsl #16
-	bl draw_rect
-
 	mov x1, #338
 	mov x2, #176
 	mov x3, #24

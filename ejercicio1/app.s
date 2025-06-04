@@ -3031,48 +3031,81 @@ loop2:
 
 
 
-////////////////////PERSONAJES////////////////////
+ ////////////////////PERSONAJES////////////////////
 	// personajes
+	
 	// Dustin
-	// Cabeza
-	mov x1, #98
-	mov x2, #140
-	mov x3, #24
-	mov x4, #4
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
+	// Cabeza	
 	mov x1, #94
 	mov x2, #144
 	mov x3, #32
 	mov x4, #32
 	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
+	movk w5, #0xFFFF, lsl #16     // cara principal
 	bl draw_rect
-
+       
+        mov x1, #98
+	mov x2, #140
+	mov x3, #24
+	mov x4, #12
+	movz w5, #0xFFFF, lsl #0
+	movk w5, #0xFFFF, lsl #16     // parte blanca de la gorra
+	bl draw_rect
+	
+        mov x1, #98       
+        mov x2, #140      
+        mov x3, #4        
+        mov x4, #4        
+        movz w5, #0x00FF, lsl #0      
+        movk w5, #0x0000, lsl #16       // detalle azul gorra parte izquierda
+        bl draw_rect
+        
 	mov x1, #90
 	mov x2, #148
+	mov x3, #8
+	mov x4, #8
+	movz w5, #0x00FF, lsl #0      
+        movk w5, #0x0000, lsl #16       // detalle azul gorra parte izquierda
+	bl draw_rect
+        
+        mov x1, #94
+	mov x2, #144
 	mov x3, #4
-	mov x4, #20
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
+	mov x4, #4
+	movz w5, #0x00FF, lsl #0      
+        movk w5, #0x0000, lsl #16       // detalle azul gorra parte izquierda
 	bl draw_rect
 
-	mov x1, #126
+	mov x1, #122
 	mov x2, #148
+	mov x3, #8
+	mov x4, #4
+	movz w5, #0x00FF, lsl #0      
+        movk w5, #0x0000, lsl #16      // detalle azul gorra parte derecha
+	bl draw_rect
+	
+	mov x1, #122
+	mov x2, #144
 	mov x3, #4
-	mov x4, #20
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
+	mov x4, #4
+	movz w5, #0x00FF, lsl #0      
+        movk w5, #0x0000, lsl #16      // detalle azul gorra parte derecha
 	bl draw_rect
 
-	mov x1, #98
+        mov x1, #98
+	mov x2, #152
+	mov x3, #38
+	mov x4, #4
+	movz w5, #0x0000, lsl #0      
+        movk w5, #0xFFFF, lsl #16      // borde rojo de la gorra
+        bl draw_rect
+                
+        mov x1, #98
 	mov x2, #176
 	mov x3, #24
 	mov x4, #4
 	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
+	movk w5, #0xFFFF, lsl #16    // mentón  
 	bl draw_rect
 
 	mov x1, #106
@@ -3080,60 +3113,234 @@ loop2:
 	mov x3, #8
 	mov x4, #4
 	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
+	movk w5, #0xFFFF, lsl #16     // cuello 
 	bl draw_rect
+        
+        mov x1, #90
+	mov x2, #156
+	mov x3, #8
+	mov x4, #4
+	movz w5, #0x4513, lsl #0      
+        movk w5, #0xFF8B, lsl #16     // capucha pegada a la gorra
+        bl draw_rect
+        
+        mov x1, #102
+	mov x2, #156
+	mov x3, #20
+	mov x4, #4
+	movz w5, #0x853F, lsl #0      
+        movk w5, #0xFFCD, lsl #16     // pelo 
+        bl draw_rect
+        
+        mov x1, #114
+	mov x2, #160
+	mov x3, #4
+	mov x4, #4
+	movz w5, #0x853F, lsl #0      
+        movk w5, #0xFFCD, lsl #16     // mechon de pelo solo
+        bl draw_rect
+        
+        mov x1, #90
+	mov x2, #160
+	mov x3, #4
+	mov x4, #12
+	movz w5, #0x4513, lsl #0      
+        movk w5, #0xFF8B, lsl #16     // parte vertical gorra izquierda
+        bl draw_rect
+        
+        mov x1, #98
+	mov x2, #172
+	mov x3, #4
+	mov x4, #12
+	movz w5, #0x4513, lsl #0      
+        movk w5, #0xFF8B, lsl #16     // unión capucha con campera parte izquierda
+        bl draw_rect
+        
+        mov x1, #124
+	mov x2, #156
+	mov x3, #4
+	mov x4, #8
+	movz w5, #0x4513, lsl #0      
+        movk w5, #0xFF8B, lsl #16     // parte alta de la capucha lado derecho
+        bl draw_rect
+        
+        mov x1, #124
+	mov x2, #168
+	mov x3, #4
+	mov x4, #8
+	movz w5, #0x4513, lsl #0      
+        movk w5, #0xFF8B, lsl #16     // detalle capucha parte derecha
+        bl draw_rect
+                  
+        mov x1, #118
+	mov x2, #172
+	mov x3, #6
+	mov x4, #12
+	movz w5, #0x4513, lsl #0      
+        movk w5, #0xFF8B, lsl #16     // union capucha con campera
+        bl draw_rect     
+        
+        mov x1, #126
+	mov x2, #160
+	mov x3, #4
+	mov x4, #16
+	movz w5, #0x4513, lsl #0      
+        movk w5, #0xFF8B, lsl #16     // detalle capucha parte derecha
+        bl draw_rect   
+        
+        mov x1, #128
+	mov x2, #168
+	mov x3, #4
+	mov x4, #4
+	movz w5, #0x4513, lsl #0      
+        movk w5, #0xFF8B, lsl #16     // detalle capucha parte derecha
+        bl draw_rect
+        
+        mov x1, #94
+	mov x2, #168
+	mov x3, #4
+	mov x4, #12
+	movz w5, #0x4513, lsl #0      
+        movk w5, #0xFF8B, lsl #16     // detalle capucha parte izquierda
+        bl draw_rect
+        
+        mov x1, #86
+	mov x2, #164
+	mov x3, #4
+	mov x4, #8
+	movz w5, #0x4513, lsl #0      
+        movk w5, #0xFF8B, lsl #16     // detalle capucha parte izquierda
+        bl draw_rect
 
+        mov x1, #114
+	mov x2, #164
+	mov x3, #4
+	mov x4, #4
+	movz w5, #0x0000, lsl #0      
+        movk w5, #0xFF00, lsl #16     // ojo derecho
+        bl draw_rect
+        
+        mov x1, #102
+	mov x2, #164
+	mov x3, #4
+	mov x4, #4
+        movz w5, #0x0000, lsl #0      
+        movk w5, #0xFF00, lsl #16     // ojo izquierdo
+        bl draw_rect
+        
+        mov x1, #106
+	mov x2, #172
+	mov x3, #8
+	mov x4, #4
+	movz w5, #0x522D, lsl #0      
+        movk w5, #0xFFA0, lsl #16     // boca
+        bl draw_rect
+        
 	// Cuerpo
 	// Bordes del cuello
 	mov x1, #102
 	mov x2, #180
 	mov x3, #4
-	mov x4, #4
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	mov x4, #12
+	movz w5, #0x853F, lsl #0      
+        movk w5, #0xFFCD, lsl #16     // detalle marrón claro de la campera
 	bl draw_rect
 
 	mov x1, #114
 	mov x2, #180
 	mov x3, #4
-	mov x4, #4
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	mov x4, #12
+	movz w5, #0x853F, lsl #0      
+        movk w5, #0xFFCD, lsl #16     // detalle marrón claro de la campera
 	bl draw_rect
 
-	// Hombros
+	// Hombro izquerdo
 	mov x1, #94
 	mov x2, #184
-	mov x3, #32
+	mov x3, #8
 	mov x4, #8
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	movz w5, #0x522A, lsl #0      
+        movk w5, #0xFFA0, lsl #16     
 	bl draw_rect
 
-	// Panza
+        // Hombro derecho
+	mov x1, #118
+	mov x2, #184
+	mov x3, #8
+	mov x4, #8
+	movz w5, #0x522A, lsl #0     
+        movk w5, #0xFFA0, lsl #16     
+	bl draw_rect
+        
+        // Cuello  
+	mov x1, #106
+	mov x2, #184
+	mov x3, #8
+	mov x4, #4
+	movz w5, #0xEBD7, lsl #0      
+        movk w5, #0xFFFA, lsl #16     
+	bl draw_rect
+
+	// campera parte izquierda
 	mov x1, #98
 	mov x2, #192
-	mov x3, #24
+	mov x3, #8
 	mov x4, #20
+	movz w5, #0x522A, lsl #0      
+        movk w5, #0xFFA0, lsl #16     // campera parte del torso
+	bl draw_rect
+	
+	// remera
+	mov x1, #106
+	mov x2, #188
+	mov x3, #8
+	mov x4, #24
 	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	movk w5, #0xFFFF, lsl #16      // remera de abajo
+	bl draw_rect
+	
+	// campera parte dereceha
+	mov x1, #114
+	mov x2, #192
+	mov x3, #8
+	mov x4, #20
+	movz w5, #0x522A, lsl #0      
+        movk w5, #0xFFA0, lsl #16     // campera parte del torso
 	bl draw_rect
 
-	// Brazo
+	// Brazo izquierdo
 	mov x1, #88
 	mov x2, #188
 	mov x3, #6
-	mov x4, #24
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	mov x4, #20
+	movz w5, #0x522A, lsl #0      
+        movk w5, #0xFFA0, lsl #16     // manga de campera
 	bl draw_rect
+	
+	mov x1, #88
+	mov x2, #208
+	mov x3, #6
+	mov x4, #4
+	movz w5, #0x853F, lsl #0      
+        movk w5, #0xFFCD, lsl #16     // puño de campera 
+	bl draw_rect
+	
+	// Brazo derecho
 
 	mov x1, #126
 	mov x2, #188
 	mov x3, #6
-	mov x4, #24
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	mov x4, #20
+	movz w5, #0x522A, lsl #0      
+        movk w5, #0xFFA0, lsl #16     // manga de campera
+	bl draw_rect 
+		
+	mov x1, #126
+	mov x2, #208
+	mov x3, #6
+	mov x4, #4
+	movz w5, #0x853F, lsl #0      
+        movk w5, #0xFFCD, lsl #16     // puño de campera 
 	bl draw_rect
 
 	// Manos 
@@ -3158,16 +3365,16 @@ loop2:
 	mov x2, #212
 	mov x3, #6
 	mov x4, #24
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	movz w5, #0x3A80, lsl #0      
+        movk w5, #0xFF20, lsl #16     // jean
 	bl draw_rect
 
 	mov x1, #112
 	mov x2, #212
 	mov x3, #6
 	mov x4, #24
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	movz w5, #0x3A80, lsl #0      
+        movk w5, #0xFF20, lsl #16     //  jean
 	bl draw_rect
 
 	// Pies
@@ -3188,153 +3395,270 @@ loop2:
 	bl draw_rect
 
 	// Will
-	// Cabeza
-	mov x1, #178
-	mov x2, #240
-	mov x3, #24
-	mov x4, #4
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #174
-	mov x2, #244
+	// Cabeza 	
+	mov x1, #176
+	mov x2, #304
 	mov x3, #32
-	mov x4, #32
-	movz w5, #0xCCAA, lsl #0
+	mov x4, #24
+	movz w5, #0xCCAA, lsl #0    // cara 
 	movk w5, #0xFFFF, lsl #16
 	bl draw_rect
-
-	mov x1, #170
-	mov x2, #248
-	mov x3, #4
-	mov x4, #20
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #206
-	mov x2, #248
-	mov x3, #4
-	mov x4, #20
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #178
-	mov x2, #276
+	
+	mov x1, #180
+	mov x2, #300
 	mov x3, #24
 	mov x4, #4
 	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
+	movk w5, #0xFFFF, lsl #16    // mentón 
 	bl draw_rect
 
-	mov x1, #186
-	mov x2, #280
+	mov x1, #188
+	mov x2, #296
 	mov x3, #8
 	mov x4, #4
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
+	movz w5, #0xA874, lsl #0      
+        movk w5, #0xFFCC, lsl #16     // cuello
 	bl draw_rect
-
-	// Cuerpo
-	// Bordes del cuello
-	mov x1, #182
-	mov x2, #280
-	mov x3, #4
+	
+	mov x1, #180
+	mov x2, #336
+	mov x3, #24
 	mov x4, #4
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	movz w5, #0x4444, lsl #0        
+        movk w5, #0xFF44, lsl #16       // 1era parte del pelo
 	bl draw_rect
 
-	mov x1, #194
-	mov x2, #280
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
-	bl draw_rect
-
-	// Hombros
-	mov x1, #174
-	mov x2, #284
+	mov x1, #176
+	mov x2, #328
 	mov x3, #32
 	mov x4, #8
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	movz w5, #0x4444, lsl #0        
+        movk w5, #0xFF44, lsl #16       // 2da parte del pelo
+	bl draw_rect
+	
+        mov x1, #172
+	mov x2, #304
+	mov x3, #4
+	mov x4, #28
+	movz w5, #0x4444, lsl #0      
+        movk w5, #0xFF44, lsl #16       // pelo vertical izquierdo
+	bl draw_rect
+	
+	mov x1, #208
+	mov x2, #304
+	mov x3, #4
+	mov x4, #28
+	movz w5, #0x4444, lsl #0      
+        movk w5, #0xFF44, lsl #16       // pelo vertical derecho
 	bl draw_rect
 
-	// Panza
-	mov x1, #178
-	mov x2, #292
+        mov x1, #176
+	mov x2, #300
+	mov x3, #4
+	mov x4, #12
+	movz w5, #0x4444, lsl #0        
+        movk w5, #0xFF44, lsl #16       // pelo vertical al lado del mentón izquierdo
+	bl draw_rect
+	
+	mov x1, #204
+	mov x2, #300
+	mov x3, #4
+	mov x4, #12
+	movz w5, #0x4444, lsl #0        
+        movk w5, #0xFF44, lsl #16       // pelo vertical al lado del mentón derecho
+	bl draw_rect
+	
+	mov x1, #180
+	mov x2, #300
+	mov x3, #4
+	mov x4, #4
+	movz w5, #0x4444, lsl #0       
+        movk w5, #0xFF44, lsl #16       //  pelo al lado del mentón izquierdo
+	bl draw_rect
+	
+	mov x1, #200
+	mov x2, #300
+	mov x3, #4
+	mov x4, #4
+	movz w5, #0x4444, lsl #0        
+        movk w5, #0xFF44, lsl #16       // pelo al lado del mentón derecho
+	bl draw_rect
+	
+	mov x1, #176
+	mov x2, #320
+	mov x3, #8
+	mov x4, #8
+	movz w5, #0x4444, lsl #0        
+        movk w5, #0xFF44, lsl #16       // flequillo izquierdo
+	bl draw_rect
+	
+	mov x1, #180
+	mov x2, #316
+	mov x3, #4
+	mov x4, #4
+	movz w5, #0x4444, lsl #0       
+        movk w5, #0xFF44, lsl #16       //  parte del flequillo cae, izquierda
+	bl draw_rect
+	
+	mov x1, #184
+	mov x2, #324
+	mov x3, #12
+	mov x4, #4
+	movz w5, #0x4444, lsl #0        // 
+        movk w5, #0xFF44, lsl #16       //  pelo en la frente 
+	bl draw_rect	
+	
+	mov x1, #204
+	mov x2, #320
+	mov x3, #4
+	mov x4, #8
+	movz w5, #0x4444, lsl #0       
+        movk w5, #0xFF44, lsl #16       //  mechón vertical derecha
+	bl draw_rect
+	
+	mov x1, #184
+	mov x2, #312
+	mov x3, #4
+	mov x4, #4
+	movz w5, #0x0000, lsl #0      
+        movk w5, #0xFF00, lsl #16     // ojo izquierdo
+	bl draw_rect
+	
+	mov x1, #196
+	mov x2, #312
+	mov x3, #4
+	mov x4, #4
+	movz w5, #0x0000, lsl #0      
+        movk w5, #0xFF00, lsl #16     // ojo derecho
+	bl draw_rect
+	
+	mov x1, #188
+	mov x2, #304
+	mov x3, #8
+	mov x4, #4
+	movz w5, #0x522D, lsl #0     
+        movk w5, #0xFFA0, lsl #16     // boca
+	bl draw_rect
+	
+	// Cuerpo
+	mov x1, #176
+	mov x2, #288
+	mov x3, #32
+	mov x4, #8
+	movz w5, #0x3A80, lsl #0      
+        movk w5, #0xFF20, lsl #16     //parte superior del torso
+	bl draw_rect
+
+	mov x1, #180
+	mov x2, #268
 	mov x3, #24
-	mov x4, #20
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
-	bl draw_rect
-
-	// Brazo
-	mov x1, #168
-	mov x2, #288
-	mov x3, #6
 	mov x4, #24
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	movz w5, #0x0033, lsl #0      
+        movk w5, #0xFF88, lsl #16       // campera
+	bl draw_rect
+	
+	mov x1, #184
+	mov x2, #264
+	mov x3, #4
+	mov x4, #36
+	movz w5, #0x0033, lsl #0        
+        movk w5, #0xFF88, lsl #16       // hombro alto izq
 	bl draw_rect
 
-	mov x1, #206
-	mov x2, #288
-	mov x3, #6
-	mov x4, #24
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	mov x1, #196
+	mov x2, #264
+	mov x3, #4
+	mov x4, #36
+	movz w5, #0x0033, lsl #0        
+        movk w5, #0xFF88, lsl #16       // hombro alto der
+	bl draw_rect
+	
+	mov x1, #188
+	mov x2, #268
+	mov x3, #8
+	mov x4, #28
+	movz w5, #0xEEEE, lsl #0        
+        movk w5, #0xFFEE, lsl #16       // remera blanca
 	bl draw_rect
 
-	// Manos 
+        // Brazos
 	mov x1, #172
-	mov x2, #312
-	mov x3, #6
-	mov x4, #6
+	mov x2, #268
+	mov x3, #4
+	mov x4, #24
+	movz w5, #0x3A80, lsl #0      
+        movk w5, #0xFF20, lsl #16     // mangas remera brazo izquierdo
+	bl draw_rect
+
+	mov x1, #208
+	mov x2, #268
+	mov x3, #4
+	mov x4, #24
+	movz w5, #0x3A80, lsl #0      
+        movk w5, #0xFF20, lsl #16     //mangas remera brazo derecho
+	bl draw_rect
+	
+	mov x1, #172
+	mov x2, #268
+	mov x3, #4
+	mov x4, #16
+	movz w5, #0xEEEE, lsl #0        
+        movk w5, #0xFFEE, lsl #16       // remera blanca manga izquierda
+	bl draw_rect
+
+	mov x1, #208
+	mov x2, #268
+	mov x3, #4
+	mov x4, #16
+	movz w5, #0xEEEE, lsl #0        
+        movk w5, #0xFFEE, lsl #16       // remera blanca manga derecha
+	bl draw_rect	
+
+        // Manos
+	mov x1, #176
+	mov x2, #264
+	mov x3, #4
+	mov x4, #4
 	movz w5, #0xCCAA, lsl #0
 	movk w5, #0xFFFF, lsl #16
 	bl draw_rect
 
-	mov x1, #202
-	mov x2, #312
-	mov x3, #6
-	mov x4, #6
+	mov x1, #204
+	mov x2, #264
+	mov x3, #4
+	mov x4, #4
 	movz w5, #0xCCAA, lsl #0
 	movk w5, #0xFFFF, lsl #16
 	bl draw_rect
 
-	// Piernas
-	mov x1, #182
-	mov x2, #312
-	mov x3, #6
-	mov x4, #24
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+        // Piernas
+	mov x1, #184
+	mov x2, #248
+	mov x3, #4
+	mov x4, #20
+	movz w5, #0x3C75, lsl #0      
+        movk w5, #0xFF2F, lsl #16     //  pierna izquierda
 	bl draw_rect
 
-	mov x1, #192
-	mov x2, #312
-	mov x3, #6
-	mov x4, #24
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	mov x1, #196
+	mov x2, #248
+	mov x3, #4
+	mov x4, #20
+	movz w5, #0x3C75, lsl #0      
+        movk w5, #0xFF2F, lsl #16     // pierna derecha
 	bl draw_rect
 
-	// Pies
-	mov x1, #178
-	mov x2, #336
+        // Pies 
+	mov x1, #180
+	mov x2, #244
 	mov x3, #8
 	mov x4, #6
 	movz w5, #0xFFFF, lsl #0
 	movk w5, #0xFFFF, lsl #16
 	bl draw_rect
 
-	mov x1, #194
-	mov x2, #336
+	mov x1, #196
+	mov x2, #244
 	mov x3, #8
 	mov x4, #6
 	movz w5, #0xFFFF, lsl #0
@@ -3343,109 +3667,198 @@ loop2:
 
 	// Max
 	// Cabeza
-	mov x1, #258
-	mov x2, #144
-	mov x3, #24
+	mov x1, #252
+	mov x2, #152
+	mov x3, #40
+	mov x4, #20
+	movz w5, #0xCCAA, lsl #0
+	movk w5, #0xFFFF, lsl #16     // piel parte alta de la cara
+	bl draw_rect
+	  
+        mov x1, #264
+	mov x2, #140
+	mov x3, #16
 	mov x4, #4
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #254
-	mov x2, #148
-	mov x3, #32
+	movz w5, #0x3020, lsl #0      
+        movk w5, #0xFFCC, lsl #16     // mechon alto del pelo
+        bl draw_rect
+        
+        mov x1, #252
+	mov x2, #144
+	mov x3, #40
+	mov x4, #12
+	movz w5, #0x3020, lsl #0 
+	movk w5, #0xFFCC, lsl #16     //  1era parte del pelo
+        bl draw_rect
+	
+	mov x1, #248
+	mov x2, #156
+	mov x3, #8
 	mov x4, #32
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
+	movz w5, #0x3020, lsl #0      
+        movk w5, #0xFFCC, lsl #16     // parte vertical izquierda del pelo 
 	bl draw_rect
 
-	mov x1, #250
-	mov x2, #152
+	mov x1, #288
+	mov x2, #156
+	mov x3, #8
+	mov x4, #32
+	movz w5, #0x3020, lsl #0      
+        movk w5, #0xFFCC, lsl #16     // parte vertical derecha del pelo 
+	bl draw_rect
+	
+	mov x1, #256
+	mov x2, #172
+	mov x3, #32
+	mov x4, #8
+	movz w5, #0xCCAA, lsl #0
+	movk w5, #0xFFFF, lsl #16     // piel parte baja de la cara 
+	bl draw_rect
+	
+	mov x1, #254
+	mov x2, #156
+	mov x3, #12
+	mov x4, #4
+	movz w5, #0x3020, lsl #0      
+        movk w5, #0xFFCC, lsl #16     //  parte del flequillo izquierdo
+        bl draw_rect
+        
+        mov x1, #276
+	mov x2, #156
+	mov x3, #12
+	mov x4, #4
+	movz w5, #0x3020, lsl #0      
+        movk w5, #0xFFCC, lsl #16     //  parte del flequillo derecho
+        bl draw_rect
+        
+        mov x1, #264
+	mov x2, #164
 	mov x3, #4
-	mov x4, #20
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #286
-	mov x2, #152
+	mov x4, #4
+	movz w5, #0x0000, lsl #0        
+        movk w5, #0xFF00, lsl #16       // ojo izq
+        bl draw_rect
+        
+        mov x1, #276
+	mov x2, #164
 	mov x3, #4
-	mov x4, #20
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #258
+	mov x4, #4
+	movz w5, #0x0000, lsl #0        
+        movk w5, #0xFF00, lsl #16       // ojo derecho
+        bl draw_rect
+        
+        mov x1, #268
+	mov x2, #172
+	mov x3, #8
+	mov x4, #4
+	movz w5, #0x522D, lsl #0      
+        movk w5, #0xFFA0, lsl #16     //   boca
+        bl draw_rect
+	
+	mov x1, #260
 	mov x2, #180
 	mov x3, #24
 	mov x4, #4
 	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
+	movk w5, #0xFFFF, lsl #16    // 1er parte del cuello 
 	bl draw_rect
 
-	mov x1, #266
+	mov x1, #268
 	mov x2, #184
 	mov x3, #8
 	mov x4, #4
 	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
+	movk w5, #0xFFFF, lsl #16   // 2da parte del cuello 
 	bl draw_rect
 
-	// Cuerpo
-	// Bordes del cuello
-	mov x1, #262
-	mov x2, #184
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
-	bl draw_rect
-
-	mov x1, #274
-	mov x2, #184
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
-	bl draw_rect
-
+	// Cuerpo		
 	// Hombros
-	mov x1, #254
+	mov x1, #256
 	mov x2, #188
 	mov x3, #32
 	mov x4, #8
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	movz w5, #0xD0FF, lsl #0       
+        movk w5, #0xCC80, lsl #16       //    Campera
+	bl draw_rect
+	
+	// Remera de abajo
+	mov x1, #268
+	mov x2, #188
+	mov x3, #8
+	mov x4, #8
+	movz w5, #0xEEEE, lsl #0         
+        movk w5, #0xFFEE, lsl #16        //  remera
 	bl draw_rect
 
 	// Panza
-	mov x1, #258
+	mov x1, #260
 	mov x2, #196
 	mov x3, #24
 	mov x4, #20
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	movz w5, #0xD0FF, lsl #0        
+        movk w5, #0xCC80, lsl #16        // Campera
+	bl draw_rect
+	
+	// Bordes del cuello y detalles del cierre
+	mov x1, #264
+	mov x2, #184
+	mov x3, #4
+	mov x4, #12
+	movz w5, #0xFF00, lsl #0        
+        movk w5, #0xFFFF, lsl #16       // cierre campera
 	bl draw_rect
 
+	mov x1, #276
+	mov x2, #184
+	mov x3, #4
+	mov x4, #12
+	movz w5, #0xFF00, lsl #0       
+        movk w5, #0xFFFF, lsl #16       // cierre campera
+	bl draw_rect
+	
+	mov x1, #268
+	mov x2, #196
+	mov x3, #8
+	mov x4, #4
+	movz w5, #0xFF00, lsl #0        
+        movk w5, #0xFFFF, lsl #16       // cierre campera
+	bl draw_rect
+	
 	// Brazo 
-	mov x1, #250
+	mov x1, #252
 	mov x2, #192
 	mov x3, #4
 	mov x4, #24
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	movz w5, #0xD0FF, lsl #0        
+        movk w5, #0xCC80, lsl #16       // Campera
 	bl draw_rect
 
-	mov x1, #286
+	mov x1, #288
 	mov x2, #192
 	mov x3, #4
 	mov x4, #24
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	movz w5, #0xD0FF, lsl #0        
+        movk w5, #0xCC80, lsl #16       // Campera
 	bl draw_rect
-
+	
+	mov x1, #252
+	mov x2, #204
+	mov x3, #4
+	mov x4, #8
+	movz w5, #0xFF00, lsl #0        
+        movk w5, #0xFFFF, lsl #16       // detalle campera
+	bl draw_rect
+	
+	mov x1, #288
+	mov x2, #204
+	mov x3, #4
+	mov x4, #8
+	movz w5, #0xFF00, lsl #0       
+        movk w5, #0xFFFF, lsl #16       // detalle campera
+	bl draw_rect
+	
 	// Manos 
-	mov x1, #254
+	mov x1, #256
 	mov x2, #216
 	mov x3, #4
 	mov x4, #4
@@ -3453,7 +3866,7 @@ loop2:
 	movk w5, #0xFFFF, lsl #16
 	bl draw_rect
 
-	mov x1, #282
+	mov x1, #284
 	mov x2, #216
 	mov x3, #4
 	mov x4, #4
@@ -3466,20 +3879,20 @@ loop2:
 	mov x2, #216
 	mov x3, #4
 	mov x4, #20
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	movz w5, #0x3C75, lsl #0      
+        movk w5, #0xFF2F, lsl #16     // pantalones
 	bl draw_rect
 
-	mov x1, #272
+	mov x1, #276
 	mov x2, #216
 	mov x3, #4
 	mov x4, #20
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFF00, lsl #16
+	movz w5, #0x3C75, lsl #0      
+        movk w5, #0xFF2F, lsl #16  // pantalones
 	bl draw_rect
 
 	// Pies
-	mov x1, #258
+	mov x1, #260
 	mov x2, #236
 	mov x3, #8
 	mov x4, #6
@@ -3487,13 +3900,14 @@ loop2:
 	movk w5, #0xFFFF, lsl #16
 	bl draw_rect
 
-	mov x1, #274
+	mov x1, #276
 	mov x2, #236
 	mov x3, #8
 	mov x4, #6
 	movz w5, #0xFFFF, lsl #0
 	movk w5, #0xFFFF, lsl #16
 	bl draw_rect
+
 
 	// Lucas (Oscurito)
 	// Cabeza

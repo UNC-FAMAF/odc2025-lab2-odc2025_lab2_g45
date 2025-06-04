@@ -12,30 +12,23 @@ main:
 	// x0 contiene la direccion base del framebuffer
  	mov x20, x0	// Guarda la dirección base del framebuffer en x20
 	//---------------- CODE HERE ------------------------------------
-
-	mov x2, SCREEN_HEIGH         // Y Size
-loop1:
-	mov x1, SCREEN_WIDTH         // X Size
-	// ------------------- PINTAR FONDO NEGRO ----------------------
-
-	// Color negro = 0xFF000000
-	movz x10, 0x0000, lsl 0
-	movk x10, 0x0000, lsl 16
-	movk x10, 0xFF00, lsl 32     //
-
-	mov x2, SCREEN_HEIGH         // Y Size
-loop_fill:
-	mov x1, SCREEN_WIDTH         // X Size
-loop_fill_x:
-	stur w10,[x0]  // Colorear el pixel negro
-	add x0,x0,4	   // Siguiente pixel
-	sub x1,x1,1	   // Decrementar contador X
-	cbnz x1,loop_fill_x  // Si no terminó la fila, salto
-	sub x2,x2,1	   // Decrementar contador Y
-	cbnz x2,loop_fill  // Si no es la última fila, salto
-
-	// ------------------- PROTOTIPO DEL FONDO CELESTE DE ARRIBA Y ABAJO -------------------	
-
+	bl dibujando_celeste
+	bl dibujando_purpura_inferior
+	bl dibujando_purpura_superior
+	bl dibujando_estrellas
+	bl dibujando_arbustos_y_fondo
+	bl dibujando_arboles_fondo
+	bl dibujando_ODC2025
+	bl dibujando_pasto
+	bl dibujando_dustin
+	bl dibujando_eleven
+	bl dibujando_mike
+	bl dibujando_lucas
+	bl dibujando_will
+	bl dibujando_max
+	bl draw_demogorgon
+	// -------------------FONDO CELESTE DE ARRIBA Y ABAJO -------------------	
+dibujando_celeste:
 loop2:
 	mov x0, x20		// guardo la posición base del framebuffer de nuevo
 
@@ -46,7 +39,7 @@ loop2:
 	// Constantes a usar
 	mov x5, #640              // SCREEN_WIDTH
 	mov x6, #50              // x_start
-	mov x7, #590              // x_end 
+	mov x7, #590              // x_end  
 	mov x11, #40              // y_start
 	mov x12, #239              // y_end 
 	bl double_mirror_loop			// pinto el fondo de abajo
@@ -56,4756 +49,241 @@ loop2:
 	movk x10, 0xFF2E, lsl 16
 	bl mirror_loop		// pinto el fondo de arriba
 
-	// ------------------- PROTOTIPO DEL FONDO PÚRPURA -------------------	
+	// -------------------FONDO PÚRPURA -------------------	
 
-	//color púrpura inferior = 0xFF1F1D44
-	movz x10, 0x1D44, lsl 0	
-	movk x10, 0xFF1F, lsl 16
+dibujando_purpura_inferior:
+    // color púrpura inferior = 0xFF1F1D44
+    movz x10, 0x1D44, lsl 0
+    movk x10, 0xFF1F, lsl 16
 
-	// PÚRPURA INFERIOR
-	mov x5, #640              // SCREEN_WIDTH
-	mov x6, #52               // x_start
-	mov x7, #68              // x_end 
-	mov x11, #128              // y_start
-	mov x12, #239              // y_end 
-	bl double_mirror_loop
-	
-	// A partir de acá, dejaré de poner los registros x5 y x12 en la llamada, ya que los mismos no van a cambiar nunca. (x12 significa que siempre se pintará hasta la mitad de la pantalla)
+    mov x5, #640        // SCREEN_WIDTH
+    mov x12, #239       // y_end (constante)
 
-	// PÚRPURA INFERIOR
-	mov x6, #68               // x_start
-	mov x7, #72              // x_end 
-	mov x11, #136              // y_start
-	bl double_mirror_loop
-		
-	// PÚRPURA INFERIOR
-	mov x6, #72               // x_start
-	mov x7, #84              // x_end 
-	mov x11, #140              // y_start
-	bl double_mirror_loop
+    ldr x13, =purpura_coords // Puntero a la tabla de coordenadas púrpura al final del código
+    mov x14, #30        // cantidad de entradas
+loop_purpura:
+    ldr w6, [x13], #4   // x_start
+    ldr w7, [x13], #4   // x_end
+    ldr w11, [x13], #4  // y_start
 
-	// PÚRPURA INFERIOR
-	mov x6, #84               // x_start
-	mov x7, #92              // x_end 
-	mov x11, #144              // y_start
-	bl double_mirror_loop
+    bl double_mirror_loop
 
-	// PÚRPURA INFERIOR
-	mov x6, #92               // x_start
-	mov x7, #104              // x_end 
-	mov x11, #152              // y_start
-	bl double_mirror_loop
+    subs x14, x14, #1 //resta 1
+    b.ne loop_purpura
 
-	// PÚRPURA INFERIOR
-	mov x6, #104               // x_start
-	mov x7, #108              // x_end 
-	mov x11, #156              // y_start
-	bl double_mirror_loop
-
-	// PÚRPURA INFERIOR
-	mov x6, #108               // x_start
-	mov x7, #116              // x_end 
-	mov x11, #160              // y_start
-	bl double_mirror_loop
-
-	// PÚRPURA INFERIOR
-	mov x6, #116               // x_start
-	mov x7, #128             // x_end 
-	mov x11, #164              // y_start
-	bl double_mirror_loop
-
-	// PÚRPURA INFERIOR
-	mov x6, #128               // x_start
-	mov x7, #132             // x_end 
-	mov x11, #168              // y_start
-	bl double_mirror_loop
-
-	// PÚRPURA INFERIOR
-	mov x6, #132               // x_start
-	mov x7, #140             // x_end 
-	mov x11, #172              // y_start
-	bl double_mirror_loop
-
-	// PÚRPURA INFERIOR
-	mov x6, #140               // x_start
-	mov x7, #148             // x_end 
-	mov x11, #176              // y_start
-	bl double_mirror_loop
-
-	// PÚRPURA INFERIOR
-	mov x6, #148               // x_start
-	mov x7, #156             // x_end 
-	mov x11, #180              // y_start
-	bl double_mirror_loop
-
-	// PÚRPURA INFERIOR
-	mov x6, #156               // x_start
-	mov x7, #172             // x_end 
-	mov x11, #176              // y_start
-	bl double_mirror_loop
-
-	// PÚRPURA INFERIOR
-	mov x6, #172               // x_start
-	mov x7, #180             // x_end 
-	mov x11, #172              // y_start
-	bl double_mirror_loop
-
-	// PÚRPURA INFERIOR
-	mov x6, #180               // x_start
-	mov x7, #188             // x_end 
-	mov x11, #168              // y_start
-	bl double_mirror_loop
-
-	// PÚRPURA INFERIOR
-	mov x6, #188               // x_start
-	mov x7, #196             // x_end 
-	mov x11, #176            // y_start
-	bl double_mirror_loop
-
-	// PÚRPURA INFERIOR
-	mov x6, #196               // x_start
-	mov x7, #208             // x_end 
-	mov x11, #180            // y_start
-	bl double_mirror_loop
-
-	// PÚRPURA INFERIOR
-	mov x6, #208               // x_start
-	mov x7, #228             // x_end 
-	mov x11, #184            // y_start
-	bl double_mirror_loop
-
-	// PÚRPURA INFERIOR
-	mov x6, #228               // x_start
-	mov x7, #232             // x_end 
-	mov x11, #188            // y_start
-	bl double_mirror_loop
-
-	// PÚRPURA INFERIOR
-	mov x6, #232               // x_start
-	mov x7, #240             // x_end 
-	mov x11, #184            // y_start
-	bl double_mirror_loop
-
-	// PÚRPURA INFERIOR
-	mov x6, #240               // x_start
-	mov x7, #244             // x_end 
-	mov x11, #188            // y_start
-	bl double_mirror_loop
-
-	// PÚRPURA INFERIOR
-	mov x6, #244               // x_start
-	mov x7, #248             // x_end 
-	mov x11, #192            // y_start
-	bl double_mirror_loop
-
-	// PÚRPURA INFERIOR
-	mov x6, #248               // x_start
-	mov x7, #252            // x_end 
-	mov x11, #196            // y_start
-	bl double_mirror_loop
-
-	// PÚRPURA INFERIOR
-	mov x6, #252               // x_start
-	mov x7, #264            // x_end 
-	mov x11, #200            // y_start
-	bl double_mirror_loop
-
-	// PÚRPURA INFERIOR
-	mov x6, #264               // x_start
-	mov x7, #280            // x_end 
-	mov x11, #196            // y_start
-	bl double_mirror_loop
-
-	// PÚRPURA INFERIOR
-	mov x6, #280               // x_start
-	mov x7, #284            // x_end 
-	mov x11, #192            // y_start
-	bl double_mirror_loop
-
-	// PÚRPURA INFERIOR
-	mov x6, #284               // x_start
-	mov x7, #288            // x_end 
-	mov x11, #188            // y_start
-	bl double_mirror_loop
-
-	// PÚRPURA INFERIOR
-	mov x6, #288               // x_start
-	mov x7, #300            // x_end 
-	mov x11, #192            // y_start
-	bl double_mirror_loop
-
-	// PÚRPURA INFERIOR
-	mov x6, #300               // x_start
-	mov x7, #312            // x_end 
-	mov x11, #196            // y_start
-	bl double_mirror_loop
-
-	// PÚRPURA INFERIOR
-	mov x6, #312               // x_start
-	mov x7, #320            // x_end 
-	mov x11, #200            // y_start
-	bl double_mirror_loop
-
-
-
-	//---- color púrpura superior = 0xFF2B3DA1 ----
-	movz x10, 0x3DA1, lsl 0	
-	movk x10, 0xFF2B, lsl 16
+/*
+	adr x13, tabla_purpura   // puntero base a la tabla
+	mov x14, #30             // cantidad de entradas que tiene la tabla (30)
+    ldr w6, [x13], #4    // carga x_start y avanza el puntero 4 bytes (1 palabra)
+    ldr w7, [x13], #4    // carga x_end y avanza el puntero 4 bytes
+    ldr w11, [x13], #4   // carga y_start y avanza el puntero 4 bytes
+*/
 
 	// Para lograr el efecto de que arriba sea un tono más claro de púrpura, y abajo sea un tono más oscuro, lo que hago es utilizar mi función
 	// double_mirror_loop para pintar primero con el color púrpura más oscuro. Esto hace que ya tenga pintado arriba y abajo un reflejo exactamente igual.
 	// Luego, con la función mirror_loop pinto solo en la parte de arriba (con color púrpura claro) por encima de lo pintado anteriormente con púrpura oscuro.
 	// De esta forma logro el efecto de que arriba sean colores más claros y luminosos, mientras que abajo son más oscuros y apagados.
 
-	// PÚRPURA SUPERIOR
-	mov x6, #52               // x_start
-	mov x7, #68              // x_end 
-	mov x11, #128              // y_start
-	mov x12, #239              // y_end 
-	bl mirror_loop
+dibujando_purpura_superior:    // Cargar color púrpura superior en x10
+    movz x10, 0x3DA1, lsl 0	
+    movk x10, 0xFF2B, lsl 16
 
-	// PÚRPURA SUPERIOR
-	mov x6, #68               // x_start
-	mov x7, #72              // x_end 
-	mov x11, #136              // y_start
-	bl mirror_loop
-		
-	// PÚRPURA SUPERIOR
-	mov x6, #72               // x_start
-	mov x7, #84              // x_end 
-	mov x11, #140              // y_start
-	bl mirror_loop
+    ldr x13, =purpura_superior_coords  // puntero a la tabla
+    mov x14, #30                      // cantidad de entradas (30)
 
-	// PÚRPURA SUPERIOR
-	mov x6, #84               // x_start
-	mov x7, #92              // x_end 
-	mov x11, #144              // y_start
-	bl mirror_loop
+loop_purpura_superior:
+    ldr w6, [x13], #4     // x_start
+    ldr w7, [x13], #4     // x_end
+    ldr w11, [x13], #4    // y_start
 
-	// PÚRPURA SUPERIOR
-	mov x6, #92               // x_start
-	mov x7, #104              // x_end 
-	mov x11, #152              // y_start
-	bl mirror_loop
+    bl mirror_loop
 
-	// PÚRPURA SUPERIOR
-	mov x6, #104               // x_start
-	mov x7, #108              // x_end 
-	mov x11, #156              // y_start
-	bl mirror_loop
-
-	// PÚRPURA SUPERIOR
-	mov x6, #108               // x_start
-	mov x7, #116              // x_end 
-	mov x11, #160              // y_start
-	bl mirror_loop
-
-	// PÚRPURA SUPERIOR
-	mov x6, #116               // x_start
-	mov x7, #128             // x_end 
-	mov x11, #164              // y_start
-	bl mirror_loop
-
-	// PÚRPURA SUPERIOR
-	mov x6, #128               // x_start
-	mov x7, #132             // x_end 
-	mov x11, #168              // y_start
-	bl mirror_loop
-
-	// PÚRPURA SUPERIOR
-	mov x6, #132               // x_start
-	mov x7, #140             // x_end 
-	mov x11, #172              // y_start
-	bl mirror_loop
-
-	// PÚRPURA SUPERIOR
-	mov x6, #140               // x_start
-	mov x7, #148             // x_end 
-	mov x11, #176              // y_start
-	bl mirror_loop
-
-	// PÚRPURA SUPERIOR
-	mov x6, #148               // x_start
-	mov x7, #156             // x_end 
-	mov x11, #180              // y_start
-	bl mirror_loop
-
-	// PÚRPURA SUPERIOR
-	mov x6, #156               // x_start
-	mov x7, #172             // x_end 
-	mov x11, #176              // y_start
-	bl mirror_loop
-
-	// PÚRPURA SUPERIOR
-	mov x6, #172               // x_start
-	mov x7, #180             // x_end 
-	mov x11, #172              // y_start
-	bl mirror_loop
-
-	// PÚRPURA SUPERIOR
-	mov x6, #180               // x_start
-	mov x7, #188             // x_end 
-	mov x11, #168              // y_start
-	bl mirror_loop
-
-	// PÚRPURA SUPERIOR
-	mov x6, #188               // x_start
-	mov x7, #196             // x_end 
-	mov x11, #176            // y_start
-	bl mirror_loop
-
-	// PÚRPURA SUPERIOR
-	mov x6, #196               // x_start
-	mov x7, #208             // x_end 
-	mov x11, #180            // y_start
-	bl mirror_loop
-
-	// PÚRPURA SUPERIOR
-	mov x6, #208               // x_start
-	mov x7, #228             // x_end 
-	mov x11, #184            // y_start
-	bl mirror_loop
-
-	// PÚRPURA SUPERIOR
-	mov x6, #228               // x_start
-	mov x7, #232             // x_end 
-	mov x11, #188            // y_start
-	bl mirror_loop
-
-	// PÚRPURA SUPERIOR
-	mov x6, #232               // x_start
-	mov x7, #240             // x_end 
-	mov x11, #184            // y_start
-	bl mirror_loop
-
-	// PÚRPURA SUPERIOR
-	mov x6, #240               // x_start
-	mov x7, #244             // x_end 
-	mov x11, #188            // y_start
-	bl mirror_loop
-
-	// PÚRPURA SUPERIOR
-	mov x6, #244               // x_start
-	mov x7, #248             // x_end 
-	mov x11, #192            // y_start
-	bl mirror_loop
-
-	// PÚRPURA SUPERIOR
-	mov x6, #248               // x_start
-	mov x7, #252            // x_end 
-	mov x11, #196            // y_start
-	bl mirror_loop
-
-	// PÚRPURA SUPERIOR
-	mov x6, #252               // x_start
-	mov x7, #264            // x_end 
-	mov x11, #200            // y_start
-	bl mirror_loop
-
-	// PÚRPURA SUPERIOR
-	mov x6, #264               // x_start
-	mov x7, #280            // x_end 
-	mov x11, #196            // y_start
-	bl mirror_loop
-
-	// PÚRPURA SUPERIOR
-	mov x6, #280               // x_start
-	mov x7, #284            // x_end 
-	mov x11, #192            // y_start
-	bl mirror_loop
-
-	// PÚRPURA SUPERIOR
-	mov x6, #284               // x_start
-	mov x7, #288            // x_end 
-	mov x11, #188            // y_start
-	bl mirror_loop
-
-	// PÚRPURA SUPERIOR
-	mov x6, #288               // x_start
-	mov x7, #300            // x_end 
-	mov x11, #192            // y_start
-	bl mirror_loop
-
-	// PÚRPURA SUPERIOR
-	mov x6, #300               // x_start
-	mov x7, #312            // x_end 
-	mov x11, #196            // y_start
-	bl mirror_loop
-
-	// PÚRPURA SUPERIOR
-	mov x6, #312               // x_start
-	mov x7, #320            // x_end 
-	mov x11, #200            // y_start
-	bl mirror_loop
+    subs x14, x14, #1
+    b.ne loop_purpura_superior
 
 
 //estrellas
-
-	mov x0, x20 
-	mov x5, #640  
-
-
-	movz x10, 0x91B9, lsl 0
+dibujando_estrellas:
+	movz x10, 0x91B9, lsl 0	
 	movk x10, 0xFF2E, lsl 16
+	
+    ldr x19, =tabla_estrellas   //dirección base de la tabla en x19
+    mov x21, #79                 //  grupos a procesar
 
-	// --- ZONA SUPERIOR-IZQUIERDA MEDIA 
+loop_estrellas:
+    cbz x21, fin_dibujar_estrellas   // contador = 0, salir del loop
 
-	// Estrellas pequeñas y medianas (1x1 a 5x5)
-	mov x6, #65; mov x7, #66; mov x11, #45; mov x12, #46; bl double_mirror_loop
-	mov x6, #80; mov x7, #81; mov x11, #55; mov x12, #56; bl double_mirror_loop
-	mov x6, #100; mov x7, #102; mov x11, #40; mov x12, #42; bl double_mirror_loop
-	mov x6, #120; mov x7, #121; mov x11, #70; mov x12, #71; bl double_mirror_loop
-	mov x6, #140; mov x7, #142; mov x11, #85; mov x12, #87; bl double_mirror_loop
-	mov x6, #160; mov x7, #161; mov x11, #50; mov x12, #51; bl double_mirror_loop
-	mov x6, #180; mov x7, #182; mov x11, #75; mov x12, #77; bl double_mirror_loop
-	mov x6, #200; mov x7, #201; mov x11, #90; mov x12, #91; bl double_mirror_loop
-	mov x6, #220; mov x7, #222; mov x11, #110; mov x12, #112; bl double_mirror_loop
-	mov x6, #240; mov x7, #241; mov x11, #130; mov x12, #131; bl double_mirror_loop
-	mov x6, #260; mov x7, #262; mov x11, #150; mov x12, #152; bl double_mirror_loop
-	mov x6, #280; mov x7, #281; mov x11, #170; mov x12, #171; bl double_mirror_loop
-	mov x6, #60; mov x7, #62; mov x11, #100; mov x12, #102; bl double_mirror_loop
-	mov x6, #90; mov x7, #91; mov x11, #120; mov x12, #121; bl double_mirror_loop
-	mov x6, #130; mov x7, #131; mov x11, #140; mov x12, #141; bl double_mirror_loop
-	mov x6, #170; mov x7, #172; mov x11, #160; mov x12, #162; bl double_mirror_loop
-	mov x6, #210; mov x7, #211; mov x11, #180; mov x12, #181; bl double_mirror_loop
-	mov x6, #250; mov x7, #252; mov x11, #200; mov x12, #202; bl double_mirror_loop
-	mov x6, #290; mov x7, #291; mov x11, #220; mov x12, #221; bl double_mirror_loop
-	mov x6, #60; mov x7, #61; mov x11, #230; mov x12, #231; bl double_mirror_loop
-	mov x6, #70; mov x7, #72; mov x11, #110; mov x12, #112; bl double_mirror_loop
-	mov x6, #110; mov x7, #111; mov x11, #90; mov x12, #91; bl double_mirror_loop
-	mov x6, #150; mov x7, #152; mov x11, #130; mov x12, #132; bl double_mirror_loop
-	mov x6, #190; mov x7, #191; mov x11, #100; mov x12, #101; bl double_mirror_loop
-	mov x6, #230; mov x7, #232; mov x11, #170; mov x12, #172; bl double_mirror_loop
-	mov x6, #270; mov x7, #271; mov x11, #190; mov x12, #191; bl double_mirror_loop
-	mov x6, #85; mov x7, #86; mov x11, #200; mov x12, #201; bl double_mirror_loop
-	mov x6, #165; mov x7, #166; mov x11, #210; mov x12, #211; bl double_mirror_loop
-	mov x6, #245; mov x7, #246; mov x11, #230; mov x12, #231; bl double_mirror_loop
+    ldr w6, [x19], #4          //  puntero 4 bytes
+    ldr w7, [x19], #4          // 
+    ldr w11, [x19], #4         // 
+    ldr w12, [x19], #4         // 
 
-	// Más estrellas en el medio para X
-	mov x6, #285; mov x7, #286; mov x11, #45; mov x12, #46; bl double_mirror_loop
-	mov x6, #280; mov x7, #281; mov x11, #60; mov x12, #61; bl double_mirror_loop
-	mov x6, #275; mov x7, #276; mov x11, #80; mov x12, #81; bl double_mirror_loop
-	mov x6, #270; mov x7, #271; mov x11, #100; mov x12, #101; bl double_mirror_loop
-	mov x6, #265; mov x7, #266; mov x11, #120; mov x12, #121; bl double_mirror_loop
-	mov x6, #260; mov x7, #261; mov x11, #140; mov x12, #141; bl double_mirror_loop
-	mov x6, #255; mov x7, #256; mov x11, #160; mov x12, #161; bl double_mirror_loop
-	mov x6, #250; mov x7, #251; mov x11, #180; mov x12, #181; bl double_mirror_loop
-	mov x6, #245; mov x7, #246; mov x11, #200; mov x12, #201; bl double_mirror_loop
-	mov x6, #240; mov x7, #241; mov x11, #220; mov x12, #221; bl double_mirror_loop
+    bl double_mirror_loop      // 
 
-	// Estrellas un poco más grandes (5x5)
-	mov x6, #75; mov x7, #80; mov x11, #190; mov x12, #195; bl double_mirror_loop
-	mov x6, #200; mov x7, #205; mov x11, #60; mov x12, #65; bl double_mirror_loop
+    subs x21, x21, #1          // 
+    b.ne loop_estrellas            //
+
+fin_dibujar_estrellas:
 
 
-	// --- ZONA SUPERIOR-DERECHA MEDIA
-
-	// Muchas estrellas pequeñas y medianas (1x1 a 5x5)
-	mov x6, #350; mov x7, #351; mov x11, #45; mov x12, #46; bl double_mirror_loop
-	mov x6, #370; mov x7, #371; mov x11, #55; mov x12, #56; bl double_mirror_loop
-	mov x6, #390; mov x7, #392; mov x11, #40; mov x12, #42; bl double_mirror_loop
-	mov x6, #410; mov x7, #411; mov x11, #70; mov x12, #71; bl double_mirror_loop
-	mov x6, #430; mov x7, #432; mov x11, #85; mov x12, #87; bl double_mirror_loop
-	mov x6, #450; mov x7, #451; mov x11, #50; mov x12, #51; bl double_mirror_loop
-	mov x6, #470; mov x7, #472; mov x11, #75; mov x12, #77; bl double_mirror_loop
-	mov x6, #490; mov x7, #491; mov x11, #90; mov x12, #91; bl double_mirror_loop
-	mov x6, #510; mov x7, #512; mov x11, #110; mov x12, #112; bl double_mirror_loop
-	mov x6, #530; mov x7, #531; mov x11, #130; mov x12, #131; bl double_mirror_loop
-	mov x6, #550; mov x7, #552; mov x11, #150; mov x12, #152; bl double_mirror_loop
-	mov x6, #570; mov x7, #571; mov x11, #170; mov x12, #171; bl double_mirror_loop
-	mov x6, #345; mov x7, #347; mov x11, #100; mov x12, #102; bl double_mirror_loop
-	mov x6, #375; mov x7, #376; mov x11, #120; mov x12, #121; bl double_mirror_loop
-	mov x6, #415; mov x7, #416; mov x11, #140; mov x12, #141; bl double_mirror_loop
-	mov x6, #455; mov x7, #457; mov x11, #160; mov x12, #162; bl double_mirror_loop
-	mov x6, #495; mov x7, #496; mov x11, #180; mov x12, #181; bl double_mirror_loop
-	mov x6, #535; mov x7, #537; mov x11, #200; mov x12, #202; bl double_mirror_loop
-	mov x6, #580; mov x7, #581; mov x11, #220; mov x12, #221; bl double_mirror_loop
-	mov x6, #345; mov x7, #346; mov x11, #230; mov x12, #231; bl double_mirror_loop
-	mov x6, #360; mov x7, #362; mov x11, #110; mov x12, #112; bl double_mirror_loop
-	mov x6, #400; mov x7, #401; mov x11, #90; mov x12, #91; bl double_mirror_loop
-	mov x6, #440; mov x7, #442; mov x11, #130; mov x12, #132; bl double_mirror_loop
-	mov x6, #480; mov x7, #481; mov x11, #100; mov x12, #101; bl double_mirror_loop
-	mov x6, #520; mov x7, #522; mov x11, #170; mov x12, #172; bl double_mirror_loop
-	mov x6, #560; mov x7, #561; mov x11, #190; mov x12, #191; bl double_mirror_loop
-	mov x6, #385; mov x7, #386; mov x11, #200; mov x12, #201; bl double_mirror_loop
-	mov x6, #465; mov x7, #466; mov x11, #210; mov x12, #211; bl double_mirror_loop
-	mov x6, #545; mov x7, #546; mov x11, #230; mov x12, #231; bl double_mirror_loop
-
-	// Más estrellas en el medio para X
-	mov x6, #355; mov x7, #356; mov x11, #45; mov x12, #46; bl double_mirror_loop
-	mov x6, #360; mov x7, #361; mov x11, #60; mov x12, #61; bl double_mirror_loop
-	mov x6, #365; mov x7, #366; mov x11, #80; mov x12, #81; bl double_mirror_loop
-	mov x6, #370; mov x7, #371; mov x11, #100; mov x12, #101; bl double_mirror_loop
-	mov x6, #375; mov x7, #376; mov x11, #120; mov x12, #121; bl double_mirror_loop
-	mov x6, #380; mov x7, #381; mov x11, #140; mov x12, #141; bl double_mirror_loop
-	mov x6, #385; mov x7, #386; mov x11, #160; mov x12, #161; bl double_mirror_loop
-	mov x6, #390; mov x7, #391; mov x11, #180; mov x12, #181; bl double_mirror_loop
-	mov x6, #395; mov x7, #396; mov x11, #200; mov x12, #201; bl double_mirror_loop
-	mov x6, #400; mov x7, #401; mov x11, #220; mov x12, #221; bl double_mirror_loop
-
-	// Estrellas un poco más grandes (5x5)
-	mov x6, #360; mov x7, #365; mov x11, #190; mov x12, #195; bl double_mirror_loop
-	mov x6, #500; mov x7, #505; mov x11, #60; mov x12, #65; bl double_mirror_loop
-
-
-	//  ZONA INFERIOR-IZQUIERDA MEDIA (
-
-	// Muchas estrellas pequeñas y medianas (1x1 a 5x5)
-	mov x6, #65; mov x7, #66; mov x11, #335; mov x12, #336; bl double_mirror_loop
-	mov x6, #80; mov x7, #81; mov x11, #345; mov x12, #346; bl double_mirror_loop
-	mov x6, #100; mov x7, #102; mov x11, #330; mov x12, #332; bl double_mirror_loop
-	mov x6, #120; mov x7, #121; mov x11, #360; mov x12, #361; bl double_mirror_loop
-	mov x6, #140; mov x7, #142; mov x11, #375; mov x12, #377; bl double_mirror_loop
-	mov x6, #160; mov x7, #161; mov x11, #340; mov x12, #341; bl double_mirror_loop
-	mov x6, #180; mov x7, #182; mov x11, #365; mov x12, #367; bl double_mirror_loop
-	mov x6, #200; mov x7, #201; mov x11, #380; mov x12, #381; bl double_mirror_loop
-	mov x6, #220; mov x7, #222; mov x11, #400; mov x12, #402; bl double_mirror_loop
-	mov x6, #240; mov x7, #241; mov x11, #420; mov x12, #421; bl double_mirror_loop
-	mov x6, #260; mov x7, #262; mov x11, #430; mov x12, #432; bl double_mirror_loop
-	mov x6, #280; mov x7, #281; mov x11, #350; mov x12, #351; bl double_mirror_loop
-	mov x6, #60; mov x7, #62; mov x11, #390; mov x12, #392; bl double_mirror_loop
-	mov x6, #90; mov x7, #91; mov x11, #410; mov x12, #411; bl double_mirror_loop
-	mov x6, #130; mov x7, #131; mov x11, #330; mov x12, #331; bl double_mirror_loop
-	mov x6, #170; mov x7, #172; mov x11, #350; mov x12, #352; bl double_mirror_loop
-	mov x6, #210; mov x7, #211; mov x11, #370; mov x12, #371; bl double_mirror_loop
-	mov x6, #250; mov x7, #252; mov x11, #390; mov x12, #392; bl double_mirror_loop
-	mov x6, #290; mov x7, #291; mov x11, #410; mov x12, #411; bl double_mirror_loop
-	mov x6, #60; mov x7, #61; mov x11, #430; mov x12, #431; bl double_mirror_loop
-	mov x6, #70; mov x7, #72; mov x11, #380; mov x12, #382; bl double_mirror_loop
-	mov x6, #110; mov x7, #111; mov x11, #360; mov x12, #361; bl double_mirror_loop
-	mov x6, #150; mov x7, #152; mov x11, #400; mov x12, #402; bl double_mirror_loop
-	mov x6, #190; mov x7, #191; mov x11, #370; mov x12, #371; bl double_mirror_loop
-	mov x6, #230; mov x7, #232; mov x11, #410; mov x12, #412; bl double_mirror_loop
-	mov x6, #270; mov x7, #271; mov x11, #430; mov x12, #431; bl double_mirror_loop
-	mov x6, #85; mov x7, #86; mov x11, #420; mov x12, #421; bl double_mirror_loop
-	mov x6, #165; mov x7, #166; mov x11, #330; mov x12, #331; bl double_mirror_loop
-	mov x6, #245; mov x7, #246; mov x11, #350; mov x12, #351; bl double_mirror_loop
-
-	// Más estrellas en el medio para X
-	mov x6, #285; mov x7, #286; mov x11, #335; mov x12, #336; bl double_mirror_loop
-	mov x6, #280; mov x7, #281; mov x11, #350; mov x12, #351; bl double_mirror_loop
-	mov x6, #275; mov x7, #276; mov x11, #370; mov x12, #371; bl double_mirror_loop
-	mov x6, #270; mov x7, #271; mov x11, #390; mov x12, #391; bl double_mirror_loop
-	mov x6, #265; mov x7, #266; mov x11, #410; mov x12, #411; bl double_mirror_loop
-	mov x6, #260; mov x7, #261; mov x11, #430; mov x12, #431; bl double_mirror_loop
-
-	// Estrellas un poco m grandes (5x5)
-	mov x6, #75; mov x7, #80; mov x11, #360; mov x12, #365; bl double_mirror_loop
-	mov x6, #200; mov x7, #205; mov x11, #340; mov x12, #345; bl double_mirror_loop
-
-
-	// --- ZONA INFERIOR-DERECHA MEDIA 
-
-	// Muchas estrellas pequeñas y medianas (1x1 a 5x5)
-	mov x6, #350; mov x7, #351; mov x11, #335; mov x12, #336; bl double_mirror_loop
-	mov x6, #370; mov x7, #371; mov x11, #345; mov x12, #346; bl double_mirror_loop
-	mov x6, #390; mov x7, #392; mov x11, #330; mov x12, #332; bl double_mirror_loop
-	mov x6, #410; mov x7, #411; mov x11, #360; mov x12, #361; bl double_mirror_loop
-	mov x6, #430; mov x7, #432; mov x11, #375; mov x12, #377; bl double_mirror_loop
-	mov x6, #450; mov x7, #451; mov x11, #340; mov x12, #341; bl double_mirror_loop
-	mov x6, #470; mov x7, #472; mov x11, #365; mov x12, #367; bl double_mirror_loop
-	mov x6, #490; mov x7, #491; mov x11, #380; mov x12, #381; bl double_mirror_loop
-	mov x6, #510; mov x7, #512; mov x11, #400; mov x12, #402; bl double_mirror_loop
-	mov x6, #530; mov x7, #531; mov x11, #420; mov x12, #421; bl double_mirror_loop
-	mov x6, #550; mov x7, #552; mov x11, #430; mov x12, #432; bl double_mirror_loop
-	mov x6, #570; mov x7, #571; mov x11, #350; mov x12, #351; bl double_mirror_loop
-	mov x6, #345; mov x7, #347; mov x11, #390; mov x12, #392; bl double_mirror_loop
-	mov x6, #375; mov x7, #376; mov x11, #410; mov x12, #411; bl double_mirror_loop
-	mov x6, #415; mov x7, #416; mov x11, #330; mov x12, #331; bl double_mirror_loop
-	mov x6, #455; mov x7, #457; mov x11, #350; mov x12, #352; bl double_mirror_loop
-	mov x6, #495; mov x7, #496; mov x11, #370; mov x12, #371; bl double_mirror_loop
-	mov x6, #535; mov x7, #537; mov x11, #390; mov x12, #392; bl double_mirror_loop
-	mov x6, #580; mov x7, #581; mov x11, #410; mov x12, #411; bl double_mirror_loop
-	mov x6, #345; mov x7, #346; mov x11, #430; mov x12, #431; bl double_mirror_loop
-	mov x6, #360; mov x7, #362; mov x11, #380; mov x12, #382; bl double_mirror_loop
-	mov x6, #400; mov x7, #401; mov x11, #360; mov x12, #361; bl double_mirror_loop
-	mov x6, #440; mov x7, #442; mov x11, #400; mov x12, #402; bl double_mirror_loop
-	mov x6, #480; mov x7, #481; mov x11, #370; mov x12, #371; bl double_mirror_loop
-	mov x6, #520; mov x7, #522; mov x11, #410; mov x12, #412; bl double_mirror_loop
-	mov x6, #560; mov x7, #561; mov x11, #430; mov x12, #431; bl double_mirror_loop
-	mov x6, #385; mov x7, #386; mov x11, #420; mov x12, #421; bl double_mirror_loop
-	mov x6, #465; mov x7, #466; mov x11, #330; mov x12, #331; bl double_mirror_loop
-	mov x6, #545; mov x7, #546; mov x11, #350; mov x12, #351; bl double_mirror_loop
-
-	// Más estrellas en el medio para X
-	mov x6, #355; mov x7, #356; mov x11, #335; mov x12, #336; bl double_mirror_loop
-	mov x6, #360; mov x7, #361; mov x11, #350; mov x12, #351; bl double_mirror_loop
-	mov x6, #365; mov x7, #366; mov x11, #370; mov x12, #371; bl double_mirror_loop
-	mov x6, #370; mov x7, #371; mov x11, #390; mov x12, #391; bl double_mirror_loop
-	mov x6, #375; mov x7, #376; mov x11, #410; mov x12, #411; bl double_mirror_loop
-	mov x6, #380; mov x7, #381; mov x11, #430; mov x12, #431; bl double_mirror_loop
-
-	// Estrellas un poco más grandes (5x5)
-	mov x6, #360; mov x7, #365; mov x11, #360; mov x12, #365; bl double_mirror_loop
-	mov x6, #500; mov x7, #505; mov x11, #340; mov x12, #345; bl double_mirror_loop
-
-
-
-		// ------------------- PROTOTIPO DE LA FORMA DEL FONDO, LA PARTE DE LOS ARBUSTOS Y LA PARTE NEGRA DE ARRIBA DEL FONDO -------------------
-
+		// ------------------- FONDO, LA PARTE DE LOS ARBUSTOS Y LA PARTE NEGRA DE ARRIBA DEL FONDO -------------------
+dibujando_arbustos_y_fondo:
 	//color negro = 0xFF000000
 	movz x10, 0x0000, lsl 0	
 	movk x10, 0xFF00, lsl 16
 
-	// En todas las siguientes instrucciones uso el color negro, estoy dibujando las siluetas del fondo
+    mov x10, #0xFF000000     // Color negro
+    movz x10, 0, lsl 0      // Esto es para completar, o usar movk si es necesario
 
-	// En todas aquellas repeticiones que son de la forma -----x-1-----, estoy dibujando la parte superior del fondo, para que parezca un domo arriba. 
+    ldr x19, =tabla_domo_arbustos   // Dirección base de la tabla
+    mov x21, #63           // Número de entradas
 
-	// DOMO
-	mov x5, #640              // SCREEN_WIDTH
-	mov x6, #50              // x_start
-	mov x7, #54              // x_end
-	mov x11, #30              // y_start
-	mov x12, #220              // y_end
-	mov x13, #480			//SCREEN_HEIGHT
-	bl double_mirror_loop
+loop_fondo_arbustos:
+    cbz x21, fin_fondo_arbustos     // Si x21 == 0, fin del loop
 
-	// DOMO
-	mov x6, #54              // x_start
-	mov x7, #62              // x_end
-	mov x11, #30              // y_start
-	mov x12, #150              // y_end
-	bl double_mirror_loop
+    ldr w6, [x19], #4               // cargar x_start, avanzar puntero 4 bytes
+    ldr w7, [x19], #4               // cargar x_end
+    ldr w11, [x19], #4              // cargar y_start
+    ldr w12, [x19], #4              // cargar y_end
 
-	// DOMO
-	mov x6, #62              // x_start
-	mov x7, #66              // x_end
-	mov x11, #30              // y_start
-	mov x12, #130              // y_end
-	bl double_mirror_loop
+    bl double_mirror_loop           // llamada a función
 
-	// DOMO
-	mov x6, #66              // x_start
-	mov x7, #74              // x_end
-	mov x11, #30              // y_start
-	mov x12, #100              // y_end
-	bl double_mirror_loop
+    subs x21, x21, #1               // decrementar contador
+    b.ne loop_fondo_arbustos
 
-	// DOMO
-	mov x6, #74              // x_start
-	mov x7, #76              // x_end
-	mov x11, #30              // y_start
-	mov x12, #90              // y_end
-	bl double_mirror_loop
+fin_fondo_arbustos:
 
-	// DOMO
-	mov x6, #76              // x_start
-	mov x7, #78              // x_end
-	mov x11, #30              // y_start
-	mov x12, #85              // y_end
-	bl double_mirror_loop
 
-	// DOMO
-	mov x6, #78              // x_start
-	mov x7, #82              // x_end
-	mov x11, #30              // y_start
-	mov x12, #75              // y_end
-	bl double_mirror_loop
-
-	// DOMO
-	mov x6, #82              // x_start
-	mov x7, #84              // x_end
-	mov x11, #30              // y_start
-	mov x12, #69              // y_end
-	bl double_mirror_loop
-
-	// DOMO
-	mov x6, #84              // x_start
-	mov x7, #90              // x_end
-	mov x11, #30              // y_start
-	mov x12, #63              // y_end
-	bl double_mirror_loop
-
-	// DOMO
-	mov x6, #90              // x_start
-	mov x7, #100              // x_end
-	mov x11, #30              // y_start
-	mov x12, #58              // y_end
-	bl double_mirror_loop
-
-	// DOMO
-	mov x6, #100              // x_start
-	mov x7, #106              // x_end
-	mov x11, #30              // y_start
-	mov x12, #54              // y_end
-	bl double_mirror_loop
-
-	// DOMO
-	mov x6, #106              // x_start
-	mov x7, #118              // x_end
-	mov x11, #30              // y_start
-	mov x12, #50              // y_end
-	bl double_mirror_loop
-
-	// DOMO
-	mov x6, #118              // x_start
-	mov x7, #130              // x_end
-	mov x11, #30              // y_start
-	mov x12, #48              // y_end
-	bl double_mirror_loop
-
-	// DOMO
-	mov x6, #130              // x_start
-	mov x7, #150              // x_end
-	mov x11, #30              // y_start
-	mov x12, #46              // y_end
-	bl double_mirror_loop
-
-	// DOMO
-	mov x6, #150              // x_start
-	mov x7, #190              // x_end
-	mov x11, #30              // y_start
-	mov x12, #44              // y_end
-	bl double_mirror_loop
-
-	// DOMO
-	mov x6, #190              // x_start
-	mov x7, #220              // x_end
-	mov x11, #30              // y_start
-	mov x12, #42              // y_end
-	bl double_mirror_loop
-
-	// Las siguientes repeticiones son de arbustos
-
-	// En las repeticiones -----x-2----- dibujo el primer arbusto de izquierda a derecha (Reflejado en el lado derecho también). 
-
-	// ARBUSTO 1
-	mov x6, #82              // x_start
-	mov x7, #86              // x_end
-	mov x11, #160              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 1
-	mov x6, #86              // x_start
-	mov x7, #94              // x_end
-	mov x11, #164              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 1
-	mov x6, #94              // x_start
-	mov x7, #98              // x_end
-	mov x11, #168              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 1
-	mov x6, #98              // x_start
-	mov x7, #102              // x_end
-	mov x11, #172              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 1
-	mov x6, #102              // x_start
-	mov x7, #114              // x_end
-	mov x11, #176              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 1
-	mov x6, #114              // x_start
-	mov x7, #118              // x_end
-	mov x11, #180              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-
-	// ARBUSTO 1
-	mov x6, #118              // x_start
-	mov x7, #122              // x_end
-	mov x11, #184              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 1
-	mov x6, #122              // x_start
-	mov x7, #126              // x_end
-	mov x11, #188              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 1
-	mov x6, #126              // x_start
-	mov x7, #130              // x_end
-	mov x11, #192              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 1
-	mov x6, #130              // x_start
-	mov x7, #142              // x_end
-	mov x11, #196              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 1
-	mov x6, #142              // x_start
-	mov x7, #146              // x_end
-	mov x11, #200              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 1
-	mov x6, #146              // x_start
-	mov x7, #154              // x_end
-	mov x11, #204              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 1
-	mov x6, #50              // x_start
-	mov x7, #54              // x_end
-	mov x11, #178              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 1
-	mov x6, #54              // x_start
-	mov x7, #58              // x_end
-	mov x11, #174              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 1
-	mov x6, #58              // x_start
-	mov x7, #64              // x_end
-	mov x11, #170              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 1
-	mov x6, #64              // x_start
-	mov x7, #72              // x_end
-	mov x11, #166              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 1
-	mov x6, #72              // x_start
-	mov x7, #76              // x_end
-	mov x11, #162              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 1
-	mov x6, #76              // x_start
-	mov x7, #84              // x_end
-	mov x11, #160              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// En las repeticiones -----x-3----- dibujo el segundo arbusto de izquierda a derecha (Reflejado en el lado derecho también). 
-
-	// ARBUSTO 2 
-	mov x6, #154              // x_start
-	mov x7, #158              // x_end
-	mov x11, #200              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 2 
-	mov x6, #158              // x_start
-	mov x7, #162              // x_end
-	mov x11, #196              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 2 
-	mov x6, #162              // x_start
-	mov x7, #166              // x_end
-	mov x11, #192              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 2 
-	mov x6, #166              // x_start
-	mov x7, #174              // x_end
-	mov x11, #188              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 2 
-	mov x6, #174              // x_start
-	mov x7, #186              // x_end
-	mov x11, #184              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 2 
-	mov x6, #186              // x_start
-	mov x7, #190              // x_end
-	mov x11, #188              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-	
-	// ARBUSTO 2 
-	mov x6, #190              // x_start
-	mov x7, #198              // x_end
-	mov x11, #192              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-	
-	// ARBUSTO 2 
-	mov x6, #198              // x_start
-	mov x7, #202              // x_end
-	mov x11, #196              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 2 
-	mov x6, #202              // x_start
-	mov x7, #206              // x_end
-	mov x11, #200              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 2
-	mov x6, #206              // x_start
-	mov x7, #210              // x_end
-	mov x11, #204              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 2
-	mov x6, #210              // x_start
-	mov x7, #214              // x_end
-	mov x11, #208              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 2
-	mov x6, #214              // x_start
-	mov x7, #218              // x_end
-	mov x11, #208              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 2
-	mov x6, #218              // x_start
-	mov x7, #222              // x_end
-	mov x11, #212              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 2
-	mov x6, #222              // x_start
-	mov x7, #226              // x_end
-	mov x11, #216              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// En las repeticiones ----x-4---- dibujo el tercer arbusto de izquierda a derecha (Reflejado en el lado derecho también). 
-
-	// ARBUSTO 3
-	mov x6, #226              // x_start
-	mov x7, #230              // x_end
-	mov x11, #212              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 3
-	mov x6, #230              // x_start
-	mov x7, #234              // x_end
-	mov x11, #208              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 3
-	mov x6, #234              // x_start
-	mov x7, #242              // x_end
-	mov x11, #204              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 3
-	mov x6, #242              // x_start
-	mov x7, #250              // x_end
-	mov x11, #208              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 3
-	mov x6, #250              // x_start
-	mov x7, #266              // x_end
-	mov x11, #212              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 3
-	mov x6, #266              // x_start
-	mov x7, #274              // x_end
-	mov x11, #216              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// En las repeticiones ----x-5---- dibujo el cuarto arbusto de izquierda a derecha (Reflejado en el lado derecho también). 
-
-	// ARBUSTO 4
-	mov x6, #274              // x_start
-	mov x7, #278              // x_end
-	mov x11, #212              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 4
-	mov x6, #278              // x_start
-	mov x7, #282              // x_end
-	mov x11, #208              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 4
-	mov x6, #282              // x_start
-	mov x7, #290              // x_end
-	mov x11, #204              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 4
-	mov x6, #290              // x_start
-	mov x7, #298              // x_end
-	mov x11, #208              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 4
-	mov x6, #298              // x_start
-	mov x7, #302              // x_end
-	mov x11, #212              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 4
-	mov x6, #302              // x_start
-	mov x7, #306              // x_end
-	mov x11, #216              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-	
-	// ARBUSTO 4
-	mov x6, #306              // x_start
-	mov x7, #314              // x_end
-	mov x11, #220              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-	
-	// ARBUSTO 4
-	mov x6, #314              // x_start
-	mov x7, #318              // x_end
-	mov x11, #224              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-
-	// ARBUSTO 4
-	mov x6, #318              // x_start
-	mov x7, #326              // x_end
-	mov x11, #228              // y_start
-	mov x12, #240              // y_end
-	bl double_mirror_loop
-	
 
 	// ------------------- ÁRBOLES DEL FONDO, REFLEJADOS ARRIBA Y ABAJO -------------------
-
+dibujando_arboles_fondo:
 	// Determino que x10 sea el color negro = 0xFF000000
-	movz x10, 0x0000, lsl #0
-	movk x10, 0xFF00, lsl #16
-
 	// --- El siguiente código es para los árboles de la izquierda hacia la derecha ---
 	// ACLARACIÓN: Ya que estoy usando la función double_mirror_loop, los árboles son de izquierda a derecha, hasta llegar a la mitad de la pantalla.
 	// A partir de la mitad a la derecha, son un reflejo del lado izquierdo.  
+    // Color negro = 0xFF000000
+    movz x10, 0x0000, lsl #0
+    movk x10, 0xFF00, lsl #16
 
-	// ÁRBOL 1
-	mov x6, #78              // x_start
-	mov x7, #92              // x_end
-	mov x11, #144              // y_start
-	mov x12, #164              // y_end
-	bl double_mirror_loop
+    ldr x19, =tabla_arboles_fondo   // Dirección de la tabla de árboles
+    mov x21, #179                    // Cantidad de entradas (cambiar según total de líneas)
 
-	// ÁRBOL 1
-	mov x6, #66              // x_start
-	mov x7, #70              // x_end
-	mov x11, #120              // y_start
-	mov x12, #128              // y_end
-	bl double_mirror_loop
+loop_arboles_fondo:
+    cbz x21, fin_arboles_fondo
 
-	// ÁRBOL 1
-	mov x6, #70              // x_start
-	mov x7, #74              // x_end
-	mov x11, #100              // y_start
-	mov x12, #120              // y_end
-	bl double_mirror_loop
+    ldr w6, [x19], #4   // x_start
+    ldr w7, [x19], #4   // x_end
+    ldr w11, [x19], #4  // y_start
+    ldr w12, [x19], #4  // y_end
 
-	// ÁRBOL 1
-	mov x6, #66              // x_start
-	mov x7, #70              // x_end
-	mov x11, #96              // y_start
-	mov x12, #112              // y_end
-	bl double_mirror_loop
+    bl double_mirror_loop
 
-	// ÁRBOL 1
-	mov x6, #82              // x_start
-	mov x7, #94              // x_end
-	mov x11, #108              // y_start
-	mov x12, #144              // y_end
-	bl double_mirror_loop
+    subs x21, x21, #1
+    b.ne loop_arboles_fondo
 
-	// ÁRBOL 1
-	mov x6, #94              // x_start
-	mov x7, #98              // x_end
-	mov x11, #124              // y_start
-	mov x12, #132              // y_end
-	bl double_mirror_loop
-	
-	// ÁRBOL 1
-	mov x6, #98              // x_start
-	mov x7, #102              // x_end
-	mov x11, #120              // y_start
-	mov x12, #124              // y_end
-	bl double_mirror_loop
+fin_arboles_fondo:
 
-	// ÁRBOL 1
-	mov x6, #102              // x_start
-	mov x7, #106              // x_end
-	mov x11, #116              // y_start
-	mov x12, #120              // y_end
-	bl double_mirror_loop
+dibujando_ODC2025:
+    // ---------------------- PARTE DE ODC ---------------------
 
-	// ÁRBOL 1
-	mov x6, #94              // x_start
-	mov x7, #102              // x_end
-	mov x11, #112              // y_start
-	mov x12, #116              // y_end
-	bl double_mirror_loop
+    // ----------- Llamadas a double_mirror_loop -----------
 
-	// ÁRBOL 1
-	mov x6, #102              // x_start
-	mov x7, #106              // x_end
-	mov x11, #140              // y_start
-	mov x12, #160              // y_end
-	bl double_mirror_loop
+    ldr x19, =tabla_dibujo_odc_double
+    mov x21, #5   // cantidad de bloques
 
-	// ÁRBOL 1
-	mov x6, #98              // x_start
-	mov x7, #102              // x_end
-	mov x11, #136              // y_start
-	mov x12, #140              // y_end
-	bl double_mirror_loop
+loop_odc_double:
+    cbz x21, siguiente_only_y
 
-	// ÁRBOL 1
-	mov x6, #106              // x_start
-	mov x7, #110              // x_end
-	mov x11, #120              // y_start
-	mov x12, #140              // y_end
-	bl double_mirror_loop
+    ldr w6, [x19], #4
+    ldr w7, [x19], #4
+    ldr w11, [x19], #4
+    ldr w12, [x19], #4
 
-	// ÁRBOL 1
-	mov x6, #108              // x_start
-	mov x7, #112              // x_end
-	mov x11, #92              // y_start
-	mov x12, #100              // y_end
-	bl double_mirror_loop
+    bl double_mirror_loop
 
-	// ÁRBOL 1
-	mov x6, #112              // x_start
-	mov x7, #116              // x_end
-	mov x11, #100              // y_start
-	mov x12, #104             // y_end
-	bl double_mirror_loop
+    subs x21, x21, #1
+    b.ne loop_odc_double
 
-	// ÁRBOL 1
-	mov x6, #116              // x_start
-	mov x7, #124              // x_end
-	mov x11, #96              // y_start
-	mov x12, #100             // y_end
-	bl double_mirror_loop
+siguiente_only_y:
 
-	// ÁRBOL 1
-	mov x6, #120              // x_start
-	mov x7, #124              // x_end
-	mov x11, #92              // y_start
-	mov x12, #96             // y_end
-	bl double_mirror_loop
+    // ----------- Llamadas a only_y_mirror_loop -----------
 
-	// ÁRBOL 1
-	mov x6, #116              // x_start
-	mov x7, #120              // x_end
-	mov x11, #80              // y_start
-	mov x12, #92             // y_end
-	bl double_mirror_loop
+    ldr x19, =tabla_dibujo_odc_only_y
+    mov x21, #14   // cantidad de bloques
 
-	// ÁRBOL 1
-	mov x6, #110              // x_start
-	mov x7, #114              // x_end
-	mov x11, #132              // y_start
-	mov x12, #136              // y_end
-	bl double_mirror_loop
+loop_odc_only_y:
+    cbz x21, fin_dibujando_ODC2025
 
-	// ÁRBOL 1
-	mov x6, #114              // x_start
-	mov x7, #118              // x_end
-	mov x11, #112              // y_start
-	mov x12, #132              // y_end
-	bl double_mirror_loop
+    ldr w6, [x19], #4
+    ldr w7, [x19], #4
+    ldr w11, [x19], #4
+    ldr w12, [x19], #4
 
-	// ÁRBOL 1
-	mov x6, #78              // x_start
-	mov x7, #86              // x_end
-	mov x11, #80              // y_start
-	mov x12, #108              // y_end
-	bl double_mirror_loop
+    bl only_y_mirror_loop
 
-	// ÁRBOL 1
-	mov x6, #72              // x_start
-	mov x7, #78              // x_end
-	mov x11, #72              // y_start
-	mov x12, #80              // y_end
-	bl double_mirror_loop
+    subs x21, x21, #1
+    b.ne loop_odc_only_y
 
-	// ÁRBOL 1
-	mov x6, #86              // x_start
-	mov x7, #90              // x_end
-	mov x11, #60              // y_start
-	mov x12, #80              // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 1
-	mov x6, #92              // x_start
-	mov x7, #100              // x_end
-	mov x11, #90              // y_start
-	mov x12, #112              // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 1
-	mov x6, #100              // x_start
-	mov x7, #108              // x_end
-	mov x11, #82              // y_start
-	mov x12, #100              // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 1
-	mov x6, #92              // x_start
-	mov x7, #96              // x_end
-	mov x11, #58              // y_start
-	mov x12, #70              // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 1
-	mov x6, #96              // x_start
-	mov x7, #100              // x_end
-	mov x11, #70              // y_start
-	mov x12, #74              // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 1
-	mov x6, #100              // x_start
-	mov x7, #104              // x_end
-	mov x11, #74              // y_start
-	mov x12, #78              // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 1
-	mov x6, #104              // x_start
-	mov x7, #108              // x_end
-	mov x11, #78              // y_start
-	mov x12, #82              // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 1
-	mov x6, #108              // x_start
-	mov x7, #112              // x_end
-	mov x11, #62              // y_start
-	mov x12, #86              // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 1
-	mov x6, #112              // x_start
-	mov x7, #116              // x_end
-	mov x11, #46              // y_start
-	mov x12, #58              // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 1
-	mov x6, #104              // x_start
-	mov x7, #112              // x_end
-	mov x11, #58              // y_start
-	mov x12, #62              // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 1
-	mov x6, #100              // x_start
-	mov x7, #104              // x_end
-	mov x11, #50              // y_start
-	mov x12, #62            // y_end
-	bl double_mirror_loop
-
-
-
-	// ÁRBOL 2
-	mov x6, #132              // x_start
-	mov x7, #136              // x_end
-	mov x11, #160              // y_start
-	mov x12, #240           // y_end
-	bl double_mirror_loop
-	
-	// ÁRBOL 2
-	mov x6, #128              // x_start
-	mov x7, #132              // x_end
-	mov x11, #100              // y_start
-	mov x12, #160           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 2
-	mov x6, #128              // x_start
-	mov x7, #136              // x_end
-	mov x11, #88              // y_start
-	mov x12, #100           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 2
-	mov x6, #136              // x_start
-	mov x7, #140              // x_end
-	mov x11, #64              // y_start
-	mov x12, #88           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 2
-	mov x6, #140              // x_start
-	mov x7, #144              // x_end
-	mov x11, #52              // y_start
-	mov x12, #64           // y_end
-	bl double_mirror_loop
-	
-	// ÁRBOL 2
-	mov x6, #140              // x_start
-	mov x7, #148              // x_end
-	mov x11, #48              // y_start
-	mov x12, #52           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 2
-	mov x6, #148              // x_start
-	mov x7, #152              // x_end
-	mov x11, #44              // y_start
-	mov x12, #48           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 2
-	mov x6, #124              // x_start
-	mov x7, #128              // x_end
-	mov x11, #72              // y_start
-	mov x12, #88           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 2
-	mov x6, #120              // x_start
-	mov x7, #124              // x_end
-	mov x11, #60             // y_start
-	mov x12, #72           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 2
-	mov x6, #124              // x_start
-	mov x7, #128              // x_end
-	mov x11, #64            // y_start
-	mov x12, #68           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 2
-	mov x6, #128              // x_start
-	mov x7, #132              // x_end
-	mov x11, #60            // y_start
-	mov x12, #64           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 2
-	mov x6, #128              // x_start
-	mov x7, #132              // x_end
-	mov x11, #60            // y_start
-	mov x12, #64           // y_end
-	bl double_mirror_loop
-
-
-	// ÁRBOL 3
-	mov x6, #144              // x_start
-	mov x7, #152              // x_end
-	mov x11, #140            // y_start
-	mov x12, #220           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 3
-	mov x6, #152              // x_start
-	mov x7, #156              // x_end
-	mov x11, #108            // y_start
-	mov x12, #152           // y_end
-	bl double_mirror_loop
-	
-	// ÁRBOL 3
-	mov x6, #156              // x_start
-	mov x7, #160              // x_end
-	mov x11, #96            // y_start
-	mov x12, #112           // y_end
-	bl double_mirror_loop
-	
-	// ÁRBOL 3
-	mov x6, #160              // x_start
-	mov x7, #164              // x_end
-	mov x11, #80            // y_start
-	mov x12, #96           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 3
-	mov x6, #160              // x_start
-	mov x7, #168              // x_end
-	mov x11, #76            // y_start
-	mov x12, #80           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 3
-	mov x6, #164              // x_start
-	mov x7, #168              // x_end
-	mov x11, #72            // y_start
-	mov x12, #76           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 3
-	mov x6, #136              // x_start
-	mov x7, #140              // x_end
-	mov x11, #108            // y_start
-	mov x12, #128           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 3
-	mov x6, #140              // x_start
-	mov x7, #144              // x_end
-	mov x11, #128            // y_start
-	mov x12, #132           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 3
-	mov x6, #144              // x_start
-	mov x7, #148              // x_end
-	mov x11, #132            // y_start
-	mov x12, #144           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 3
-	mov x6, #156              // x_start
-	mov x7, #160              // x_end
-	mov x11, #140            // y_start
-	mov x12, #144           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 3
-	mov x6, #160              // x_start
-	mov x7, #164              // x_end
-	mov x11, #136            // y_start
-	mov x12, #140           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 3
-	mov x6, #164              // x_start
-	mov x7, #168              // x_end
-	mov x11, #132            // y_start
-	mov x12, #136           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 3
-	mov x6, #168              // x_start
-	mov x7, #172              // x_end
-	mov x11, #128            // y_start
-	mov x12, #132           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 3
-	mov x6, #172              // x_start
-	mov x7, #176              // x_end
-	mov x11, #112            // y_start
-	mov x12, #128           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 3
-	mov x6, #172              // x_start
-	mov x7, #180              // x_end
-	mov x11, #112            // y_start
-	mov x12, #116           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 3
-	mov x6, #152              // x_start
-	mov x7, #160              // x_end
-	mov x11, #180            // y_start
-	mov x12, #184           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 3
-	mov x6, #160              // x_start
-	mov x7, #164              // x_end
-	mov x11, #176            // y_start
-	mov x12, #180           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 3
-	mov x6, #164              // x_start
-	mov x7, #168              // x_end
-	mov x11, #172            // y_start
-	mov x12, #176           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 3
-	mov x6, #168              // x_start
-	mov x7, #172              // x_end
-	mov x11, #168            // y_start
-	mov x12, #172           // y_end
-	bl double_mirror_loop
-	
-	// ÁRBOL 3
-	mov x6, #168              // x_start
-	mov x7, #172              // x_end
-	mov x11, #156            // y_start
-	mov x12, #168           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 3
-	mov x6, #164              // x_start
-	mov x7, #168              // x_end
-	mov x11, #144            // y_start
-	mov x12, #156           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 3
-	mov x6, #168              // x_start
-	mov x7, #176              // x_end
-	mov x11, #156            // y_start
-	mov x12, #160           // y_end
-	bl double_mirror_loop
-
-
-
-	// ÁRBOL 4
-	mov x6, #164              // x_start
-	mov x7, #192              // x_end
-	mov x11, #40            // y_start
-	mov x12, #60           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 4
-	mov x6, #152              // x_start
-	mov x7, #164              // x_end
-	mov x11, #52            // y_start
-	mov x12, #56           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 4
-	mov x6, #156              // x_start
-	mov x7, #160              // x_end
-	mov x11, #44            // y_start
-	mov x12, #48           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 4
-	mov x6, #160              // x_start
-	mov x7, #164              // x_end
-	mov x11, #48            // y_start
-	mov x12, #52           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 4
-	mov x6, #120              // x_start
-	mov x7, #128              // x_end
-	mov x11, #52            // y_start
-	mov x12, #56           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 4
-	mov x6, #124              // x_start
-	mov x7, #136              // x_end
-	mov x11, #44            // y_start
-	mov x12, #52           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 4
-	mov x6, #136              // x_start
-	mov x7, #140              // x_end
-	mov x11, #52            // y_start
-	mov x12, #56           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 4
-	mov x6, #180              // x_start
-	mov x7, #184              // x_end
-	mov x11, #60            // y_start
-	mov x12, #64           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 4
-	mov x6, #176              // x_start
-	mov x7, #180              // x_end
-	mov x11, #64            // y_start
-	mov x12, #68           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 4
-	mov x6, #164              // x_start
-	mov x7, #168              // x_end
-	mov x11, #60            // y_start
-	mov x12, #64           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 4
-	mov x6, #168              // x_start
-	mov x7, #172              // x_end
-	mov x11, #64            // y_start
-	mov x12, #68           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 4
-	mov x6, #192              // x_start
-	mov x7, #196              // x_end
-	mov x11, #56            // y_start
-	mov x12, #60           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 4
-	mov x6, #192              // x_start
-	mov x7, #196              // x_end
-	mov x11, #40            // y_start
-	mov x12, #52           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 4
-	mov x6, #196              // x_start
-	mov x7, #200              // x_end
-	mov x11, #52            // y_start
-	mov x12, #56           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 4
-	mov x6, #200              // x_start
-	mov x7, #204              // x_end
-	mov x11, #48            // y_start
-	mov x12, #52           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 4
-	mov x6, #196              // x_start
-	mov x7, #200              // x_end
-	mov x11, #44            // y_start
-	mov x12, #48           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 4
-	mov x6, #204              // x_start
-	mov x7, #216              // x_end
-	mov x11, #48            // y_start
-	mov x12, #64           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 4
-	mov x6, #204              // x_start
-	mov x7, #212              // x_end
-	mov x11, #36            // y_start
-	mov x12, #52           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 4
-	mov x6, #220              // x_start
-	mov x7, #224              // x_end
-	mov x11, #40            // y_start
-	mov x12, #44           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 4
-	mov x6, #216              // x_start
-	mov x7, #220              // x_end
-	mov x11, #40            // y_start
-	mov x12, #48           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 4
-	mov x6, #216              // x_start
-	mov x7, #220              // x_end
-	mov x11, #52            // y_start
-	mov x12, #56           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 4
-	mov x6, #220             // x_start
-	mov x7, #224              // x_end
-	mov x11, #48            // y_start
-	mov x12, #52           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 4
-	mov x6, #224             // x_start
-	mov x7, #228              // x_end
-	mov x11, #44            // y_start
-	mov x12, #48           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 4
-	mov x6, #228             // x_start
-	mov x7, #232              // x_end
-	mov x11, #40            // y_start
-	mov x12, #60           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 4
-	mov x6, #228             // x_start
-	mov x7, #236              // x_end
-	mov x11, #40            // y_start
-	mov x12, #44           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 4
-	mov x6, #236             // x_start
-	mov x7, #240              // x_end
-	mov x11, #40            // y_start
-	mov x12, #52           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 4
-	mov x6, #232             // x_start
-	mov x7, #236              // x_end
-	mov x11, #44            // y_start
-	mov x12, #48           // y_end
-	bl double_mirror_loop
-
-
-
-	// ÁRBOL 5
-	mov x6, #216              // x_start
-	mov x7, #220              // x_end
-	mov x11, #180            // y_start
-	mov x12, #220           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #212              // x_start
-	mov x7, #216              // x_end
-	mov x11, #152            // y_start
-	mov x12, #184           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #208              // x_start
-	mov x7, #212              // x_end
-	mov x11, #144             // y_start
-	mov x12, #152           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #208              // x_start
-	mov x7, #212              // x_end
-	mov x11, #144             // y_start
-	mov x12, #152           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #204              // x_start
-	mov x7, #208              // x_end
-	mov x11, #140             // y_start
-	mov x12, #144           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #200              // x_start
-	mov x7, #204              // x_end
-	mov x11, #128             // y_start
-	mov x12, #140           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #216              // x_start
-	mov x7, #220              // x_end
-	mov x11, #148             // y_start
-	mov x12, #152           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #220              // x_start
-	mov x7, #232              // x_end
-	mov x11, #144             // y_start
-	mov x12, #148           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #216              // x_start
-	mov x7, #220              // x_end
-	mov x11, #132             // y_start
-	mov x12, #144           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #212              // x_start
-	mov x7, #216              // x_end
-	mov x11, #132             // y_start
-	mov x12, #136           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #208              // x_start
-	mov x7, #212              // x_end
-	mov x11, #116             // y_start
-	mov x12, #132           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #204             // x_start
-	mov x7, #208              // x_end
-	mov x11, #116          // y_start
-	mov x12, #120           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #204             // x_start
-	mov x7, #208              // x_end
-	mov x11, #124          // y_start
-	mov x12, #128           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #200             // x_start
-	mov x7, #204              // x_end
-	mov x11, #112          // y_start
-	mov x12, #116           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #228             // x_start
-	mov x7, #232              // x_end
-	mov x11, #104          // y_start
-	mov x12, #148           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #232             // x_start
-	mov x7, #236              // x_end
-	mov x11, #112          // y_start
-	mov x12, #120           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #232             // x_start
-	mov x7, #236              // x_end
-	mov x11, #128          // y_start
-	mov x12, #136           // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #224             // x_start
-	mov x7, #228              // x_end
-	mov x11, #116          // y_start
-	mov x12, #120         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #220             // x_start
-	mov x7, #224              // x_end
-	mov x11, #112          // y_start
-	mov x12, #116         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #208             // x_start
-	mov x7, #220              // x_end
-	mov x11, #108          // y_start
-	mov x12, #112         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #204             // x_start
-	mov x7, #208              // x_end
-	mov x11, #104         // y_start
-	mov x12, #108         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #200             // x_start
-	mov x7, #204              // x_end
-	mov x11, #100          // y_start
-	mov x12, #104        // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #216             // x_start
-	mov x7, #224              // x_end
-	mov x11, #160          // y_start
-	mov x12, #164         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #220             // x_start
-	mov x7, #224              // x_end
-	mov x11, #152          // y_start
-	mov x12, #160         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #224             // x_start
-	mov x7, #228              // x_end
-	mov x11, #148        // y_start
-	mov x12, #152         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #224            // x_start
-	mov x7, #228              // x_end
-	mov x11, #108        // y_start
-	mov x12, #112         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #220            // x_start
-	mov x7, #224              // x_end
-	mov x11, #104        // y_start
-	mov x12, #108         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #216            // x_start
-	mov x7, #220              // x_end
-	mov x11, #100        // y_start
-	mov x12, #104         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #212            // x_start
-	mov x7, #216              // x_end
-	mov x11, #84        // y_start
-	mov x12, #100         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #208            // x_start
-	mov x7, #212              // x_end
-	mov x11, #84        // y_start
-	mov x12, #88         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #204            // x_start
-	mov x7, #208              // x_end
-	mov x11, #76        // y_start
-	mov x12, #84         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #232            // x_start
-	mov x7, #236              // x_end
-	mov x11, #96        // y_start
-	mov x12, #104         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #236            // x_start
-	mov x7, #240              // x_end
-	mov x11, #108        // y_start
-	mov x12, #116         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #240            // x_start
-	mov x7, #244              // x_end
-	mov x11, #104        // y_start
-	mov x12, #108         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #260            // x_start
-	mov x7, #272              // x_end
-	mov x11, #148        // y_start
-	mov x12, #192         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #260            // x_start
-	mov x7, #276              // x_end
-	mov x11, #192        // y_start
-	mov x12, #220         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #256            // x_start
-	mov x7, #260              // x_end
-	mov x11, #152        // y_start
-	mov x12, #164         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #252            // x_start
-	mov x7, #256              // x_end
-	mov x11, #148        // y_start
-	mov x12, #156         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #248            // x_start
-	mov x7, #252              // x_end
-	mov x11, #128        // y_start
-	mov x12, #152         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #244            // x_start
-	mov x7, #248              // x_end
-	mov x11, #140        // y_start
-	mov x12, #148         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #240            // x_start
-	mov x7, #244              // x_end
-	mov x11, #140        // y_start
-	mov x12, #144         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #240            // x_start
-	mov x7, #244              // x_end
-	mov x11, #132        // y_start
-	mov x12, #136         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #244            // x_start
-	mov x7, #248              // x_end
-	mov x11, #136        // y_start
-	mov x12, #140         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #244            // x_start
-	mov x7, #248              // x_end
-	mov x11, #116        // y_start
-	mov x12, #128         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #248            // x_start
-	mov x7, #260              // x_end
-	mov x11, #128        // y_start
-	mov x12, #132         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #252           // x_start
-	mov x7, #256              // x_end
-	mov x11, #124        // y_start
-	mov x12, #128         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #260            // x_start
-	mov x7, #268             // x_end
-	mov x11, #100        // y_start
-	mov x12, #148         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #264            // x_start
-	mov x7, #268             // x_end
-	mov x11, #88        // y_start
-	mov x12, #108         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #268            // x_start
-	mov x7, #276             // x_end
-	mov x11, #60        // y_start
-	mov x12, #104         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #272            // x_start
-	mov x7, #280             // x_end
-	mov x11, #40        // y_start
-	mov x12, #64         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #280            // x_start
-	mov x7, #284             // x_end
-	mov x11, #52        // y_start
-	mov x12, #60         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #284            // x_start
-	mov x7, #288             // x_end
-	mov x11, #44        // y_start
-	mov x12, #52         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #280            // x_start
-	mov x7, #284             // x_end
-	mov x11, #40        // y_start
-	mov x12, #44         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #288            // x_start
-	mov x7, #292             // x_end
-	mov x11, #40        // y_start
-	mov x12, #44         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #260            // x_start
-	mov x7, #272             // x_end
-	mov x11, #44        // y_start
-	mov x12, #48         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #256            // x_start
-	mov x7, #260             // x_end
-	mov x11, #40        // y_start
-	mov x12, #44         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #264            // x_start
-	mov x7, #272             // x_end
-	mov x11, #36        // y_start
-	mov x12, #52         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #264            // x_start
-	mov x7, #272             // x_end
-	mov x11, #68        // y_start
-	mov x12, #80         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #260            // x_start
-	mov x7, #264             // x_end
-	mov x11, #56        // y_start
-	mov x12, #72         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #244            // x_start
-	mov x7, #260             // x_end
-	mov x11, #52        // y_start
-	mov x12, #56         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #256            // x_start
-	mov x7, #260             // x_end
-	mov x11, #60        // y_start
-	mov x12, #64         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #252            // x_start
-	mov x7, #256             // x_end
-	mov x11, #56        // y_start
-	mov x12, #60         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #248            // x_start
-	mov x7, #252             // x_end
-	mov x11, #52        // y_start
-	mov x12, #56         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #252            // x_start
-	mov x7, #256             // x_end
-	mov x11, #48        // y_start
-	mov x12, #52         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #248            // x_start
-	mov x7, #252             // x_end
-	mov x11, #44        // y_start
-	mov x12, #48         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #276            // x_start
-	mov x7, #280             // x_end
-	mov x11, #80        // y_start
-	mov x12, #100         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #280            // x_start
-	mov x7, #284             // x_end
-	mov x11, #76        // y_start
-	mov x12, #96         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #284            // x_start
-	mov x7, #288             // x_end
-	mov x11, #60        // y_start
-	mov x12, #88         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #280            // x_start
-	mov x7, #284             // x_end
-	mov x11, #64        // y_start
-	mov x12, #72         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #276            // x_start
-	mov x7, #280             // x_end
-	mov x11, #60        // y_start
-	mov x12, #64         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #288            // x_start
-	mov x7, #296             // x_end
-	mov x11, #84        // y_start
-	mov x12, #88         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #296            // x_start
-	mov x7, #300             // x_end
-	mov x11, #72        // y_start
-	mov x12, #84         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #292            // x_start
-	mov x7, #296             // x_end
-	mov x11, #64        // y_start
-	mov x12, #72         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #300            // x_start
-	mov x7, #304             // x_end
-	mov x11, #64        // y_start
-	mov x12, #72         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #296            // x_start
-	mov x7, #300             // x_end
-	mov x11, #52        // y_start
-	mov x12, #64         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #292            // x_start
-	mov x7, #296             // x_end
-	mov x11, #48        // y_start
-	mov x12, #52         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #288            // x_start
-	mov x7, #292             // x_end
-	mov x11, #44        // y_start
-	mov x12, #48         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #284            // x_start
-	mov x7, #288             // x_end
-	mov x11, #36        // y_start
-	mov x12, #44         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #300            // x_start
-	mov x7, #304             // x_end
-	mov x11, #72        // y_start
-	mov x12, #80         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #304            // x_start
-	mov x7, #312             // x_end
-	mov x11, #68        // y_start
-	mov x12, #72         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #312            // x_start
-	mov x7, #316             // x_end
-	mov x11, #60        // y_start
-	mov x12, #68         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #316            // x_start
-	mov x7, #320             // x_end
-	mov x11, #52        // y_start
-	mov x12, #60         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #324            // x_start
-	mov x7, #328             // x_end
-	mov x11, #44        // y_start
-	mov x12, #52         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #328            // x_start
-	mov x7, #332             // x_end
-	mov x11, #36        // y_start
-	mov x12, #44         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #310            // x_start
-	mov x7, #314             // x_end
-	mov x11, #156        // y_start
-	mov x12, #180         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL 5
-	mov x6, #306            // x_start
-	mov x7, #310             // x_end
-	mov x11, #180        // y_start
-	mov x12, #220         // y_end
-	bl double_mirror_loop
-
-	
-
-	// ---------------------- PARTE DE ODC ---------------------
-
-	// ÁRBOL DE BASE
-	mov x6, #310            // x_start
-	mov x7, #314             // x_end
-	mov x11, #156        // y_start
-	mov x12, #180         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL DE BASE
-	mov x6, #306            // x_start
-	mov x7, #310             // x_end
-	mov x11, #180        // y_start
-	mov x12, #220         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL DE BASE
-	mov x6, #306            // x_start
-	mov x7, #310             // x_end
-	mov x11, #180        // y_start
-	mov x12, #220         // y_end
-	bl double_mirror_loop
-
-	// ÁRBOL DE BASE
-	mov x6, #284            // x_start
-	mov x7, #288             // x_end
-	mov x11, #180        // y_start
-	mov x12, #220         // y_end
-	bl double_mirror_loop
-	
-	// ÁRBOL DE BASE
-	mov x6, #288            // x_start
-	mov x7, #292             // x_end
-	mov x11, #152        // y_start
-	mov x12, #180         // y_end
-	bl double_mirror_loop
-
-	// --------- la letra 'o'---------
-
-	// LETRA 'O'
-	mov x6, #280            // x_start
-	mov x7, #284             // x_end
-	mov x11, #140        // y_start
-	mov x12, #148         // y_end
-	bl only_y_mirror_loop
-
-	// LETRA 'O'
-	mov x6, #284            // x_start
-	mov x7, #288             // x_end
-	mov x11, #148        // y_start
-	mov x12, #152         // y_end
-	bl only_y_mirror_loop
-
-	// LETRA 'O'
-	mov x6, #284            // x_start
-	mov x7, #288             // x_end
-	mov x11, #136        // y_start
-	mov x12, #140         // y_end
-	bl only_y_mirror_loop
-
-	// LETRA 'O'
-	mov x6, #288            // x_start
-	mov x7, #292             // x_end
-	mov x11, #140        // y_start
-	mov x12, #148         // y_end
-	bl only_y_mirror_loop
-
-
-	// LETRA 'D'
-	mov x6, #296            // x_start
-	mov x7, #300             // x_end
-	mov x11, #136        // y_start
-	mov x12, #152         // y_end
-	bl only_y_mirror_loop
-
-	// LETRA 'D'
-	mov x6, #300            // x_start
-	mov x7, #304             // x_end
-	mov x11, #136        // y_start
-	mov x12, #140         // y_end
-	bl only_y_mirror_loop
-
-	// LETRA 'D'
-	mov x6, #300            // x_start
-	mov x7, #304             // x_end
-	mov x11, #148        // y_start
-	mov x12, #152         // y_end
-	bl only_y_mirror_loop
-
-
-	// RAMA DE APOYO
-	mov x6, #304            // x_start
-	mov x7, #308             // x_end
-	mov x11, #140        // y_start
-	mov x12, #148       // y_end
-	bl only_y_mirror_loop
-
-	// RAMA DE APOYO
-	mov x6, #304            // x_start
-	mov x7, #312             // x_end
-	mov x11, #156        // y_start
-	mov x12, #160         // y_end
-	bl only_y_mirror_loop
-
-	// RAMA DE APOYO
-	mov x6, #304            // x_start
-	mov x7, #308             // x_end
-	mov x11, #152        // y_start
-	mov x12, #156         // y_end
-	bl only_y_mirror_loop
-
-	// RAMA DE APOYO
-	mov x6, #314            // x_start
-	mov x7, #318             // x_end
-	mov x11, #152        // y_start
-	mov x12, #156         // y_end
-	bl only_y_mirror_loop
-	
-
-	// LETRA 'C'
-	mov x6, #310            // x_start
-	mov x7, #314             // x_end
-	mov x11, #140        // y_start
-	mov x12, #148         // y_end
-	bl only_y_mirror_loop
-
-	// LETRA 'C'
-	mov x6, #314            // x_start
-	mov x7, #322             // x_end
-	mov x11, #136        // y_start
-	mov x12, #140         // y_end
-	bl only_y_mirror_loop
-
-	// LETRA 'C'
-	mov x6, #314            // x_start
-	mov x7, #322             // x_end
-	mov x11, #148        // y_start
-	mov x12, #152         // y_end
-	bl only_y_mirror_loop
-
-	// ------- HARÉ QUE LOS NÚMEROS "2025" SE VEAN REFLEJADOS EN EL LADO DE ABAJO DE LA PANTALLA, COMO SI FUESEN EL OTRO MUNDO ---------- 
+fin_dibujando_ODC2025:
 
 	movz x5, 0x0000, lsl 0	
 	movk x5, 0xFF00, lsl 16
+// Dibujar los números y ramas con un solo loop
+    movz x5, 0x0000, lsl 0
+    movk x5, 0xFF00, lsl 16
 
-	// NÚMERO 2
-	mov x1, #284            // x_start
-	mov x2, #364             // y_start
-	mov x3, #8        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
+    ldr x19, =tabla_rectangulos
+    mov x21, #28  // cantidad de rectángulos
 
-	// NÚMERO 2
-	mov x1, #284            // x_start
-	mov x2, #356             // y_start
-	mov x3, #4        // ancho
-	mov x4, #8         // alto
-	bl draw_rect
+loop_rectangulos:
+    cbz x21, fin_rectangulos
 
-	// NÚMERO 2
-	mov x1, #284            // x_start
-	mov x2, #356             // y_start
-	mov x3, #8        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
+    ldr w1, [x19], #4
+    ldr w2, [x19], #4
+    ldr w3, [x19], #4
+    ldr w4, [x19], #4
 
-	// NÚMERO 2
-	mov x1, #288            // x_start
-	mov x2, #348             // y_start
-	mov x3, #4        // ancho
-	mov x4, #8         // alto
-	bl draw_rect
+    bl draw_rect
 
-	// NÚMERO 2
-	mov x1, #284            // x_start
-	mov x2, #348             // y_start
-	mov x3, #8        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
+    subs x21, x21, #1
+    b.ne loop_rectangulos
 
-
-	// NÚMERO 0
-	mov x1, #296            // x_start
-	mov x2, #352             // y_start
-	mov x3, #4        // ancho
-	mov x4, #12         // alto
-	bl draw_rect
-
-	// NÚMERO 0
-	mov x1, #300            // x_start
-	mov x2, #348             // y_start
-	mov x3, #4        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// NÚMERO 0
-	mov x1, #300            // x_start
-	mov x2, #364             // y_start
-	mov x3, #4        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// NÚMERO 0
-	mov x1, #304            // x_start
-	mov x2, #352             // y_start
-	mov x3, #4        // ancho
-	mov x4, #12         // alto
-	bl draw_rect
-
-
-	// NÚMERO 2
-	mov x1, #312            // x_start
-	mov x2, #364             // y_start
-	mov x3, #8        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// NÚMERO 2
-	mov x1, #312            // x_start
-	mov x2, #356             // y_start
-	mov x3, #4        // ancho
-	mov x4, #8         // alto
-	bl draw_rect
-
-	// NÚMERO 2
-	mov x1, #312            // x_start
-	mov x2, #356             // y_start
-	mov x3, #8        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// NÚMERO 2
-	mov x1, #316            // x_start
-	mov x2, #348             // y_start
-	mov x3, #4        // ancho
-	mov x4, #8         // alto
-	bl draw_rect
-
-	// NÚMERO 2
-	mov x1, #312            // x_start
-	mov x2, #348             // y_start
-	mov x3, #8        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-
-	// NÚMERO 5
-	mov x1, #324            // x_start
-	mov x2, #348             // y_start
-	mov x3, #8        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// NÚMERO 5
-	mov x1, #324            // x_start
-	mov x2, #348             // y_start
-	mov x3, #4        // ancho
-	mov x4, #8         // alto
-	bl draw_rect
-
-	// NÚMERO 5
-	mov x1, #324            // x_start
-	mov x2, #356             // y_start
-	mov x3, #8        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// NÚMERO 5
-	mov x1, #328            // x_start
-	mov x2, #356             // y_start
-	mov x3, #4        // ancho
-	mov x4, #8         // alto
-	bl draw_rect
-
-	// NÚMERO 5
-	mov x1, #324            // x_start
-	mov x2, #364             // y_start
-	mov x3, #8        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-
-	// RAMAS AUXILIARES PARA CONECTARLO AL ÁRBOL DE ODC
-
-	// RAMA
-	mov x1, #320            // x_start
-	mov x2, #344             // y_start
-	mov x3, #4        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// RAMA
-	mov x1, #280            // x_start
-	mov x2, #344             // y_start
-	mov x3, #4        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// RAMA
-	mov x1, #304            // x_start
-	mov x2, #344             // y_start
-	mov x3, #4        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// RAMA
-	mov x1, #340            // x_start
-	mov x2, #336             // y_start
-	mov x3, #4        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// RAMA
-	mov x1, #344            // x_start
-	mov x2, #332             // y_start
-	mov x3, #4        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// RAMA
-	mov x1, #348            // x_start
-	mov x2, #328             // y_start
-	mov x3, #4        // ancho
-	mov x4, #8         // alto
-	bl draw_rect
-
-	// RAMA
-	mov x1, #332            // x_start
-	mov x2, #340             // y_start
-	mov x3, #8        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// RAMA
-	mov x1, #328            // x_start
-	mov x2, #344             // y_start
-	mov x3, #4        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// RAMA
-	mov x1, #328            // x_start
-	mov x2, #324             // y_start
-	mov x3, #4        // ancho
-	mov x4, #16         // alto
-	bl draw_rect
+fin_rectangulos:
 
 	// ------------------- PASTO EN EL QUE SE APOYAN LOS PERSONAJES -------------------
-
+dibujando_pasto:
 	// Pintaré el pasto utilizando la función draw_rect. Elegí esta ya que al ser una imagen pixelada, y el pasto no tener un patrón definido, es lo que más cómodo queda.
+    // Color verde oscuro = 0xFF35656F
+    movz x5, 0x656F, lsl #0
+    movk x5, 0xFF35, lsl #16
 
-	//color verde oscuro = 0xFF35656F
-	movz x5, 0x656F, lsl 0	
-	movk x5, 0xFF35, lsl 16
+    ldr x19, =tabla_pasto        // Dirección de la tabla con los datos
+    mov x21, #42                // Cantidad de entradas (número de rectángulos)
 
-	// PASTO
-	mov x1, #52            // x_start
-	mov x2, #236             // y_start
-	mov x3, #4        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
+loop_pasto:
+    cbz x21, fin_pasto
 
-	// PASTO
-	mov x1, #56            // x_start
-	mov x2, #232             // y_start
-	mov x3, #4        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
+    ldr w1, [x19], #4          // x_start
+    ldr w2, [x19], #4          // y_start
+    ldr w3, [x19], #4          // ancho
+    ldr w4, [x19], #4          // alto
 
-	// PASTO
-	mov x1, #60            // x_start
-	mov x2, #236             // y_start
-	mov x3, #260        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
+    bl draw_rect
 
-	// PASTO
-	mov x1, #352            // x_start
-	mov x2, #236             // y_start
-	mov x3, #200        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
+    subs x21, x21, #1
+    b.ne loop_pasto
 
-	// PASTO
-	mov x1, #552            // x_start
-	mov x2, #240             // y_start
-	mov x3, #8        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-	
-	// PASTO
-	mov x1, #560            // x_start
-	mov x2, #236             // y_start
-	mov x3, #8        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #568            // x_start
-	mov x2, #240             // y_start
-	mov x3, #20        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #68            // x_start
-	mov x2, #240             // y_start
-	mov x3, #8        // ancho
-	mov x4, #8         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #100            // x_start
-	mov x2, #240             // y_start
-	mov x3, #4        // ancho
-	mov x4, #8         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #120            // x_start
-	mov x2, #240             // y_start
-	mov x3, #4        // ancho
-	mov x4, #8         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #148            // x_start
-	mov x2, #240             // y_start
-	mov x3, #4        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #156            // x_start
-	mov x2, #240             // y_start
-	mov x3, #4        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #176            // x_start
-	mov x2, #240             // y_start
-	mov x3, #160        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #340            // x_start
-	mov x2, #240             // y_start
-	mov x3, #120        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #464            // x_start
-	mov x2, #240             // y_start
-	mov x3, #80        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #80            // x_start
-	mov x2, #232             // y_start
-	mov x3, #8        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #116            // x_start
-	mov x2, #232             // y_start
-	mov x3, #12        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #160            // x_start
-	mov x2, #232             // y_start
-	mov x3, #4        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #168            // x_start
-	mov x2, #232             // y_start
-	mov x3, #4        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #176            // x_start
-	mov x2, #232             // y_start
-	mov x3, #4        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #180            // x_start
-	mov x2, #232             // y_start
-	mov x3, #4        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #260            // x_start
-	mov x2, #232             // y_start
-	mov x3, #8        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #272            // x_start
-	mov x2, #232             // y_start
-	mov x3, #20        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #320            // x_start
-	mov x2, #232             // y_start
-	mov x3, #32        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #404            // x_start
-	mov x2, #232             // y_start
-	mov x3, #4        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #412            // x_start
-	mov x2, #232             // y_start
-	mov x3, #4        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #448            // x_start
-	mov x2, #232             // y_start
-	mov x3, #4        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #456            // x_start
-	mov x2, #232             // y_start
-	mov x3, #4        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #464            // x_start
-	mov x2, #232             // y_start
-	mov x3, #4        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #500            // x_start
-	mov x2, #232             // y_start
-	mov x3, #12        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #128            // x_start
-	mov x2, #244             // y_start
-	mov x3, #116        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #268            // x_start
-	mov x2, #244             // y_start
-	mov x3, #168        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #60            // x_start
-	mov x2, #244             // y_start
-	mov x3, #48        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #480            // x_start
-	mov x2, #244             // y_start
-	mov x3, #8        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #512            // x_start
-	mov x2, #244             // y_start
-	mov x3, #12        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #72            // x_start
-	mov x2, #248             // y_start
-	mov x3, #4        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #100            // x_start
-	mov x2, #248             // y_start
-	mov x3, #12        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #204            // x_start
-	mov x2, #248             // y_start
-	mov x3, #4        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #248            // x_start
-	mov x2, #248             // y_start
-	mov x3, #24        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #320            // x_start
-	mov x2, #248             // y_start
-	mov x3, #4        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #364            // x_start
-	mov x2, #248             // y_start
-	mov x3, #8        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
-	// PASTO
-	mov x1, #400            // x_start
-	mov x2, #248             // y_start
-	mov x3, #12        // ancho
-	mov x4, #4         // alto
-	bl draw_rect
-
- 
-
-
-
- ////////////////////PERSONAJES////////////////////
-	// personajes
-	
-	// Dustin
-	// Cabeza	
-	mov x1, #94
-	mov x2, #144
-	mov x3, #32
-	mov x4, #32
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16     // cara principal
-	bl draw_rect
-       
-        mov x1, #98
-	mov x2, #140
-	mov x3, #24
-	mov x4, #12
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFFFF, lsl #16     // parte blanca de la gorra
-	bl draw_rect
-	
-        mov x1, #98       
-        mov x2, #140      
-        mov x3, #4        
-        mov x4, #4        
-        movz w5, #0x00FF, lsl #0      
-        movk w5, #0x0000, lsl #16       // detalle azul gorra parte izquierda
-        bl draw_rect
-        
-	mov x1, #90
-	mov x2, #148
-	mov x3, #8
-	mov x4, #8
-	movz w5, #0x00FF, lsl #0      
-        movk w5, #0x0000, lsl #16       // detalle azul gorra parte izquierda
-	bl draw_rect
-        
-        mov x1, #94
-	mov x2, #144
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x00FF, lsl #0      
-        movk w5, #0x0000, lsl #16       // detalle azul gorra parte izquierda
-	bl draw_rect
-
-	mov x1, #122
-	mov x2, #148
-	mov x3, #8
-	mov x4, #4
-	movz w5, #0x00FF, lsl #0      
-        movk w5, #0x0000, lsl #16      // detalle azul gorra parte derecha
-	bl draw_rect
-	
-	mov x1, #122
-	mov x2, #144
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x00FF, lsl #0      
-        movk w5, #0x0000, lsl #16      // detalle azul gorra parte derecha
-	bl draw_rect
-
-        mov x1, #98
-	mov x2, #152
-	mov x3, #38
-	mov x4, #4
-	movz w5, #0x0000, lsl #0      
-        movk w5, #0xFFFF, lsl #16      // borde rojo de la gorra
-        bl draw_rect
-                
-        mov x1, #98
-	mov x2, #176
-	mov x3, #24
-	mov x4, #4
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16    // mentón  
-	bl draw_rect
-
-	mov x1, #106
-	mov x2, #180
-	mov x3, #8
-	mov x4, #4
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16     // cuello 
-	bl draw_rect
-        
-        mov x1, #90
-	mov x2, #156
-	mov x3, #8
-	mov x4, #4
-	movz w5, #0x4513, lsl #0      
-        movk w5, #0xFF8B, lsl #16     // capucha pegada a la gorra
-        bl draw_rect
-        
-        mov x1, #102
-	mov x2, #156
-	mov x3, #20
-	mov x4, #4
-	movz w5, #0x853F, lsl #0      
-        movk w5, #0xFFCD, lsl #16     // pelo 
-        bl draw_rect
-        
-        mov x1, #114
-	mov x2, #160
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x853F, lsl #0      
-        movk w5, #0xFFCD, lsl #16     // mechon de pelo solo
-        bl draw_rect
-        
-        mov x1, #90
-	mov x2, #160
-	mov x3, #4
-	mov x4, #12
-	movz w5, #0x4513, lsl #0      
-        movk w5, #0xFF8B, lsl #16     // parte vertical gorra izquierda
-        bl draw_rect
-        
-        mov x1, #98
-	mov x2, #172
-	mov x3, #4
-	mov x4, #12
-	movz w5, #0x4513, lsl #0      
-        movk w5, #0xFF8B, lsl #16     // unión capucha con campera parte izquierda
-        bl draw_rect
-        
-        mov x1, #124
-	mov x2, #156
-	mov x3, #4
-	mov x4, #8
-	movz w5, #0x4513, lsl #0      
-        movk w5, #0xFF8B, lsl #16     // parte alta de la capucha lado derecho
-        bl draw_rect
-        
-        mov x1, #124
-	mov x2, #168
-	mov x3, #4
-	mov x4, #8
-	movz w5, #0x4513, lsl #0      
-        movk w5, #0xFF8B, lsl #16     // detalle capucha parte derecha
-        bl draw_rect
-                  
-        mov x1, #118
-	mov x2, #172
-	mov x3, #6
-	mov x4, #12
-	movz w5, #0x4513, lsl #0      
-        movk w5, #0xFF8B, lsl #16     // union capucha con campera
-        bl draw_rect     
-        
-        mov x1, #126
-	mov x2, #160
-	mov x3, #4
-	mov x4, #16
-	movz w5, #0x4513, lsl #0      
-        movk w5, #0xFF8B, lsl #16     // detalle capucha parte derecha
-        bl draw_rect   
-        
-        mov x1, #128
-	mov x2, #168
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x4513, lsl #0      
-        movk w5, #0xFF8B, lsl #16     // detalle capucha parte derecha
-        bl draw_rect
-        
-        mov x1, #94
-	mov x2, #168
-	mov x3, #4
-	mov x4, #12
-	movz w5, #0x4513, lsl #0      
-        movk w5, #0xFF8B, lsl #16     // detalle capucha parte izquierda
-        bl draw_rect
-        
-        mov x1, #86
-	mov x2, #164
-	mov x3, #4
-	mov x4, #8
-	movz w5, #0x4513, lsl #0      
-        movk w5, #0xFF8B, lsl #16     // detalle capucha parte izquierda
-        bl draw_rect
-
-        mov x1, #114
-	mov x2, #164
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x0000, lsl #0      
-        movk w5, #0xFF00, lsl #16     // ojo derecho
-        bl draw_rect
-        
-        mov x1, #102
-	mov x2, #164
-	mov x3, #4
-	mov x4, #4
-        movz w5, #0x0000, lsl #0      
-        movk w5, #0xFF00, lsl #16     // ojo izquierdo
-        bl draw_rect
-        
-        mov x1, #106
-	mov x2, #172
-	mov x3, #8
-	mov x4, #4
-	movz w5, #0x522D, lsl #0      
-        movk w5, #0xFFA0, lsl #16     // boca
-        bl draw_rect
-        
-	// Cuerpo
-	// Bordes del cuello
-	mov x1, #102
-	mov x2, #180
-	mov x3, #4
-	mov x4, #12
-	movz w5, #0x853F, lsl #0      
-        movk w5, #0xFFCD, lsl #16     // detalle marrón claro de la campera
-	bl draw_rect
-
-	mov x1, #114
-	mov x2, #180
-	mov x3, #4
-	mov x4, #12
-	movz w5, #0x853F, lsl #0      
-        movk w5, #0xFFCD, lsl #16     // detalle marrón claro de la campera
-	bl draw_rect
-
-	// Hombro izquerdo
-	mov x1, #94
-	mov x2, #184
-	mov x3, #8
-	mov x4, #8
-	movz w5, #0x522A, lsl #0      
-        movk w5, #0xFFA0, lsl #16     
-	bl draw_rect
-
-        // Hombro derecho
-	mov x1, #118
-	mov x2, #184
-	mov x3, #8
-	mov x4, #8
-	movz w5, #0x522A, lsl #0     
-        movk w5, #0xFFA0, lsl #16     
-	bl draw_rect
-        
-        // Cuello  
-	mov x1, #106
-	mov x2, #184
-	mov x3, #8
-	mov x4, #4
-	movz w5, #0xEBD7, lsl #0      
-        movk w5, #0xFFFA, lsl #16     
-	bl draw_rect
-
-	// campera parte izquierda
-	mov x1, #98
-	mov x2, #192
-	mov x3, #8
-	mov x4, #20
-	movz w5, #0x522A, lsl #0      
-        movk w5, #0xFFA0, lsl #16     // campera parte del torso
-	bl draw_rect
-	
-	// remera
-	mov x1, #106
-	mov x2, #188
-	mov x3, #8
-	mov x4, #24
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFFFF, lsl #16      // remera de abajo
-	bl draw_rect
-	
-	// campera parte dereceha
-	mov x1, #114
-	mov x2, #192
-	mov x3, #8
-	mov x4, #20
-	movz w5, #0x522A, lsl #0      
-        movk w5, #0xFFA0, lsl #16     // campera parte del torso
-	bl draw_rect
-
-	// Brazo izquierdo
-	mov x1, #88
-	mov x2, #188
-	mov x3, #6
-	mov x4, #20
-	movz w5, #0x522A, lsl #0      
-        movk w5, #0xFFA0, lsl #16     // manga de campera
-	bl draw_rect
-	
-	mov x1, #88
-	mov x2, #208
-	mov x3, #6
-	mov x4, #4
-	movz w5, #0x853F, lsl #0      
-        movk w5, #0xFFCD, lsl #16     // puño de campera 
-	bl draw_rect
-	
-	// Brazo derecho
-
-	mov x1, #126
-	mov x2, #188
-	mov x3, #6
-	mov x4, #20
-	movz w5, #0x522A, lsl #0      
-        movk w5, #0xFFA0, lsl #16     // manga de campera
-	bl draw_rect 
-		
-	mov x1, #126
-	mov x2, #208
-	mov x3, #6
-	mov x4, #4
-	movz w5, #0x853F, lsl #0      
-        movk w5, #0xFFCD, lsl #16     // puño de campera 
-	bl draw_rect
-
-	// Manos 
-	mov x1, #92
-	mov x2, #212
-	mov x3, #6
-	mov x4, #6
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #122
-	mov x2, #212
-	mov x3, #6
-	mov x4, #6
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	// Piernas
-	mov x1, #102
-	mov x2, #212
-	mov x3, #6
-	mov x4, #24
-	movz w5, #0x3A80, lsl #0      
-        movk w5, #0xFF20, lsl #16     // jean
-	bl draw_rect
-
-	mov x1, #112
-	mov x2, #212
-	mov x3, #6
-	mov x4, #24
-	movz w5, #0x3A80, lsl #0      
-        movk w5, #0xFF20, lsl #16     //  jean
-	bl draw_rect
-
-	// Pies
-	mov x1, #98
-	mov x2, #236
-	mov x3, #8
-	mov x4, #6
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #114
-	mov x2, #236
-	mov x3, #8
-	mov x4, #6
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	// Will
-	// Cabeza 	
-	mov x1, #176
-	mov x2, #304
-	mov x3, #32
-	mov x4, #24
-	movz w5, #0xCCAA, lsl #0    // cara 
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-	
-	mov x1, #180
-	mov x2, #300
-	mov x3, #24
-	mov x4, #4
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16    // mentón 
-	bl draw_rect
-
-	mov x1, #188
-	mov x2, #296
-	mov x3, #8
-	mov x4, #4
-	movz w5, #0xA874, lsl #0      
-        movk w5, #0xFFCC, lsl #16     // cuello
-	bl draw_rect
-	
-	mov x1, #180
-	mov x2, #336
-	mov x3, #24
-	mov x4, #4
-	movz w5, #0x4444, lsl #0        
-        movk w5, #0xFF44, lsl #16       // 1era parte del pelo
-	bl draw_rect
-
-	mov x1, #176
-	mov x2, #328
-	mov x3, #32
-	mov x4, #8
-	movz w5, #0x4444, lsl #0        
-        movk w5, #0xFF44, lsl #16       // 2da parte del pelo
-	bl draw_rect
-	
-        mov x1, #172
-	mov x2, #304
-	mov x3, #4
-	mov x4, #28
-	movz w5, #0x4444, lsl #0      
-        movk w5, #0xFF44, lsl #16       // pelo vertical izquierdo
-	bl draw_rect
-	
-	mov x1, #208
-	mov x2, #304
-	mov x3, #4
-	mov x4, #28
-	movz w5, #0x4444, lsl #0      
-        movk w5, #0xFF44, lsl #16       // pelo vertical derecho
-	bl draw_rect
-
-        mov x1, #176
-	mov x2, #300
-	mov x3, #4
-	mov x4, #12
-	movz w5, #0x4444, lsl #0        
-        movk w5, #0xFF44, lsl #16       // pelo vertical al lado del mentón izquierdo
-	bl draw_rect
-	
-	mov x1, #204
-	mov x2, #300
-	mov x3, #4
-	mov x4, #12
-	movz w5, #0x4444, lsl #0        
-        movk w5, #0xFF44, lsl #16       // pelo vertical al lado del mentón derecho
-	bl draw_rect
-	
-	mov x1, #180
-	mov x2, #300
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x4444, lsl #0       
-        movk w5, #0xFF44, lsl #16       //  pelo al lado del mentón izquierdo
-	bl draw_rect
-	
-	mov x1, #200
-	mov x2, #300
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x4444, lsl #0        
-        movk w5, #0xFF44, lsl #16       // pelo al lado del mentón derecho
-	bl draw_rect
-	
-	mov x1, #176
-	mov x2, #320
-	mov x3, #8
-	mov x4, #8
-	movz w5, #0x4444, lsl #0        
-        movk w5, #0xFF44, lsl #16       // flequillo izquierdo
-	bl draw_rect
-	
-	mov x1, #180
-	mov x2, #316
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x4444, lsl #0       
-        movk w5, #0xFF44, lsl #16       //  parte del flequillo cae, izquierda
-	bl draw_rect
-	
-	mov x1, #184
-	mov x2, #324
-	mov x3, #12
-	mov x4, #4
-	movz w5, #0x4444, lsl #0        // 
-        movk w5, #0xFF44, lsl #16       //  pelo en la frente 
-	bl draw_rect	
-	
-	mov x1, #204
-	mov x2, #320
-	mov x3, #4
-	mov x4, #8
-	movz w5, #0x4444, lsl #0       
-        movk w5, #0xFF44, lsl #16       //  mechón vertical derecha
-	bl draw_rect
-	
-	mov x1, #184
-	mov x2, #312
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x0000, lsl #0      
-        movk w5, #0xFF00, lsl #16     // ojo izquierdo
-	bl draw_rect
-	
-	mov x1, #196
-	mov x2, #312
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x0000, lsl #0      
-        movk w5, #0xFF00, lsl #16     // ojo derecho
-	bl draw_rect
-	
-	mov x1, #188
-	mov x2, #304
-	mov x3, #8
-	mov x4, #4
-	movz w5, #0x522D, lsl #0     
-        movk w5, #0xFFA0, lsl #16     // boca
-	bl draw_rect
-	
-	// Cuerpo
-	mov x1, #176
-	mov x2, #288
-	mov x3, #32
-	mov x4, #8
-	movz w5, #0x3A80, lsl #0      
-        movk w5, #0xFF20, lsl #16     //parte superior del torso
-	bl draw_rect
-
-	mov x1, #180
-	mov x2, #268
-	mov x3, #24
-	mov x4, #24
-	movz w5, #0x0033, lsl #0      
-        movk w5, #0xFF88, lsl #16       // campera
-	bl draw_rect
-	
-	mov x1, #184
-	mov x2, #264
-	mov x3, #4
-	mov x4, #36
-	movz w5, #0x0033, lsl #0        
-        movk w5, #0xFF88, lsl #16       // hombro alto izq
-	bl draw_rect
-
-	mov x1, #196
-	mov x2, #264
-	mov x3, #4
-	mov x4, #36
-	movz w5, #0x0033, lsl #0        
-        movk w5, #0xFF88, lsl #16       // hombro alto der
-	bl draw_rect
-	
-	mov x1, #188
-	mov x2, #268
-	mov x3, #8
-	mov x4, #28
-	movz w5, #0xEEEE, lsl #0        
-        movk w5, #0xFFEE, lsl #16       // remera blanca
-	bl draw_rect
-
-        // Brazos
-	mov x1, #172
-	mov x2, #268
-	mov x3, #4
-	mov x4, #24
-	movz w5, #0x3A80, lsl #0      
-        movk w5, #0xFF20, lsl #16     // mangas remera brazo izquierdo
-	bl draw_rect
-
-	mov x1, #208
-	mov x2, #268
-	mov x3, #4
-	mov x4, #24
-	movz w5, #0x3A80, lsl #0      
-        movk w5, #0xFF20, lsl #16     //mangas remera brazo derecho
-	bl draw_rect
-	
-	mov x1, #172
-	mov x2, #268
-	mov x3, #4
-	mov x4, #16
-	movz w5, #0xEEEE, lsl #0        
-        movk w5, #0xFFEE, lsl #16       // remera blanca manga izquierda
-	bl draw_rect
-
-	mov x1, #208
-	mov x2, #268
-	mov x3, #4
-	mov x4, #16
-	movz w5, #0xEEEE, lsl #0        
-        movk w5, #0xFFEE, lsl #16       // remera blanca manga derecha
-	bl draw_rect	
-
-        // Manos
-	mov x1, #176
-	mov x2, #264
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #204
-	mov x2, #264
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-        // Piernas
-	mov x1, #184
-	mov x2, #248
-	mov x3, #4
-	mov x4, #20
-	movz w5, #0x3C75, lsl #0      
-        movk w5, #0xFF2F, lsl #16     //  pierna izquierda
-	bl draw_rect
-
-	mov x1, #196
-	mov x2, #248
-	mov x3, #4
-	mov x4, #20
-	movz w5, #0x3C75, lsl #0      
-        movk w5, #0xFF2F, lsl #16     // pierna derecha
-	bl draw_rect
-
-        // Pies 
-	mov x1, #180
-	mov x2, #244
-	mov x3, #8
-	mov x4, #6
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #196
-	mov x2, #244
-	mov x3, #8
-	mov x4, #6
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	// Max
-	// Cabeza
-	mov x1, #252
-	mov x2, #152
-	mov x3, #40
-	mov x4, #20
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16     // piel parte alta de la cara
-	bl draw_rect
-	  
-        mov x1, #264
-	mov x2, #140
-	mov x3, #16
-	mov x4, #4
-	movz w5, #0x3020, lsl #0      
-        movk w5, #0xFFCC, lsl #16     // mechon alto del pelo
-        bl draw_rect
-        
-        mov x1, #252
-	mov x2, #144
-	mov x3, #40
-	mov x4, #12
-	movz w5, #0x3020, lsl #0 
-	movk w5, #0xFFCC, lsl #16     //  1era parte del pelo
-        bl draw_rect
-	
-	mov x1, #248
-	mov x2, #156
-	mov x3, #8
-	mov x4, #32
-	movz w5, #0x3020, lsl #0      
-        movk w5, #0xFFCC, lsl #16     // parte vertical izquierda del pelo 
-	bl draw_rect
-
-	mov x1, #288
-	mov x2, #156
-	mov x3, #8
-	mov x4, #32
-	movz w5, #0x3020, lsl #0      
-        movk w5, #0xFFCC, lsl #16     // parte vertical derecha del pelo 
-	bl draw_rect
-	
-	mov x1, #256
-	mov x2, #172
-	mov x3, #32
-	mov x4, #8
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16     // piel parte baja de la cara 
-	bl draw_rect
-	
-	mov x1, #254
-	mov x2, #156
-	mov x3, #12
-	mov x4, #4
-	movz w5, #0x3020, lsl #0      
-        movk w5, #0xFFCC, lsl #16     //  parte del flequillo izquierdo
-        bl draw_rect
-        
-        mov x1, #276
-	mov x2, #156
-	mov x3, #12
-	mov x4, #4
-	movz w5, #0x3020, lsl #0      
-        movk w5, #0xFFCC, lsl #16     //  parte del flequillo derecho
-        bl draw_rect
-        
-        mov x1, #264
-	mov x2, #164
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x0000, lsl #0        
-        movk w5, #0xFF00, lsl #16       // ojo izq
-        bl draw_rect
-        
-        mov x1, #276
-	mov x2, #164
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x0000, lsl #0        
-        movk w5, #0xFF00, lsl #16       // ojo derecho
-        bl draw_rect
-        
-        mov x1, #268
-	mov x2, #172
-	mov x3, #8
-	mov x4, #4
-	movz w5, #0x522D, lsl #0      
-        movk w5, #0xFFA0, lsl #16     //   boca
-        bl draw_rect
-	
-	mov x1, #260
-	mov x2, #180
-	mov x3, #24
-	mov x4, #4
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16    // 1er parte del cuello 
-	bl draw_rect
-
-	mov x1, #268
-	mov x2, #184
-	mov x3, #8
-	mov x4, #4
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16   // 2da parte del cuello 
-	bl draw_rect
-
-	// Cuerpo		
-	// Hombros
-	mov x1, #256
-	mov x2, #188
-	mov x3, #32
-	mov x4, #8
-	movz w5, #0xD0FF, lsl #0       
-        movk w5, #0xCC80, lsl #16       //    Campera
-	bl draw_rect
-	
-	// Remera de abajo
-	mov x1, #268
-	mov x2, #188
-	mov x3, #8
-	mov x4, #8
-	movz w5, #0xEEEE, lsl #0         
-        movk w5, #0xFFEE, lsl #16        //  remera
-	bl draw_rect
-
-	// Panza
-	mov x1, #260
-	mov x2, #196
-	mov x3, #24
-	mov x4, #20
-	movz w5, #0xD0FF, lsl #0        
-        movk w5, #0xCC80, lsl #16        // Campera
-	bl draw_rect
-	
-	// Bordes del cuello y detalles del cierre
-	mov x1, #264
-	mov x2, #184
-	mov x3, #4
-	mov x4, #12
-	movz w5, #0xFF00, lsl #0        
-        movk w5, #0xFFFF, lsl #16       // cierre campera
-	bl draw_rect
-
-	mov x1, #276
-	mov x2, #184
-	mov x3, #4
-	mov x4, #12
-	movz w5, #0xFF00, lsl #0       
-        movk w5, #0xFFFF, lsl #16       // cierre campera
-	bl draw_rect
-	
-	mov x1, #268
-	mov x2, #196
-	mov x3, #8
-	mov x4, #4
-	movz w5, #0xFF00, lsl #0        
-        movk w5, #0xFFFF, lsl #16       // cierre campera
-	bl draw_rect
-	
-	// Brazo 
-	mov x1, #252
-	mov x2, #192
-	mov x3, #4
-	mov x4, #24
-	movz w5, #0xD0FF, lsl #0        
-        movk w5, #0xCC80, lsl #16       // Campera
-	bl draw_rect
-
-	mov x1, #288
-	mov x2, #192
-	mov x3, #4
-	mov x4, #24
-	movz w5, #0xD0FF, lsl #0        
-        movk w5, #0xCC80, lsl #16       // Campera
-	bl draw_rect
-	
-	mov x1, #252
-	mov x2, #204
-	mov x3, #4
-	mov x4, #8
-	movz w5, #0xFF00, lsl #0        
-        movk w5, #0xFFFF, lsl #16       // detalle campera
-	bl draw_rect
-	
-	mov x1, #288
-	mov x2, #204
-	mov x3, #4
-	mov x4, #8
-	movz w5, #0xFF00, lsl #0       
-        movk w5, #0xFFFF, lsl #16       // detalle campera
-	bl draw_rect
-	
-	// Manos 
-	mov x1, #256
-	mov x2, #216
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #284
-	mov x2, #216
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	// Piernas
-	mov x1, #264
-	mov x2, #216
-	mov x3, #4
-	mov x4, #20
-	movz w5, #0x3C75, lsl #0      
-        movk w5, #0xFF2F, lsl #16     // pantalones
-	bl draw_rect
-
-	mov x1, #276
-	mov x2, #216
-	mov x3, #4
-	mov x4, #20
-	movz w5, #0x3C75, lsl #0      
-        movk w5, #0xFF2F, lsl #16  // pantalones
-	bl draw_rect
-
-	// Pies
-	mov x1, #260
-	mov x2, #236
-	mov x3, #8
-	mov x4, #6
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #276
-	mov x2, #236
-	mov x3, #8
-	mov x4, #6
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-
-	// Lucas (Oscurito)
-	// Cabeza
-	mov x1, #338
-	mov x2, #140
-	mov x3, #24
-	mov x4, #4
-	movz w5, #0x7253, lsl #0
-	movk w5, #0xFFA9, lsl #16
-	bl draw_rect
-
-	mov x1, #334
-	mov x2, #144
-	mov x3, #32
-	mov x4, #32
-	movz w5, #0x7253, lsl #0
-	movk w5, #0xFFA9, lsl #16
-	bl draw_rect
- 
- 	mov x1, #330
-	mov x2, #148
-	mov x3, #4
-	mov x4, #20
-	movz w5, #0x7253, lsl #0
-	movk w5, #0xFFA9, lsl #16
-	bl draw_rect
-
-	mov x1, #366
-	mov x2, #148
-	mov x3, #4
-	mov x4, #20
-	movz w5, #0x7253, lsl #0
-	movk w5, #0xFFA9, lsl #16
-	bl draw_rect
-
-	mov x1, #338
-	mov x2, #176
-	mov x3, #24
-	mov x4, #4
-	movz w5, #0x7253, lsl #0
-	movk w5, #0xFFA9, lsl #16
-	bl draw_rect
-
-	mov x1, #346
-	mov x2, #180
-	mov x3, #8
-	mov x4, #4
-	movz w5, #0x7253, lsl #0
-	movk w5, #0xFFA9, lsl #16
-	bl draw_rect
-
-	// Cuerpo
-	// Bordes del cuello
-	mov x1, #342
-	mov x2, #180
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x4F50, lsl #0
-	movk w5, #0xFFA5, lsl #16
-	bl draw_rect
-
-	mov x1, #354
-	mov x2, #180
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x4F50, lsl #0
-	movk w5, #0xFFA5, lsl #16
-	bl draw_rect
-
-	// Hombros
-	mov x1, #334
-	mov x2, #184
-	mov x3, #32
-	mov x4, #8
-	movz w5, #0x4F50, lsl #0
-	movk w5, #0xFFA5, lsl #16
-	bl draw_rect
-
-	// Panza
-	mov x1, #338
-	mov x2, #192
-	mov x3, #24
-	mov x4, #20
-	movz w5, #0x4F50, lsl #0
-	movk w5, #0xFFA5, lsl #16
-	bl draw_rect
-
-	// Brazo 
-	mov x1, #328
-	mov x2, #188
-	mov x3, #6
-	mov x4, #24
-	movz w5, #0x4F50, lsl #0
-	movk w5, #0xFFA5, lsl #16
-	bl draw_rect
-
-	mov x1, #366
-	mov x2, #188
-	mov x3, #6
-	mov x4, #24
-	movz w5, #0x4F50, lsl #0
-	movk w5, #0xFFA5, lsl #16
-	bl draw_rect
-
-	// Manos 
-	mov x1, #332
-	mov x2, #212
-	mov x3, #6
-	mov x4, #6
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #362
-	mov x2, #212
-	mov x3, #6
-	mov x4, #6
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	// Piernas
-	mov x1, #342
-	mov x2, #212
-	mov x3, #6
-	mov x4, #24
-	movz w5, #0x2225, lsl #0
-	movk w5, #0xFF95, lsl #16
-	bl draw_rect
-
-	mov x1, #352
-	mov x2, #212
-	mov x3, #6
-	mov x4, #24
-	movz w5, #0x2225, lsl #0
-	movk w5, #0xFF95, lsl #16
-	bl draw_rect
-
-	// Pies
-	mov x1, #338
-	mov x2, #236
-	mov x3, #8
-	mov x4, #6
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #354
-	mov x2, #236
-	mov x3, #8
-	mov x4, #6
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
- 	//Ropa 
-  	// pelo	
-	mov x1, #338
-	mov x2, #140
-	mov x3, #24
-	mov x4, #4
-	movz w5, #0x1401, lsl #0
-	movk w5, #0xFF41, lsl #16
-	bl draw_rect
-
-	mov x1, #334
-	mov x2, #144
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x1401, lsl #0
-	movk w5, #0xFF41, lsl #16
-	bl draw_rect
-
-	mov x1, #330
-	mov x2, #148
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x1401, lsl #0
-	movk w5, #0xFF41, lsl #16
-	bl draw_rect
-
-	mov x1, #362
-	mov x2, #144
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x1401, lsl #0
-	movk w5, #0xFF41, lsl #16
-	bl draw_rect
-
-	mov x1, #366
-	mov x2, #148
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x1401, lsl #0
-	movk w5, #0xFF41, lsl #16
-	bl draw_rect
-
-	mov x1, #334
-	mov x2, #156
-	mov x3, #12
-	mov x4, #4
-	movz w5, #0x1401, lsl #0
-	movk w5, #0xFF41, lsl #16
-	bl draw_rect
-
-	mov x1, #334
-	mov x2, #160
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x1401, lsl #0
-	movk w5, #0xFF41, lsl #16
-	bl draw_rect
-
-	mov x1, #354
-	mov x2, #156
-	mov x3, #12
-	mov x4, #4
-	movz w5, #0x1401, lsl #0
-	movk w5, #0xFF41, lsl #16
-	bl draw_rect
-
-	mov x1, #362
-	mov x2, #160
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x1401, lsl #0
-	movk w5, #0xFF41, lsl #16
-	bl draw_rect
-	
-	//Verde osc
-	mov x1, #338
-	mov x2, #144
-	mov x3, #24
-	mov x4, #4
-	movz w5, #0x995D, lsl #0
-	movk w5, #0xFF93, lsl #16
-	bl draw_rect
-
-	mov x1, #334
-	mov x2, #148
-	mov x3, #32
-	mov x4, #4
-	movz w5, #0x995D, lsl #0
-	movk w5, #0xFF93, lsl #16
-	bl draw_rect
-
-	mov x1, #334
-	mov x2, #152
-	mov x3, #8
-	mov x4, #4
-	movz w5, #0x995D, lsl #0
-	movk w5, #0xFF93, lsl #16
-	bl draw_rect
-
-	mov x1, #358
-	mov x2, #152
-	mov x3, #8
-	mov x4, #4
-	movz w5, #0x995D, lsl #0
-	movk w5, #0xFF93, lsl #16
-	bl draw_rect
-
-	mov x1, #330
-	mov x2, #156
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x995D, lsl #0
-	movk w5, #0xFF93, lsl #16
-	bl draw_rect
-
-	mov x1, #366
-	mov x2, #156
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x995D, lsl #0
-	movk w5, #0xFF93, lsl #16
-	bl draw_rect
-
-	//Verde cla
-	mov x1, #330
-	mov x2, #152
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0xD887, lsl #0
-	movk w5, #0xFFE7, lsl #16
-	bl draw_rect
-
-	mov x1, #366
-	mov x2, #152
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0xD887, lsl #0
-	movk w5, #0xFFE7, lsl #16
-	bl draw_rect
-
-	mov x1, #350
-	mov x2, #144
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0xD887, lsl #0
-	movk w5, #0xFFE7, lsl #16
-	bl draw_rect
-
-	mov x1, #354
-	mov x2, #148
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0xD887, lsl #0
-	movk w5, #0xFFE7, lsl #16
-	bl draw_rect
-
-	//Negro
-	mov x1, #338
-	mov x2, #164
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x0000, lsl #0
-	movk w5, #0xFF00, lsl #16
-	bl draw_rect
-
-	mov x1, #358
-	mov x2, #164
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x0000, lsl #0
-	movk w5, #0xFF00, lsl #16
-	bl draw_rect
-
-	//Marron piel
-	mov x1, #346
-	mov x2, #184
-	mov x3, #8
-	mov x4, #28
-	movz w5, #0xD3FF, lsl #0
-	movk w5, #0xFF6A, lsl #16
-	bl draw_rect
-
-	//Celeste
-	mov x1, #346
-	mov x2, #184
-	mov x3, #8
-	mov x4, #28
-	movz w5, #0xD3FF, lsl #0
-	movk w5, #0xFF6A, lsl #16
-	bl draw_rect
-
-	//Crema
-	mov x1, #338
-	mov x2, #188
-	mov x3, #24
-	mov x4, #8
-	movz w5, #0xA991, lsl #0
-	movk w5, #0xFFC1, lsl #16
-	bl draw_rect
-
-	
- 	// Eleven
-	// Cabeza
-	mov x1, #418
-	mov x2, #140
-	mov x3, #24
-	mov x4, #4
-	movz w5, #0xA58A, lsl #0
-	movk w5, #0xFFF4, lsl #16
-	bl draw_rect
-
-	mov x1, #414
-	mov x2, #144
-	mov x3, #32
-	mov x4, #32
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #414
-	mov x2, #144
-	mov x3, #32
-	mov x4, #8
-	movz w5, #0xA58A, lsl #0
-	movk w5, #0xFFF4, lsl #16
-	bl draw_rect
-
-	mov x1, #422
-	mov x2, #152
-	mov x3, #16
-	mov x4, #4
-	movz w5, #0xA58A, lsl #0
-	movk w5, #0xFFF4, lsl #16
-	bl draw_rect
-	// Ojos
-	mov x1, #418
-	mov x2, #160
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x0000, lsl #0
-	movk w5, #0xFF00, lsl #16
-	bl draw_rect
-	mov x1, #438
-	mov x2, #160
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x0000, lsl #0
-	movk w5, #0xFF00, lsl #16
-	bl draw_rect
-	//
-	mov x1, #410
-	mov x2, #148
-	mov x3, #4
-	mov x4, #20
-	movz w5, #0xA58A, lsl #0
-	movk w5, #0xFFF4, lsl #16
-	bl draw_rect
-
-	mov x1, #410
-	mov x2, #168
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #446	
-	mov x2, #148
-	mov x3, #4
-	mov x4, #20
-	movz w5, #0xA58A, lsl #0
-	movk w5, #0xFFF4, lsl #16
-	bl draw_rect
-
-	mov x1, #446
-	mov x2, #168
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #418
-	mov x2, #176
-	mov x3, #24
-	mov x4, #4
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #426
-	mov x2, #180
-	mov x3, #8
-	mov x4, #4
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	// Cuerpo
-	// Bordes del cuello
-	mov x1, #422
-	mov x2, #180
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x3DC4, lsl #0
-	movk w5, #0xFF5F, lsl #16
-	bl draw_rect
-
-	mov x1, #434
-	mov x2, #180
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x3DC4, lsl #0
-	movk w5, #0xFF5F, lsl #16
-	bl draw_rect
-
-	// Hombros
-	mov x1, #418
-	mov x2, #184
-	mov x3, #24
-	mov x4, #8
-	movz w5, #0x3DC4, lsl #0
-	movk w5, #0xFF5F, lsl #16
-	bl draw_rect
-
-	// Panza
-	mov x1, #422
-	mov x2, #184
-	mov x3, #16
-	mov x4, #40
-	movz w5, #0xA6A3, lsl #0
-	movk w5, #0xFFD8, lsl #16
-	bl draw_rect
-	
-	mov x1, #426
-	mov x2, #184
-	mov x3, #8
-	mov x4, #4
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #422
-	mov x2, #184
-	mov x3, #4
-	mov x4, #20
-	movz w5, #0x3DC4, lsl #0
-	movk w5, #0xFF5F, lsl #16
-	bl draw_rect
-
-	mov x1, #434
-	mov x2, #184
-	mov x3, #4
-	mov x4, #20
-	movz w5, #0x3DC4, lsl #0
-	movk w5, #0xFF5F, lsl #16
-	bl draw_rect
-
-	// Brazo
-	mov x1, #414
-	mov x2, #188
-	mov x3, #4
-	mov x4, #24
-	movz w5, #0x3DC4, lsl #0
-	movk w5, #0xFF5F, lsl #16
-	bl draw_rect
-
-	mov x1, #442
-	mov x2, #188
-	mov x3, #4
-	mov x4, #24
-	movz w5, #0x3DC4, lsl #0
-	movk w5, #0xFF5F, lsl #16
-	bl draw_rect
-
-	// Manos 
-	mov x1, #418
-	mov x2, #212
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #438
-	mov x2, #212
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	// Piernas
-	mov x1, #422
-	mov x2, #224
-	mov x3, #4
-	mov x4, #12
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #434
-	mov x2, #224
-	mov x3, #4
-	mov x4, #12
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	// Pies
-	mov x1, #418
-	mov x2, #236
-	mov x3, #8
-	mov x4, #6
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #434
-	mov x2, #236
-	mov x3, #8
-	mov x4, #6
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
- 
-	// Mike
-	// Cabeza
-	mov x1, #498
-	mov x2, #136
-	mov x3, #20
-	mov x4, #4
-	movz w5, #0x1C1C, lsl #0
-	movk w5, #0xFF1C, lsl #16
-	bl draw_rect
-	
-	mov x1, #490
-	mov x2, #140
-	mov x3, #32
-	mov x4, #4
-	movz w5, #0x1C1C, lsl #0
-	movk w5, #0xFF1C, lsl #16
-	bl draw_rect
-	
-	mov x1, #494
-	mov x2, #144
-	mov x3, #32
-	mov x4, #32
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #486
-	mov x2, #144
-	mov x3, #40
-	mov x4, #4
-	movz w5, #0x1C1C, lsl #0
-	movk w5, #0xFF1C, lsl #16
-	bl draw_rect
-
-	mov x1, #514
-	mov x2, #144
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #486
-	mov x2, #148
-	mov x3, #44
-	mov x4, #4
-	movz w5, #0x1C1C, lsl #0
-	movk w5, #0xFF1C, lsl #16
-	bl draw_rect
-
-	mov x1, #510
-	mov x2, #148
-	mov x3, #8
-	mov x4, #4
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #486
-	mov x2, #152
-	mov x3, #48
-	mov x4, #4
-	movz w5, #0x1C1C, lsl #0
-	movk w5, #0xFF1C, lsl #16
-	bl draw_rect
-
-	mov x1, #506
-	mov x2, #152
-	mov x3, #20
-	mov x4, #4
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #486
-	mov x2, #156
-	mov x3, #48
-	mov x4, #4
-	movz w5, #0x1C1C, lsl #0
-	movk w5, #0xFF1C, lsl #16
-	bl draw_rect
-
-	mov x1, #498
-	mov x2, #156
-	mov x3, #28
-	mov x4, #4
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #486
-	mov x2, #160
-	mov x3, #4
-	mov x4, #16
-	movz w5, #0x1C1C, lsl #0
-	movk w5, #0xFF1C, lsl #16
-	bl draw_rect
-
-	mov x1, #530
-	mov x2, #160
-	mov x3, #4
-	mov x4, #12
-	movz w5, #0x1C1C, lsl #0
-	movk w5, #0xFF1C, lsl #16
-	bl draw_rect
-
-	mov x1, #490
-	mov x2, #160
-	mov x3, #4
-	mov x4, #8
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #526
-	mov x2, #160
-	mov x3, #4
-	mov x4, #8
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-	// OJASOS
-	mov x1, #498
-	mov x2, #164
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x0000, lsl #0
-	movk w5, #0xFF00, lsl #16
-	bl draw_rect
-	
-	mov x1, #518
-	mov x2, #164
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x0000, lsl #0
-	movk w5, #0xFF00, lsl #16
-	bl draw_rect
-	
-	mov x1, #526
-	mov x2, #168
-	mov x3, #4
-	mov x4, #12
-	movz w5, #0x1C1C, lsl #0
-	movk w5, #0xFF1C, lsl #16
-
-	mov x1, #530
-	mov x2, #176
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x1C1C, lsl #0
-	movk w5, #0xFF1C, lsl #16
-
-	mov x1, #558
-	mov x2, #168
-	mov x3, #4
-	mov x4, #12
-	movz w5, #0x1C1C, lsl #0
-	movk w5, #0xFF1C, lsl #16
-
-	mov x1, #554
-	mov x2, #176
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0x1C1C, lsl #0
-	movk w5, #0xFF1C, lsl #16
-	
-	mov x1, #498
-	mov x2, #176
-	mov x3, #24
-	mov x4, #4
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #506
-	mov x2, #180
-	mov x3, #8
-	mov x4, #4
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	// Cuerpo
-	// Bordes del cuello
-	mov x1, #502
-	mov x2, #180
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0xB78D, lsl #0
-	movk w5, #0xFFA5, lsl #16
-	bl draw_rect
-
-	mov x1, #514
-	mov x2, #180
-	mov x3, #4
-	mov x4, #4
-	movz w5, #0xB78D, lsl #0
-	movk w5, #0xFFA5, lsl #16
-	bl draw_rect
-	// Hombros
-	mov x1, #494
-	mov x2, #184
-	mov x3, #32
-	mov x4, #8
-	movz w5, #0xB78D, lsl #0
-	movk w5, #0xFFA5, lsl #16
-	bl draw_rect
-	// Panza
-	mov x1, #498
-	mov x2, #192
-	mov x3, #24
-	mov x4, #20
-	movz w5, #0xB78D, lsl #0
-	movk w5, #0xFFA5, lsl #16
-	bl draw_rect
-
-	mov x1, #506
-	mov x2, #184
-	mov x3, #8
-	mov x4, #28
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #506
-	mov x2, #192
-	mov x3, #8
-	mov x4, #16
-	movz w5, #0x3286, lsl #0
-	movk w5, #0xFF0D, lsl #16
-	bl draw_rect
-
-	mov x1, #506
-	mov x2, #196
-	mov x3, #8
-	mov x4, #8
-	movz w5, #0xD038, lsl #0
-	movk w5, #0xFFF7, lsl #16
-	bl draw_rect
-	// Brazos
-	mov x1, #488
-	mov x2, #188
-	mov x3, #6
-	mov x4, #24
-	movz w5, #0xB78D, lsl #0
-	movk w5, #0xFFA5, lsl #16
-	bl draw_rect
-
-	mov x1, #526
-	mov x2, #188
-	mov x3, #6
-	mov x4, #24
-	movz w5, #0xB78D, lsl #0
-	movk w5, #0xFFA5, lsl #16
-	bl draw_rect
-	// Manos 
-	mov x1, #492
-	mov x2, #212
-	mov x3, #6
-	mov x4, #6
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #522
-	mov x2, #212
-	mov x3, #6
-	mov x4, #6
-	movz w5, #0xCCAA, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-	// Piernas
-	mov x1, #502
-	mov x2, #212
-	mov x3, #6
-	mov x4, #24
-	movz w5, #0x3DC4, lsl #0
-	movk w5, #0xFF5F, lsl #16
-	bl draw_rect
-
-	mov x1, #512
-	mov x2, #212
-	mov x3, #6
-	mov x4, #24
-	movz w5, #0x3DC4, lsl #0
-	movk w5, #0xFF5F, lsl #16
-	bl draw_rect
-	// Pies
-	mov x1, #498
-	mov x2, #236
-	mov x3, #8
-	mov x4, #6
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-	mov x1, #514
-	mov x2, #236
-	mov x3, #8
-	mov x4, #6
-	movz w5, #0xFFFF, lsl #0
-	movk w5, #0xFFFF, lsl #16
-	bl draw_rect
-
-
+fin_pasto:
 
 
 /////////////////DEMOGORGON/////////////////////
 
-
-
-	
+draw_demogorgon:
  // demogorgon
 	mov x0, x20
 //Demogorgon - cuerpo
 	movz w5, #0x4379, lsl #0
 	movk w5, #0xFF06, lsl #16
-
 //tronco
 
 	mov x1, #405 // 410 - 5
@@ -4814,7 +292,6 @@ loop2:
 	mov x4, #15
 	bl draw_rect
 
-	mov x0, x20
 	mov x1, #415 // 420 - 5
 	mov x2, #355 // 370 - 15
 	mov x3, #20
@@ -5025,49 +502,49 @@ loop2:
 	mov x4, #6
 	bl draw_rect
 	
-	mov x0, x20
+
 	mov x1, #408 // 413 - 5
 	mov x2, #285 // 300 - 15
 	mov x3, #6
 	mov x4, #12
 	bl draw_rect
 
-	mov x0, x20
+
 	mov x1, #408 // 413 - 5
 	mov x2, #273 // 288 - 15
 	mov x3, #6
 	mov x4, #24
 	bl draw_rect
 
-	mov x0, x20
+
 	mov x1, #405 // 410 - 5
 	mov x2, #280 // 295 - 15
 	mov x3, #6
 	mov x4, #6
 	bl draw_rect
 
-	mov x0, x20
+
 	mov x1, #412 // 417 - 5
 	mov x2, #258 // 273 - 15
 	mov x3, #4
 	mov x4, #15
 	bl draw_rect
 
-	mov x0, x20
+
 	mov x1, #415 // 420 - 5
 	mov x2, #255 // 270 - 15
 	mov x3, #6
 	mov x4, #6
 	bl draw_rect
 
-	mov x0, x20
+
 	mov x1, #405 // 410 - 5
 	mov x2, #252 // 267 - 15
 	mov x3, #15
 	mov x4, #6
 	bl draw_rect
 
-	mov x0, x20
+
 	mov x1, #405 // 410 - 5
 	mov x2, #252 // 267 - 15
 	mov x3, #4
@@ -5855,8 +1332,132 @@ loop2:
 	bl draw_circle
 
 
+ ////////////////////PERSONAJES////////////////////
+	// personajes
+dibujando_dustin:
+    ldr x19, =tabla_dustin      // Dirección tabla
+    mov x21, #45               // Cantidad de rectángulos (ajustar si cambias tabla)
 
-//////////////////////////////////subrutinas//////////////////////////////
+loop_dustin:
+    cbz x21, fin_dustin
+
+    ldr x1, [x19], #8          // x_start (64 bits)
+    ldr x2, [x19], #8          // y_start
+    ldr x3, [x19], #8          // ancho
+    ldr x4, [x19], #8          // alto
+    ldr x5, [x19], #8          // color
+
+    bl draw_rect
+
+    subs x21, x21, #1
+    b.ne loop_dustin
+
+fin_dustin:
+
+dibujando_will:
+    ldr x19, =tabla_will      // Dirección tabla
+    mov x21, #45               // Cantidad de rectángulos (ajustar si cambias tabla)
+
+loop_will:
+    cbz x21, fin_will
+
+    ldr x1, [x19], #8          // x_start (64 bits)
+    ldr x2, [x19], #8          // y_start
+    ldr x3, [x19], #8          // ancho
+    ldr x4, [x19], #8          // alto
+    ldr x5, [x19], #8          // color
+
+    bl draw_rect
+
+    subs x21, x21, #1
+    b.ne loop_will
+fin_will:
+
+dibujando_max:
+	// Maxdibujando_max:
+    ldr x19, =tabla_max       // dirección de la tabla
+    mov x21, #52              // cantidad de rectángulos (contar las líneas en la tabla)
+
+loop_max:
+    cbz x21, fin_max
+
+    ldr x1, [x19], #8         // x_start
+    ldr x2, [x19], #8         // y_start
+    ldr x3, [x19], #8         // ancho
+    ldr x4, [x19], #8         // alto
+    ldr x5, [x19], #8         // color
+
+    bl draw_rect
+
+    subs x21, x21, #1
+    b.ne loop_max
+
+fin_max:
+dibujando_lucas:
+	// dibujando_lucas:
+    ldr x19, =tabla_lucas       // dirección de la tabla
+    mov x21, #52              // cantidad de rectángulos (contar las líneas en la tabla)
+
+loop_lucas:
+    cbz x21, fin_lucas
+
+    ldr x1, [x19], #8         // x_start
+    ldr x2, [x19], #8         // y_start
+    ldr x3, [x19], #8         // ancho
+    ldr x4, [x19], #8         // alto
+    ldr x5, [x19], #8         // color
+
+    bl draw_rect
+
+    subs x21, x21, #1
+    b.ne loop_lucas
+fin_lucas:
+
+dibujando_eleven:
+	// dibujando_eleven:
+    ldr x19, =tabla_eleven       // dirección de la tabla
+    mov x21, #52              // cantidad de rectángulos (contar las líneas en la tabla)
+
+loop_eleven:
+    cbz x21, fin_eleven
+
+    ldr x1, [x19], #8         // x_start
+    ldr x2, [x19], #8         // y_start
+    ldr x3, [x19], #8         // ancho
+    ldr x4, [x19], #8         // alto
+    ldr x5, [x19], #8         // color
+
+    bl draw_rect
+
+    subs x21, x21, #1
+    b.ne loop_eleven
+
+fin_eleven:
+
+ dibujando_mike:
+	// dibujando_mike:
+    ldr x19, =tabla_mike       // dirección de la tabla
+    mov x21, #52              // cantidad de rectángulos (contar las líneas en la tabla)
+
+loop_mike:
+    cbz x21, fin_mike
+
+    ldr x1, [x19], #8         // x_start
+    ldr x2, [x19], #8         // y_start
+    ldr x3, [x19], #8         // ancho
+    ldr x4, [x19], #8         // alto
+    ldr x5, [x19], #8         // color
+
+    bl draw_rect
+
+    subs x21, x21, #1
+    b.ne loop_mike
+
+fin_mike:
+
+
+//////////////////////////////////subrutinas para hacer formas (cuadrados, circulos, y para reflejar sobre los ejes//////////////////////////////
+
 
 //--Método de uso de mirror_loop--
 //	movz x10, 0x667E, lsl 0		---> Establecer el color a usar
@@ -6162,34 +1763,23 @@ loop_x_circle:
     cmp x17, x13
     b.ge next_y_circle
 
-    // Calcular dx = current_x - center_x
-    sub x18, x17, x6
+    sub x18, x17, x6 // Calcular dx = current_x - center_x
+    sub x19, x16, x7 // Calcular dy = current_y - center_y
+    mul x25, x18, x18   // Calcular dx_squared = dx * dx
+    mul x21, x19, x19    // Calcular dy_squared = dy * dy
 
-    // Calcular dy = current_y - center_y
-    sub x19, x16, x7
-
-    // Calcular dx_squared = dx * dx
-    mul x25, x18, x18   // <-- CAMBIO AQUÍ: Usamos x25 en lugar de x20
-
-    // Calcular dy_squared = dy * dy
-    mul x21, x19, x19
-
-    // Calcular distance_squared = dx_squared + dy_squared
-    add x22, x25, x21   // <-- CAMBIO AQUÍ: Usamos x25 en lugar de x20
+    add x22, x25, x21   /// Calcular distance_squared = dx_squared + dy_squared
 
     // Comparar distance_squared con radio_squared
     cmp x22, x11
     b.gt skip_pixel_circle
 
-    // Calcular el desplazamiento del píxel y dibujarlo
+    // desplazamiento del píxel
     mul x23, x16, x10
     add x23, x23, x17
     lsl x23, x23, #2
 
-    // Calcular la dirección de memoria del píxel: framebuffer_base (x0) + offset_in_bytes (x23)
     add x24, x0, x23
-
-    // Almacenar el color en la dirección de memoria del píxel
     str w9, [x24]
 
 skip_pixel_circle:
@@ -6202,6 +1792,802 @@ next_y_circle:
 
 end_draw_circle:
     ret
+
+
+
+
+//////////////tablas de entradas para optimizar //////////
+// Tabla con entradas de 3 valores (x_start, x_end, y_start) de 32 bits
+.align 3
+purpura_coords:
+    .word 52,  68,  128
+    .word 68,  72,  136
+    .word 72,  84,  140
+    .word 84,  92,  144
+    .word 92,  104, 152
+    .word 104, 108, 156
+    .word 108, 116, 160
+    .word 116, 128, 164
+    .word 128, 132, 168
+    .word 132, 140, 172
+    .word 140, 148, 176
+    .word 148, 156, 180
+    .word 156, 172, 176
+    .word 172, 180, 172
+    .word 180, 188, 168
+    .word 188, 196, 176
+    .word 196, 208, 180
+    .word 208, 228, 184
+    .word 228, 232, 188
+    .word 232, 240, 184
+    .word 240, 244, 188
+    .word 244, 248, 192
+    .word 248, 252, 196
+    .word 252, 264, 200
+    .word 264, 280, 196
+    .word 280, 284, 192
+    .word 284, 288, 188
+    .word 288, 300, 192
+    .word 300, 312, 196
+    .word 312, 320, 200
+
+purpura_superior_coords:
+    .word 52, 68, 128
+    .word 68, 72, 136
+    .word 72, 84, 140
+    .word 84, 92, 144
+    .word 92, 104, 152
+    .word 104, 108, 156
+    .word 108, 116, 160
+    .word 116, 128, 164
+    .word 128, 132, 168
+    .word 132, 140, 172
+    .word 140, 148, 176
+    .word 148, 156, 180
+    .word 156, 172, 176
+    .word 172, 180, 172
+    .word 180, 188, 168
+    .word 188, 196, 176
+    .word 196, 208, 180
+    .word 208, 228, 184
+    .word 228, 232, 188
+    .word 232, 240, 184
+    .word 240, 244, 188
+    .word 244, 248, 192
+    .word 248, 252, 196
+    .word 252, 264, 200
+    .word 264, 280, 196
+    .word 280, 284, 192
+    .word 284, 288, 188
+    .word 288, 300, 192
+    .word 300, 312, 196
+    .word 312, 320, 200
+
+
+tabla_estrellas:
+    .word 65, 66, 45, 46
+    .word 80, 81, 55, 56
+    .word 100, 102, 40, 42
+    .word 120, 121, 70, 71
+    .word 140, 142, 85, 87
+    .word 160, 161, 50, 51
+    .word 180, 182, 75, 77
+    .word 200, 201, 90, 91
+    .word 220, 222, 110, 112
+    .word 240, 241, 130, 131
+    .word 260, 262, 150, 152
+    .word 280, 281, 170, 171
+    .word 60, 62, 100, 102
+    .word 90, 91, 120, 121
+    .word 130, 131, 140, 141
+    .word 170, 172, 160, 162
+    .word 210, 211, 180, 181
+    .word 250, 252, 200, 202
+    .word 290, 291, 220, 221
+    .word 60, 61, 230, 231
+    .word 70, 72, 110, 112
+    .word 110, 111, 90, 91
+    .word 150, 152, 130, 132
+    .word 190, 191, 100, 101
+    .word 230, 232, 170, 172
+    .word 270, 271, 190, 191
+    .word 85, 86, 200, 201
+    .word 165, 166, 210, 211
+    .word 245, 246, 230, 231
+
+    .word 285, 286, 45, 46
+    .word 280, 281, 60, 61
+    .word 275, 276, 80, 81
+    .word 270, 271, 100, 101
+    .word 265, 266, 120, 121
+    .word 260, 261, 140, 141
+    .word 255, 256, 160, 161
+    .word 250, 251, 180, 181
+    .word 245, 246, 200, 201
+    .word 240, 241, 220, 221
+
+    .word 75, 80, 190, 195
+    .word 200, 205, 60, 65
+
+    .word 350, 351, 45, 46
+    .word 370, 371, 55, 56
+    .word 390, 392, 40, 42
+    .word 410, 411, 70, 71
+    .word 430, 432, 85, 87
+    .word 450, 451, 50, 51
+    .word 470, 472, 75, 77
+    .word 490, 491, 90, 91
+    .word 510, 512, 110, 112
+    .word 530, 531, 130, 131
+    .word 550, 552, 150, 152
+    .word 570, 571, 170, 171
+    .word 345, 347, 100, 102
+    .word 375, 376, 120, 121
+    .word 415, 416, 140, 141
+    .word 455, 457, 160, 162
+    .word 495, 496, 180, 181
+    .word 535, 537, 200, 202
+    .word 580, 581, 220, 221
+    .word 345, 346, 230, 231
+    .word 360, 362, 110, 112
+    .word 400, 401, 90, 91
+    .word 440, 442, 130, 132
+    .word 480, 481, 100, 101
+    .word 520, 522, 170, 172
+    .word 560, 561, 190, 191
+    .word 385, 386, 200, 201
+    .word 465, 466, 210, 211
+    .word 545, 546, 230, 231
+
+    .word 355, 356, 45, 46
+    .word 360, 361, 60, 61
+    .word 365, 366, 80, 81
+    .word 370, 371, 100, 101
+    .word 375, 376, 120, 121
+    .word 380, 381, 140, 141
+    .word 385, 386, 160, 161
+    .word 390, 391, 180, 181
+    .word 395, 396, 200, 201
+
+
+
+	tabla_domo_arbustos:
+    .word 50, 54, 30, 220
+    .word 54, 62, 30, 150
+    .word 62, 66, 30, 130
+    .word 66, 74, 30, 100
+    .word 74, 76, 30, 90
+    .word 76, 78, 30, 85
+    .word 78, 82, 30, 75
+    .word 82, 84, 30, 69
+    .word 84, 90, 30, 63
+    .word 90, 100, 30, 58
+    .word 100, 106, 30, 54
+    .word 106, 118, 30, 50
+    .word 118, 130, 30, 48
+    .word 130, 150, 30, 46
+    .word 150, 190, 30, 44
+    .word 190, 220, 30, 42
+
+    // Arbusto 1
+    .word 82, 86, 160, 240
+    .word 86, 94, 164, 240
+    .word 94, 98, 168, 240
+    .word 98, 102, 172, 240
+    .word 102, 114, 176, 240
+    .word 114, 118, 180, 240
+    .word 118, 122, 184, 240
+    .word 122, 126, 188, 240
+    .word 126, 130, 192, 240
+    .word 130, 142, 196, 240
+    .word 142, 146, 200, 240
+    .word 146, 154, 204, 240
+    .word 50, 54, 178, 240
+    .word 54, 58, 174, 240
+    .word 58, 64, 170, 240
+    .word 64, 72, 166, 240
+    .word 72, 76, 162, 240
+    .word 76, 84, 160, 240
+
+    // Arbusto 2
+    .word 154, 158, 200, 240
+    .word 158, 162, 196, 240
+    .word 162, 166, 192, 240
+    .word 166, 174, 188, 240
+    .word 174, 186, 184, 240
+    .word 186, 190, 188, 240
+    .word 190, 198, 192, 240
+    .word 198, 202, 196, 240
+    .word 202, 206, 200, 240
+    .word 206, 210, 204, 240
+    .word 210, 214, 208, 240
+    .word 214, 218, 208, 240
+    .word 218, 222, 212, 240
+    .word 222, 226, 216, 240
+
+    // Arbusto 3
+	.word 226, 230, 212, 240
+	.word 230, 234, 208, 240
+	.word 234, 242, 204, 240
+	.word 242, 250, 208, 240
+	.word 250, 266, 212, 240
+	.word 266, 274, 216, 240
+
+	//Arbusto 4
+	.word 274, 278, 212, 240
+	.word 278, 282, 208, 240
+	.word 282, 290, 204, 240
+	.word 290, 298, 208, 240
+	.word 298, 302, 212, 240
+	.word 302, 306, 216, 240
+	.word 306, 314, 220, 240
+	.word 314, 318, 224, 240
+	.word 318, 326, 228, 240
+
+tabla_arboles_fondo:
+    // ÁRBOL 1
+    .word 78, 92, 144, 164
+    .word 66, 70, 120, 128
+    .word 70, 74, 100, 120
+    .word 66, 70, 96, 112
+    .word 82, 94, 108, 144
+    .word 94, 98, 124, 132
+    .word 98, 102, 120, 124
+    .word 102, 106, 116, 120
+    .word 94, 102, 112, 116
+    .word 102, 106, 140, 160
+    .word 98, 102, 136, 140
+    .word 106, 110, 120, 140
+    .word 108, 112, 92, 100
+    .word 112, 116, 100, 104
+    .word 116, 124, 96, 100
+    .word 120, 124, 92, 96
+    .word 116, 120, 80, 92
+    .word 110, 114, 132, 136
+    .word 114, 118, 112, 132
+    .word 78, 86, 80, 108
+    .word 72, 78, 72, 80
+    .word 86, 90, 60, 80
+    .word 92, 100, 90, 112
+    .word 100, 108, 82, 100
+    .word 92, 96, 58, 70
+    .word 96, 100, 70, 74
+    .word 100, 104, 74, 78
+    .word 104, 108, 78, 82
+    .word 108, 112, 62, 86
+    .word 112, 116, 46, 58
+    .word 104, 112, 58, 62
+    .word 100, 104, 50, 62
+
+	 // ÁRBOL 2
+    .word 132, 136, 160, 240
+    .word 128, 132, 100, 160
+    .word 128, 136, 88, 100
+    .word 136, 140, 64, 88
+    .word 140, 144, 52, 64
+    .word 140, 148, 48, 52
+    .word 148, 152, 44, 48
+    .word 124, 128, 72, 88
+    .word 120, 124, 60, 72
+    .word 124, 128, 64, 68
+    .word 128, 132, 60, 64
+    .word 128, 132, 60, 64
+
+    // ÁRBOL 3
+   .word 144, 152, 140, 220
+    .word 152, 156, 108, 152
+    .word 156, 160, 96, 112
+    .word 160, 164, 80, 96
+    .word 160, 168, 76, 80
+    .word 164, 168, 72, 76
+    .word 136, 140, 108, 128
+    .word 140, 144, 128, 132
+    .word 144, 148, 132, 144
+    .word 156, 160, 140, 144
+    .word 160, 164, 136, 140
+    .word 164, 168, 132, 136
+    .word 168, 172, 128, 132
+    .word 172, 176, 112, 128
+    .word 172, 180, 112, 116
+    .word 152, 160, 180, 184
+    .word 160, 164, 176, 180
+    .word 164, 168, 172, 176
+    .word 168, 172, 168, 172
+    .word 168, 172, 156, 168
+    .word 164, 168, 144, 156
+    .word 168, 176, 156, 160
+
+ // ÁRBOL 4
+    .word 164, 192, 40, 60
+    .word 152, 164, 52, 56
+    .word 156, 160, 44, 48
+    .word 160, 164, 48, 52
+    .word 120, 128, 52, 56
+    .word 124, 136, 44, 52
+    .word 136, 140, 52, 56
+    .word 180, 184, 60, 64
+    .word 176, 180, 64, 68
+    .word 164, 168, 60, 64
+    .word 168, 172, 64, 68
+    .word 192, 196, 56, 60
+    .word 192, 196, 40, 52
+    .word 196, 200, 52, 56
+    .word 200, 204, 48, 52
+    .word 196, 200, 44, 48
+    .word 204, 216, 48, 64
+    .word 204, 212, 36, 52
+    .word 220, 224, 40, 44
+    .word 216, 220, 40, 48
+    .word 216, 220, 52, 56
+    .word 220, 224, 48, 52
+    .word 224, 228, 44, 48
+    .word 228, 232, 40, 60
+    .word 228, 236, 40, 44
+    .word 236, 240, 40, 52
+    .word 232, 236, 44, 48
+    // ÁRBOL 5
+    .word 216, 220, 180, 220
+    .word 212, 216, 152, 184
+    .word 208, 212, 144, 152
+    .word 208, 212, 144, 152
+    .word 204, 208, 140, 144
+    .word 200, 204, 128, 140
+    .word 216, 220, 148, 152
+    .word 220, 232, 144, 148
+    .word 216, 220, 132, 144
+    .word 212, 216, 132, 136
+    .word 208, 212, 116, 132
+    .word 204, 208, 116, 120
+    .word 204, 208, 124, 128
+    .word 200, 204, 112, 116
+    .word 228, 232, 104, 148
+    .word 232, 236, 112, 120
+    .word 232, 236, 128, 136
+    .word 224, 228, 116, 120
+    .word 220, 224, 112, 116
+    .word 208, 220, 108, 112
+    .word 204, 208, 104, 108
+    .word 200, 204, 100, 104
+    .word 216, 224, 160, 164
+    .word 220, 224, 152, 160
+    .word 224, 228, 148, 152
+    .word 224, 228, 108, 112
+    .word 220, 224, 104, 108
+    .word 216, 220, 100, 104
+    .word 212, 216, 84, 100
+    .word 208, 212, 84, 88
+    .word 204, 208, 76, 84
+    .word 232, 236, 96, 104
+    .word 236, 240, 108, 116
+    .word 240, 244, 104, 108
+    .word 260, 272, 148, 192
+    .word 260, 276, 192, 220
+    .word 256, 260, 152, 164
+    .word 252, 256, 148, 156
+    .word 248, 252, 128, 152
+    .word 244, 248, 140, 148
+    .word 240, 244, 140, 144
+    .word 240, 244, 132, 136
+    .word 244, 248, 136, 140
+    .word 244, 248, 116, 128
+    .word 248, 260, 128, 132
+    .word 252, 256, 124, 128
+    .word 260, 268, 100, 148
+    .word 264, 268, 88, 108
+    .word 268, 276, 60, 104
+    .word 272, 280, 40, 64
+    .word 280, 284, 52, 60
+    .word 284, 288, 44, 52
+    .word 280, 284, 40, 44
+    .word 288, 292, 40, 44
+    .word 260, 272, 44, 48
+    .word 256, 260, 40, 44
+    .word 264, 272, 36, 52
+    .word 264, 272, 68, 80
+    .word 260, 264, 56, 72
+    .word 244, 260, 52, 56
+    .word 256, 260, 60, 64
+    .word 252, 256, 56, 60
+    .word 248, 252, 52, 56
+    .word 252, 256, 48, 52
+    .word 248, 252, 44, 48
+    .word 276, 280, 80, 100
+    .word 280, 284, 76, 96
+    .word 284, 288, 60, 88
+    .word 280, 284, 64, 72
+    .word 276, 280, 60, 64
+    .word 288, 296, 84, 88
+    .word 296, 300, 72, 84
+    .word 292, 296, 64, 72
+    .word 300, 304, 64, 72
+    .word 296, 300, 52, 64
+    .word 292, 296, 48, 52
+    .word 288, 292, 44, 48
+    .word 284, 288, 36, 44
+    .word 300, 304, 72, 80
+    .word 304, 312, 68, 72
+    .word 312, 316, 60, 68
+    .word 316, 320, 52, 60
+    .word 324, 328, 44, 52
+    .word 328, 332, 36, 44
+    .word 310, 314, 156, 180
+    .word 306, 310, 180, 220
+
+tabla_dibujo_odc_double:
+    .word 310, 314, 156, 180
+    .word 306, 310, 180, 220
+    .word 306, 310, 180, 220
+    .word 284, 288, 180, 220
+    .word 288, 292, 152, 180
+
+
+tabla_dibujo_odc_only_y:
+    // Letra 'O'
+    .word 280, 284, 140, 148
+    .word 284, 288, 148, 152
+    .word 284, 288, 136, 140
+    .word 288, 292, 140, 148
+
+    // Letra 'D'
+    .word 296, 300, 136, 152
+    .word 300, 304, 136, 140
+    .word 300, 304, 148, 152
+
+    // Rama de apoyo
+    .word 304, 308, 140, 148
+    .word 304, 312, 156, 160
+    .word 304, 308, 152, 156
+    .word 314, 318, 152, 156
+
+    // Letra 'C'
+    .word 310, 314, 140, 148
+    .word 314, 322, 136, 140
+    .word 314, 322, 148, 152
+
+
+tabla_rectangulos:
+    .word 284, 364, 8, 4
+    .word 284, 356, 4, 8
+    .word 284, 356, 8, 4
+    .word 288, 348, 4, 8
+    .word 284, 348, 8, 4
+
+    .word 296, 352, 4, 12
+    .word 300, 348, 4, 4
+    .word 300, 364, 4, 4
+    .word 304, 352, 4, 12
+
+    .word 312, 364, 8, 4
+    .word 312, 356, 4, 8
+    .word 312, 356, 8, 4
+    .word 316, 348, 4, 8
+    .word 312, 348, 8, 4
+
+    .word 324, 348, 8, 4
+    .word 324, 348, 4, 8
+    .word 324, 356, 8, 4
+    .word 328, 356, 4, 8
+    .word 324, 364, 8, 4
+
+    .word 320, 344, 4, 4
+    .word 280, 344, 4, 4
+    .word 304, 344, 4, 4
+    .word 340, 336, 4, 4
+    .word 344, 332, 4, 4
+    .word 348, 328, 4, 8
+    .word 332, 340, 8, 4
+    .word 328, 344, 4, 4
+    .word 328, 324, 4, 16
+
+tabla_pasto:
+    .word 52, 236, 4, 4
+    .word 56, 232, 4, 4
+    .word 60, 236, 260, 4
+    .word 352, 236, 200, 4
+    .word 552, 240, 8, 4
+    .word 560, 236, 8, 4
+    .word 568, 240, 20, 4
+    .word 68, 240, 8, 8
+    .word 100, 240, 4, 8
+    .word 120, 240, 4, 8
+    .word 148, 240, 4, 4
+    .word 156, 240, 4, 4
+    .word 176, 240, 160, 4
+    .word 340, 240, 120, 4
+    .word 464, 240, 80, 4
+    .word 80, 232, 8, 4
+    .word 116, 232, 12, 4
+    .word 160, 232, 4, 4
+    .word 168, 232, 4, 4
+    .word 176, 232, 4, 4
+    .word 180, 232, 4, 4
+    .word 260, 232, 8, 4
+    .word 272, 232, 20, 4
+    .word 320, 232, 32, 4
+    .word 404, 232, 4, 4
+    .word 412, 232, 4, 4
+    .word 448, 232, 4, 4
+    .word 456, 232, 4, 4
+    .word 464, 232, 4, 4
+    .word 500, 232, 12, 4
+    .word 128, 244, 116, 4
+    .word 268, 244, 168, 4
+    .word 60, 244, 48, 4
+    .word 480, 244, 8, 4
+    .word 512, 244, 12, 4
+    .word 72, 248, 4, 4
+    .word 100, 248, 12, 4
+    .word 204, 248, 4, 4
+    .word 248, 248, 24, 4
+    .word 320, 248, 4, 4
+    .word 364, 248, 8, 4
+    .word 400, 248, 12, 4
+
+tabla_dustin: //usamos .quad 
+    .quad 94, 144, 32, 32, 0xFFFFCCAA      // cara
+    .quad 98, 140, 24, 12, 0xFFFFFFFF      // parte blanca de la gorra
+    .quad 98, 140, 4, 4,   0x000000FF      // azul gorra izq
+    .quad 90, 148, 8, 8,   0x000000FF      // azul gorra izq
+    .quad 94, 144, 4, 4,   0x000000FF      // azul gorra izq
+    .quad 122,148, 8, 4,   0x000000FF      // azul gorra der
+    .quad 122,144, 4, 4,   0x000000FF      // azul gorra der
+    .quad 98, 152, 38, 4,  0xFFFF0000      // borde rojo gorra
+
+    // **Continuación de la tabla_dustin**
+    // Recuerda que el formato es: x, y, width, height, color (0xAARRGGBB)
+
+    // Cabeza - Mentón y Cuello
+    .quad 98, 176, 24, 4,  0xFFFFCCAA      // mentón
+    .quad 106, 180, 8, 4,  0xFFFFCCAA      // cuello
+
+    // Capucha y Pelo
+    .quad 90, 156, 8, 4,   0xFF8B4513      // capucha pegada a la gorra (color de fondo)
+    .quad 102, 156, 20, 4, 0xFFCD853F      // pelo
+    .quad 114, 160, 4, 4,  0xFFCD853F      // mechón de pelo solo
+    .quad 90, 160, 4, 12,  0xFF8B4513      // parte vertical gorra izquierda
+    .quad 98, 172, 4, 12,  0xFF8B4513      // unión capucha con campera parte izquierda
+    .quad 124, 156, 4, 8,  0xFF8B4513      // parte alta de la capucha lado derecho
+    .quad 124, 168, 4, 8,  0xFF8B4513      // detalle capucha parte derecha
+    .quad 118, 172, 6, 12, 0xFF8B4513      // unión capucha con campera (derecha)
+    .quad 126, 160, 4, 16, 0xFF8B4513      // detalle capucha parte derecha (más abajo)
+    .quad 128, 168, 4, 4,  0xFF8B4513      // detalle capucha parte derecha (pequeño)
+    .quad 94, 168, 4, 12,  0xFF8B4513      // detalle capucha parte izquierda (más abajo)
+    .quad 86, 164, 4, 8,   0xFF8B4513      // detalle capucha parte izquierda (exterior)
+
+    // Ojos y Boca
+    .quad 114, 164, 4, 4,  0xFF000000      // ojo derecho (negro)
+    .quad 102, 164, 4, 4,  0xFF000000      // ojo izquierdo (negro)
+    .quad 106, 172, 8, 4,  0xFFA0522D      // boca
+
+    // Cuerpo - Bordes del cuello y Hombros
+    .quad 102, 180, 4, 12, 0xFFCD853F      // detalle marrón claro de la campera (izquierda)
+    .quad 114, 180, 4, 12, 0xFFCD853F      // detalle marrón claro de la campera (derecha)
+    .quad 94, 184, 8, 8,   0xFFA0522A      // hombro izquierdo
+    .quad 118, 184, 8, 8,  0xFFA0522A      // hombro derecho
+    .quad 106, 184, 8, 4,  0xFFFAEBD7      // cuello (central)
+
+    // Campera y Remera
+    .quad 98, 192, 8, 20,  0xFFA0522A      // campera parte del torso (izquierda)
+    .quad 106, 188, 8, 24, 0xFFFFFFFF      // remera de abajo (blanco)
+    .quad 114, 192, 8, 20, 0xFFA0522A      // campera parte del torso (derecha)
+
+    // Brazos y Puños
+    .quad 88, 188, 6, 20,  0xFFA0522A      // manga de campera (izquierda)
+    .quad 88, 208, 6, 4,   0xFFCD853F      // puño de campera (izquierda)
+    .quad 126, 188, 6, 20, 0xFFA0522A      // manga de campera (derecha)
+    .quad 126, 208, 6, 4,  0xFFCD853F      // puño de campera (derecha)
+
+    // Manos
+    .quad 92, 212, 6, 6,   0xFFFFCCAA      // mano izquierda
+    .quad 122, 212, 6, 6,  0xFFFFCCAA      // mano derecha
+
+    // Piernas
+    .quad 102, 212, 6, 24, 0xFF203A80      // jean (pierna izquierda)
+    .quad 112, 212, 6, 24, 0xFF203A80      // jean (pierna derecha)
+
+    // Pies
+    .quad 98, 236, 8, 6,   0xFFFFFFFF      // pie izquierdo (blanco)
+    .quad 114, 236, 8, 6,  0xFFFFFFFF      // pie derecho (blanco)
+
+
+	tabla_will:
+	// Cabeza
+	.quad 176, 304, 32, 24, 0xFFFFCCAA      // cara
+	.quad 180, 300, 24, 4,  0xFFFFCCAA      // mentón
+	.quad 188, 296, 8, 4,   0xFFCCA874      // cuello
+	.quad 180, 336, 24, 4,  0xFF444444      // 1era parte del pelo
+	.quad 176, 328, 32, 8,  0xFF444444      // 2da parte del pelo
+	.quad 172, 304, 4, 28,  0xFF444444      // pelo vertical izquierdo
+	.quad 208, 304, 4, 28,  0xFF444444      // pelo vertical derecho
+	.quad 176, 300, 4, 12,  0xFF444444      // pelo vertical al lado del mentón izquierdo
+	.quad 204, 300, 4, 12,  0xFF444444      // pelo vertical al lado del mentón derecho
+	.quad 180, 300, 4, 4,   0xFF444444      // pelo al lado del mentón izquierdo
+	.quad 200, 300, 4, 4,   0xFF444444      // pelo al lado del mentón derecho
+	.quad 176, 320, 8, 8,   0xFF444444      // flequillo izquierdo
+	.quad 180, 316, 4, 4,   0xFF444444      // parte del flequillo cae, izquierda
+	.quad 184, 324, 12, 4,  0xFF444444      // pelo en la frente
+	.quad 204, 320, 4, 8,   0xFF444444      // mechón vertical derecha
+	.quad 184, 312, 4, 4,   0xFF000000      // ojo izquierdo (negro)
+	.quad 196, 312, 4, 4,   0xFF000000      // ojo derecho (negro)
+	.quad 188, 304, 8, 4,   0xFFA0522D      // boca
+
+	// Cuerpo
+	.quad 176, 288, 32, 8,  0xFF203A80      // parte superior del torso (azul oscuro)
+	.quad 180, 268, 24, 24, 0xFF880033      // campera (marrón)
+	.quad 184, 264, 4, 36,  0xFF880033      // hombro alto izq
+	.quad 196, 264, 4, 36,  0xFF880033      // hombro alto der
+	.quad 188, 268, 8, 28,  0xFFEEEEEE      // remera blanca
+
+	// Brazos
+	.quad 172, 268, 4, 24,  0xFF203A80      // mangas remera brazo izquierdo (azul oscuro)
+	.quad 208, 268, 4, 24,  0xFF203A80      // mangas remera brazo derecho (azul oscuro)
+	.quad 172, 268, 4, 16,  0xFFEEEEEE      // remera blanca manga izquierda (parte visible)
+	.quad 208, 268, 4, 16,  0xFFEEEEEE      // remera blanca manga derecha (parte visible)
+
+	// Manos
+	.quad 176, 264, 4, 4,   0xFFFFCCAA      // mano izquierda
+	.quad 204, 264, 4, 4,   0xFFFFCCAA      // mano derecha
+
+	// Piernas
+	.quad 184, 248, 4, 20,  0xFF2F3C75      // pierna izquierda (jeans)
+	.quad 196, 248, 4, 20,  0xFF2F3C75      // pierna derecha (jeans)
+
+	// Pies
+	.quad 180, 244, 8, 6,   0xFFFFFFFF      // pie izquierdo (blanco)
+	.quad 196, 244, 8, 6,   0xFFFFFFFF      // pie derecho (blanco)
+
+tabla_max:
+	.quad 252, 152, 40, 20, 0xFFFFCCAA // Cabeza: piel parte alta de la cara
+	.quad 264, 140, 16, 4, 0xFFCC3020 // Cabeza: mechon alto del pelo
+	.quad 252, 144, 40, 12, 0xFFCC3020 // Cabeza: 1era parte del pelo
+	.quad 248, 156, 8, 32, 0xFFCC3020 // Cabeza: parte vertical izquierda del pelo
+	.quad 288, 156, 8, 32, 0xFFCC3020 // Cabeza: parte vertical derecha del pelo
+	.quad 256, 172, 32, 8, 0xFFFFCCAA // Cabeza: piel parte baja de la cara
+	.quad 254, 156, 12, 4, 0xFFCC3020 // Cabeza: parte del flequillo izquierdo
+	.quad 276, 156, 12, 4, 0xFFCC3020 // Cabeza: parte del flequillo derecho
+	.quad 264, 164, 4, 4, 0xFF000000 // Cabeza: ojo izq
+	.quad 276, 164, 4, 4, 0xFF000000 // Cabeza: ojo derecho
+	.quad 268, 172, 8, 4, 0xFFA0522D // Cabeza: boca
+	.quad 260, 180, 24, 4, 0xFFFFCCAA // Cuello: 1er parte del cuello
+	.quad 268, 184, 8, 4, 0xFFFFCCAA // Cuello: 2da parte del cuello
+	.quad 256, 188, 32, 8, 0xCC80D0FF // Cuerpo: Hombros - Campera
+	.quad 268, 188, 8, 8, 0xFFEEEEEE // Cuerpo: Remera de abajo
+	.quad 260, 196, 24, 20, 0xCC80D0FF // Cuerpo: Panza - Campera
+	.quad 264, 184, 4, 12, 0xFFFFFF00 // Cuerpo: Bordes del cuello y detalles del cierre - cierre campera
+	.quad 276, 184, 4, 12, 0xFFFFFF00 // Cuerpo: Bordes del cuello y detalles del cierre - cierre campera
+	.quad 268, 196, 8, 4, 0xFFFFFF00 // Cuerpo: Bordes del cuello y detalles del cierre - cierre campera
+	.quad 252, 192, 4, 24, 0xCC80D0FF // Brazo: Campera
+	.quad 288, 192, 4, 24, 0xCC80D0FF // Brazo: Campera
+	.quad 252, 204, 4, 8, 0xFFFFFF00 // Brazo: detalle campera
+	.quad 288, 204, 4, 8, 0xFFFFFF00 // Brazo: detalle campera
+	.quad 256, 216, 4, 4, 0xFFFFCCAA // Manos
+	.quad 284, 216, 4, 4, 0xFFFFCCAA // Manos
+	.quad 264, 216, 4, 20, 0xFF2F3C75 // Piernas: pantalones
+	.quad 276, 216, 4, 20, 0xFF2F3C75 // Piernas: pantalones
+	.quad 260, 236, 8, 6, 0xFFFFFFFF // Pies
+	.quad 276, 236, 8, 6, 0xFFFFFFFF // Pies
+
+
+tabla_lucas:
+	.quad 338, 140, 24, 4, 0xFFA97253 // Cabeza: parte superior de la frente / pelo
+	.quad 334, 144, 32, 32, 0xFFA97253 // Cabeza: base de la cabeza / cara
+	.quad 330, 148, 4, 20, 0xFFA97253 // Cabeza: lado izquierdo de la cara
+	.quad 366, 148, 4, 20, 0xFFA97253 // Cabeza: lado derecho de la cara
+	.quad 338, 176, 24, 4, 0xFFA97253 // Cabeza: barbilla / parte inferior de la cara
+	.quad 346, 180, 8, 4, 0xFFA97253 // Cuello: parte inferior del cuello
+	.quad 346, 170, 8, 4, 0xFFA0522D // Boca
+	.quad 342, 180, 4, 4, 0xFFA54F50 // Cuerpo: Borde izquierdo del cuello
+	.quad 354, 180, 4, 4, 0xFFA54F50 // Cuerpo: Borde derecho del cuello
+	.quad 334, 184, 32, 8, 0xFFA54F50 // Cuerpo: Hombros
+	.quad 338, 192, 24, 20, 0xFFA54F50 // Cuerpo: Panza
+	.quad 328, 188, 6, 24, 0xFFA54F50 // Brazo izquierdo
+	.quad 366, 188, 6, 24, 0xFFA54F50 // Brazo derecho
+	.quad 332, 212, 6, 6, 0xFFFFCCAA // Mano izquierda
+	.quad 362, 212, 6, 6, 0xFFFFCCAA // Mano derecha
+	.quad 342, 212, 6, 24, 0xFF952225 // Pierna izquierda: pantalones
+	.quad 352, 212, 6, 24, 0xFF952225 // Pierna derecha: pantalones
+	.quad 338, 236, 8, 6, 0xFFFFFFFF // Pie izquierdo
+	.quad 354, 236, 8, 6, 0xFFFFFFFF // Pie derecho
+	.quad 338, 140, 24, 4, 0xFF411401 // Pelo: parte superior
+	.quad 334, 144, 4, 4, 0xFF411401 // Pelo: superior izquierda 1
+	.quad 330, 148, 4, 4, 0xFF411401 // Pelo: superior izquierda 2
+	.quad 362, 144, 4, 4, 0xFF411401 // Pelo: superior derecha 1
+	.quad 366, 148, 4, 4, 0xFF411401 // Pelo: superior derecha 2
+	.quad 334, 156, 12, 4, 0xFF411401 // Pelo: flequillo izquierdo
+	.quad 334, 160, 4, 4, 0xFF411401 // Pelo: detalle flequillo izquierdo
+	.quad 354, 156, 12, 4, 0xFF411401 // Pelo: flequillo derecho
+	.quad 362, 160, 4, 4, 0xFF411401 // Pelo: detalle flequillo derecho
+	.quad 338, 144, 24, 4, 0xFF93995D // Pelo: Verde Oscuro 1
+	.quad 334, 148, 32, 4, 0xFF93995D // Pelo: Verde Oscuro 2
+	.quad 334, 152, 8, 4, 0xFF93995D // Pelo: Verde Oscuro 3
+	.quad 358, 152, 8, 4, 0xFF93995D // Pelo: Verde Oscuro 4
+	.quad 330, 156, 4, 4, 0xFF93995D // Pelo: Verde Oscuro 5
+	.quad 366, 156, 4, 4, 0xFF93995D // Pelo: Verde Oscuro 6
+	.quad 330, 152, 4, 4, 0xFFE7D887 // Pelo: Verde Claro 1
+	.quad 366, 152, 4, 4, 0xFFE7D887 // Pelo: Verde Claro 2
+	.quad 350, 144, 4, 4, 0xFFE7D887 // Pelo: Verde Claro 3 (en la parte superior de la cabeza)
+	.quad 354, 148, 4, 4, 0xFFE7D887 // Pelo: Verde Claro 4 (en la parte superior de la cabeza)
+	.quad 346, 184, 8, 28, 0xFF6AD3FF // Marron piel (superpuesto por Celeste)
+	.quad 346, 184, 8, 28, 0xFF6AD3FF // Celeste (esto parece ser el color principal de la ropa de Lucas, superponiendo el "marrón piel" anterior)
+	.quad 338, 188, 24, 8, 0xFFC1A991 // Crema (Parece ser una parte de la remera o cuello)
+	.quad 338, 164, 4, 4, 0xFF000000 // Ojo izquierdo
+	.quad 358, 164, 4, 4, 0xFF000000 // Ojo derecho
+
+
+
+	tabla_eleven:
+.quad 418, 172, 8, 4, 0xFFA0522D // Cabeza: boca
+.quad 418, 140, 24, 4, 0xFFF4A58A // Cabeza: parte superior de la frente / pelo
+.quad 414, 144, 32, 32, 0xFFFFCCAA // Cabeza: base de la cabeza / cara
+.quad 414, 144, 32, 8, 0xFFF4A58A // Cabeza: parte del pelo (superpuesto a la cara)
+.quad 422, 152, 16, 4, 0xFFF4A58A // Cabeza: pelo central
+.quad 418, 160, 4, 4, 0xFF000000 // Ojos: ojo izquierdo
+.quad 438, 160, 4, 4, 0xFF000000 // Ojos: ojo derecho
+.quad 410, 148, 4, 20, 0xFFF4A58A // Cabeza: lado izquierdo del pelo
+.quad 410, 168, 4, 4, 0xFFFFCCAA // Cabeza: piel (parte inferior izquierda de la cara)
+.quad 446, 148, 4, 20, 0xFFF4A58A // Cabeza: lado derecho del pelo
+.quad 446, 168, 4, 4, 0xFFFFCCAA // Cabeza: piel (parte inferior derecha de la cara)
+.quad 418, 176, 24, 4, 0xFFFFCCAA // Cabeza: barbilla / parte inferior de la cara
+.quad 426, 180, 8, 4, 0xFFFFCCAA // Cuello: parte inferior del cuello
+.quad 426, 170, 8, 4, 0xFFA0522D // Boca (repetido, asegúrate de que esto sea intencional si no, podría superponerse)
+.quad 422, 180, 4, 4, 0xFF5F3DC4 // Cuerpo: Borde izquierdo del cuello
+.quad 434, 180, 4, 4, 0xFF5F3DC4 // Cuerpo: Borde derecho del cuello
+.quad 418, 184, 24, 8, 0xFF5F3DC4 // Cuerpo: Hombros
+.quad 422, 184, 16, 40, 0xFFD8A6A3 // Cuerpo: Panza (principal de la vestimenta)
+.quad 426, 184, 8, 4, 0xFFFFFFFF // Cuerpo: Detalle blanco (puede ser un cuello de camisa o detalle en el pecho)
+.quad 422, 184, 4, 20, 0xFF5F3DC4 // Cuerpo: Detalle vertical izquierdo
+.quad 434, 184, 4, 20, 0xFF5F3DC4 // Cuerpo: Detalle vertical derecho
+.quad 414, 188, 4, 24, 0xFF5F3DC4 // Brazo izquierdo
+.quad 442, 188, 4, 24, 0xFF5F3DC4 // Brazo derecho
+.quad 418, 212, 4, 4, 0xFFFFCCAA // Mano izquierda
+.quad 438, 212, 4, 4, 0xFFFFCCAA // Mano derecha
+.quad 422, 224, 4, 12, 0xFFFFCCAA // Pierna izquierda
+.quad 434, 224, 4, 12, 0xFFFFCCAA // Pierna derecha
+.quad 418, 236, 8, 6, 0xFFFFFFFF // Pie izquierdo
+.quad 434, 236, 8, 6, 0xFFFFFFFF // Pie derecho
+
+
+tabla_mike:
+.quad 498, 136, 20, 4, 0xFF1C1C1C // Cabeza: pelo, parte superior central
+.quad 490, 140, 32, 4, 0xFF1C1C1C // Cabeza: pelo, parte superior ancha
+.quad 494, 144, 32, 32, 0xFFFFCCAA // Cabeza: piel base de la cara
+.quad 486, 144, 40, 4, 0xFF1C1C1C // Cabeza: pelo, sobre la frente
+.quad 514, 144, 4, 4, 0xFFFFCCAA // Cabeza: piel, parte superior derecha (puede ser oreja o detalle de cara)
+.quad 486, 148, 44, 4, 0xFF1C1C1C // Cabeza: pelo, más abajo sobre la frente
+.quad 510, 148, 8, 4, 0xFFFFCCAA // Cabeza: piel, parte superior derecha de la cara
+.quad 486, 152, 48, 4, 0xFF1C1C1C // Cabeza: pelo, debajo de la frente
+.quad 506, 152, 20, 4, 0xFFFFCCAA // Cabeza: piel, centro de la cara (parte superior de los ojos)
+.quad 486, 156, 48, 4, 0xFF1C1C1C // Cabeza: pelo, borde inferior
+.quad 498, 156, 28, 4, 0xFFFFCCAA // Cabeza: piel, parte media de la cara (debajo de los ojos)
+.quad 486, 160, 4, 16, 0xFF1C1C1C // Cabeza: pelo, lateral izquierdo
+.quad 530, 160, 4, 12, 0xFF1C1C1C // Cabeza: pelo, lateral derecho
+.quad 490, 160, 4, 8, 0xFFFFCCAA // Cabeza: piel, lateral izquierdo de la cara
+.quad 526, 160, 4, 8, 0xFFFFCCAA // Cabeza: piel, lateral derecho de la cara
+.quad 505, 170, 8, 4, 0xFFA0522D // Boca
+.quad 498, 164, 4, 4, 0xFF000000 // Ojo izquierdo
+.quad 518, 164, 4, 4, 0xFF000000 // Ojo derecho
+.quad 526, 168, 4, 12, 0xFF1C1C1C // Pelo: detalle lateral 
+.quad 530, 176, 4, 4, 0xFF1C1C1C // Pelo: detalle lateral 
+.quad 558, 168, 4, 12, 0xFF1C1C1C // Pelo: detalle lateral 
+.quad 554, 176, 4, 4, 0xFF1C1C1C // Pelo: detalle lateral 
+.quad 498, 176, 24, 4, 0xFFFFCCAA // Cabeza: barbilla / parte inferior de la cara
+.quad 506, 180, 8, 4, 0xFFFFCCAA // Cuello: parte inferior
+.quad 502, 180, 4, 4, 0xFFA5B78D // Cuerpo: borde izquierdo del cuello
+.quad 514, 180, 4, 4, 0xFFA5B78D // Cuerpo: borde derecho del cuello
+.quad 494, 184, 32, 8, 0xFFA5B78D // Cuerpo: hombros
+.quad 498, 192, 24, 20, 0xFFA5B78D // Cuerpo: torso principal
+.quad 506, 184, 8, 28, 0xFFFFFFFF // 
+.quad 506, 192, 8, 16, 0xFF0D3286 //
+.quad 506, 196, 8, 8, 0xFFF7D038 // 
+.quad 488, 188, 6, 24, 0xFFA5B78D // Brazo izquierdo
+.quad 526, 188, 6, 24, 0xFFA5B78D // Brazo derecho
+.quad 492, 212, 6, 6, 0xFFFFCCAA // Mano izquierda
+.quad 522, 212, 6, 6, 0xFFFFCCAA // Mano derecha
+.quad 502, 212, 6, 24, 0xFF5F3DC4 // Pierna izquierda
+.quad 512, 212, 6, 24, 0xFF5F3DC4 // Pierna derecha
+.quad 498, 236, 8, 6, 0xFFFFFFFF // Pie izquierdo
+.quad 514, 236, 8, 6, 0xFFFFFFFF // Pie derecho
+
 
 
 	// Ejemplo de uso de gpios

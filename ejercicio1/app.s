@@ -2323,7 +2323,7 @@ tabla_pasto:
     .word 364, 248, 8, 4
     .word 400, 248, 12, 4
 
-tabla_dustin: //usamos .quad 
+tabla_dustin: //usamos .quad (quad=4), 4Words = 4*2Byte = 8Byte = 64 bits para almacenar el color. Para crearlos originalmente usabamos: movz, para "limpiar" el registro y cargabamos la parte menos significativa con lsl #0, y la parte mas significativa usando movk, (que no limipia el registro), para cargar la parte mas signficativa con lsl #!6
     .quad 94, 144, 32, 32, 0xFFFFCCAA      // cara
     .quad 98, 140, 24, 12, 0xFFFFFFFF      // parte blanca de la gorra
     .quad 98, 140, 4, 4,   0x000000FF      // azul gorra izq

@@ -59,7 +59,7 @@ dibujando_purpura_inferior:
     mov x5, #640        // SCREEN_WIDTH
     mov x12, #239       // y_end (constante)
 
-    ldr x13, =purpura_coords // Puntero a la tabla de coordenadas púrpura al final del código
+    ldr x13, =purpura_coords // puntero a la tabla de coordenadas púrpura al final del código
     mov x14, #30        // cantidad de entradas
 loop_purpura:
     ldr w6, [x13], #4   // x_start
@@ -133,13 +133,13 @@ dibujando_arbustos_y_fondo:
 	movk x10, 0xFF00, lsl 16
 
     mov x10, #0xFF000000     // Color negro
-    movz x10, 0, lsl 0      // Esto es para completar, o usar movk si es necesario
+    movz x10, 0, lsl 0      
 
-    ldr x19, =tabla_domo_arbustos   // Dirección base de la tabla
-    mov x21, #63           // Número de entradas
+    ldr x19, =tabla_domo_arbustos   // dirección base de la tabla
+    mov x21, #63           // número de entradas
 
 loop_fondo_arbustos:
-    cbz x21, fin_fondo_arbustos     // Si x21 == 0, fin del loop
+    cbz x21, fin_fondo_arbustos     // si x21 == 0, fin del loop
 
     ldr w6, [x19], #4               // cargar x_start, avanzar puntero 4 bytes
     ldr w7, [x19], #4               // cargar x_end
@@ -165,8 +165,8 @@ dibujando_arboles_fondo:
     movz x10, 0x0000, lsl #0
     movk x10, 0xFF00, lsl #16
 
-    ldr x19, =tabla_arboles_fondo   // Dirección de la tabla de árboles
-    mov x21, #179                    // Cantidad de entradas (cambiar según total de líneas)
+    ldr x19, =tabla_arboles_fondo   // dirección de la tabla de árboles
+    mov x21, #179                    // cantidad de entradas 
 
 loop_arboles_fondo:
     cbz x21, fin_arboles_fondo
@@ -228,7 +228,7 @@ fin_dibujando_ODC2025:
 
 	movz x5, 0x0000, lsl 0	
 	movk x5, 0xFF00, lsl 16
-// Dibujar los números y ramas con un solo loop
+	
     movz x5, 0x0000, lsl 0
     movk x5, 0xFF00, lsl 16
 
@@ -257,8 +257,8 @@ dibujando_pasto:
     movz x5, 0x656F, lsl #0
     movk x5, 0xFF35, lsl #16
 
-    ldr x19, =tabla_pasto        // Dirección de la tabla con los datos
-    mov x21, #42                // Cantidad de entradas (número de rectángulos)
+    ldr x19, =tabla_pasto        // dirección de la tabla con los datos
+    mov x21, #42                // cantidad de entradas (número de rectángulos)
 
 loop_pasto:
     cbz x21, fin_pasto
@@ -284,8 +284,8 @@ draw_demogorgon:
 //Demogorgon - cuerpo
 	movz w5, #0x4379, lsl #0
 	movk w5, #0xFF06, lsl #16
-//tronco
 
+//tronco
 	mov x1, #405 // 410 - 5
 	mov x2, #350 // 365 - 15
 	mov x3, #42
@@ -1307,9 +1307,9 @@ draw_demogorgon:
     mov x3, #2
     bl draw_circle
 
-	// Detalles en el tronco (círculos)
+	
 	movz w5, #0x90D6, lsl #0
-	movk w5, #0xFF1B, lsl #16 // Color ligeramente diferente
+	movk w5, #0xFF1B, lsl #16
 
 	mov x1, #415 // Centro X
 	mov x2, #352 // Centro Y
@@ -1335,8 +1335,8 @@ draw_demogorgon:
  ////////////////////PERSONAJES////////////////////
 	// personajes
 dibujando_dustin:
-    ldr x19, =tabla_dustin      // Dirección tabla
-    mov x21, #45               // Cantidad de rectángulos (ajustar si cambias tabla)
+    ldr x19, =tabla_dustin      // dirección tabla
+    mov x21, #45               // cantidad de rectángulos 
 
 loop_dustin:
     cbz x21, fin_dustin
@@ -1355,8 +1355,8 @@ loop_dustin:
 fin_dustin:
 
 dibujando_will:
-    ldr x19, =tabla_will      // Dirección tabla
-    mov x21, #45               // Cantidad de rectángulos (ajustar si cambias tabla)
+    ldr x19, =tabla_will      // dirección tabla
+    mov x21, #45               // cantidad de rectángulos 
 
 loop_will:
     cbz x21, fin_will
@@ -1376,7 +1376,7 @@ fin_will:
 dibujando_max:
 	// Maxdibujando_max:
     ldr x19, =tabla_max       // dirección de la tabla
-    mov x21, #52              // cantidad de rectángulos (contar las líneas en la tabla)
+    mov x21, #52              // cantidad de rectángulos
 
 loop_max:
     cbz x21, fin_max
@@ -1396,7 +1396,7 @@ fin_max:
 dibujando_lucas:
 	// dibujando_lucas:
     ldr x19, =tabla_lucas       // dirección de la tabla
-    mov x21, #52              // cantidad de rectángulos (contar las líneas en la tabla)
+    mov x21, #52              // cantidad de rectángulos 
 
 loop_lucas:
     cbz x21, fin_lucas
@@ -1416,7 +1416,7 @@ fin_lucas:
 dibujando_eleven:
 	// dibujando_eleven:
     ldr x19, =tabla_eleven       // dirección de la tabla
-    mov x21, #52              // cantidad de rectángulos (contar las líneas en la tabla)
+    mov x21, #52              // cantidad de rectángulos 
 
 loop_eleven:
     cbz x21, fin_eleven
@@ -1437,7 +1437,7 @@ fin_eleven:
  dibujando_mike:
 	// dibujando_mike:
     ldr x19, =tabla_mike       // dirección de la tabla
-    mov x21, #52              // cantidad de rectángulos (contar las líneas en la tabla)
+    mov x21, #52              // cantidad de rectángulos 
 
 loop_mike:
     cbz x21, fin_mike
@@ -1678,46 +1678,41 @@ draw_rect:
     mov x7, x2                  // y_start
     mov x8, x3                  // ancho
     mov x9, x4                  // alto
-    mov w10, w5                 // color (from w5 argument)
-    mov x11, #640               // SCREEN_WIDTH (hardcoded, consider passing as argument or global .equ)
+    mov w10, w5                 // color 
+    mov x11, #640               // 
 
-    // Calculate end coordinates
+    
     add x12, x6, x8             // x_end = x_start + ancho
     add x13, x7, x9             // y_end = y_start + alto
 
-    // Loop through y-coordinates
+    
     mov x14, x7                 // y = y_start
 
 loop_y_rect:
-    cmp x14, x13                // Compare y with y_end
-    b.ge end_draw_rect          // If y >= y_end, exit y-loop
+    cmp x14, x13                // comparo y con y_end
+    b.ge end_draw_rect          // si i>= y_end, salgo de y_loop
 
-    // Loop through x-coordinates
-    mov x15, x6                 // x = x_start (reset for each row)
+    mov x15, x6                 // x = x_start 
 
 loop_x_rect:
-    cmp x15, x12                // Compare x with x_end
-    b.ge next_y_rect            // If x >= x_end, go to next row
+    cmp x15, x12                // comparo x con x_end
+    b.ge next_y_rect            // si x>= x_end, sigo 
 
-    // Calculate pixel address
     mul x16, x14, x11           // y * SCREEN_WIDTH
     add x16, x16, x15           // (y * SCREEN_WIDTH) + x
-    lsl x16, x16, #2            // * 4 bytes per pixel (assuming 32-bit color)
+    lsl x16, x16, #2            // * 4 bytes por pixel (assumiendo colores de 32-bit )
 
     add x17, x0, x16            // pixel_address = framebuffer_base + offset
-    str w10, [x17]              // Write color to pixel
+    str w10, [x17]              
 
     add x15, x15, #1            // x++
-    b loop_x_rect               // Continue x-loop
+    b loop_x_rect               
 
 next_y_rect:
     add x14, x14, #1            // y++
-    b loop_y_rect               // Continue y-loop
+    b loop_y_rect               
 
 end_draw_rect:
-    // Restore callee-saved registers if they were saved at the beginning
-    // ldp x21, x22, [sp], #16
-    // ldp x19, x20, [sp], #16
     ret
 
 
@@ -1731,50 +1726,46 @@ end_draw_rect:
 
 draw_circle:
 
-    // Mover argumentos a registros de trabajo para claridad y consistencia
     mov x6, x1
     mov x7, x2
     mov x8, x3
     mov w9, w5
 
-    // Definir el ancho de la pantalla (asumiendo 640 píxeles)
     mov x10, #640
 
-    // Calcular el radio al cuadrado (radio * radio)
+    // radio al cuadrado 
     mul x11, x8, x8
 
-    // Calcular las coordenadas del cuadro delimitador
+    
     sub x12, x6, x8
     add x13, x6, x8
     sub x14, x7, x8
     add x15, x7, x8
 
-    // Bucle principal para las coordenadas Y (filas)
+    
     mov x16, x14
 
 loop_y_circle:
     cmp x16, x15
     b.ge end_draw_circle
 
-    // Bucle anidado para las coordenadas X (columnas)
+    
     mov x17, x12
 
 loop_x_circle:
     cmp x17, x13
     b.ge next_y_circle
 
-    sub x18, x17, x6 // Calcular dx = current_x - center_x
-    sub x19, x16, x7 // Calcular dy = current_y - center_y
-    mul x25, x18, x18   // Calcular dx_squared = dx * dx
-    mul x21, x19, x19    // Calcular dy_squared = dy * dy
+    sub x18, x17, x6 
+    sub x19, x16, x7 
+    mul x25, x18, x18  
+    mul x21, x19, x19  
 
-    add x22, x25, x21   /// Calcular distance_squared = dx_squared + dy_squared
+    add x22, x25, x21  
 
-    // Comparar distance_squared con radio_squared
     cmp x22, x11
     b.gt skip_pixel_circle
 
-    // desplazamiento del píxel
     mul x23, x16, x10
     add x23, x23, x17
     lsl x23, x23, #2
@@ -2324,6 +2315,7 @@ tabla_pasto:
     .word 400, 248, 12, 4
 
 tabla_dustin: //usamos .quad (quad=4), 4Words = 4*2Byte = 8Byte = 64 bits para almacenar el color. Para crearlos originalmente usabamos: movz, para "limpiar" el registro y cargabamos la parte menos significativa con lsl #0, y la parte mas significativa usando movk, (que no limipia el registro), para cargar la parte mas signficativa con lsl #!6
+
     .quad 94, 144, 32, 32, 0xFFFFCCAA      // cara
     .quad 98, 140, 24, 12, 0xFFFFFFFF      // parte blanca de la gorra
     .quad 98, 140, 4, 4,   0x000000FF      // azul gorra izq
@@ -2332,9 +2324,6 @@ tabla_dustin: //usamos .quad (quad=4), 4Words = 4*2Byte = 8Byte = 64 bits para a
     .quad 122,148, 8, 4,   0x000000FF      // azul gorra der
     .quad 122,144, 4, 4,   0x000000FF      // azul gorra der
     .quad 98, 152, 38, 4,  0xFFFF0000      // borde rojo gorra
-
-    // **Continuación de la tabla_dustin**
-    // Recuerda que el formato es: x, y, width, height, color (0xAARRGGBB)
 
     // Cabeza - Mentón y Cuello
     .quad 98, 176, 24, 4,  0xFFFFCCAA      // mentón
@@ -2467,7 +2456,6 @@ tabla_max:
 	.quad 260, 236, 8, 6, 0xFFFFFFFF // Pies
 	.quad 276, 236, 8, 6, 0xFFFFFFFF // Pies
 
-
 tabla_lucas:
 	.quad 338, 140, 24, 4, 0xFFA97253 // Cabeza: parte superior de la frente / pelo
 	.quad 334, 144, 32, 32, 0xFFA97253 // Cabeza: base de la cabeza / cara
@@ -2512,7 +2500,6 @@ tabla_lucas:
 	.quad 338, 188, 24, 8, 0xFFC1A991 // Crema (Parece ser una parte de la remera o cuello)
 	.quad 338, 164, 4, 4, 0xFF000000 // Ojo izquierdo
 	.quad 358, 164, 4, 4, 0xFF000000 // Ojo derecho
-
 
 
 	tabla_eleven:
@@ -2587,27 +2574,6 @@ tabla_mike:
 .quad 512, 212, 6, 24, 0xFF5F3DC4 // Pierna derecha
 .quad 498, 236, 8, 6, 0xFFFFFFFF // Pie izquierdo
 .quad 514, 236, 8, 6, 0xFFFFFFFF // Pie derecho
-
-
-
-	// Ejemplo de uso de gpios
-	mov x9, GPIO_BASE
-
-	// Atención: se utilizan registros w porque la documentación de broadcom
-	// indica que los registros que estamos leyendo y escribiendo son de 32 bits
-
-	// Setea gpios 0 - 9 como lectura
-	str wzr, [x9, GPIO_GPFSEL0]
-
-	// Lee el estado de los GPIO 0 - 31
-	ldr w10, [x9, GPIO_GPLEV0]
-
-	// And bit a bit mantiene el resultado del bit 2 en w10
-	and w11, w10, 0b10
-
-	// w11 será 1 si había un 1 en la posición 2 de w10, si no será 0
-	// efectivamente, su valor representará si GPIO 2 está activo
-	lsr w11, w11, 1
 
 	//---------------------------------------------------------------
 	// Infinite Loop

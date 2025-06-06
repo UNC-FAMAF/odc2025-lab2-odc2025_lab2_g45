@@ -1,4 +1,4 @@
-.globl main
+	.globl main
 
 main:
 	// x0 contiene la direccion base del framebuffer
@@ -20,9 +20,6 @@ main:
 	bl dibujando_max
 	bl draw_demogorgon
 
-    
-	//---------------------------------------------------------------
-	// Infinite Loop
-
-InfLoop:
-	b InfLoop
+	InfLoop:
+		b InfLoop
+		

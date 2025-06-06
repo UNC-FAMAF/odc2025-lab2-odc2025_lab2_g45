@@ -1,53 +1,45 @@
-	.equ SCREEN_WIDTH, 		640
-	.equ SCREEN_HEIGH, 		480
-	.equ BITS_PER_PIXEL,  	32
-
-	.equ GPIO_BASE,      0x3f200000
-	.equ GPIO_GPFSEL0,   0x00
-	.equ GPIO_GPLEV0,    0x34
-
-	.globl main
-
+.globl main
 main:
-	// x0 contiene la direccion base del framebuffer
- 	mov x20, x0	// Guarda la dirección base del framebuffer en x20
-	//---------------- CODE HERE ------------------------------------
+    mov x20, x0          // framebuffer base
 
-	movz x10, 0xC7, lsl 16
-	movk x10, 0x1585, lsl 00
+    // Dibujo estático (solo una vez)
+    bl dibujando_celeste
+    bl dibujando_purpura_inferior
+    bl dibujando_purpura_superior
+    bl dibujando_arbustos_y_fondo
+    bl dibujando_arboles_fondo
+    bl dibujando_ODC2025
+    bl dibujando_pasto
+    bl dibujando_dustin
+    bl dibujando_mike
+    bl dibujando_lucas
+    bl dibujando_max
+    bl draw_demogorgon
 
-	mov x2, SCREEN_HEIGH         // Y Size
-loop1:
-	mov x1, SCREEN_WIDTH         // X Size
-loop0:
-	stur w10,[x0]  // Colorear el pixel N
-	add x0,x0,4	   // Siguiente pixel
-	sub x1,x1,1	   // Decrementar contador X
-	cbnz x1,loop0  // Si no terminó la fila, salto
-	sub x2,x2,1	   // Decrementar contador Y
-	cbnz x2,loop1  // Si no es la última fila, salto
+    mov x19, #0          // contador de frames
 
-	// Ejemplo de uso de gpios
-	mov x9, GPIO_BASE
+animloop:
+    // Parpadeo de estrellas
+    and x1, x19, #1        // x1 = x19 % 2
+    cbz x1, mostrar_estrellas
 
-	// Atención: se utilizan registros w porque la documentación de broadcom
-	// indica que los registros que estamos leyendo y escribiendo son de 32 bits
+    // Si x19 es impar, saltear dibujo de estrellas
+    b skip_estrellas
 
-	// Setea gpios 0 - 9 como lectura
-	str wzr, [x9, GPIO_GPFSEL0]
+mostrar_estrellas:
+    bl dibujando_estrellas
 
-	// Lee el estado de los GPIO 0 - 31
-	ldr w10, [x9, GPIO_GPLEV0]
+skip_estrellas:
+    // Acá podés agregar animaciones de personajes si querés
+    // bl dibujando_eleven
+    // bl dibujando_will
 
-	// And bit a bit mantiene el resultado del bit 2 en w10
-	and w11, w10, 0b10
+    mov x0, #10
+    bl delay
 
-	// w11 será 1 si había un 1 en la posición 2 de w10, si no será 0
-	// efectivamente, su valor representará si GPIO 2 está activo
-	lsr w11, w11, 1
-
-	//---------------------------------------------------------------
-	// Infinite Loop
+    add x19, x19, #1
+    cmp x19, #120
+    b.lt animloop
 
 InfLoop:
-	b InfLoop
+    b InfLoop

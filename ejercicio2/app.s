@@ -9,9 +9,9 @@ main:
     bl dibujando_celeste
     bl dibujando_purpura_inferior
     bl dibujando_purpura_superior
-    movz x10, 0x3DA1, lsl 0	
-    movk x10, 0xFF2B, lsl 16
-    bl dibujando_estrellas
+    movz x10, 0xBFDE, lsl 0    
+    movk x10, 0xFF9B, lsl 16
+    bl dibujando_estrellas       // Dibuja las estrellas inicialmente encendidas
     bl dibujando_arbustos_y_fondo
     bl dibujando_arboles_fondo
     bl dibujando_ODC2025
@@ -23,7 +23,8 @@ main:
     bl dibujando_will
     bl dibujando_max
     bl draw_demogorgon
-    bl animacion
+    bl animacion              // Llama a la animación al final del dibujo inicial
+
 
 InfLoop:
     b InfLoop

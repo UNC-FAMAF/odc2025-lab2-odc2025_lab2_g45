@@ -16,6 +16,7 @@
 .globl dibujando_max
 .globl draw_demogorgon
 .globl animacion
+.globl dibujando_estrellas_apagadas
 
 
 .section .text
@@ -107,7 +108,6 @@ loop_purpura_superior:
 
 //estrellas
 dibujando_estrellas:
-
     stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
     ldr x19, =tabla_estrellas   // Dirección base de la tabla en x19
     mov x21, #79                // Grupos a procesar
@@ -1501,14 +1501,16 @@ fin_mike:
 
 
 
+
+
 animacion:
 
     stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
-
 /////////////////////ANIMACIÓN////////////////////7
 
        // ------ VOY A HACER ACÁ LA ANIMACIÓN DEL FONDO NEGRO QUE SE VA COMIENDO TODO -----
-       movz x5, 0x0000, lsl #0
+      /*
+ movz x5, 0x0000, lsl #0
        movk x5, 0xFF00, lsl #16        // Establezco el color negro
 
        movz x20, #15000, lsl #0        // Establezo el tiempo antes de que se pinte
@@ -1639,6 +1641,7 @@ animacion:
        movz x20, #15000, lsl #0
        movk x20, #49000, lsl 16
 
+
        bl delay_loop
 
        mov x1, #100 // Centro X
@@ -1657,15 +1660,410 @@ animacion:
 	mov x4, #80
 	bl draw_rect
 
-b animacion
+*/
+/*
+
+
+//ODC 2025 TIPO STRANGER THINGS
+       movz x5, 0x0000, lsl #0
+       movk x5, 0xFFFF, lsl #16        // Establezco el color rojo
+//ARRIBA
+	mov x1, #319 // x
+	mov x2, #50 //y
+	mov x3, #2//ancho
+	mov x4, #20//alto
+	bl draw_rect
+
+//ABAJO
+	mov x1, #319 // x
+	mov x2, #420 //y
+	mov x3, #2//ancho
+	mov x4, #20//alto
+	bl draw_rect
+
+       movz x20, #15000, lsl #0
+    movk x20, #10000, lsl 16
+       bl delay_loop
+
+
+//ARRIBA
+    mov x1, #317 //  x
+	mov x2, #50 // y
+	mov x3, #6//ancho
+	mov x4, #20//alto
+	bl draw_rect
+
+//ABAJO
+	mov x1, #317 // x
+	mov x2, #420 //y
+	mov x3, #6//ancho
+	mov x4, #20//alto
+	bl draw_rect
+
+    movz x20, #15000, lsl #0
+    movk x20, #10000, lsl 16
+    bl delay_loop
+
+    mov x21, #315
+    mov x22, #10
+    mov x23, #319
+    mov x24, #2
+    mov x25, #0 // width_increment_index (0 for +2, 1 for +6)
+
+loop_start:
+    cmp x21, #70
+    blt loop_end
+
+    // Top Rectangles
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Red
+    mov x1, x21
+    mov x2, #50
+    mov x3, x22
+    mov x4, #20
+    bl draw_rect
+
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFF00, lsl #16 // Black
+    mov x1, x23
+    mov x2, #52
+    mov x3, x24
+    mov x4, #15
+    bl draw_rect
+
+    // Bottom Rectangles
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Red
+    mov x1, x21
+    mov x2, #420
+    mov x3, x22
+    mov x4, #20
+    bl draw_rect
+
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFF00, lsl #16 // Black
+    mov x1, x23
+    mov x2, #422
+    mov x3, x24
+    mov x4, #15
+    bl draw_rect
+
+    movz x20, #1500, lsl #0
+    movk x20, #1000, lsl 16
+    bl delay_loop
+
+    // Update variables
+    sub x21, x21, #2
+    sub x23, x23, #2
+    add x24, x24, #4
+
+    // Calculate x3_red increment (+2 then +6)
+    and x26, x25, #1
+    cmp x26, #0
+    beq increment_by_2
+    b increment_by_6
+
+increment_by_2:
+    add x22, x22, #2
+    b end_increment
+
+increment_by_6:
+    add x22, x22, #6
+
+end_increment:
+    add x25, x25, #1
+
+    b loop_start
+
+loop_end:
+*/
+//O
+
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
+    mov x1, #110             // x
+    mov x2, #85            // y
+    mov x3, 90            // ancho (width)
+    mov x4, #2            // alto (height)
+    bl draw_rect             // Call draw_rect function
+        movz x20, #1500, lsl #0
+    movk x20, #1000, lsl 16
+    bl delay_loop
+
+
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
+    mov x1, #110             // x
+    mov x2, #86            // y
+    mov x3, 90            // ancho (width)
+    mov x4, #2            // alto (height)
+    bl draw_rect             // Call draw_rect function
+    movz x20, #1500, lsl #0
+    movk x20, #1000, lsl 16
+    bl delay_loop
+
+        movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
+    mov x1, #110             // x
+    mov x2, #87            // y
+    mov x3, 90            // ancho (width)
+    mov x4, #2            // alto (height)
+    bl draw_rect             // Call draw_rect function
+        movz x20, #1500, lsl #0
+    movk x20, #1000, lsl 16
+    bl delay_loop
+
+        movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
+    mov x1, #110             // x
+    mov x2, #88            // y
+    mov x3, 90            // ancho (width)
+    mov x4, #2            // alto (height)
+    bl draw_rect             // Call draw_rect function
+        movz x20, #1500, lsl #0
+    movk x20, #1000, lsl 16
+    bl delay_loop
+
+        movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
+    mov x1, #110             // x
+    mov x2, #89            // y
+    mov x3, 90            // ancho (width)
+    mov x4, #2            // alto (height)
+    bl draw_rect             // Call draw_rect function
+
+    movz x20, #1500, lsl #0
+    movk x20, #1000, lsl 16
+    bl delay_loop
+
+//
+
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
+    mov x1, #105             // x
+    mov x2, #91            // y
+    mov x3, 100            // ancho (width)
+    mov x4, #2            // alto (height)
+    bl draw_rect             // Call draw_rect function
+    movz x5, 0xFF00, lsl #16 // Color: ¿negro
+    mov x1, #114             // x
+    mov x2, #91            // y
+    mov x3, 83            // ancho (width)
+    mov x4, #2            // alto (height)
+    bl draw_rect             // Call draw_rect function
+        movz x20, #1500, lsl #0
+    movk x20, #1000, lsl 16
+    bl delay_loop
+
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
+    mov x1, #105             // x
+    mov x2, #92            // y
+    mov x3, 100            // ancho (width)
+    mov x4, #2            // alto (height)
+    bl draw_rect             // Call draw_rect function
+        movz x5, 0xFF00, lsl #16 // Color: ¿negro
+    mov x1, #114             // x
+    mov x2, #92            // y
+    mov x3, 83            // ancho (width)
+    mov x4, #2            // alto (height)
+    bl draw_rect             // Call draw_rect function
+    movz x20, #1500, lsl #0
+    movk x20, #1000, lsl 16
+    bl delay_loop
+
+        movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
+    mov x1, #105             // x
+    mov x2, #93            // y
+    mov x3, 100            // ancho (width)
+    mov x4, #2            // alto (height)
+    bl draw_rect             // Call draw_rect function
+        movz x5, 0xFF00, lsl #16 // Color: ¿negro
+    mov x1, #114             // x
+    mov x2, #93            // y
+    mov x3, 83            // ancho (width)
+    mov x4, #2            // alto (height)
+    bl draw_rect             // Call draw_rect function
+        movz x20, #1500, lsl #0
+    movk x20, #1000, lsl 16
+    bl delay_loop
+
+        movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
+    mov x1, #105             // x
+    mov x2, #94            // y
+    mov x3, 100            // ancho (width)
+    mov x4, #2            // alto (height)
+    bl draw_rect             // Call draw_rect function
+            movz x5, 0xFF00, lsl #16 // Color: ¿negro
+    mov x1, #111             // x
+    mov x2, #94            // y
+    mov x3, 88            // ancho (width)
+    mov x4, #2            // alto (height)
+    bl draw_rect             // Call draw_rect function
+        movz x20, #1500, lsl #0
+    movk x20, #1000, lsl 16
+    bl delay_loop
+
+        movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
+    mov x1, #105             // x
+    mov x2, #95            // y
+    mov x3, 100            // ancho (width)
+    mov x4, #2            // alto (height)
+    bl draw_rect             // Call draw_rect function
+
+    movz x5, 0xFF00, lsl #16 // Color: ¿negro
+    mov x1, #111             // x
+    mov x2, #95            // y
+    mov x3, 88            // ancho (width)
+    mov x4, #2            // alto (height)
+    bl draw_rect             // Call draw_rect function
+    movz x20, #1500, lsl #0
+    movk x20, #1000, lsl 16
+    bl delay_loop
+    
+
+
+//
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
+    mov x1, #100             // x
+    mov x2, #96            // y
+    mov x3, 110            // ancho (width)
+    mov x4, #2            // alto (height)
+    bl draw_rect             // Call draw_rect function
+    movz x5, 0xFF00, lsl #16 // Color: ¿negro
+    mov x1, #111             // x
+    mov x2, #96            // y
+    mov x3, 88            // ancho (width)
+    mov x4, #2            // alto (height)
+    bl draw_rect             // Call draw_rect function
+        movz x20, #1500, lsl #0
+    movk x20, #1000, lsl 16
+    bl delay_loop
+
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
+    mov x1, #100             // x
+    mov x2, #97            // y
+    mov x3, 110            // ancho (width)
+    mov x4, #2            // alto (height)
+    bl draw_rect             // Call draw_rect function
+    movz x5, 0xFF00, lsl #16 // Color: ¿negro
+    mov x1, #111             // x
+    mov x2, #97            // y
+    mov x3, 88            // ancho (width)
+    mov x4, #2            // alto (height)
+    bl draw_rect             // Call draw_rect function
+    movz x20, #1500, lsl #0
+    movk x20, #1000, lsl 16
+    bl delay_loop
+
+        movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
+    mov x1, #100             // x
+    mov x2, #98           // y
+    mov x3, 110            // ancho (width)
+    mov x4, #2            // alto (height)
+    bl draw_rect             // Call draw_rect function
+    movz x5, 0xFF00, lsl #16 // Color: ¿negro
+    mov x1, #108             // x
+    mov x2, #98            // y
+    mov x3, 92            // ancho (width)
+    mov x4, #2            // alto (height)
+    bl draw_rect             // Call draw_rect function
+        movz x20, #1500, lsl #0
+    movk x20, #1000, lsl 16
+    bl delay_loop
+
+        movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
+    mov x1, #100             // x
+    mov x2, #99            // y
+    mov x3, 110            // ancho (width)
+    mov x4, #2            // alto (height)
+    bl draw_rect             // Call draw_rect function
+        movz x5, 0xFF00, lsl #16 // Color: ¿negro
+    mov x1, #108             // x
+    mov x2, #98            // y
+    mov x3, 92            // ancho (width)
+    mov x4, #2            // alto (height)
+    bl draw_rect             // Call draw_rect function
+        movz x20, #1500, lsl #0
+    movk x20, #1000, lsl 16
+    bl delay_loop
+
+        movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
+    mov x1, #100             // x
+    mov x2, #100            // y
+    mov x3, 110            // ancho (width)
+    mov x4, #2            // alto (height)
+    bl draw_rect             // Call draw_rect function
+        movz x5, 0xFF00, lsl #16 // Color: ¿negro
+    mov x1, #108             // x
+    mov x2, #98            // y
+    mov x3, 94            // ancho (width)
+    mov x4, #2            // alto (height)
+    bl draw_rect             // Call draw_rect function
+    movz x20, #1500, lsl #0
+    movk x20, #1000, lsl 16
+    bl delay_loop
+
+// Initialize variables
+    mov x21, #100    // current_y (starting at 300 to decrement down to 200)
+
+// Loop label
+loop_start_y:
+    // Check loop condition: current_y >= 200
+    cmp x21, #210
+    bgt loop_end_y   // If x21 > 200, branch to loop_end_y
+
+    // --- Drawing the RED rectangle ---
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
+    mov x1, #98             // x (constant for red)
+    mov x2, x21              // y (current_y for red)
+    mov x3, #114             // ancho (width, constant for red)
+    mov x4, #2               // alto (height, constant for red)
+    bl draw_rect             // Call draw_rect function for red
+
+    // --- Drawing the BLACK fill rectangle ---
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFF00, lsl #16 // Color: Black (0x0000FF00)
+    mov x1, #106             // x (constant for black)
+    mov x2, x21              // y (current_y for black)
+    mov x3, #98             // ancho (width, constant for black)
+    mov x4, #2               // alto (height, constant for black)
+    bl draw_rect             // Call draw_rect function for black
+
+    // Delay loop (applies after both rectangles are drawn)
+    movz x20, #1500, lsl #0  // Reduced delay for smoother animation
+    movk x20, #1000, lsl 16
+    bl delay_loop
+
+    // --- Update variable for the next iteration ---
+    add x21, x21, #1    // current_y -= 1 (decrement by 1)
+
+    b loop_start_y      // Branch back to the start of the loop
+
+loop_end_y:
+
+
+       movz x20, #15000, lsl #0
+       movk x20, #49000, lsl 16
+       bl delay_loop
+
+//hacemos branch main al ultimo para que se repita
+//b main
     ldp x29, x30, [sp], #16    // Restore frame pointer and link register
     ret                        // Return
 // MÉTODO DE USO DE DELAY LOOP: 
 
 delay_loop:
-    subs x20, x20, #10 //valor mas grande -> delay mas corto
+    subs x20, x20, #5 //
     b.ne delay_loop
 end_delay_loop:
     ret
-
-	

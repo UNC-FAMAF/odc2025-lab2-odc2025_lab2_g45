@@ -1459,37 +1459,28 @@ fin_mike:
        movk x20, #15000, lsl 16
        bl delay_loop
 
-       
-       mov x1, #200 // Centro X
-       mov x2, #50 // Centro Y
-       mov x3, #12   // Radio
-       bl draw_circle
-
        mov x1, #100 // Centro X
-       mov x2, #50 // Centro Y
-       mov x3, #12   // Radio
-       bl draw_circle
-
-       mov x1, #300 // Centro X
-       mov x2, #50 // Centro Y
-       mov x3, #12   // Radio
-       bl draw_circle
-
-       mov x1, #400 // Centro X
-       mov x2, #50 // Centro Y
-       mov x3, #12   // Radio
+       mov x2, #40 // Centro Y
+       mov x3, #16   // Radio
        bl draw_circle
 
        mov x1, #500 // Centro X
-       mov x2, #50 // Centro Y
-       mov x3, #12   // Radio
+       mov x2, #40 // Centro Y
+       mov x3, #16   // Radio
        bl draw_circle
 
-       mov x1, #600 // Centro X
-       mov x2, #50 // Centro Y
-       mov x3, #12   // Radio
-       bl draw_circle
 
+	mov x1, #50 
+	mov x2, #10 
+	mov x3, #20
+	mov x4, #220
+	bl draw_rect
+
+	mov x1, #570 
+	mov x2, #10 
+	mov x3, #20
+	mov x4, #220
+	bl draw_rect
 
 
        movz x20, #15000, lsl #0
@@ -1499,33 +1490,26 @@ fin_mike:
 
        mov x1, #100 // Centro X
        mov x2, #40 // Centro Y
-       mov x3, #24   // Radio
-       bl draw_circle
-
-       mov x1, #200 // Centro X
-       mov x2, #40 // Centro Y
-       mov x3, #24   // Radio
-       bl draw_circle
-
-       mov x1, #300 // Centro X
-       mov x2, #40 // Centro Y
-       mov x3, #24   // Radio
-       bl draw_circle
-
-       mov x1, #400 // Centro X
-       mov x2, #40 // Centro Y
-       mov x3, #24   // Radio
+       mov x3, #28   // Radio
        bl draw_circle
 
        mov x1, #500 // Centro X
        mov x2, #40 // Centro Y
-       mov x3, #24   // Radio
+       mov x3, #28   // Radio
        bl draw_circle
 
-       mov x1, #600 // Centro X
-       mov x2, #40 // Centro Y
-       mov x3, #24   // Radio
-       bl draw_circle
+	   
+	mov x1, #50 
+	mov x2, #10 
+	mov x3, #32
+	mov x4, #220
+	bl draw_rect
+
+	mov x1, #540 // 452 - 5
+	mov x2, #10 // 268 - 15
+	mov x3, #40
+	mov x4, #220
+	bl draw_rect
 
 
 
@@ -1534,35 +1518,21 @@ fin_mike:
 
        bl delay_loop
 
-       mov x1, #200 // Centro X
-       mov x2, #35 // Centro Y
-       mov x3, #32   // Radio
-       bl draw_circle
-
        mov x1, #100 // Centro X
        mov x2, #35 // Centro Y
-       mov x3, #32   // Radio
-       bl draw_circle
-
-       mov x1, #300 // Centro X
-       mov x2, #35 // Centro Y
-       mov x3, #32   // Radio
-       bl draw_circle
-
-       mov x1, #400 // Centro X
-       mov x2, #35 // Centro Y
-       mov x3, #32   // Radio
+       mov x3, #42   // Radio
        bl draw_circle
 
        mov x1, #500 // Centro X
        mov x2, #35 // Centro Y
-       mov x3, #32   // Radio
+       mov x3, #42   // Radio
        bl draw_circle
 
-       mov x1, #600 // Centro X
-       mov x2, #35 // Centro Y
-       mov x3, #32   // Radio
-       bl draw_circle
+	mov x1, #100 // 452 - 5
+	mov x2, #35 // 268 - 15
+	mov x3, #500
+	mov x4, #14
+	bl draw_rect
 
 
        movz x20, #15000, lsl #0
@@ -1570,35 +1540,21 @@ fin_mike:
 
        bl delay_loop
 
-       mov x1, #200 // Centro X
-       mov x2, #30 // Centro Y
-       mov x3, #48   // Radio
-       bl draw_circle
-
        mov x1, #100 // Centro X
        mov x2, #30 // Centro Y
-       mov x3, #48   // Radio
-       bl draw_circle
-
-       mov x1, #300 // Centro X
-       mov x2, #30 // Centro Y
-       mov x3, #48   // Radio
-       bl draw_circle
-
-       mov x1, #400 // Centro X
-       mov x2, #30 // Centro Y
-       mov x3, #48   // Radio
+       mov x3, #64   // Radio
        bl draw_circle
 
        mov x1, #500 // Centro X
        mov x2, #30 // Centro Y
-       mov x3, #48   // Radio
+       mov x3, #64   // Radio
        bl draw_circle
 
-       mov x1, #600 // Centro X
-       mov x2, #30 // Centro Y
-       mov x3, #48   // Radio
-       bl draw_circle
+	mov x1, #100 // 452 - 5
+	mov x2, #40 // 268 - 15
+	mov x3, #500
+	mov x4, #25
+	bl draw_rect
 
 
 
@@ -1607,51 +1563,46 @@ fin_mike:
 
        bl delay_loop
 
-       mov x1, #200 // Centro X
+       mov x1, #100 // Centro X
        mov x2, #28 // Centro Y
-       mov x3, #68   // Radio
+       mov x3, #84   // Radio
        bl draw_circle
+
+       mov x1, #500 // Centro X
+       mov x2, #28 // Centro Y
+       mov x3, #84   // Radio
+       bl draw_circle
+
+	mov x1, #100 // 452 - 5
+	mov x2, #50 // 268 - 15
+	mov x3, #500
+	mov x4, #50
+	bl draw_rect
+
+
+       movz x20, #15000, lsl #0
+       movk x20, #49000, lsl 16
+
+       bl delay_loop
 
        mov x1, #100 // Centro X
        mov x2, #28 // Centro Y
-       mov x3, #68   // Radio
-       bl draw_circle
-
-       mov x1, #300 // Centro X
-       mov x2, #28 // Centro Y
-       mov x3, #68   // Radio
-       bl draw_circle
-
-       mov x1, #400 // Centro X
-       mov x2, #28 // Centro Y
-       mov x3, #68   // Radio
+       mov x3, #110   // Radio
        bl draw_circle
 
        mov x1, #500 // Centro X
        mov x2, #28 // Centro Y
-       mov x3, #68   // Radio
+       mov x3, #110   // Radio
        bl draw_circle
 
-       mov x1, #600 // Centro X
-       mov x2, #28 // Centro Y
-       mov x3, #68   // Radio
-       bl draw_circle
+	mov x1, #100 // 452 - 5
+	mov x2, #60 // 268 - 15
+	mov x3, #500
+	mov x4, #80
+	bl draw_rect
 
 
-       bl draw_circle
-
-       mov x1, #500 // Centro X
-       mov x2, #28 // Centro Y
-       mov x3, #68   // Radio
-       bl draw_circle
-
-       mov x1, #600 // Centro X
-       mov x2, #28 // Centro Y
-       mov x3, #68   // Radio
-       bl draw_circle
-
-
-
+// MÉTODO DE USO DE DELAY LOOP: 
 
 delay_loop:
 	subs x20, x20, #1

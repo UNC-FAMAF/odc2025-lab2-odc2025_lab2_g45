@@ -923,9 +923,9 @@ tabla_lucas:
 	.quad 366, 152, 4, 4, 0xFFE7D887 // Pelo: Verde Claro 2
 	.quad 350, 144, 4, 4, 0xFFE7D887 // Pelo: Verde Claro 3 (en la parte superior de la cabeza)
 	.quad 354, 148, 4, 4, 0xFFE7D887 // Pelo: Verde Claro 4 (en la parte superior de la cabeza)
-	.quad 346, 184, 8, 28, 0xFF6AD3FF // Marron piel (superpuesto por Celeste)
-	.quad 346, 184, 8, 28, 0xFF6AD3FF // Celeste (esto parece ser el color principal de la ropa de Lucas, superponiendo el "marrón piel" anterior)
-	.quad 338, 188, 24, 8, 0xFFC1A991 // Crema (Parece ser una parte de la remera o cuello)
+	.quad 346, 184, 8, 28, 0xFF6AD3FF // Marron piel
+	.quad 346, 184, 8, 28, 0xFF6AD3FF // Celeste 
+	.quad 338, 188, 24, 8, 0xFFC1A991 // Crema 
 	.quad 338, 164, 4, 4, 0xFF000000 // Ojo izquierdo
 	.quad 358, 164, 4, 4, 0xFF000000 // Ojo derecho
 
@@ -933,7 +933,7 @@ tabla_lucas:
 	tabla_eleven:
 .quad 418, 140, 24, 4, 0xFFF4A58A // Cabeza: parte superior de la frente / pelo
 .quad 414, 144, 32, 32, 0xFFFFCCAA // Cabeza: base de la cabeza / cara
-.quad 414, 144, 32, 8, 0xFFF4A58A // Cabeza: parte del pelo (superpuesto a la cara)
+.quad 414, 144, 32, 8, 0xFFF4A58A // Cabeza: parte del pelo 
 .quad 422, 152, 16, 4, 0xFFF4A58A // Cabeza: pelo central
 .quad 418, 160, 4, 4, 0xFF000000 // Ojos: ojo izquierdo
 .quad 438, 160, 4, 4, 0xFF000000 // Ojos: ojo derecho

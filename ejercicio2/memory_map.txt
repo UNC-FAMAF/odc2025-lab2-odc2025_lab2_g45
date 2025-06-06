@@ -16,7 +16,7 @@ LOAD start.o
 LOAD subrutinas.o
                 0x0000000000080000                . = 0x80000
 
-.text           0x0000000000080000    0x91fa4
+.text           0x0000000000080000    0x92154
  *(.text.boot)
  .text.boot     0x0000000000080000    0x100c8 start.o
                 0x0000000000080000                _start
@@ -24,7 +24,7 @@ LOAD subrutinas.o
  .text          0x00000000000900c8       0x50 app.o
                 0x00000000000900c8                main
  .text          0x0000000000090118        0x0 data.o
- .text          0x0000000000090118     0x1c18 dibujos.o
+ .text          0x0000000000090118     0x1dc8 dibujos.o
                 0x0000000000090118                dibujando_celeste
                 0x0000000000090158                dibujando_purpura_inferior
                 0x0000000000090194                dibujando_purpura_superior
@@ -41,83 +41,83 @@ LOAD subrutinas.o
                 0x00000000000910e4                dibujando_eleven
                 0x000000000009111c                dibujando_mike
                 0x0000000000091154                animacion
- .text          0x0000000000091d30        0x0 header.o
- .text          0x0000000000091d30    0x80000 start.o
- .text          0x0000000000111d30      0x274 subrutinas.o
-                0x0000000000111d30                mirror_loop
-                0x0000000000111d34                mirror_loop_y
-                0x0000000000111d38                mirror_loop_x
-                0x0000000000111d88                double_mirror_loop
-                0x0000000000111d8c                double_mirror_loop_y
-                0x0000000000111d90                double_mirror_loop_x
-                0x0000000000111e10                inverted_mirror_loop
-                0x0000000000111e14                inverted_mirror_loop_y
-                0x0000000000111e18                inverted_mirror_loop_x
-                0x0000000000111e6c                only_y_mirror_loop
-                0x0000000000111e70                only_y_mirror_loop_y
-                0x0000000000111e74                only_y_mirror_loop_x
-                0x0000000000111ec0                draw_rect
-                0x0000000000111f20                draw_circle
+ .text          0x0000000000091ee0        0x0 header.o
+ .text          0x0000000000091ee0    0x80000 start.o
+ .text          0x0000000000111ee0      0x274 subrutinas.o
+                0x0000000000111ee0                mirror_loop
+                0x0000000000111ee4                mirror_loop_y
+                0x0000000000111ee8                mirror_loop_x
+                0x0000000000111f38                double_mirror_loop
+                0x0000000000111f3c                double_mirror_loop_y
+                0x0000000000111f40                double_mirror_loop_x
+                0x0000000000111fc0                inverted_mirror_loop
+                0x0000000000111fc4                inverted_mirror_loop_y
+                0x0000000000111fc8                inverted_mirror_loop_x
+                0x000000000011201c                only_y_mirror_loop
+                0x0000000000112020                only_y_mirror_loop_y
+                0x0000000000112024                only_y_mirror_loop_x
+                0x0000000000112070                draw_rect
+                0x00000000001120d0                draw_circle
 
-.iplt           0x0000000000111fa4        0x0
- .iplt          0x0000000000111fa4        0x0 app.o
+.iplt           0x0000000000112154        0x0
+ .iplt          0x0000000000112154        0x0 app.o
 
-.rela.dyn       0x0000000000111fa8        0x0
- .rela.iplt     0x0000000000111fa8        0x0 app.o
+.rela.dyn       0x0000000000112158        0x0
+ .rela.iplt     0x0000000000112158        0x0 app.o
  .rela.text.boot
-                0x0000000000111fa8        0x0 app.o
+                0x0000000000112158        0x0 app.o
 
-.data           0x0000000000111fa8     0x4a88
- .data          0x0000000000111fa8        0x0 app.o
- .data          0x0000000000111fa8     0x4a88 data.o
-                0x0000000000111fa8                purpura_coords
-                0x0000000000112110                purpura_superior_coords
-                0x0000000000112278                tabla_estrellas
-                0x00000000001133e8                tabla_domo_arbustos
-                0x00000000001137d8                tabla_arboles_fondo
-                0x0000000000114308                tabla_dibujo_odc_double
-                0x0000000000114358                tabla_dibujo_odc_only_y
-                0x0000000000114438                tabla_rectangulos
-                0x00000000001145f8                tabla_pasto
-                0x0000000000114898                tabla_dustin
-                0x0000000000114f50                tabla_will
-                0x0000000000115478                tabla_max
-                0x0000000000115900                tabla_lucas
-                0x0000000000115fb8                tabla_eleven
-                0x0000000000116418                tabla_mike
- .data          0x0000000000116a30        0x0 dibujos.o
- .data          0x0000000000116a30        0x0 header.o
- .data          0x0000000000116a30        0x0 start.o
- .data          0x0000000000116a30        0x0 subrutinas.o
+.data           0x0000000000112158     0x4a88
+ .data          0x0000000000112158        0x0 app.o
+ .data          0x0000000000112158     0x4a88 data.o
+                0x0000000000112158                purpura_coords
+                0x00000000001122c0                purpura_superior_coords
+                0x0000000000112428                tabla_estrellas
+                0x0000000000113598                tabla_domo_arbustos
+                0x0000000000113988                tabla_arboles_fondo
+                0x00000000001144b8                tabla_dibujo_odc_double
+                0x0000000000114508                tabla_dibujo_odc_only_y
+                0x00000000001145e8                tabla_rectangulos
+                0x00000000001147a8                tabla_pasto
+                0x0000000000114a48                tabla_dustin
+                0x0000000000115100                tabla_will
+                0x0000000000115628                tabla_max
+                0x0000000000115ab0                tabla_lucas
+                0x0000000000116168                tabla_eleven
+                0x00000000001165c8                tabla_mike
+ .data          0x0000000000116be0        0x0 dibujos.o
+ .data          0x0000000000116be0        0x0 header.o
+ .data          0x0000000000116be0        0x0 start.o
+ .data          0x0000000000116be0        0x0 subrutinas.o
 
-.igot.plt       0x0000000000116a30        0x0
- .igot.plt      0x0000000000116a30        0x0 app.o
+.igot.plt       0x0000000000116be0        0x0
+ .igot.plt      0x0000000000116be0        0x0 app.o
 
-.bss            0x0000000000116a30        0x0
+.bss            0x0000000000116be0        0x0
  *(.bss*)
- .bss           0x0000000000116a30        0x0 app.o
- .bss           0x0000000000116a30        0x0 data.o
- .bss           0x0000000000116a30        0x0 dibujos.o
- .bss           0x0000000000116a30        0x0 header.o
- .bss           0x0000000000116a30        0x0 start.o
- .bss           0x0000000000116a30        0x0 subrutinas.o
+ .bss           0x0000000000116be0        0x0 app.o
+ .bss           0x0000000000116be0        0x0 data.o
+ .bss           0x0000000000116be0        0x0 dibujos.o
+ .bss           0x0000000000116be0        0x0 header.o
+ .bss           0x0000000000116be0        0x0 start.o
+ .bss           0x0000000000116be0        0x0 subrutinas.o
 
-.bss            0x0000000000116a30        0x0
-                0x0000000000116a30                . = ALIGN (0x10)
-                0x0000000000116a30                __bss_start = .
+.bss            0x0000000000116be0        0x0
+                0x0000000000116be0                . = ALIGN (0x10)
+                0x0000000000116be0                __bss_start = .
  *(.bss .bss.*)
  *(COMMON)
-                0x0000000000116a30                __bss_end = .
-                0x0000000000116a30                _end = .
+                0x0000000000116be0                __bss_end = .
+                0x0000000000116be0                _end = .
                 0x0000000000000000                __bss_size = ((__bss_end - __bss_start) >> 0x3)
 OUTPUT(kernel8.elf elf64-littleaarch64)
 LOAD linker stubs
 
-.debug_line     0x0000000000000000      0x89f
+.debug_line     0x0000000000000000      0x908
  .debug_line    0x0000000000000000       0x47 app.o
- .debug_line    0x0000000000000047      0x725 dibujos.o
- .debug_line    0x000000000000076c       0x50 start.o
- .debug_line    0x00000000000007bc       0xe3 subrutinas.o
+ .debug_line    0x0000000000000047      0x78e dibujos.o
+ .debug_line    0x00000000000007d5       0x50 start.o
+ .debug_line    0x0000000000000825       0xe3 subrutinas.o
 
 .debug_info     0x0000000000000000       0xb8
  .debug_info    0x0000000000000000       0x2e app.o

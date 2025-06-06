@@ -24,7 +24,7 @@
 	// -------------------FONDO CELESTE DE ARRIBA Y ABAJO -------------------	
 dibujando_celeste:
  mov x0, x20
-stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
+stp x29, x30, [sp, #-16]! 
 loop2:
 	mov x0, x20		// guardo la posición base del framebuffer de nuevo
 
@@ -44,13 +44,13 @@ loop2:
 	movz x10, 0x91B9, lsl 0	
 	movk x10, 0xFF2E, lsl 16
 	bl mirror_loop		// pinto el fondo de arriba
-	ldp x29, x30, [sp], #16    // Restore frame pointer and link register
-    ret                        // Return
+	ldp x29, x30, [sp], #16    
+    ret                        
 	// -------------------FONDO PÚRPURA -------------------	
 
 dibujando_purpura_inferior:
 
-    stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
+    stp x29, x30, [sp, #-16]!  
     // color púrpura inferior = 0xFF1F1D44
     movz x10, 0x1D44, lsl 0
     movk x10, 0xFF1F, lsl 16
@@ -69,16 +69,9 @@ loop_purpura:
 
     subs x14, x14, #1 //resta 1
     b.ne loop_purpura
-	ldp x29, x30, [sp], #16    // Restore frame pointer and link register
-    ret                        // Return
+	ldp x29, x30, [sp], #16    
+    ret                        
 	
-/*
-	adr x13, tabla_purpura   // puntero base a la tabla
-	mov x14, #30             // cantidad de entradas que tiene la tabla (30)
-    ldr w6, [x13], #4    // carga x_start y avanza el puntero 4 bytes (1 palabra)
-    ldr w7, [x13], #4    // carga x_end y avanza el puntero 4 bytes
-    ldr w11, [x13], #4   // carga y_start y avanza el puntero 4 bytes
-*/
 
 	// Para lograr el efecto de que arriba sea un tono más claro de púrpura, y abajo sea un tono más oscuro, lo que hago es utilizar mi función
 	// double_mirror_loop para pintar primero con el color púrpura más oscuro. Esto hace que ya tenga pintado arriba y abajo un reflejo exactamente igual.
@@ -87,7 +80,7 @@ loop_purpura:
 
 dibujando_purpura_superior:    // Cargar color púrpura superior en x10
 
-    stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
+    stp x29, x30, [sp, #-16]! 
     movz x10, 0x3DA1, lsl 0	
     movk x10, 0xFF2B, lsl 16
 
@@ -103,36 +96,36 @@ loop_purpura_superior:
 
     subs x14, x14, #1
     b.ne loop_purpura_superior
-	ldp x29, x30, [sp], #16    // Restore frame pointer and link register
-    ret                        // Return
+	ldp x29, x30, [sp], #16    
+    ret                        
 
 //estrellas
 dibujando_estrellas:
-    stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
-    ldr x19, =tabla_estrellas   // Dirección base de la tabla en x19
-    mov x21, #79                // Grupos a procesar
+    stp x29, x30, [sp, #-16]! 
+    ldr x19, =tabla_estrellas   
+    mov x21, #79              
 
 loop_dibujar_estrellas_interno:
     cbz x21, fin_dibujar_estrellas_con_color // contador = 0, salir
 
-    ldr w6, [x19], #4           // Coordenada X
-    ldr w7, [x19], #4           // Coordenada Y
-    ldr w11, [x19], #4          // Ancho/Radio
-    ldr w12, [x19], #4          // Alto/Otro parámetro
+    ldr w6, [x19], #4           
+    ldr w7, [x19], #4          
+    ldr w11, [x19], #4         
+    ldr w12, [x19], #4         
 
-    bl mirror_loop       // Dibuja la estrella
+    bl mirror_loop      
 
-    subs x21, x21, #1           // Decrementa contador
+    subs x21, x21, #1          
     b.ne loop_dibujar_estrellas_interno
 
 fin_dibujar_estrellas_con_color:
-    ldp x29, x30, [sp], #16    // Restore frame pointer and link register
-    ret                        // Return
+    ldp x29, x30, [sp], #16    
+    ret                        
 
 		// ------------------- FONDO, LA PARTE DE LOS ARBUSTOS Y LA PARTE NEGRA DE ARRIBA DEL FONDO -------------------
 dibujando_arbustos_y_fondo:
 
-    stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
+    stp x29, x30, [sp, #-16]!  
 	//color negro = 0xFF000000
 	movz x10, 0x0000, lsl 0	
 	movk x10, 0xFF00, lsl 16
@@ -157,14 +150,14 @@ loop_fondo_arbustos:
     b.ne loop_fondo_arbustos
 
 fin_fondo_arbustos:
-	ldp x29, x30, [sp], #16    // Restore frame pointer and link register
-    ret                        // Return
+	ldp x29, x30, [sp], #16    
+    ret                        
 
 
 	// ------------------- ÁRBOLES DEL FONDO, REFLEJADOS ARRIBA Y ABAJO -------------------
 dibujando_arboles_fondo:
 
-    stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
+    stp x29, x30, [sp, #-16]!  
 	// Determino que x10 sea el color negro = 0xFF000000
 	// --- El siguiente código es para los árboles de la izquierda hacia la derecha ---
 	// ACLARACIÓN: Ya que estoy usando la función double_mirror_loop, los árboles son de izquierda a derecha, hasta llegar a la mitad de la pantalla.
@@ -190,12 +183,12 @@ loop_arboles_fondo:
     b.ne loop_arboles_fondo
 
 fin_arboles_fondo:
-    ldp x29, x30, [sp], #16    // Restore frame pointer and link register
-    ret                        // Return
+    ldp x29, x30, [sp], #16    
+    ret                        
 
 dibujando_ODC2025:
 
-    stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
+    stp x29, x30, [sp, #-16]! 
     // ---------------------- PARTE DE ODC ---------------------
 
     // ----------- Llamadas a double_mirror_loop -----------
@@ -261,13 +254,13 @@ loop_rectangulos:
     b.ne loop_rectangulos
 
 fin_rectangulos:
-    ldp x29, x30, [sp], #16    // Restore frame pointer and link register
-    ret                        // Return
+    ldp x29, x30, [sp], #16    
+    ret                        
 
 	// ------------------- PASTO EN EL QUE SE APOYAN LOS PERSONAJES -------------------
 dibujando_pasto:
 
-    stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
+    stp x29, x30, [sp, #-16]! 
 	// Pintaré el pasto utilizando la función draw_rect. Elegí esta ya que al ser una imagen pixelada, y el pasto no tener un patrón definido, es lo que más cómodo queda.
     // Color verde oscuro = 0xFF35656F
     movz x5, 0x656F, lsl #0
@@ -290,14 +283,14 @@ loop_pasto:
     b.ne loop_pasto
 
 fin_pasto:
-    ldp x29, x30, [sp], #16    // Restore frame pointer and link register
-    ret                        // Return
+    ldp x29, x30, [sp], #16    
+    ret                        
 
 /////////////////DEMOGORGON/////////////////////
 
 draw_demogorgon:
 
-    stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
+    stp x29, x30, [sp, #-16]!  
  // demogorgon
 	mov x0, x20
 //Demogorgon - cuerpo
@@ -305,50 +298,50 @@ draw_demogorgon:
 	movk w5, #0xFF06, lsl #16
 
 //tronco
-	mov x1, #405 // 410 - 5
-	mov x2, #350 // 365 - 15
+	mov x1, #405 
+	mov x2, #350 
 	mov x3, #42
 	mov x4, #15
 	bl draw_rect
 
-	mov x1, #415 // 420 - 5
-	mov x2, #355 // 370 - 15
+	mov x1, #415 
+	mov x2, #355 
 	mov x3, #20
 	mov x4, #20
 	bl draw_rect
 
-	mov x1, #411 // 416 - 5
-	mov x2, #347 // 362 - 15
+	mov x1, #411 
+	mov x2, #347 
 	mov x3, #6
 	mov x4, #3
 	bl draw_rect
 
-	mov x1, #417 // 422 - 5
-	mov x2, #344 // 359 - 15
+	mov x1, #417 
+	mov x2, #344 
 	mov x3, #6
 	mov x4, #6
 	bl draw_rect
 
-	mov x1, #423 // 428 - 5
-	mov x2, #338 // 353 - 15
+	mov x1, #423
+	mov x2, #338 
 	mov x3, #24
 	mov x4, #12
 	bl draw_rect
 
-	mov x1, #429 // 434 - 5
-	mov x2, #332 // 347 - 15
+	mov x1, #429 
+	mov x2, #332
 	mov x3, #6
 	mov x4, #6
 	bl draw_rect
 
-	mov x1, #435 // 440 - 5
-	mov x2, #329 // 344 - 15
+	mov x1, #435 
+	mov x2, #329 
 	mov x3, #6
 	mov x4, #9
 	bl draw_rect
 
-	mov x1, #441 // 446 - 5
-	mov x2, #335 // 350 - 15
+	mov x1, #441 
+	mov x2, #335 
 	mov x3, #6
 	mov x4, #3
 	bl draw_rect
@@ -357,104 +350,104 @@ draw_demogorgon:
 	movz w5, #0x1738, lsl #0
 	movk w5, #0xFF00, lsl #16
 
-	mov x1, #402 // 407 - 5
-	mov x2, #344 // 359 - 15
+	mov x1, #402 
+	mov x2, #344 
 	mov x3, #3
 	mov x4, #15
 	bl draw_rect
 
-	mov x1, #405 // 410 - 5
-	mov x2, #347 // 362 - 15
+	mov x1, #405 
+	mov x2, #347 
 	mov x3, #6
 	mov x4, #3
 	bl draw_rect
 
-	mov x1, #405 // 410 - 5
-	mov x2, #332 // 347 - 15
+	mov x1, #405 
+	mov x2, #332 
 	mov x3, #12
 	mov x4, #15
 	bl draw_rect
 
-	mov x1, #417 // 422 - 5
-	mov x2, #338 // 353 - 15
+	mov x1, #417 
+	mov x2, #338 
 	mov x3, #6
 	mov x4, #6
 	bl draw_rect
 
-	mov x1, #414 // 419 - 5
-	mov x2, #326 // 341 - 15
+	mov x1, #414 
+	mov x2, #326 
 	mov x3, #15
 	mov x4, #12
 	bl draw_rect
 
-	mov x1, #411 // 416 - 5
-	mov x2, #329 // 344 - 15
+	mov x1, #411 
+	mov x2, #329 
 	mov x3, #6
 	mov x4, #3
 	bl draw_rect
 
-	mov x1, #426 // 431 - 5
-	mov x2, #323 // 338 - 15
+	mov x1, #426 
+	mov x2, #323 
 	mov x3, #9
 	mov x4, #9
 	bl draw_rect
 
-	mov x1, #432 // 437 - 5
-	mov x2, #317 // 332 - 15
+	mov x1, #432 
+	mov x2, #317
 	mov x3, #9
 	mov x4, #12
 	bl draw_rect
 
-	mov x1, #441 // 446 - 5
-	mov x2, #323 // 338 - 15
+	mov x1, #441 
+	mov x2, #323 
 	mov x3, #6
 	mov x4, #12
 	bl draw_rect
 
-	mov x1, #438 // 443 - 5
-	mov x2, #314 // 329 - 15
+	mov x1, #438
+	mov x2, #314 
 	mov x3, #6
 	mov x4, #3
 	bl draw_rect
 
-	mov x1, #438 // 443 - 5
-	mov x2, #308 // 323 - 15
+	mov x1, #438 
+	mov x2, #308 
 	mov x3, #9
 	mov x4, #6
 	bl draw_rect
 
-	mov x1, #447 // 452 - 5
-	mov x2, #302 // 317 - 15
+	mov x1, #447 
+	mov x2, #302 
 	mov x3, #6
 	mov x4, #9
 	bl draw_rect
 
-	mov x1, #450 // 455 - 5
-	mov x2, #296 // 311 - 15
+	mov x1, #450 
+	mov x2, #296 
 	mov x3, #3
 	mov x4, #6
 	bl draw_rect
 
-	mov x1, #414 // 419 - 5
-	mov x2, #320 // 335 - 15
+	mov x1, #414 
+	mov x2, #320 
 	mov x3, #6
 	mov x4, #6
 	bl draw_rect
 
-	mov x1, #411 // 416 - 5
-	mov x2, #320 // 335 - 15
+	mov x1, #411 
+	mov x2, #320 
 	mov x3, #3
 	mov x4, #3
 	bl draw_rect
 
-	mov x1, #408 // 413 - 5
-	mov x2, #311 // 326 - 15
+	mov x1, #408 
+	mov x2, #311 
 	mov x3, #6
 	mov x4, #9
 	bl draw_rect
 
-	mov x1, #405 // 410 - 5
-	mov x2, #308 // 323 - 15
+	mov x1, #405 
+	mov x2, #308 
 	mov x3, #3
 	mov x4, #9
 	bl draw_rect
@@ -466,106 +459,106 @@ draw_demogorgon:
 	movz w5, #0x4379, lsl #0
 	movk w5, #0xFF06, lsl #16
 
-	mov x1, #420 // 425 - 5
-	mov x2, #323 // 338 - 15
+	mov x1, #420 
+	mov x2, #323 
 	mov x3, #6
 	mov x4, #3
 	bl draw_rect
 
-	mov x1, #414 // 419 - 5
-	mov x2, #317 // 332 - 15
+	mov x1, #414 
+	mov x2, #317 
 	mov x3, #6
 	mov x4, #3
 	bl draw_rect
 
-	mov x1, #420 // 425 - 5
-	mov x2, #317 // 332 - 15
+	mov x1, #420 
+	mov x2, #317 
 	mov x3, #12
 	mov x4, #9
 	bl draw_rect
 
-	mov x1, #414 // 419 - 5
-	mov x2, #311 // 326 - 15
+	mov x1, #414 
+	mov x2, #311 
 	mov x3, #24
 	mov x4, #6
 	bl draw_rect
 
-	mov x1, #414 // 419 - 5
-	mov x2, #302 // 317 - 15
+	mov x1, #414
+	mov x2, #302 
 	mov x3, #6
 	mov x4, #9
 	bl draw_rect
 
 
-	mov x1, #408 // 413 - 5
-	mov x2, #302 // 317 - 15
+	mov x1, #408 
+	mov x2, #302 
 	mov x3, #6
 	mov x4, #12
 	bl draw_rect
 
-	mov x1, #402 // 407 - 5
-	mov x2, #293 // 308 - 15
+	mov x1, #402 
+	mov x2, #293 
 	mov x3, #9
 	mov x4, #18
 	bl draw_rect
 
-	mov x1, #405 // 410 - 5
-	mov x2, #284 // 299 - 15
+	mov x1, #405 
+	mov x2, #284 
 	mov x3, #6
 	mov x4, #9
 	bl draw_rect
 
-	mov x1, #408 // 413 - 5
-	mov x2, #281 // 296 - 15
+	mov x1, #408 
+	mov x2, #281 
 	mov x3, #6
 	mov x4, #6
 	bl draw_rect
 	
 
-	mov x1, #408 // 413 - 5
-	mov x2, #285 // 300 - 15
+	mov x1, #408 
+	mov x2, #285 
 	mov x3, #6
 	mov x4, #12
 	bl draw_rect
 
 
-	mov x1, #408 // 413 - 5
-	mov x2, #273 // 288 - 15
+	mov x1, #408 
+	mov x2, #273
 	mov x3, #6
 	mov x4, #24
 	bl draw_rect
 
 
-	mov x1, #405 // 410 - 5
-	mov x2, #280 // 295 - 15
+	mov x1, #405
+	mov x2, #280 
 	mov x3, #6
 	mov x4, #6
 	bl draw_rect
 
 
-	mov x1, #412 // 417 - 5
-	mov x2, #258 // 273 - 15
+	mov x1, #412 
+	mov x2, #258
 	mov x3, #4
 	mov x4, #15
 	bl draw_rect
 
 
-	mov x1, #415 // 420 - 5
-	mov x2, #255 // 270 - 15
+	mov x1, #415 
+	mov x2, #255 
 	mov x3, #6
 	mov x4, #6
 	bl draw_rect
 
 
-	mov x1, #405 // 410 - 5
-	mov x2, #252 // 267 - 15
+	mov x1, #405 
+	mov x2, #252
 	mov x3, #15
 	mov x4, #6
 	bl draw_rect
 
 
-	mov x1, #405 // 410 - 5
-	mov x2, #252 // 267 - 15
+	mov x1, #405 
+	mov x2, #252 
 	mov x3, #4
 	mov x4, #8
 	bl draw_rect
@@ -573,20 +566,20 @@ draw_demogorgon:
 //detalles pierna izquierda
 	movz w5, #0x1738, lsl #0
 	movk w5, #0xFF00, lsl #16
-	mov x1, #408 // 413 - 5
-	mov x2, #281 // 296 - 15
+	mov x1, #408 
+	mov x2, #281 
 	mov x3, #6
 	mov x4, #9
 	bl draw_rect
 
-	mov x1, #411 // 416 - 5
-	mov x2, #275 // 290 - 15
+	mov x1, #411 
+	mov x2, #275 
 	mov x3, #3
 	mov x4, #6
 	bl draw_rect
 
-	mov x1, #414 // 419 - 5
-	mov x2, #269 // 284 - 15
+	mov x1, #414 
+	mov x2, #269
 	mov x3, #3
 	mov x4, #9
 	bl draw_rect
@@ -597,62 +590,62 @@ draw_demogorgon:
 	movz w5, #0x4379, lsl #0
 	movk w5, #0xFF06, lsl #16
 
-	mov x1, #435 // 440 - 5
-	mov x2, #305 // 320 - 15
+	mov x1, #435 
+	mov x2, #305 
 	mov x3, #9
 	mov x4, #9
 	bl draw_rect
 
-	mov x1, #441 // 446 - 5
-	mov x2, #299 // 314 - 15
+	mov x1, #441 
+	mov x2, #299 
 	mov x3, #9
 	mov x4, #9
 	bl draw_rect
 
-	mov x1, #444 // 449 - 5
-	mov x2, #293 // 308 - 15
+	mov x1, #444
+	mov x2, #293 
 	mov x3, #12
 	mov x4, #6
 	bl draw_rect
 
-	mov x1, #447 // 452 - 5
-	mov x2, #285 // 300 - 15
+	mov x1, #447 
+	mov x2, #285 
 	mov x3, #15
 	mov x4, #9
 	bl draw_rect
 
-	mov x1, #453 // 458 - 5
-	mov x2, #276 // 291 - 15
+	mov x1, #453 
+	mov x2, #276 
 	mov x3, #9
 	mov x4, #18
 	bl draw_rect
 
-	mov x1, #453 // 458 - 5
-	mov x2, #267 // 282 - 15
+	mov x1, #453 
+	mov x2, #267 
 	mov x3, #6
 	mov x4, #9
 	bl draw_rect
 
-	mov x1, #453 // 458 - 5
-	mov x2, #264 // 279 - 15
+	mov x1, #453
+	mov x2, #264 
 	mov x3, #3
 	mov x4, #3
 	bl draw_rect
 
-	mov x1, #447 // 452 - 5
-	mov x2, #280 // 295 - 15
+	mov x1, #447 
+	mov x2, #280 
 	mov x3, #6
 	mov x4, #3
 	bl draw_rect
 
-	mov x1, #446 // 451 - 5
-	mov x2, #250 // 265 - 15
+	mov x1, #446
+	mov x2, #250 
 	mov x3, #12
 	mov x4, #4
 	bl draw_rect
 
-	mov x1, #456 // 461 - 5
-	mov x2, #250 // 265 - 15
+	mov x1, #456
+	mov x2, #250 
 	mov x3, #3
 	mov x4, #6
 	bl draw_rect
@@ -661,32 +654,32 @@ draw_demogorgon:
 	movz w5, #0x1738, lsl #0
 	movk w5, #0xFF00, lsl #16
 
-	mov x1, #447 // 452 - 5
-	mov x2, #283 // 298 - 15
+	mov x1, #447 
+	mov x2, #283 
 	mov x3, #6
 	mov x4, #3
 	bl draw_rect
 
-	mov x1, #444 // 449 - 5
-	mov x2, #280 // 295 - 15
+	mov x1, #444 
+	mov x2, #280 
 	mov x3, #3
 	mov x4, #3
 	bl draw_rect
 
-	mov x1, #447 // 452 - 5
-	mov x2, #259 // 274 - 15
+	mov x1, #447 
+	mov x2, #259 
 	mov x3, #6
 	mov x4, #20
 	bl draw_rect
 
-	mov x1, #447 // 452 - 5
-	mov x2, #253 // 268 - 15
+	mov x1, #447
+	mov x2, #253 
 	mov x3, #3
 	mov x4, #6
 	bl draw_rect
 
-	mov x1, #444 // 449 - 5
-	mov x2, #253 // 268 - 15
+	mov x1, #444 
+	mov x2, #253 
 	mov x3, #3
 	mov x4, #6
 	bl draw_rect
@@ -696,25 +689,25 @@ draw_demogorgon:
 	movz w5, #0x4379, lsl #0
 	movk w5, #0xFF06, lsl #16
 
-	mov x1, #445 // 450 - 5
-	mov x2, #358 // 373 - 15
+	mov x1, #445 
+	mov x2, #358 
 	mov x3, #6
 	mov x4, #6
 	bl draw_rect
 
-	mov x1, #447 // 452 - 5
-	mov x2, #355 // 370 - 15
+	mov x1, #447
+	mov x2, #355 
 	mov x3, #15
 	mov x4, #6
 	bl draw_rect
 
-	mov x1, #450 // 455 - 5
-	mov x2, #349 // 364 - 15
+	mov x1, #450 
+	mov x2, #349 
 	mov x3, #12
 	mov x4, #12
 	bl draw_rect
 
-	mov x1, #455 // 460 - 5
+	mov x1, #455 
 	mov x2, #345 // 360 - 15
 	mov x3, #12
 	mov x4, #6
@@ -1350,8 +1343,8 @@ draw_demogorgon:
 	mov x3, #2
 	bl draw_circle
 	
-    ldp x29, x30, [sp], #16    // Restore frame pointer and link register
-    ret                        // Return
+    ldp x29, x30, [sp], #16    
+    ret                        
 
  ////////////////////PERSONAJES////////////////////
 	// personajes
@@ -1376,8 +1369,8 @@ loop_dustin:
     b.ne loop_dustin
 
 fin_dustin:
-    ldp x29, x30, [sp], #16    // Restore frame pointer and link register
-    ret                        // Return
+    ldp x29, x30, [sp], #16    
+    ret                        
 	
 dibujando_will:
 
@@ -1399,8 +1392,8 @@ loop_will:
     subs x21, x21, #1
     b.ne loop_will
 fin_will:
-    ldp x29, x30, [sp], #16    // Restore frame pointer and link register
-    ret                        // Return
+    ldp x29, x30, [sp], #16    
+    ret                        
 	
 dibujando_max:
     stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
@@ -1423,8 +1416,8 @@ loop_max:
     b.ne loop_max
 	
 fin_max:
-    ldp x29, x30, [sp], #16    // Restore frame pointer and link register
-    ret                        // Return
+    ldp x29, x30, [sp], #16    
+    ret                        
 
 dibujando_lucas:
 stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
@@ -1446,8 +1439,8 @@ loop_lucas:
     subs x21, x21, #1
     b.ne loop_lucas
 fin_lucas:
-	ldp x29, x30, [sp], #16    // Restore frame pointer and link register
-    ret                        // Return
+	ldp x29, x30, [sp], #16    
+    ret                        
 
 
 dibujando_eleven:
@@ -1471,12 +1464,12 @@ loop_eleven:
     b.ne loop_eleven
 
 fin_eleven:
-    ldp x29, x30, [sp], #16    // Restore frame pointer and link register
-    ret                        // Return
+    ldp x29, x30, [sp], #16    
+    ret                        
 	
 dibujando_mike:
 
-    stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
+    stp x29, x30, [sp, #-16]! 
 	// dibujando_mike:
     ldr x19, =tabla_mike       // dirección de la tabla
     mov x21, #39              // cantidad de rectángulos 
@@ -1496,8 +1489,8 @@ loop_mike:
     b.ne loop_mike
 
 fin_mike:
-    ldp x29, x30, [sp], #16    // Restore frame pointer and link register
-    ret                        // Return
+    ldp x29, x30, [sp], #16    
+    ret                        
 
 
 
@@ -1505,8 +1498,8 @@ fin_mike:
 
 animacion:
 
-    stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
-/////////////////////ANIMACIÓN////////////////////
+    stp x29, x30, [sp, #-16]!  
+////////////////////////////////ANIMACIÓN////////////////////
 
 
 
@@ -2762,7 +2755,7 @@ fin_bucle_dibujar_vertical1_dercinco:
 
     mov x28, #515 // x_actual (inicio en 415 + 110 = 525)
     mov x29, #525 // x_fin_bucle (425 + 110 = 535)
-    mov x27, #355 // y_actual (constante)
+    mov x27, #355 // y_actual 
 bucle_dibujar_vertical_dercinco:
     cmp x28, x29
     bgt fin_bucle_dibujar_vertical_dercinco // Si x_actual > x_fin_bucle, terminar
@@ -2793,8 +2786,8 @@ fin_bucle_dibujar_vertical_dercinco:
 
 //hacemos branch main al ultimo para que se repita
 //b main
-    ldp x29, x30, [sp], #16    // Restore frame pointer and link register
-    ret                        // Return
+    ldp x29, x30, [sp], #16    
+    ret                        
 // MÉTODO DE USO DE DELAY LOOP: 
 
 delay_loop:

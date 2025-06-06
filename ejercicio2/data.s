@@ -1,3 +1,26 @@
+    .include "header.s" // Si data.s usa alguna constante de header.s
+
+//////////////tablas de entradas para optimizar //////////
+// Tabla con entradas de 3 valores (x_start, x_end, y_start) de 32 bits
+
+// ***************************************************************
+// ASEGÚRATE de que TODAS estas líneas .globl estén presentes:
+.globl purpura_coords
+.globl purpura_superior_coords
+.globl tabla_estrellas
+.globl tabla_domo_arbustos
+.globl tabla_arboles_fondo
+.globl tabla_dibujo_odc_double
+.globl tabla_dibujo_odc_only_y
+.globl tabla_rectangulos
+.globl tabla_pasto
+.globl tabla_dustin
+.globl tabla_will
+.globl tabla_max
+.globl tabla_lucas
+.globl tabla_eleven
+.globl tabla_mike
+.globl tabla_demogorgon
 //////////////tablas de entradas para optimizar //////////
 // Tabla con entradas de 3 valores (x_start, x_end, y_start) de 32 bits
 .data

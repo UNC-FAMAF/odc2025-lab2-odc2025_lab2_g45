@@ -1511,7 +1511,7 @@ animacion:
 
 
        // ------ VOY A HACER ACÁ LA ANIMACIÓN DEL FONDO NEGRO QUE SE VA COMIENDO TODO -----
-      /*
+      
  movz x5, 0x0000, lsl #0
        movk x5, 0xFF00, lsl #16        // Establezco el color negro
 
@@ -1662,7 +1662,7 @@ animacion:
 	mov x4, #80
 	bl draw_rect
 
-*/
+
 
 
 

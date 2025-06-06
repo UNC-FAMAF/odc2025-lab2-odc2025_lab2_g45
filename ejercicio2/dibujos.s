@@ -1502,7 +1502,7 @@ animacion:
 ////////////////////////////////ANIMACIÓN////////////////////
 // Delay 1 segundo
 movz x20, #0x00000, lsl #0
-movk x20, #0x88000, lsl #16
+movk x20, #0x10000, lsl #16
 bl delay_loop
 
 // Primer Movimiento
@@ -2007,7 +2007,7 @@ bl delay_loop
 
 // Delay 1 segundo
 movz x20, #0x00000, lsl #0
-movk x20, #0x88000, lsl #16
+movk x20, #0x10000, lsl #16
 bl delay_loop
 
 // Segundo Movimiento
@@ -2512,7 +2512,7 @@ bl delay_loop
 
 // Delay 1 segundo
 movz x20, #0x00000, lsl #0
-movk x20, #0x88000, lsl #16
+movk x20, #0x10000, lsl #16
 bl delay_loop
 
 // Tercer Movimiento
@@ -3041,7 +3041,7 @@ bl delay_loop
 
 // Delay 1 segundo
 movz x20, #0x00000, lsl #0
-movk x20, #0x88000, lsl #16
+movk x20, #0x10000, lsl #16
 bl delay_loop
 
 // Cuarto Movimiento
@@ -3554,7 +3554,7 @@ bl delay_loop
 
 // Delay final
 movz x20, #0x00000, lsl #0
-movk x20, #0x88000, lsl #16
+movk x20, #0x10000, lsl #16
 bl delay_loop
 
 

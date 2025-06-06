@@ -1500,7 +1500,2062 @@ animacion:
 
     stp x29, x30, [sp, #-16]!  
 ////////////////////////////////ANIMACIÓN////////////////////
+// Delay 1 segundo
+movz x20, #0x00000, lsl #0
+movk x20, #0x88000, lsl #16
+bl delay_loop
 
+// Primer Movimiento
+    mov x1, #414
+    mov x2, #188
+    mov x3, #4
+    mov x4, #24
+    movz x5, 0x3DC4, lsl #0
+    movk x5, 0xFF5F, lsl #16
+    bl draw_rect
+
+    mov x1, #414
+    mov x2, #212
+    mov x3, #4
+    mov x4, #4
+    movz x5, 0xCCAA, lsl #0
+    movk x5, 0xFFFF, lsl #16
+    bl draw_rect
+
+    mov x1, #418
+    mov x2, #212
+    mov x3, #4
+    mov x4, #4
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFF00, lsl #16
+    bl draw_rect
+
+    // primera gota
+    mov x1, #432
+    mov x2, #166
+    mov x3, #2
+    mov x4, #2
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16
+    bl draw_rect
+
+// Will (Arriba 5ta oscura)        
+            mov x1, #176
+            mov x2, #148
+            mov x3, #32
+            mov x4, #28
+            movz x5, 0x2018, lsl #0
+            movk x5, 0xFF2C, lsl #16
+            bl draw_rect
+            mov x1, #180
+            mov x2, #176
+            mov x3, #24
+            mov x4, #4
+            movz x5, 0x2018, lsl #0
+            movk x5, 0xFF2C, lsl #16
+            bl draw_rect
+            mov x1, #188
+            mov x2, #180
+            mov x3, #8
+            mov x4, #4
+            movz x5, 0x160D, lsl #0
+            movk x5, 0xFF20, lsl #16
+            bl draw_rect
+            mov x1, #180
+            mov x2, #140
+            mov x3, #24
+            mov x4, #4
+            movz x5, 0x0808, lsl #0
+            movk x5, 0xFF08, lsl #16
+            bl draw_rect
+            mov x1, #176
+            mov x2, #144
+            mov x3, #32
+            mov x4, #8
+            movz x5, 0x0808, lsl #0
+            movk x5, 0xFF08, lsl #16
+            bl draw_rect
+            mov x1, #208
+            mov x2, #148
+            mov x3, #4
+            mov x4, #28
+            movz x5, 0x0808, lsl #0
+            movk x5, 0xFF08, lsl #16
+            bl draw_rect
+            mov x1, #172
+            mov x2, #148
+            mov x3, #4
+            mov x4, #28
+            movz x5, 0x0808, lsl #0
+            movk x5, 0xFF08, lsl #16
+            bl draw_rect
+            mov x1, #204
+            mov x2, #168
+            mov x3, #4
+            mov x4, #12
+            movz x5, 0x0808, lsl #0
+            movk x5, 0xFF08, lsl #16
+            bl draw_rect
+            mov x1, #176
+            mov x2, #168
+            mov x3, #4
+            mov x4, #12
+            movz x5, 0x0808, lsl #0
+            movk x5, 0xFF08, lsl #16
+            bl draw_rect
+            mov x1, #200
+            mov x2, #176
+            mov x3, #4
+            mov x4, #4
+            movz x5, 0x0808, lsl #0
+            movk x5, 0xFF08, lsl #16
+            bl draw_rect
+            mov x1, #180
+            mov x2, #176
+            mov x3, #4
+            mov x4, #4
+            movz x5, 0x0808, lsl #0
+            movk x5, 0xFF08, lsl #16
+            bl draw_rect
+            mov x1, #188
+            mov x2, #152
+            mov x3, #20
+            mov x4, #4
+            movz x5, 0x0808, lsl #0
+            movk x5, 0xFF08, lsl #16
+            bl draw_rect
+            mov x1, #200
+            mov x2, #160
+            mov x3, #4
+            mov x4, #4
+            movz x5, 0x0808, lsl #0
+            movk x5, 0xFF08, lsl #16
+            bl draw_rect
+            mov x1, #200
+            mov x2, #156
+            mov x3, #8
+            mov x4, #4
+            movz x5, 0x0808, lsl #0
+            movk x5, 0xFF08, lsl #16
+            bl draw_rect
+            mov x1, #176
+            mov x2, #152
+            mov x3, #4
+            mov x4, #8
+            movz x5, 0x0808, lsl #0
+            movk x5, 0xFF08, lsl #16
+            bl draw_rect
+            mov x1, #196
+            mov x2, #164
+            mov x3, #4
+            mov x4, #4
+            movz x5, 0x0101, lsl #0
+            movk x5, 0xFF01, lsl #16
+            bl draw_rect
+            mov x1, #184
+            mov x2, #164
+            mov x3, #4
+            mov x4, #4
+            movz x5, 0x0101, lsl #0
+            movk x5, 0xFF01, lsl #16
+            bl draw_rect
+            mov x1, #188
+            mov x2, #172
+            mov x3, #8
+            mov x4, #4
+            movz x5, 0x0804, lsl #0
+            movk x5, 0xFF1A, lsl #16
+            bl draw_rect
+            mov x1, #176
+            mov x2, #184
+            mov x3, #32
+            mov x4, #8
+            movz x5, 0x0911, lsl #0
+            movk x5, 0xFF04, lsl #16
+            bl draw_rect
+            mov x1, #180
+            mov x2, #188
+            mov x3, #24
+            mov x4, #24
+            movz x5, 0x0008, lsl #0
+            movk x5, 0xFF17, lsl #16
+            bl draw_rect
+            mov x1, #196
+            mov x2, #180
+            mov x3, #4
+            mov x4, #36
+            movz x5, 0x0008, lsl #0
+            movk x5, 0xFF17, lsl #16
+            bl draw_rect
+            mov x1, #184
+            mov x2, #180
+            mov x3, #4
+            mov x4, #36
+            movz x5, 0x0008, lsl #0
+            movk x5, 0xFF17, lsl #16
+            bl draw_rect
+            mov x1, #188
+            mov x2, #184
+            mov x3, #8
+            mov x4, #28
+            movz x5, 0x1F1F, lsl #0
+            movk x5, 0xFF1F, lsl #16
+            bl draw_rect
+            mov x1, #208
+            mov x2, #188
+            mov x3, #4
+            mov x4, #24
+            movz x5, 0x0911, lsl #0
+            movk x5, 0xFF04, lsl #16
+            bl draw_rect
+            mov x1, #172
+            mov x2, #188
+            mov x3, #4
+            mov x4, #24
+            movz x5, 0x0911, lsl #0
+            movk x5, 0xFF04, lsl #16
+            bl draw_rect
+            mov x1, #208
+            mov x2, #196
+            mov x3, #4
+            mov x4, #16
+            movz x5, 0x1F1F, lsl #0
+            movk x5, 0xFF1F, lsl #16
+            bl draw_rect
+            mov x1, #172
+            mov x2, #196
+            mov x3, #4
+            mov x4, #16
+            movz x5, 0x1F1F, lsl #0
+            movk x5, 0xFF1F, lsl #16
+            bl draw_rect
+            mov x1, #204
+            mov x2, #212
+            mov x3, #4
+            mov x4, #4
+            movz x5, 0x2018, lsl #0
+            movk x5, 0xFF2C, lsl #16
+            bl draw_rect
+            mov x1, #176
+            mov x2, #212
+            mov x3, #4
+            mov x4, #4
+            movz x5, 0x2018, lsl #0
+            movk x5, 0xFF2C, lsl #16
+            bl draw_rect
+            mov x1, #196
+            mov x2, #212
+            mov x3, #4
+            mov x4, #24
+            movz x5, 0x0912, lsl #0
+            movk x5, 0xFF06, lsl #16
+            bl draw_rect
+            mov x1, #184
+            mov x2, #212
+            mov x3, #4
+            mov x4, #24
+            movz x5, 0x0912, lsl #0
+            movk x5, 0xFF06, lsl #16
+            bl draw_rect
+            mov x1, #196
+            mov x2, #232
+            mov x3, #8
+            mov x4, #6
+            movz x5, 0x1F1F, lsl #0
+            movk x5, 0xFF1F, lsl #16
+            bl draw_rect
+            mov x1, #180
+            mov x2, #232
+            mov x3, #8
+            mov x4, #6
+            movz x5, 0x1F1F, lsl #0
+            movk x5, 0xFF1F, lsl #16
+            bl draw_rect
+
+// Will (Abajo 2do oscura)
+        mov x1, #176
+        mov x2, #304
+        mov x3, #32
+        mov x4, #24
+        movz x5, 0x8066, lsl #0
+        movk x5, 0xFFB8, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #300
+        mov x3, #24
+        mov x4, #4
+        movz x5, 0x8066, lsl #0
+        movk x5, 0xFFB8, lsl #16
+        bl draw_rect
+        mov x1, #188
+        mov x2, #296
+        mov x3, #8
+        mov x4, #4
+        movz x5, 0x5A3F, lsl #0
+        movk x5, 0xFF7A, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #336
+        mov x3, #24
+        mov x4, #4
+        movz x5, 0x2A2A, lsl #0
+        movk x5, 0xFF2A, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #328
+        mov x3, #32
+        mov x4, #8
+        movz x5, 0x2A2A, lsl #0
+        movk x5, 0xFF2A, lsl #16
+        bl draw_rect
+        mov x1, #172
+        mov x2, #304
+        mov x3, #4
+        mov x4, #28
+        movz x5, 0x2A2A, lsl #0
+        movk x5, 0xFF2A, lsl #16
+        bl draw_rect
+        mov x1, #208
+        mov x2, #304
+        mov x3, #4
+        mov x4, #28
+        movz x5, 0x2A2A, lsl #0
+        movk x5, 0xFF2A, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #300
+        mov x3, #4
+        mov x4, #12
+        movz x5, 0x2A2A, lsl #0
+        movk x5, 0xFF2A, lsl #16
+        bl draw_rect
+        mov x1, #204
+        mov x2, #300
+        mov x3, #4
+        mov x4, #12
+        movz x5, 0x2A2A, lsl #0
+        movk x5, 0xFF2A, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #300
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x2A2A, lsl #0
+        movk x5, 0xFF2A, lsl #16
+        bl draw_rect
+        mov x1, #200
+        mov x2, #300
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x2A2A, lsl #0
+        movk x5, 0xFF2A, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #320
+        mov x3, #8
+        mov x4, #8
+        movz x5, 0x2A2A, lsl #0
+        movk x5, 0xFF2A, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #316
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x2A2A, lsl #0
+        movk x5, 0xFF2A, lsl #16
+        bl draw_rect
+        mov x1, #184
+        mov x2, #324
+        mov x3, #12
+        mov x4, #4
+        movz x5, 0x2A2A, lsl #0
+        movk x5, 0xFF2A, lsl #16
+        bl draw_rect
+        mov x1, #204
+        mov x2, #320
+        mov x3, #4
+        mov x4, #8
+        movz x5, 0x2A2A, lsl #0
+        movk x5, 0xFF2A, lsl #16
+        bl draw_rect
+        mov x1, #184
+        mov x2, #312
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x1212, lsl #0
+        movk x5, 0xFF12, lsl #16
+        bl draw_rect
+        mov x1, #196
+        mov x2, #312
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x1212, lsl #0
+        movk x5, 0xFF12, lsl #16
+        bl draw_rect
+        mov x1, #188
+        mov x2, #304
+        mov x3, #8
+        mov x4, #4
+        movz x5, 0x3319, lsl #0
+        movk x5, 0xFF60, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #288
+        mov x3, #32
+        mov x4, #8
+        movz x5, 0x2C5A, lsl #0
+        movk x5, 0xFF1A, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #268
+        mov x3, #24
+        mov x4, #24
+        movz x5, 0x1122, lsl #0
+        movk x5, 0xFF66, lsl #16
+        bl draw_rect
+        mov x1, #184
+        mov x2, #264
+        mov x3, #4
+        mov x4, #36
+        movz x5, 0x1122, lsl #0
+        movk x5, 0xFF66, lsl #16
+        bl draw_rect
+        mov x1, #196
+        mov x2, #264
+        mov x3, #4
+        mov x4, #36
+        movz x5, 0x1122, lsl #0
+        movk x5, 0xFF66, lsl #16
+        bl draw_rect
+        mov x1, #188
+        mov x2, #268
+        mov x3, #8
+        mov x4, #28
+        movz x5, 0xD0D0, lsl #0
+        movk x5, 0xFFD0, lsl #16
+        bl draw_rect
+        mov x1, #172
+        mov x2, #268
+        mov x3, #4
+        mov x4, #24
+        movz x5, 0x2C5A, lsl #0
+        movk x5, 0xFF1A, lsl #16
+        bl draw_rect
+        mov x1, #208
+        mov x2, #268
+        mov x3, #4
+        mov x4, #24
+        movz x5, 0x2C5A, lsl #0
+        movk x5, 0xFF1A, lsl #16
+        bl draw_rect
+        mov x1, #172
+        mov x2, #268
+        mov x3, #4
+        mov x4, #16
+        movz x5, 0xD0D0, lsl #0
+        movk x5, 0xFFD0, lsl #16
+        bl draw_rect
+        mov x1, #208
+        mov x2, #268
+        mov x3, #4
+        mov x4, #16
+        movz x5, 0xD0D0, lsl #0
+        movk x5, 0xFFD0, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #264
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x8066, lsl #0
+        movk x5, 0xFFB8, lsl #16
+        bl draw_rect
+        mov x1, #204
+        mov x2, #264
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x8066, lsl #0
+        movk x5, 0xFFB8, lsl #16
+        bl draw_rect
+        mov x1, #184
+        mov x2, #248
+        mov x3, #4
+        mov x4, #20
+        movz x5, 0x2E55, lsl #0
+        movk x5, 0xFF20, lsl #16
+        bl draw_rect
+        mov x1, #196
+        mov x2, #248
+        mov x3, #4
+        mov x4, #20
+        movz x5, 0x2E55, lsl #0
+        movk x5, 0xFF20, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #244
+        mov x3, #8
+        mov x4, #6
+        movz x5, 0xB0B0, lsl #0
+        movk x5, 0xFFB0, lsl #16
+        bl draw_rect
+        mov x1, #196
+        mov x2, #244
+        mov x3, #8
+        mov x4, #6
+        movz x5, 0xB0B0, lsl #0
+        movk x5, 0xFFB0, lsl #16
+        bl draw_rect
+
+// Delay 1 segundo
+movz x20, #0x00000, lsl #0
+movk x20, #0x88000, lsl #16
+bl delay_loop
+
+// Segundo Movimiento
+    mov x1, #414
+    mov x2, #188
+    mov x3, #4
+    mov x4, #24
+    movz x5, 0x3DC4, lsl #0
+    movk x5, 0xFF5F, lsl #16
+    bl draw_rect
+
+    mov x1, #410
+    mov x2, #212
+    mov x3, #4
+    mov x4, #4
+    movz x5, 0xCCAA, lsl #0
+    movk x5, 0xFFFF, lsl #16
+    bl draw_rect
+
+    mov x1, #414
+    mov x2, #212
+    mov x3, #4
+    mov x4, #4
+    movz x5, 0x3DA1, lsl #0
+    movk x5, 0xFF2B, lsl #16
+    bl draw_rect
+
+    // segunda gota
+    mov x1, #432
+    mov x2, #168
+    mov x3, #2
+    mov x4, #2
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16
+    bl draw_rect
+
+// Will (Arriba 4to oscuro)
+        mov x1, #176
+        mov x2, #148
+        mov x3, #32
+        mov x4, #28
+        movz x5, 0x4532, lsl #0
+        movk x5, 0xFF5E, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #176
+        mov x3, #24
+        mov x4, #4
+        movz x5, 0x4532, lsl #0
+        movk x5, 0xFF5E, lsl #16
+        bl draw_rect
+        mov x1, #188
+        mov x2, #180
+        mov x3, #8
+        mov x4, #4
+        movz x5, 0x321B, lsl #0
+        movk x5, 0xFF4B, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #140
+        mov x3, #24
+        mov x4, #4
+        movz x5, 0x1111, lsl #0
+        movk x5, 0xFF11, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #144
+        mov x3, #32
+        mov x4, #8
+        movz x5, 0x1111, lsl #0
+        movk x5, 0xFF11, lsl #16
+        bl draw_rect
+        mov x1, #208
+        mov x2, #148
+        mov x3, #4
+        mov x4, #28
+        movz x5, 0x1111, lsl #0
+        movk x5, 0xFF11, lsl #16
+        bl draw_rect
+        mov x1, #172
+        mov x2, #148
+        mov x3, #4
+        mov x4, #28
+        movz x5, 0x1111, lsl #0
+        movk x5, 0xFF11, lsl #16
+        bl draw_rect
+        mov x1, #204
+        mov x2, #168
+        mov x3, #4
+        mov x4, #12
+        movz x5, 0x1111, lsl #0
+        movk x5, 0xFF11, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #168
+        mov x3, #4
+        mov x4, #12
+        movz x5, 0x1111, lsl #0
+        movk x5, 0xFF11, lsl #16
+        bl draw_rect
+        mov x1, #200
+        mov x2, #176
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x1111, lsl #0
+        movk x5, 0xFF11, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #176
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x1111, lsl #0
+        movk x5, 0xFF11, lsl #16
+        bl draw_rect
+        mov x1, #188
+        mov x2, #152
+        mov x3, #20
+        mov x4, #4
+        movz x5, 0x1111, lsl #0
+        movk x5, 0xFF11, lsl #16
+        bl draw_rect
+        mov x1, #200
+        mov x2, #160
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x1111, lsl #0
+        movk x5, 0xFF11, lsl #16
+        bl draw_rect
+        mov x1, #200
+        mov x2, #156
+        mov x3, #8
+        mov x4, #4
+        movz x5, 0x1111, lsl #0
+        movk x5, 0xFF11, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #152
+        mov x3, #4
+        mov x4, #8
+        movz x5, 0x1111, lsl #0
+        movk x5, 0xFF11, lsl #16
+        bl draw_rect
+        mov x1, #196
+        mov x2, #164
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x0303, lsl #0
+        movk x5, 0xFF03, lsl #16
+        bl draw_rect
+        mov x1, #184
+        mov x2, #164
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x0303, lsl #0
+        movk x5, 0xFF03, lsl #16
+        bl draw_rect
+        mov x1, #188
+        mov x2, #172
+        mov x3, #8
+        mov x4, #4
+        movz x5, 0x1107, lsl #0
+        movk x5, 0xFF30, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #184
+        mov x3, #32
+        mov x4, #8
+        movz x5, 0x1025, lsl #0
+        movk x5, 0xFF06, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #188
+        mov x3, #24
+        mov x4, #24
+        movz x5, 0x0011, lsl #0
+        movk x5, 0xFF2A, lsl #16
+        bl draw_rect
+        mov x1, #196
+        mov x2, #180
+        mov x3, #4
+        mov x4, #36
+        movz x5, 0x0011, lsl #0
+        movk x5, 0xFF2A, lsl #16
+        bl draw_rect
+        mov x1, #184
+        mov x2, #180
+        mov x3, #4
+        mov x4, #36
+        movz x5, 0x0011, lsl #0
+        movk x5, 0xFF2A, lsl #16
+        bl draw_rect
+        mov x1, #188
+        mov x2, #184
+        mov x3, #8
+        mov x4, #28
+        movz x5, 0x4444, lsl #0
+        movk x5, 0xFF44, lsl #16
+        bl draw_rect
+        mov x1, #208
+        mov x2, #188
+        mov x3, #4
+        mov x4, #24
+        movz x5, 0x1025, lsl #0
+        movk x5, 0xFF06, lsl #16
+        bl draw_rect
+        mov x1, #172
+        mov x2, #188
+        mov x3, #4
+        mov x4, #24
+        movz x5, 0x1025, lsl #0
+        movk x5, 0xFF06, lsl #16
+        bl draw_rect
+        mov x1, #208
+        mov x2, #196
+        mov x3, #4
+        mov x4, #16
+        movz x5, 0x4444, lsl #0
+        movk x5, 0xFF44, lsl #16
+        bl draw_rect
+        mov x1, #172
+        mov x2, #196
+        mov x3, #4
+        mov x4, #16
+        movz x5, 0x4444, lsl #0
+        movk x5, 0xFF44, lsl #16
+        bl draw_rect
+        mov x1, #204
+        mov x2, #212
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x4532, lsl #0
+        movk x5, 0xFF5E, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #212
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x4532, lsl #0
+        movk x5, 0xFF5E, lsl #16
+        bl draw_rect
+        mov x1, #196
+        mov x2, #212
+        mov x3, #4
+        mov x4, #24
+        movz x5, 0x0F24, lsl #0
+        movk x5, 0xFF0A, lsl #16
+        bl draw_rect
+        mov x1, #184
+        mov x2, #212
+        mov x3, #4
+        mov x4, #24
+        movz x5, 0x0F24, lsl #0
+        movk x5, 0xFF0A, lsl #16
+        bl draw_rect
+        mov x1, #196
+        mov x2, #232
+        mov x3, #8
+        mov x4, #6
+        movz x5, 0x4444, lsl #0
+        movk x5, 0xFF44, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #232
+        mov x3, #8
+        mov x4, #6
+        movz x5, 0x4444, lsl #0
+        movk x5, 0xFF44, lsl #16
+        bl draw_rect
+
+// Will (Abajo 3ero oscuro)
+        mov x1, #176
+        mov x2, #304
+        mov x3, #32
+        mov x4, #24
+        movz x5, 0x4033, lsl #0
+        movk x5, 0xFF7F, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #300
+        mov x3, #24
+        mov x4, #4
+        movz x5, 0x4033, lsl #0
+        movk x5, 0xFF7F, lsl #16
+        bl draw_rect
+        mov x1, #188
+        mov x2, #296
+        mov x3, #8
+        mov x4, #4
+        movz x5, 0x2D22, lsl #0
+        movk x5, 0xFF4C, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #336
+        mov x3, #24
+        mov x4, #4
+        movz x5, 0x1111, lsl #0
+        movk x5, 0xFF11, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #328
+        mov x3, #32
+        mov x4, #8
+        movz x5, 0x1111, lsl #0
+        movk x5, 0xFF11, lsl #16
+        bl draw_rect
+        mov x1, #172
+        mov x2, #304
+        mov x3, #4
+        mov x4, #28
+        movz x5, 0x1111, lsl #0
+        movk x5, 0xFF11, lsl #16
+        bl draw_rect
+        mov x1, #208
+        mov x2, #304
+        mov x3, #4
+        mov x4, #28
+        movz x5, 0x1111, lsl #0
+        movk x5, 0xFF11, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #300
+        mov x3, #4
+        mov x4, #12
+        movz x5, 0x1111, lsl #0
+        movk x5, 0xFF11, lsl #16
+        bl draw_rect
+        mov x1, #204
+        mov x2, #300
+        mov x3, #4
+        mov x4, #12
+        movz x5, 0x1111, lsl #0
+        movk x5, 0xFF11, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #300
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x1111, lsl #0
+        movk x5, 0xFF11, lsl #16
+        bl draw_rect
+        mov x1, #200
+        mov x2, #300
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x1111, lsl #0
+        movk x5, 0xFF11, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #320
+        mov x3, #8
+        mov x4, #8
+        movz x5, 0x1111, lsl #0
+        movk x5, 0xFF11, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #316
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x1111, lsl #0
+        movk x5, 0xFF11, lsl #16
+        bl draw_rect
+        mov x1, #184
+        mov x2, #324
+        mov x3, #12
+        mov x4, #4
+        movz x5, 0x1111, lsl #0
+        movk x5, 0xFF11, lsl #16
+        bl draw_rect
+        mov x1, #204
+        mov x2, #320
+        mov x3, #4
+        mov x4, #8
+        movz x5, 0x1111, lsl #0
+        movk x5, 0xFF11, lsl #16
+        bl draw_rect
+        mov x1, #184
+        mov x2, #312
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x0808, lsl #0
+        movk x5, 0xFF08, lsl #16
+        bl draw_rect
+        mov x1, #196
+        mov x2, #312
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x0808, lsl #0
+        movk x5, 0xFF08, lsl #16
+        bl draw_rect
+        mov x1, #188
+        mov x2, #304
+        mov x3, #8
+        mov x4, #4
+        movz x5, 0x2010, lsl #0
+        movk x5, 0xFF50, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #288
+        mov x3, #32
+        mov x4, #8
+        movz x5, 0x1B35, lsl #0
+        movk x5, 0xFF10, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #268
+        mov x3, #24
+        mov x4, #24
+        movz x5, 0x0011, lsl #0
+        movk x5, 0xFF44, lsl #16
+        bl draw_rect
+        mov x1, #184
+        mov x2, #264
+        mov x3, #4
+        mov x4, #36
+        movz x5, 0x0011, lsl #0
+        movk x5, 0xFF44, lsl #16
+        bl draw_rect
+        mov x1, #196
+        mov x2, #264
+        mov x3, #4
+        mov x4, #36
+        movz x5, 0x0011, lsl #0
+        movk x5, 0xFF44, lsl #16
+        bl draw_rect
+        mov x1, #188
+        mov x2, #268
+        mov x3, #8
+        mov x4, #28
+        movz x5, 0x8888, lsl #0
+        movk x5, 0xFF88, lsl #16
+        bl draw_rect
+        mov x1, #172
+        mov x2, #268
+        mov x3, #4
+        mov x4, #24
+        movz x5, 0x1B35, lsl #0
+        movk x5, 0xFF10, lsl #16
+        bl draw_rect
+        mov x1, #208
+        mov x2, #268
+        mov x3, #4
+        mov x4, #24
+        movz x5, 0x1B35, lsl #0
+        movk x5, 0xFF10, lsl #16
+        bl draw_rect
+        mov x1, #172
+        mov x2, #268
+        mov x3, #4
+        mov x4, #16
+        movz x5, 0x8888, lsl #0
+        movk x5, 0xFF88, lsl #16
+        bl draw_rect
+        mov x1, #208
+        mov x2, #268
+        mov x3, #4
+        mov x4, #16
+        movz x5, 0x8888, lsl #0
+        movk x5, 0xFF88, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #264
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x4033, lsl #0
+        movk x5, 0xFF7F, lsl #16
+        bl draw_rect
+        mov x1, #204
+        mov x2, #264
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x4033, lsl #0
+        movk x5, 0xFF7F, lsl #16
+        bl draw_rect
+        mov x1, #184
+        mov x2, #248
+        mov x3, #4
+        mov x4, #20
+        movz x5, 0x1D39, lsl #0
+        movk x5, 0xFF15, lsl #16
+        bl draw_rect
+        mov x1, #196
+        mov x2, #248
+        mov x3, #4
+        mov x4, #20
+        movz x5, 0x1D39, lsl #0
+        movk x5, 0xFF15, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #244
+        mov x3, #8
+        mov x4, #6
+        movz x5, 0x7A7A, lsl #0
+        movk x5, 0xFF7A, lsl #16
+        bl draw_rect
+        mov x1, #196
+        mov x2, #244
+        mov x3, #8
+        mov x4, #6
+        movz x5, 0x7A7A, lsl #0
+        movk x5, 0xFF7A, lsl #16
+        bl draw_rect
+
+// Delay 1 segundo
+movz x20, #0x00000, lsl #0
+movk x20, #0x88000, lsl #16
+bl delay_loop
+
+// Tercer Movimiento
+    mov x1, #414
+    mov x2, #188
+    mov x3, #4
+    mov x4, #8
+    movz x5, 0x3DC4, lsl #0
+    movk x5, 0xFF5F, lsl #16
+    bl draw_rect
+
+    mov x1, #410
+    mov x2, #188
+    mov x3, #4
+    mov x4, #16
+    movz x5, 0x3DC4, lsl #0
+    movk x5, 0xFF5F, lsl #16
+    bl draw_rect
+
+    mov x1, #406
+    mov x2, #200
+    mov x3, #4
+    mov x4, #12
+    movz x5, 0x3DC4, lsl #0
+    movk x5, 0xFF5F, lsl #16
+    bl draw_rect
+
+    mov x1, #402
+    mov x2, #212
+    mov x3, #4
+    mov x4, #4
+    movz x5, 0xCCAA, lsl #0
+    movk x5, 0xFFFF, lsl #16
+    bl draw_rect
+
+    mov x1, #410
+    mov x2, #212
+    mov x3, #4
+    mov x4, #4
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFF00, lsl #16
+    bl draw_rect
+
+    mov x1, #414
+    mov x2, #196
+    mov x3, #4
+    mov x4, #16
+    movz x5, 0x3DA1, lsl #0
+    movk x5, 0xFF2B, lsl #16
+    bl draw_rect
+
+    // tercera gota
+    mov x1, #432
+    mov x2, #170
+    mov x3, #2
+    mov x4, #2
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16
+    bl draw_rect
+
+// Will (Arriba 3ero oscuro)
+        mov x1, #176
+        mov x2, #148
+        mov x3, #32
+        mov x4, #28
+        movz x5, 0x7254, lsl #0
+        movk x5, 0xFF93, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #176
+        mov x3, #24
+        mov x4, #4
+        movz x5, 0x7254, lsl #0
+        movk x5, 0xFF93, lsl #16
+        bl draw_rect
+        mov x1, #188
+        mov x2, #180
+        mov x3, #8
+        mov x4, #4
+        movz x5, 0x4C2C, lsl #0
+        movk x5, 0xFF6F, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #140
+        mov x3, #24
+        mov x4, #4
+        movz x5, 0x1F1F, lsl #0
+        movk x5, 0xFF1F, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #144
+        mov x3, #32
+        mov x4, #8
+        movz x5, 0x1F1F, lsl #0
+        movk x5, 0xFF1F, lsl #16
+        bl draw_rect
+        mov x1, #208
+        mov x2, #148
+        mov x3, #4
+        mov x4, #28
+        movz x5, 0x1F1F, lsl #0
+        movk x5, 0xFF1F, lsl #16
+        bl draw_rect
+        mov x1, #172
+        mov x2, #148
+        mov x3, #4
+        mov x4, #28
+        movz x5, 0x1F1F, lsl #0
+        movk x5, 0xFF1F, lsl #16
+        bl draw_rect
+        mov x1, #204
+        mov x2, #168
+        mov x3, #4
+        mov x4, #12
+        movz x5, 0x1F1F, lsl #0
+        movk x5, 0xFF1F, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #168
+        mov x3, #4
+        mov x4, #12
+        movz x5, 0x1F1F, lsl #0
+        movk x5, 0xFF1F, lsl #16
+        bl draw_rect
+        mov x1, #200
+        mov x2, #176
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x1F1F, lsl #0
+        movk x5, 0xFF1F, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #176
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x1F1F, lsl #0
+        movk x5, 0xFF1F, lsl #16
+        bl draw_rect
+        mov x1, #188
+        mov x2, #152
+        mov x3, #20
+        mov x4, #4
+        movz x5, 0x1F1F, lsl #0
+        movk x5, 0xFF1F, lsl #16
+        bl draw_rect
+        mov x1, #200
+        mov x2, #160
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x1F1F, lsl #0
+        movk x5, 0xFF1F, lsl #16
+        bl draw_rect
+        mov x1, #200
+        mov x2, #156
+        mov x3, #8
+        mov x4, #4
+        movz x5, 0x1F1F, lsl #0
+        movk x5, 0xFF1F, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #152
+        mov x3, #4
+        mov x4, #8
+        movz x5, 0x1F1F, lsl #0
+        movk x5, 0xFF1F, lsl #16
+        bl draw_rect
+        mov x1, #196
+        mov x2, #164
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x0707, lsl #0
+        movk x5, 0xFF07, lsl #16
+        bl draw_rect
+        mov x1, #184
+        mov x2, #164
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x0707, lsl #0
+        movk x5, 0xFF07, lsl #16
+        bl draw_rect
+        mov x1, #188
+        mov x2, #172
+        mov x3, #8
+        mov x4, #4
+        movz x5, 0x1F0E, lsl #0
+        movk x5, 0xFF4E, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #184
+        mov x3, #32
+        mov x4, #8
+        movz x5, 0x1A3B, lsl #0
+        movk x5, 0xFF0D, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #188
+        mov x3, #24
+        mov x4, #24
+        movz x5, 0x0016, lsl #0
+        movk x5, 0xFF4A, lsl #16
+        bl draw_rect
+        mov x1, #196
+        mov x2, #180
+        mov x3, #4
+        mov x4, #36
+        movz x5, 0x0016, lsl #0
+        movk x5, 0xFF4A, lsl #16
+        bl draw_rect
+        mov x1, #184
+        mov x2, #180
+        mov x3, #4
+        mov x4, #36
+        movz x5, 0x0016, lsl #0
+        movk x5, 0xFF4A, lsl #16
+        bl draw_rect
+        mov x1, #188
+        mov x2, #184
+        mov x3, #8
+        mov x4, #28
+        movz x5, 0x8888, lsl #0
+        movk x5, 0xFF88, lsl #16
+        bl draw_rect
+        mov x1, #208
+        mov x2, #188
+        mov x3, #4
+        mov x4, #24
+        movz x5, 0x1A3B, lsl #0
+        movk x5, 0xFF0D, lsl #16
+        bl draw_rect
+        mov x1, #172
+        mov x2, #188
+        mov x3, #4
+        mov x4, #24
+        movz x5, 0x1A3B, lsl #0
+        movk x5, 0xFF0D, lsl #16
+        bl draw_rect
+        mov x1, #208
+        mov x2, #196
+        mov x3, #4
+        mov x4, #16
+        movz x5, 0x8888, lsl #0
+        movk x5, 0xFF88, lsl #16
+        bl draw_rect
+        mov x1, #172
+        mov x2, #196
+        mov x3, #4
+        mov x4, #16
+        movz x5, 0x8888, lsl #0
+        movk x5, 0xFF88, lsl #16
+        bl draw_rect
+        mov x1, #204
+        mov x2, #212
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x7254, lsl #0
+        movk x5, 0xFF93, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #212
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x7254, lsl #0
+        movk x5, 0xFF93, lsl #16
+        bl draw_rect
+        mov x1, #196
+        mov x2, #212
+        mov x3, #4
+        mov x4, #24
+        movz x5, 0x1C38, lsl #0
+        movk x5, 0xFF14, lsl #16
+        bl draw_rect
+        mov x1, #184
+        mov x2, #212
+        mov x3, #4
+        mov x4, #24
+        movz x5, 0x1C38, lsl #0
+        movk x5, 0xFF14, lsl #16
+        bl draw_rect
+        mov x1, #196
+        mov x2, #232
+        mov x3, #8
+        mov x4, #6
+        movz x5, 0x8888, lsl #0
+        movk x5, 0xFF88, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #232
+        mov x3, #8
+        mov x4, #6
+        movz x5, 0x8888, lsl #0
+        movk x5, 0xFF88, lsl #16
+        bl draw_rect
+
+// Will (Abajo 4to oscuro)
+        mov x1, #176
+        mov x2, #304
+        mov x3, #32
+        mov x4, #24
+        movz x5, 0x2018, lsl #0
+        movk x5, 0xFF40, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #300
+        mov x3, #24
+        mov x4, #4
+        movz x5, 0x2018, lsl #0
+        movk x5, 0xFF40, lsl #16
+        bl draw_rect
+        mov x1, #188
+        mov x2, #296
+        mov x3, #8
+        mov x4, #4
+        movz x5, 0x1710, lsl #0
+        movk x5, 0xFF26, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #336
+        mov x3, #24
+        mov x4, #4
+        movz x5, 0x0808, lsl #0
+        movk x5, 0xFF08, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #328
+        mov x3, #32
+        mov x4, #8
+        movz x5, 0x0808, lsl #0
+        movk x5, 0xFF08, lsl #16
+        bl draw_rect
+        mov x1, #172
+        mov x2, #304
+        mov x3, #4
+        mov x4, #28
+        movz x5, 0x0808, lsl #0
+        movk x5, 0xFF08, lsl #16
+        bl draw_rect
+        mov x1, #208
+        mov x2, #304
+        mov x3, #4
+        mov x4, #28
+        movz x5, 0x0808, lsl #0
+        movk x5, 0xFF08, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #300
+        mov x3, #4
+        mov x4, #12
+        movz x5, 0x0808, lsl #0
+        movk x5, 0xFF08, lsl #16
+        bl draw_rect
+        mov x1, #204
+        mov x2, #300
+        mov x3, #4
+        mov x4, #12
+        movz x5, 0x0808, lsl #0
+        movk x5, 0xFF08, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #300
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x0808, lsl #0
+        movk x5, 0xFF08, lsl #16
+        bl draw_rect
+        mov x1, #200
+        mov x2, #300
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x0808, lsl #0
+        movk x5, 0xFF08, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #320
+        mov x3, #8
+        mov x4, #8
+        movz x5, 0x0808, lsl #0
+        movk x5, 0xFF08, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #316
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x0808, lsl #0
+        movk x5, 0xFF08, lsl #16
+        bl draw_rect
+        mov x1, #184
+        mov x2, #324
+        mov x3, #12
+        mov x4, #4
+        movz x5, 0x0808, lsl #0
+        movk x5, 0xFF08, lsl #16
+        bl draw_rect
+        mov x1, #204
+        mov x2, #320
+        mov x3, #4
+        mov x4, #8
+        movz x5, 0x0808, lsl #0
+        movk x5, 0xFF08, lsl #16
+        bl draw_rect
+        mov x1, #184
+        mov x2, #312
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x0303, lsl #0
+        movk x5, 0xFF03, lsl #16
+        bl draw_rect
+        mov x1, #196
+        mov x2, #312
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x0303, lsl #0
+        movk x5, 0xFF03, lsl #16
+        bl draw_rect
+        mov x1, #188
+        mov x2, #304
+        mov x3, #8
+        mov x4, #4
+        movz x5, 0x1008, lsl #0
+        movk x5, 0xFF30, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #288
+        mov x3, #32
+        mov x4, #8
+        movz x5, 0x0F1A, lsl #0
+        movk x5, 0xFF08, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #268
+        mov x3, #24
+        mov x4, #24
+        movz x5, 0x0008, lsl #0
+        movk x5, 0xFF22, lsl #16
+        bl draw_rect
+        mov x1, #184
+        mov x2, #264
+        mov x3, #4
+        mov x4, #36
+        movz x5, 0x0008, lsl #0
+        movk x5, 0xFF22, lsl #16
+        bl draw_rect
+        mov x1, #196
+        mov x2, #264
+        mov x3, #4
+        mov x4, #36
+        movz x5, 0x0008, lsl #0
+        movk x5, 0xFF22, lsl #16
+        bl draw_rect
+        mov x1, #188
+        mov x2, #268
+        mov x3, #8
+        mov x4, #28
+        movz x5, 0x4444, lsl #0
+        movk x5, 0xFF44, lsl #16
+        bl draw_rect
+        mov x1, #172
+        mov x2, #268
+        mov x3, #4
+        mov x4, #24
+        movz x5, 0x0F1A, lsl #0
+        movk x5, 0xFF08, lsl #16
+        bl draw_rect
+        mov x1, #208
+        mov x2, #268
+        mov x3, #4
+        mov x4, #24
+        movz x5, 0x0F1A, lsl #0
+        movk x5, 0xFF08, lsl #16
+        bl draw_rect
+        mov x1, #172
+        mov x2, #268
+        mov x3, #4
+        mov x4, #16
+        movz x5, 0x4444, lsl #0
+        movk x5, 0xFF44, lsl #16
+        bl draw_rect
+        mov x1, #208
+        mov x2, #268
+        mov x3, #4
+        mov x4, #16
+        movz x5, 0x4444, lsl #0
+        movk x5, 0xFF44, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #264
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x2018, lsl #0
+        movk x5, 0xFF40, lsl #16
+        bl draw_rect
+        mov x1, #204
+        mov x2, #264
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x2018, lsl #0
+        movk x5, 0xFF40, lsl #16
+        bl draw_rect
+        mov x1, #184
+        mov x2, #248
+        mov x3, #4
+        mov x4, #20
+        movz x5, 0x101D, lsl #0
+        movk x5, 0xFF0A, lsl #16
+        bl draw_rect
+        mov x1, #196
+        mov x2, #248
+        mov x3, #4
+        mov x4, #20
+        movz x5, 0x101D, lsl #0
+        movk x5, 0xFF0A, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #244
+        mov x3, #8
+        mov x4, #6
+        movz x5, 0x4444, lsl #0
+        movk x5, 0xFF44, lsl #16
+        bl draw_rect
+        mov x1, #196
+        mov x2, #244
+        mov x3, #8
+        mov x4, #6
+        movz x5, 0x4444, lsl #0
+        movk x5, 0xFF44, lsl #16
+        bl draw_rect
+
+// Delay 1 segundo
+movz x20, #0x00000, lsl #0
+movk x20, #0x88000, lsl #16
+bl delay_loop
+
+// Cuarto Movimiento
+
+        mov x1, #414
+        mov x2, #188
+        mov x3, #4
+        mov x4, #24
+        movz x5, 0x3DC4, lsl #0
+        movk x5, 0xFF5F, lsl #16
+        bl draw_rect
+
+        mov x1, #418
+        mov x2, #212
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0xCCAA, lsl #0
+        movk x5, 0xFFFF, lsl #16
+        bl draw_rect
+
+        mov x1, #406
+        mov x2, #208
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x0000, lsl #0
+        movk x5, 0xFF00, lsl #16
+        bl draw_rect
+
+        mov x1, #406
+        mov x2, #188
+        mov x3, #4
+        mov x4, #20
+        movz x5, 0x3DA1, lsl #0
+        movk x5, 0xFF2B, lsl #16
+        bl draw_rect
+
+        mov x1, #410
+        mov x2, #188
+        mov x3, #4
+        mov x4, #24
+        movz x5, 0x3DA1, lsl #0
+        movk x5, 0xFF2B, lsl #16
+        bl draw_rect
+
+// Will (Arriba Original)
+        mov x1, #176
+        mov x2, #148
+        mov x3, #32
+        mov x4, #28
+        movz x5, 0xCCAA, lsl #0
+        movk x5, 0xFFFF, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #176
+        mov x3, #24
+        mov x4, #4
+        movz x5, 0xCCAA, lsl #0
+        movk x5, 0xFFFF, lsl #16
+        bl draw_rect
+        mov x1, #188
+        mov x2, #180
+        mov x3, #8
+        mov x4, #4
+        movz x5, 0xA874, lsl #0
+        movk x5, 0xFFCC, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #140
+        mov x3, #24
+        mov x4, #4
+        movz x5, 0x4444, lsl #0
+        movk x5, 0xFF44, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #144
+        mov x3, #32
+        mov x4, #8
+        movz x5, 0x4444, lsl #0
+        movk x5, 0xFF44, lsl #16
+        bl draw_rect
+        mov x1, #208
+        mov x2, #148
+        mov x3, #4
+        mov x4, #28
+        movz x5, 0x4444, lsl #0
+        movk x5, 0xFF44, lsl #16
+        bl draw_rect
+        mov x1, #172
+        mov x2, #148
+        mov x3, #4
+        mov x4, #28
+        movz x5, 0x4444, lsl #0
+        movk x5, 0xFF44, lsl #16
+        bl draw_rect
+        mov x1, #204
+        mov x2, #168
+        mov x3, #4
+        mov x4, #12
+        movz x5, 0x4444, lsl #0
+        movk x5, 0xFF44, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #168
+        mov x3, #4
+        mov x4, #12
+        movz x5, 0x4444, lsl #0
+        movk x5, 0xFF44, lsl #16
+        bl draw_rect
+        mov x1, #200
+        mov x2, #176
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x4444, lsl #0
+        movk x5, 0xFF44, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #176
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x4444, lsl #0
+        movk x5, 0xFF44, lsl #16
+        bl draw_rect
+        mov x1, #188
+        mov x2, #152
+        mov x3, #20
+        mov x4, #4
+        movz x5, 0x4444, lsl #0
+        movk x5, 0xFF44, lsl #16
+        bl draw_rect
+        mov x1, #200
+        mov x2, #160
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x4444, lsl #0
+        movk x5, 0xFF44, lsl #16
+        bl draw_rect
+        mov x1, #200
+        mov x2, #156
+        mov x3, #8
+        mov x4, #4
+        movz x5, 0x4444, lsl #0
+        movk x5, 0xFF44, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #152
+        mov x3, #4
+        mov x4, #8
+        movz x5, 0x4444, lsl #0
+        movk x5, 0xFF44, lsl #16
+        bl draw_rect
+        mov x1, #196
+        mov x2, #164
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x0000, lsl #0
+        movk x5, 0xFF00, lsl #16
+        bl draw_rect
+        mov x1, #184
+        mov x2, #164
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x0000, lsl #0
+        movk x5, 0xFF00, lsl #16
+        bl draw_rect
+        mov x1, #188
+        mov x2, #172
+        mov x3, #8
+        mov x4, #4
+        movz x5, 0x522D, lsl #0
+        movk x5, 0xFFA0, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #184
+        mov x3, #32
+        mov x4, #8
+        movz x5, 0x3A80, lsl #0
+        movk x5, 0xFF20, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #188
+        mov x3, #24
+        mov x4, #24
+        movz x5, 0x0033, lsl #0
+        movk x5, 0xFF88, lsl #16
+        bl draw_rect
+        mov x1, #196
+        mov x2, #180
+        mov x3, #4
+        mov x4, #36
+        movz x5, 0x0033, lsl #0
+        movk x5, 0xFF88, lsl #16
+        bl draw_rect
+        mov x1, #184
+        mov x2, #180
+        mov x3, #4
+        mov x4, #36
+        movz x5, 0x0033, lsl #0
+        movk x5, 0xFF88, lsl #16
+        bl draw_rect
+        mov x1, #188
+        mov x2, #184
+        mov x3, #8
+        mov x4, #28
+        movz x5, 0xEEEE, lsl #0
+        movk x5, 0xFFEE, lsl #16
+        bl draw_rect
+        mov x1, #208
+        mov x2, #188
+        mov x3, #4
+        mov x4, #24
+        movz x5, 0x3A80, lsl #0
+        movk x5, 0xFF20, lsl #16
+        bl draw_rect
+        mov x1, #172
+        mov x2, #188
+        mov x3, #4
+        mov x4, #24
+        movz x5, 0x3A80, lsl #0
+        movk x5, 0xFF20, lsl #16
+        bl draw_rect
+        mov x1, #208
+        mov x2, #196
+        mov x3, #4
+        mov x4, #16
+        movz x5, 0xEEEE, lsl #0
+        movk x5, 0xFFEE, lsl #16
+        bl draw_rect
+        mov x1, #172
+        mov x2, #196
+        mov x3, #4
+        mov x4, #16
+        movz x5, 0xEEEE, lsl #0
+        movk x5, 0xFFEE, lsl #16
+        bl draw_rect
+        mov x1, #204
+        mov x2, #212
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0xCCAA, lsl #0
+        movk x5, 0xFFFF, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #212
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0xCCAA, lsl #0
+        movk x5, 0xFFFF, lsl #16
+        bl draw_rect
+        mov x1, #196
+        mov x2, #212
+        mov x3, #4
+        mov x4, #24
+        movz x5, 0x3C75, lsl #0
+        movk x5, 0xFF2F, lsl #16
+        bl draw_rect
+        mov x1, #184
+        mov x2, #212
+        mov x3, #4
+        mov x4, #24
+        movz x5, 0x3C75, lsl #0
+        movk x5, 0xFF2F, lsl #16
+        bl draw_rect
+        mov x1, #196
+        mov x2, #232
+        mov x3, #8
+        mov x4, #6
+        movz x5, 0xFFFF, lsl #0
+        movk x5, 0xFFFF, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #232
+        mov x3, #8
+        mov x4, #6
+        movz x5, 0xFFFF, lsl #0
+        movk x5, 0xFFFF, lsl #16
+        bl draw_rect
+
+// Will (Abajo 5to oscuro)
+        mov x1, #176
+        mov x2, #304
+        mov x3, #32
+        mov x4, #24
+        movz x5, 0x0D08, lsl #0
+        movk x5, 0xFF1A, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #300
+        mov x3, #24
+        mov x4, #4
+        movz x5, 0x0D08, lsl #0
+        movk x5, 0xFF1A, lsl #16
+        bl draw_rect
+        mov x1, #188
+        mov x2, #296
+        mov x3, #8
+        mov x4, #4
+        movz x5, 0x0A05, lsl #0
+        movk x5, 0xFF11, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #336
+        mov x3, #24
+        mov x4, #4
+        movz x5, 0x0202, lsl #0
+        movk x5, 0xFF02, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #328
+        mov x3, #32
+        mov x4, #8
+        movz x5, 0x0202, lsl #0
+        movk x5, 0xFF02, lsl #16
+        bl draw_rect
+        mov x1, #172
+        mov x2, #304
+        mov x3, #4
+        mov x4, #28
+        movz x5, 0x0202, lsl #0
+        movk x5, 0xFF02, lsl #16
+        bl draw_rect
+        mov x1, #208
+        mov x2, #304
+        mov x3, #4
+        mov x4, #28
+        movz x5, 0x0202, lsl #0
+        movk x5, 0xFF02, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #300
+        mov x3, #4
+        mov x4, #12
+        movz x5, 0x0202, lsl #0
+        movk x5, 0xFF02, lsl #16
+        bl draw_rect
+        mov x1, #204
+        mov x2, #300
+        mov x3, #4
+        mov x4, #12
+        movz x5, 0x0202, lsl #0
+        movk x5, 0xFF02, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #300
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x0202, lsl #0
+        movk x5, 0xFF02, lsl #16
+        bl draw_rect
+        mov x1, #200
+        mov x2, #300
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x0202, lsl #0
+        movk x5, 0xFF02, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #320
+        mov x3, #8
+        mov x4, #8
+        movz x5, 0x0202, lsl #0
+        movk x5, 0xFF02, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #316
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x0202, lsl #0
+        movk x5, 0xFF02, lsl #16
+        bl draw_rect
+        mov x1, #184
+        mov x2, #324
+        mov x3, #12
+        mov x4, #4
+        movz x5, 0x0202, lsl #0
+        movk x5, 0xFF02, lsl #16
+        bl draw_rect
+        mov x1, #204
+        mov x2, #320
+        mov x3, #4
+        mov x4, #8
+        movz x5, 0x0202, lsl #0
+        movk x5, 0xFF02, lsl #16
+        bl draw_rect
+        mov x1, #184
+        mov x2, #312
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x0000, lsl #0
+        movk x5, 0xFF00, lsl #16
+        bl draw_rect
+        mov x1, #196
+        mov x2, #312
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x0000, lsl #0
+        movk x5, 0xFF00, lsl #16
+        bl draw_rect
+        mov x1, #188
+        mov x2, #304
+        mov x3, #8
+        mov x4, #4
+        movz x5, 0x0A05, lsl #0
+        movk x5, 0xFF16, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #288
+        mov x3, #32
+        mov x4, #8
+        movz x5, 0x040A, lsl #0
+        movk x5, 0xFF01, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #268
+        mov x3, #24
+        mov x4, #24
+        movz x5, 0x0003, lsl #0
+        movk x5, 0xFF0B, lsl #16
+        bl draw_rect
+        mov x1, #184
+        mov x2, #264
+        mov x3, #4
+        mov x4, #36
+        movz x5, 0x0003, lsl #0
+        movk x5, 0xFF0B, lsl #16
+        bl draw_rect
+        mov x1, #196
+        mov x2, #264
+        mov x3, #4
+        mov x4, #36
+        movz x5, 0x0003, lsl #0
+        movk x5, 0xFF0B, lsl #16
+        bl draw_rect
+        mov x1, #188
+        mov x2, #268
+        mov x3, #8
+        mov x4, #28
+        movz x5, 0x1C1C, lsl #0
+        movk x5, 0xFF1C, lsl #16
+        bl draw_rect
+        mov x1, #172
+        mov x2, #268
+        mov x3, #4
+        mov x4, #24
+        movz x5, 0x040A, lsl #0
+        movk x5, 0xFF01, lsl #16
+        bl draw_rect
+        mov x1, #208
+        mov x2, #268
+        mov x3, #4
+        mov x4, #24
+        movz x5, 0x040A, lsl #0
+        movk x5, 0xFF01, lsl #16
+        bl draw_rect
+        mov x1, #172
+        mov x2, #268
+        mov x3, #4
+        mov x4, #16
+        movz x5, 0x1C1C, lsl #0
+        movk x5, 0xFF1C, lsl #16
+        bl draw_rect
+        mov x1, #208
+        mov x2, #268
+        mov x3, #4
+        mov x4, #16
+        movz x5, 0x1C1C, lsl #0
+        movk x5, 0xFF1C, lsl #16
+        bl draw_rect
+        mov x1, #176
+        mov x2, #264
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x0D08, lsl #0
+        movk x5, 0xFF1A, lsl #16
+        bl draw_rect
+        mov x1, #204
+        mov x2, #264
+        mov x3, #4
+        mov x4, #4
+        movz x5, 0x0D08, lsl #0
+        movk x5, 0xFF1A, lsl #16
+        bl draw_rect
+        mov x1, #184
+        mov x2, #248
+        mov x3, #4
+        mov x4, #20
+        movz x5, 0x0408, lsl #0
+        movk x5, 0xFF02, lsl #16
+        bl draw_rect
+        mov x1, #196
+        mov x2, #248
+        mov x3, #4
+        mov x4, #20
+        movz x5, 0x0408, lsl #0
+        movk x5, 0xFF02, lsl #16
+        bl draw_rect
+        mov x1, #180
+        mov x2, #244
+        mov x3, #8
+        mov x4, #6
+        movz x5, 0x1C1C, lsl #0
+        movk x5, 0xFF1C, lsl #16
+        bl draw_rect
+        mov x1, #196
+        mov x2, #244
+        mov x3, #8
+        mov x4, #6
+        movz x5, 0x1C1C, lsl #0
+        movk x5, 0xFF1C, lsl #16
+        bl draw_rect
+
+// Delay final
+movz x20, #0x00000, lsl #0
+movk x20, #0x88000, lsl #16
+bl delay_loop
 
 
        // ------ VOY A HACER ACÁ LA ANIMACIÓN DEL FONDO NEGRO QUE SE VA COMIENDO TODO -----

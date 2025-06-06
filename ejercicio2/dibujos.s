@@ -3714,6 +3714,260 @@ bl delay_loop
 
 
 
+       // ------ VOY A HACER ACÁ LA ANIMACIÓN DEL FONDO NEGRO QUE SE VA COMIENDO TODO -----
+      
+    // Primera parte
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFF00, lsl #16        // Establezco el color negro
+
+    // Establezo el tiempo antes de que se pinte
+    movz x20, #60000, lsl 16
+    bl delay_loop
+    
+    mov x1, #100 // Centro X       // Círculo de arriba a la derecha
+    mov x2, #40 // Centro Y
+    mov x3, #16   // Radio
+    bl draw_circle
+
+    mov x1, #500 // Centro X       // Círculo de arriba a la izquierda
+    mov x2, #40 // Centro Y
+    mov x3, #16   // Radio
+    bl draw_circle
+
+    mov x1, #100 // Centro X       // Círculo de abajo a la derecha
+    mov x2, #440 // Centro Y
+    mov x3, #16   // Radio
+    bl draw_circle
+
+    mov x1, #500 // Centro X       // Círculo de abajo a la izquierda
+    mov x2, #440 // Centro Y
+    mov x3, #16   // Radio
+    bl draw_circle
+
+    // Segunda parte
+    movz x20, #60000, lsl 16
+
+    bl delay_loop
+
+    mov x1, #100 // Centro X        // Círculo de arriba a la derecha
+    mov x2, #40 // Centro Y
+    mov x3, #28   // Radio
+    bl draw_circle
+
+    mov x1, #500 // Centro X       // Círculo de arriba a la izquierda
+    mov x2, #40 // Centro Y
+    mov x3, #28   // Radio
+    bl draw_circle
+
+	mov x1, #100 // Centro X       // Círculo de abajo a la derecha
+    mov x2, #440 // Centro Y
+    mov x3, #28   // Radio
+    bl draw_circle
+
+    mov x1, #500 // Centro X       // Círculo de abajo a la izquierda
+    mov x2, #440 // Centro Y
+    mov x3, #28   // Radio
+    bl draw_circle
+
+
+    // Tercera parte
+    movz x20, #60000, lsl 16
+
+    bl delay_loop
+
+    mov x1, #100 // Centro X
+    mov x2, #35 // Centro Y
+    mov x3, #42   // Radio
+    bl draw_circle
+
+    mov x1, #500 // Centro X
+    mov x2, #35 // Centro Y
+    mov x3, #42   // Radio
+    bl draw_circle
+
+    mov x1, #100 // Centro X       // Círculo de abajo a la derecha
+    mov x2, #440 // Centro Y
+    mov x3, #42   // Radio
+    bl draw_circle
+
+    mov x1, #500 // Centro X       // Círculo de abajo a la izquierda
+    mov x2, #440 // Centro Y
+    mov x3, #42   // Radio
+    bl draw_circle
+
+
+    // Cuarta parte
+    movz x20, #60000, lsl 16
+
+    bl delay_loop
+
+    mov x1, #100 // Centro X
+    mov x2, #30 // Centro Y
+    mov x3, #64   // Radio
+    bl draw_circle
+
+    mov x1, #500 // Centro X
+    mov x2, #30 // Centro Y
+    mov x3, #64   // Radio
+    bl draw_circle
+
+    mov x1, #100 // Centro X    
+    mov x2, #440 // Centro Y
+    mov x3, #64   // Radio
+    bl draw_circle
+
+    mov x1, #500 // Centro X   
+    mov x2, #440 // Centro Y
+    mov x3, #64   // Radio
+    bl draw_circle
+
+    // Quinta parte
+    movz x20, #60000, lsl 16
+
+    bl delay_loop
+
+    mov x1, #100 // Centro X
+    mov x2, #28 // Centro Y
+    mov x3, #84   // Radio
+    bl draw_circle
+
+    mov x1, #500 // Centro X
+    mov x2, #28 // Centro Y
+    mov x3, #84   // Radio
+    bl draw_circle
+
+    mov x1, #100 // Centro X    
+    mov x2, #440 // Centro Y
+    mov x3, #84   // Radio
+    bl draw_circle
+
+    mov x1, #500 // Centro X   
+    mov x2, #440 // Centro Y
+    mov x3, #84   // Radio
+    bl draw_circle
+
+    // Sexta parte
+    movz x20, #60000, lsl 16
+    bl delay_loop
+
+    mov x1, #100 // Centro X
+    mov x2, #28 // Centro Y
+    mov x3, #110   // Radio
+    bl draw_circle
+
+    mov x1, #500 // Centro X
+    mov x2, #28 // Centro Y
+    mov x3, #110   // Radio
+    bl draw_circle
+
+    mov x1, #100 // Centro X    
+    mov x2, #440 // Centro Y
+    mov x3, #110   // Radio
+    bl draw_circle
+
+    mov x1, #500 // Centro X   
+    mov x2, #440 // Centro Y
+    mov x3, #110   // Radio
+    bl draw_circle
+
+    mov x1, #100 // Centro X    
+    mov x2, #220 // Centro Y
+    mov x3, #120   // Radio
+    bl draw_circle
+
+    mov x1, #555 // Centro X   
+    mov x2, #220 // Centro Y
+    mov x3, #120   // Radio
+    bl draw_circle
+
+    mov x1, #320 // Centro X    
+    mov x2, #0 // Centro Y
+    mov x3, #110   // Radio
+    bl draw_circle
+
+    mov x1, #320 // Centro X   
+    mov x2, #480 // Centro Y
+    mov x3, #110   // Radio
+    bl draw_circle
+
+    // Séptima parte
+    movz x20, #60000, lsl 16
+    bl delay_loop
+
+    mov x1, #100 // Centro X
+    mov x2, #28 // Centro Y
+    mov x3, #150   // Radio
+    bl draw_circle
+
+    mov x1, #500 // Centro X
+    mov x2, #28 // Centro Y
+    mov x3, #150   // Radio
+    bl draw_circle
+
+    mov x1, #100 // Centro X    
+    mov x2, #440 // Centro Y
+    mov x3, #150   // Radio
+    bl draw_circle
+
+    mov x1, #500 // Centro X   
+    mov x2, #440 // Centro Y
+    mov x3, #150   // Radio
+    bl draw_circle
+
+    mov x1, #100 // Centro X    
+    mov x2, #220 // Centro Y
+    mov x3, #160   // Radio
+    bl draw_circle
+
+    mov x1, #555 // Centro X   
+    mov x2, #220 // Centro Y
+    mov x3, #160   // Radio
+    bl draw_circle
+
+    mov x1, #320 // Centro X    
+    mov x2, #0 // Centro Y
+    mov x3, #150   // Radio
+    bl draw_circle
+
+    mov x1, #320 // Centro X   
+    mov x2, #480 // Centro Y
+    mov x3, #150   // Radio
+    bl draw_circle
+
+    // Octava parte
+    movz x20, #60000, lsl 16
+    bl delay_loop
+
+    mov x1, #100 // Centro X
+    mov x2, #28 // Centro Y
+    mov x3, #250   // Radio
+    bl draw_circle
+
+    mov x1, #500 // Centro X
+    mov x2, #28 // Centro Y
+    mov x3, #250   // Radio
+    bl draw_circle
+
+    mov x1, #100 // Centro X    
+    mov x2, #440 // Centro Y
+    mov x3, #250   // Radio
+    bl draw_circle
+
+    mov x1, #500 // Centro X   
+    mov x2, #440 // Centro Y
+    mov x3, #250   // Radio
+    bl draw_circle
+
+    // Novena parte
+    movz x20, #60000, lsl 16
+    bl delay_loop
+
+    mov x1, #320 // Centro X
+    mov x2, #220 // Centro Y
+    mov x3, #200   // Radio
+    bl draw_circle
+
+
 
 
 //ODC 2025 TIPO STRANGER THINGS

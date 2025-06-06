@@ -1508,6 +1508,176 @@ animacion:
     stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
 /////////////////////ANIMACIÓN////////////////////7
 
+movz x20, #0x00, lsl
+movk x20, #0x84D, lsl #16
+movk x20, #0x3B9, lsl #32
+
+
+mov x1, #414
+mov x2, #188
+mov x3, #4
+mov x4, #24
+mov x5, #0xFF5F3DC4
+bl draw_rect
+
+mov x1, #414
+mov x2, #212
+mov x3, #4
+mov x4, #4
+mov x5, #0xFFFFCCAA
+bl draw_rect
+
+mov x1, #418
+mov x2, #212
+mov x3, #4
+mov x4, #4
+mov x5, #0xFF000000
+bl draw_rect
+
+// primera gota
+mov x1, #432
+mov x2, #166
+mov x3, #2
+mov x4, #2
+mov x5, #0xFFFF0000
+bl draw_rect
+
+movz x20, #0x00, lsl
+movk x20, #0x84D, lsl #16
+movk x20, #0x3B9, lsl #32
+/////////////////////////////////////////////////////////////////////7
+mov x1, #414
+mov x2, #188
+mov x3, #4
+mov x4, #24
+mov x5, #0xFF5F3DC4
+bl draw_rect
+
+mov x1, #410
+mov x2, #212
+mov x3, #4
+mov x4, #4
+mov x5, #0xFFFFCCAA
+bl draw_rect
+
+mov x1, #414
+mov x2, #212
+mov x3, #4
+mov x4, #4
+mov x5, #0xFF2B3DA1
+bl draw_rect
+
+// segunda gota
+mov x1, #432
+mov x2, #168
+mov x3, #2
+mov x4, #2
+mov x5, #0xFFFF0000
+bl draw_rect
+
+movz x20, #0x00, lsl
+movk x20, #0x84D, lsl #16
+movk x20, #0x3B9, lsl #32
+//////////////////////////////////////////////////////
+mov x1, #414
+mov x2, #188
+mov x3, #4
+mov x4, #8
+mov x5, #0xFF5F3DC4
+bl draw_rect
+
+mov x1, #410
+mov x2, #188
+mov x3, #4
+mov x4, #16
+mov x5, #0xFF5F3DC4
+bl draw_rect
+
+mov x1, #406
+mov x2, #200
+mov x3, #4
+mov x4, #12
+mov x5, #0xFF5F3DC4
+bl draw_rect
+
+mov x1, #402
+mov x2, #212
+mov x3, #4
+mov x4, #4
+mov x5, #0xFFFFCCAA
+bl draw_rect
+
+mov x1, #410
+mov x2, #212
+mov x3, #4
+mov x4, #4
+mov x5, #0xFF000000
+bl draw_rect
+
+mov x1, #414
+mov x2, #196
+mov x3, #4
+mov x4, #16
+mov x5, #0xFF2B3DA1
+bl draw_rect
+
+// tercera gota
+mov x1, #432
+mov x2, #170
+mov x3, #2
+mov x4, #2
+mov x5, #0xFFFF0000
+bl draw_rect
+
+movz x20, #0x00, lsl
+movk x20, #0x84D, lsl #16
+movk x20, #0x3B9, lsl #32
+bl delay_loop
+//////////////////////////////////////////////////////////7
+mov x1, #414
+mov x2, #188
+mov x3, #4
+mov x4, #24
+mov x5, #0xFF5F3DC4
+bl draw_rect
+
+mov x1, #418
+mov x2, #212
+mov x3, #4
+mov x4, #4
+mov x5, #0xFFFFCCAA
+bl draw_rect
+
+mov x1, #406
+mov x2, #208
+mov x3, #4
+mov x4, #4
+mov x5, #0xFF000000
+bl draw_rect
+
+mov x1, #406
+mov x2, #188
+mov x3, #4
+mov x4, #20
+mov x5, #0xFF2B3DA1
+bl draw_rect
+
+mov x1, #410
+mov x2, #188
+mov x3, #4
+mov x4, #24
+mov x5, #0xFF2B3DA1
+bl draw_rect
+
+movz x20, #0x00, lsl
+movk x20, #0x84D, lsl #16
+movk x20, #0x3B9, lsl #32
+bl delay_loop
+
+
+
+
+
        // ------ VOY A HACER ACÁ LA ANIMACIÓN DEL FONDO NEGRO QUE SE VA COMIENDO TODO -----
       /*
  movz x5, 0x0000, lsl #0

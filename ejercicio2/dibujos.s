@@ -1510,9 +1510,8 @@ animacion:
 
 
 // Delay 1 segundo
-movz x20, #0x00, lsl #0
-movk x20, #0x084D, lsl #16
-movk x20, #0x03B9, lsl #32
+movz x20, #0x15000, lsl #0
+movk x20, #0x10000, lsl #16
 
 // Primer grupo
 mov x1, #414
@@ -1549,9 +1548,8 @@ movk w5, 0xFFFF, lsl #16
 bl draw_rect
 
 // Delay 1 segundo
-movz x20, #0x00, lsl #0
-movk x20, #0x084D, lsl #16
-movk x20, #0x03B9, lsl #32
+movz x20, #0x15000, lsl #0
+movk x20, #0x10000, lsl #16
 
 // Segundo grupo
 mov x1, #414
@@ -1588,9 +1586,8 @@ movk w5, 0xFFFF, lsl #16
 bl draw_rect
 
 // Delay 1 segundo
-movz x20, #0x00, lsl #0
-movk x20, #0x084D, lsl #16
-movk x20, #0x03B9, lsl #32
+movz x20, #0x15000, lsl #0
+movk x20, #0x10000, lsl #16
 
 // Tercer grupo
 mov x1, #414
@@ -1651,9 +1648,8 @@ movk w5, 0xFFFF, lsl #16
 bl draw_rect
 
 // Delay 1 segundo
-movz x20, #0x00, lsl #0
-movk x20, #0x084D, lsl #16
-movk x20, #0x03B9, lsl #32
+movz x20, #0x15000, lsl #0
+movk x20, #0x10000, lsl #16
 bl delay_loop
 
 // Cuarto grupo
@@ -1698,9 +1694,8 @@ movk w5, 0xFF2B, lsl #16
 bl draw_rect
 
 // Delay final
-movz x20, #0x00, lsl #0
-movk x20, #0x084D, lsl #16
-movk x20, #0x03B9, lsl #32
+movz x20, #0x15000, lsl #0
+movk x20, #0x10000, lsl #16
 bl delay_loop
 
 

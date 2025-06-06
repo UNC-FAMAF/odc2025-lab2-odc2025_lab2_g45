@@ -581,7 +581,7 @@ tabla_dustin: //usamos .quad (quad=4), 4Words = 4*2Byte = 8Byte = 64 bits para a
     // Ojos y Boca
     .quad 114, 164, 4, 4,  0xFF000000      // ojo derecho (negro)
     .quad 102, 164, 4, 4,  0xFF000000      // ojo izquierdo (negro)
-    .quad 106, 172, 8, 4,  0xFFA0522D      // boca
+    .quad 106, 172, 8, 4,  0xFFD38C7B     // boca
 
     // Cuerpo - Bordes del cuello y Hombros
     .quad 102, 180, 4, 12, 0xFFCD853F      // detalle marrón claro de la campera (izquierda)
@@ -633,7 +633,7 @@ tabla_dustin: //usamos .quad (quad=4), 4Words = 4*2Byte = 8Byte = 64 bits para a
 	.quad 204, 320, 4, 8,   0xFF444444      // mechón vertical derecha
 	.quad 184, 312, 4, 4,   0xFF000000      // ojo izquierdo (negro)
 	.quad 196, 312, 4, 4,   0xFF000000      // ojo derecho (negro)
-	.quad 188, 304, 8, 4,   0xFFA0522D      // boca
+	.quad 188, 304, 8, 4,   0xFFD38C7B     // boca
 
 	// Cuerpo
 	.quad 176, 288, 32, 8,  0xFF203A80      // parte superior del torso (azul oscuro)
@@ -671,7 +671,7 @@ tabla_max:
 	.quad 276, 156, 12, 4, 0xFFCC3020 // Cabeza: parte del flequillo derecho
 	.quad 264, 164, 4, 4, 0xFF000000 // Cabeza: ojo izq
 	.quad 276, 164, 4, 4, 0xFF000000 // Cabeza: ojo derecho
-	.quad 268, 172, 8, 4, 0xFFA0522D // Cabeza: boca
+	.quad 268, 172, 8, 4, 0xFFD38C7B // Cabeza: boca
 	.quad 260, 180, 24, 4, 0xFFFFCCAA // Cuello: 1er parte del cuello
 	.quad 268, 184, 8, 4, 0xFFFFCCAA // Cuello: 2da parte del cuello
 	.quad 256, 188, 32, 8, 0xCC80D0FF // Cuerpo: Hombros - Campera
@@ -738,7 +738,7 @@ tabla_lucas:
 
 
 	tabla_eleven:
-.quad 418, 172, 8, 4, 0xFFA0522D // Cabeza: boca
+.quad 418, 172, 8, 4, 0xFFD38C7B // Cabeza: boca
 .quad 418, 140, 24, 4, 0xFFF4A58A // Cabeza: parte superior de la frente / pelo
 .quad 414, 144, 32, 32, 0xFFFFCCAA // Cabeza: base de la cabeza / cara
 .quad 414, 144, 32, 8, 0xFFF4A58A // Cabeza: parte del pelo (superpuesto a la cara)
@@ -785,7 +785,7 @@ tabla_mike:
 .quad 530, 160, 4, 12, 0xFF1C1C1C // Cabeza: pelo, lateral derecho
 .quad 490, 160, 4, 8, 0xFFFFCCAA // Cabeza: piel, lateral izquierdo de la cara
 .quad 526, 160, 4, 8, 0xFFFFCCAA // Cabeza: piel, lateral derecho de la cara
-.quad 505, 170, 8, 4, 0xFFA0522D // Boca
+.quad 505, 170, 8, 4, 0xFFD38C7B // Boca
 .quad 498, 164, 4, 4, 0xFF000000 // Ojo izquierdo
 .quad 518, 164, 4, 4, 0xFF000000 // Ojo derecho
 .quad 526, 168, 4, 12, 0xFF1C1C1C // Pelo: detalle lateral 

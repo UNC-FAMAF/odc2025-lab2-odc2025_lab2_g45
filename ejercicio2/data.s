@@ -783,7 +783,7 @@ tabla_mike:
 .quad 530, 160, 4, 12, 0xFF1C1C1C // Cabeza: pelo, lateral derecho
 .quad 490, 160, 4, 8, 0xFFFFCCAA // Cabeza: piel, lateral izquierdo de la cara
 .quad 526, 160, 4, 8, 0xFFFFCCAA // Cabeza: piel, lateral derecho de la cara
-.quad 510, 170, 8, 4, 0xFFD38C7B // Boca
+.quad 506, 170, 8, 4, 0xFFD38C7B // Boca
 .quad 498, 164, 4, 4, 0xFF000000 // Ojo izquierdo
 .quad 518, 164, 4, 4, 0xFF000000 // Ojo derecho
 .quad 526, 168, 4, 12, 0xFF1C1C1C // Pelo: detalle lateral 

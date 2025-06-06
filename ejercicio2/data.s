@@ -737,7 +737,6 @@ tabla_lucas:
 
 
 	tabla_eleven:
-.quad 418, 172, 8, 4, 0xFFD38C7B // Cabeza: boca
 .quad 418, 140, 24, 4, 0xFFF4A58A // Cabeza: parte superior de la frente / pelo
 .quad 414, 144, 32, 32, 0xFFFFCCAA // Cabeza: base de la cabeza / cara
 .quad 414, 144, 32, 8, 0xFFF4A58A // Cabeza: parte del pelo (superpuesto a la cara)

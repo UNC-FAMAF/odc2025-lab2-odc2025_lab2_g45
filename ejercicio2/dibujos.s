@@ -1501,7 +1501,7 @@ animacion:
     stp x29, x30, [sp, #-16]!  
 ////////////////////////////////ANIMACIÓN////////////////////
 // Delay 1 segundo
-movz x20, #0x00000, lsl #0
+movz x20, #0x15000, lsl #0
 movk x20, #0x10000, lsl #16
 bl delay_loop
 
@@ -2006,7 +2006,7 @@ bl delay_loop
         bl draw_rect
 
 // Delay 1 segundo
-movz x20, #0x00000, lsl #0
+movz x20, #0x15000, lsl #0
 movk x20, #0x10000, lsl #16
 bl delay_loop
 
@@ -2511,7 +2511,7 @@ bl delay_loop
         bl draw_rect
 
 // Delay 1 segundo
-movz x20, #0x00000, lsl #0
+movz x20, #0x15000, lsl #0
 movk x20, #0x10000, lsl #16
 bl delay_loop
 
@@ -3040,7 +3040,7 @@ bl delay_loop
         bl draw_rect
 
 // Delay 1 segundo
-movz x20, #0x00000, lsl #0
+movz x20, #0x15000, lsl #0
 movk x20, #0x10000, lsl #16
 bl delay_loop
 
@@ -3553,7 +3553,7 @@ bl delay_loop
         bl draw_rect
 
 // Delay final
-movz x20, #0x00000, lsl #0
+movz x20, #0x15000, lsl #0
 movk x20, #0x10000, lsl #16
 bl delay_loop
 

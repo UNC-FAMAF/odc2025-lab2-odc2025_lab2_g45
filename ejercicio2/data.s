@@ -1,10 +1,9 @@
-    .include "header.s" // Si data.s usa alguna constante de header.s
+    .include "header.s" 
 
 //////////////tablas de entradas para optimizar //////////
 // Tabla con entradas de 3 valores (x_start, x_end, y_start) de 32 bits
 
-// ***************************************************************
-// ASEGÚRATE de que TODAS estas líneas .globl estén presentes:
+
 .globl purpura_coords
 .globl purpura_superior_coords
 .globl tabla_estrellas

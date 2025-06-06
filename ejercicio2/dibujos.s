@@ -1,8 +1,5 @@
-    .include "header.s"      // Solo incluye header para constantes
-    // NO INCLUIR "data.s" NI "subrutinas.s" AQUÍ
-    // Sus símbolos se enlazan de forma externa.
+    .include "header.s"      
 
-// Todas las funciones de dibujo se definen aquí y son globl para que puedan ser llamadas desde app.s
 .globl dibujando_celeste
 .globl dibujando_purpura_inferior
 .globl dibujando_purpura_superior
@@ -18,11 +15,15 @@
 .globl dibujando_will
 .globl dibujando_max
 .globl draw_demogorgon
+.globl animacion
+
 
 .section .text
 
 	// -------------------FONDO CELESTE DE ARRIBA Y ABAJO -------------------	
 dibujando_celeste:
+ mov x0, x20
+stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
 loop2:
 	mov x0, x20		// guardo la posición base del framebuffer de nuevo
 
@@ -42,10 +43,13 @@ loop2:
 	movz x10, 0x91B9, lsl 0	
 	movk x10, 0xFF2E, lsl 16
 	bl mirror_loop		// pinto el fondo de arriba
-	
+	ldp x29, x30, [sp], #16    // Restore frame pointer and link register
+    ret                        // Return
 	// -------------------FONDO PÚRPURA -------------------	
 
 dibujando_purpura_inferior:
+
+    stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
     // color púrpura inferior = 0xFF1F1D44
     movz x10, 0x1D44, lsl 0
     movk x10, 0xFF1F, lsl 16
@@ -64,6 +68,8 @@ loop_purpura:
 
     subs x14, x14, #1 //resta 1
     b.ne loop_purpura
+	ldp x29, x30, [sp], #16    // Restore frame pointer and link register
+    ret                        // Return
 	
 /*
 	adr x13, tabla_purpura   // puntero base a la tabla
@@ -79,6 +85,8 @@ loop_purpura:
 	// De esta forma logro el efecto de que arriba sean colores más claros y luminosos, mientras que abajo son más oscuros y apagados.
 
 dibujando_purpura_superior:    // Cargar color púrpura superior en x10
+
+    stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
     movz x10, 0x3DA1, lsl 0	
     movk x10, 0xFF2B, lsl 16
 
@@ -94,34 +102,38 @@ loop_purpura_superior:
 
     subs x14, x14, #1
     b.ne loop_purpura_superior
-	
+	ldp x29, x30, [sp], #16    // Restore frame pointer and link register
+    ret                        // Return
 
 //estrellas
 dibujando_estrellas:
-	movz x10, 0x91B9, lsl 0	
-	movk x10, 0xFF2E, lsl 16
-	
-    ldr x19, =tabla_estrellas   //dirección base de la tabla en x19
-    mov x21, #79                 //  grupos a procesar
 
-loop_estrellas:
-    cbz x21, fin_dibujar_estrellas   // contador = 0, salir del loop
+    stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
+    ldr x19, =tabla_estrellas   // Dirección base de la tabla en x19
+    mov x21, #79                // Grupos a procesar
 
-    ldr w6, [x19], #4          //  puntero 4 bytes
-    ldr w7, [x19], #4          // 
-    ldr w11, [x19], #4         // 
-    ldr w12, [x19], #4         // 
+loop_dibujar_estrellas_interno:
+    cbz x21, fin_dibujar_estrellas_con_color // contador = 0, salir
 
-    bl double_mirror_loop      // 
+    ldr w6, [x19], #4           // Coordenada X
+    ldr w7, [x19], #4           // Coordenada Y
+    ldr w11, [x19], #4          // Ancho/Radio
+    ldr w12, [x19], #4          // Alto/Otro parámetro
 
-    subs x21, x21, #1          // 
-    b.ne loop_estrellas            //
+    // Aquí, x10 ya debería contener el color deseado (original o blanco)
+    bl double_mirror_loop       // Dibuja la estrella
 
-fin_dibujar_estrellas:
-	
+    subs x21, x21, #1           // Decrementa contador
+    b.ne loop_dibujar_estrellas_interno
+
+fin_dibujar_estrellas_con_color:
+    ldp x29, x30, [sp], #16    // Restore frame pointer and link register
+    ret                        // Return
 
 		// ------------------- FONDO, LA PARTE DE LOS ARBUSTOS Y LA PARTE NEGRA DE ARRIBA DEL FONDO -------------------
 dibujando_arbustos_y_fondo:
+
+    stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
 	//color negro = 0xFF000000
 	movz x10, 0x0000, lsl 0	
 	movk x10, 0xFF00, lsl 16
@@ -146,11 +158,14 @@ loop_fondo_arbustos:
     b.ne loop_fondo_arbustos
 
 fin_fondo_arbustos:
-	
+	ldp x29, x30, [sp], #16    // Restore frame pointer and link register
+    ret                        // Return
 
 
 	// ------------------- ÁRBOLES DEL FONDO, REFLEJADOS ARRIBA Y ABAJO -------------------
 dibujando_arboles_fondo:
+
+    stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
 	// Determino que x10 sea el color negro = 0xFF000000
 	// --- El siguiente código es para los árboles de la izquierda hacia la derecha ---
 	// ACLARACIÓN: Ya que estoy usando la función double_mirror_loop, los árboles son de izquierda a derecha, hasta llegar a la mitad de la pantalla.
@@ -176,8 +191,12 @@ loop_arboles_fondo:
     b.ne loop_arboles_fondo
 
 fin_arboles_fondo:
-	
+    ldp x29, x30, [sp], #16    // Restore frame pointer and link register
+    ret                        // Return
+
 dibujando_ODC2025:
+
+    stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
     // ---------------------- PARTE DE ODC ---------------------
 
     // ----------- Llamadas a double_mirror_loop -----------
@@ -243,9 +262,13 @@ loop_rectangulos:
     b.ne loop_rectangulos
 
 fin_rectangulos:
-	
+    ldp x29, x30, [sp], #16    // Restore frame pointer and link register
+    ret                        // Return
+
 	// ------------------- PASTO EN EL QUE SE APOYAN LOS PERSONAJES -------------------
 dibujando_pasto:
+
+    stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
 	// Pintaré el pasto utilizando la función draw_rect. Elegí esta ya que al ser una imagen pixelada, y el pasto no tener un patrón definido, es lo que más cómodo queda.
     // Color verde oscuro = 0xFF35656F
     movz x5, 0x656F, lsl #0
@@ -268,11 +291,14 @@ loop_pasto:
     b.ne loop_pasto
 
 fin_pasto:
-	
+    ldp x29, x30, [sp], #16    // Restore frame pointer and link register
+    ret                        // Return
 
 /////////////////DEMOGORGON/////////////////////
 
 draw_demogorgon:
+
+    stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
  // demogorgon
 	mov x0, x20
 //Demogorgon - cuerpo
@@ -1325,10 +1351,14 @@ draw_demogorgon:
 	mov x3, #2
 	bl draw_circle
 	
+    ldp x29, x30, [sp], #16    // Restore frame pointer and link register
+    ret                        // Return
 
  ////////////////////PERSONAJES////////////////////
 	// personajes
 dibujando_dustin:
+    stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
+	
     ldr x19, =tabla_dustin      // dirección tabla
     mov x21, #45               // cantidad de rectángulos 
 
@@ -1347,10 +1377,14 @@ loop_dustin:
     b.ne loop_dustin
 
 fin_dustin:
+    ldp x29, x30, [sp], #16    // Restore frame pointer and link register
+    ret                        // Return
 	
 dibujando_will:
+
+    stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
     ldr x19, =tabla_will      // dirección tabla
-    mov x21, #45               // cantidad de rectángulos 
+    mov x21, #34               // cantidad de rectángulos 
 
 loop_will:
     cbz x21, fin_will
@@ -1366,11 +1400,14 @@ loop_will:
     subs x21, x21, #1
     b.ne loop_will
 fin_will:
+    ldp x29, x30, [sp], #16    // Restore frame pointer and link register
+    ret                        // Return
 	
 dibujando_max:
+    stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
 	// Maxdibujando_max:
     ldr x19, =tabla_max       // dirección de la tabla
-    mov x21, #52              // cantidad de rectángulos
+    mov x21, #29              // cantidad de rectángulos
 
 loop_max:
     cbz x21, fin_max
@@ -1387,11 +1424,14 @@ loop_max:
     b.ne loop_max
 	
 fin_max:
-	
+    ldp x29, x30, [sp], #16    // Restore frame pointer and link register
+    ret                        // Return
+
 dibujando_lucas:
-	// dibujando_lucas:
+stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
+
     ldr x19, =tabla_lucas       // dirección de la tabla
-    mov x21, #52              // cantidad de rectángulos 
+    mov x21, #45              // cantidad de rectángulos 
 
 loop_lucas:
     cbz x21, fin_lucas
@@ -1407,11 +1447,15 @@ loop_lucas:
     subs x21, x21, #1
     b.ne loop_lucas
 fin_lucas:
-	
+	ldp x29, x30, [sp], #16    // Restore frame pointer and link register
+    ret                        // Return
+
+
 dibujando_eleven:
+    stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
 	// dibujando_eleven:
     ldr x19, =tabla_eleven       // dirección de la tabla
-    mov x21, #52              // cantidad de rectángulos 
+    mov x21, #29              // cantidad de rectángulos 
 
 loop_eleven:
     cbz x21, fin_eleven
@@ -1428,11 +1472,15 @@ loop_eleven:
     b.ne loop_eleven
 
 fin_eleven:
+    ldp x29, x30, [sp], #16    // Restore frame pointer and link register
+    ret                        // Return
 	
- dibujando_mike:
+dibujando_mike:
+
+    stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
 	// dibujando_mike:
     ldr x19, =tabla_mike       // dirección de la tabla
-    mov x21, #52              // cantidad de rectángulos 
+    mov x21, #39              // cantidad de rectángulos 
 
 loop_mike:
     cbz x21, fin_mike
@@ -1449,7 +1497,16 @@ loop_mike:
     b.ne loop_mike
 
 fin_mike:
+    ldp x29, x30, [sp], #16    // Restore frame pointer and link register
+    ret                        // Return
 
+
+
+animacion:
+
+    stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
+
+/////////////////////ANIMACIÓN////////////////////7
 
        // ------ VOY A HACER ACÁ LA ANIMACIÓN DEL FONDO NEGRO QUE SE VA COMIENDO TODO -----
        movz x5, 0x0000, lsl #0
@@ -1601,13 +1658,15 @@ fin_mike:
 	mov x4, #80
 	bl draw_rect
 
-
+b animacion
+    ldp x29, x30, [sp], #16    // Restore frame pointer and link register
+    ret                        // Return
 // MÉTODO DE USO DE DELAY LOOP: 
 
 delay_loop:
-	subs x20, x20, #1
-	b.ne delay_loop
+    subs x20, x20, #10 //valor mas grande -> delay mas corto
+    b.ne delay_loop
 end_delay_loop:
-	ret
+    ret
 
 	

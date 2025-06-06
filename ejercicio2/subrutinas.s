@@ -1,9 +1,7 @@
     .include "header.s"
-    // NO INCLUIR "data.s" NI "dibujos.s" AQUÍ
 
 //////////////////////////////////subrutinas para hacer formas (cuadrados, circulos, y para reflejar sobre los ejes//////////////////////////////
 
-// Declaraciones globl para todas las subrutinas que deben ser accesibles desde otros archivos
 .globl mirror_loop
 .globl mirror_loop_y
 .globl mirror_loop_x
@@ -20,11 +18,9 @@
 .globl draw_circle
 .globl render
 .globl fillscreen
-.globl delay
+.global delay_loop
 
 //////////////////////////////////subrutinas para hacer formas (cuadrados, circulos, y para reflejar sobre los ejes//////////////////////////////
-
-
 
 
 //--Método de uso de mirror_loop--
@@ -350,82 +346,4 @@ next_y_circle:
     b loop_y_circle
 
 end_draw_circle:
-    ret
-// render: Copia el contenido del framebuffer de origen al de destino
-// x0 = Source Framebuffer Address (BackFB)
-// x1 = Destination Framebuffer Address (FrontFB)
-render:
-    // Guardar registros X19, X20 y el registro de enlace (LR/X30) en la pila.
-    // Usamos stp para guardar pares de registros.
-    // X29 es el Frame Pointer, X30 es el Link Register (LR).
-    stp x19, x20, [sp, #-16]! // Guarda x19 y x20, decrementa SP en 16 bytes
-    stp x29, x30, [sp, #-16]! // Guarda x29 y x30, decrementa SP en 16 bytes
-
-    mov x19, x0             // Source FB (x0)
-    mov x20, x1             // Destination FB (x1)
-
-    mov x2, #0              // Contador de bytes (offset)
-    mov x3, #SCREEN_WIDTH   // SCREEN_WIDTH del header.s
-    mov x4, #SCREEN_HEIGH   // SCREEN_HEIGH del header.s
-    mul x5, x3, x4          // Total de píxeles
-    lsl x5, x5, #2          // Total de bytes (píxeles * 4 bytes/pixel)
-
-copy_loop:
-    cmp x2, x5              // Comparar contador con el total de bytes
-    b.ge end_render         // Si ya copiamos todos los bytes, salimos
-
-    ldr w6, [x19, x2]       // Cargar palabra (4 bytes) del origen (w6 = 32-bit register)
-    str w6, [x20, x2]       // Almacenar palabra (4 bytes) en el destino
-
-    add x2, x2, #4          // Mover al siguiente bloque de 4 bytes (1 pixel)
-    b copy_loop
-
-end_render:
-    // Restaurar registros desde la pila
-    ldp x29, x30, [sp], #16 // Carga x29 y x30, incrementa SP en 16 bytes
-    ldp x19, x20, [sp], #16 // Carga x19 y x20, incrementa SP en 16 bytes
-    ret                     // Regresar de la subrutina
-
-
-// fillscreen: Rellena toda la pantalla con un color específico
-// x0 = Framebuffer base address
-// w1 = Color (32-bit ARGB)
-fillscreen:
-    stp x19, x20, [sp, #-16]! // Guarda x19 y x20
-    stp x29, x30, [sp, #-16]! // Guarda x29 y x30
-
-    mov x19, x0             // Framebuffer base
-    mov w20, w1             // Color
-
-    mov x2, #0              // Offset actual
-    mov x3, #SCREEN_WIDTH
-    mov x4, #SCREEN_HEIGH
-    mul x5, x3, x4          // Total de píxeles
-    lsl x5, x5, #2          // Total de bytes
-
-fill_loop:
-    cmp x2, x5
-    b.ge end_fillscreen
-
-    str w20, [x19, x2]      // Almacenar el color en la posición actual
-    add x2, x2, #4          // Mover al siguiente píxel (4 bytes)
-    b fill_loop
-
-end_fillscreen:
-    ldp x29, x30, [sp], #16 // Carga x29 y x30
-    ldp x19, x20, [sp], #16 // Carga x19 y x20
-    ret
-
-
-// delay: Crea un retardo simple basado en un bucle
-// x0 = Número de iteraciones (cuanto mayor, más largo el delay)
-delay:
-    stp x29, x30, [sp, #-16]! // Guarda x29 y x30 (LR)
-
-    mov x1, x0              // Copia el valor de delay a x1 (usaremos x1 como contador)
-delay_loop:
-    subs x1, x1, #1         // Decrementa el contador
-    b.ne delay_loop         // Si no es cero, continúa el bucle
-    
-    ldp x29, x30, [sp], #16 // Carga x29 y x30
     ret

@@ -2,11 +2,6 @@
 
 .globl main
 
-.section .bss
-.align 12
-BackFB: .skip 1228800
-
-.section .text
 
 main:
     mov x20, x0             // x0 contiene la direccion base del framebuffer (principal)
@@ -16,6 +11,7 @@ main:
     bl dibujando_purpura_superior
     bl dibujando_arbustos_y_fondo
     bl dibujando_arboles_fondo
+    bl dibujando_estrellas
     bl dibujando_ODC2025
     bl dibujando_pasto
     bl dibujando_dustin
@@ -25,6 +21,7 @@ main:
     bl dibujando_will
     bl dibujando_max
     bl draw_demogorgon
+    bl animacion
 
 InfLoop:
     b InfLoop

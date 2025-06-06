@@ -1508,6 +1508,14 @@ animacion:
     stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
 /////////////////////ANIMACIÓN////////////////////7
 
+mov x1, #414
+mov x2, #212
+mov x3, #4
+mov x4, #4
+movz w5, 0xCCAA, lsl #0
+movk w5, 0xFFFF, lsl #16
+bl draw_rect
+
 // Delay 1 segundo
 movz x20, #0x00, lsl #0
 movk x20, #0x084D, lsl #16
@@ -1518,24 +1526,24 @@ mov x1, #414
 mov x2, #188
 mov x3, #4
 mov x4, #24
-movz w5, #3DC4, lsl #0
-movk w5, #FF5F, lsl #16
+movz w5, 0x3DC4, lsl #0
+movk w5, 0xFF5F, lsl #16
 bl draw_rect
 
 mov x1, #414
 mov x2, #212
 mov x3, #4
 mov x4, #4
-movz w5, #CCAA, lsl #0
-movk w5, #FFFF, lsl #16
+movz w5, 0xCCAA, lsl #0
+movk w5, 0xFFFF, lsl #16
 bl draw_rect
 
 mov x1, #418
 mov x2, #212
 mov x3, #4
 mov x4, #4
-movz w5, #0000, lsl #0
-movk w5, #FF00, lsl #16
+movz w5, 0x0000, lsl #0
+movk w5, 0xFF00, lsl #16
 bl draw_rect
 
 // primera gota
@@ -1543,8 +1551,8 @@ mov x1, #432
 mov x2, #166
 mov x3, #2
 mov x4, #2
-movz w5, #0000, lsl #0
-movk w5, #FFFF, lsl #16
+movz w5, 0x0000, lsl #0
+movk w5, 0xFFFF, lsl #16
 bl draw_rect
 
 // Delay 1 segundo
@@ -1557,150 +1565,25 @@ mov x1, #414
 mov x2, #188
 mov x3, #4
 mov x4, #24
-movz w5, #3DC4, lsl #0
-movk w5, #FF5F, lsl #16
+movz w5, 0x3DC4, lsl #0
+movk w5, 0xFF5F, lsl #16
 bl draw_rect
 
 mov x1, #410
 mov x2, #212
 mov x3, #4
 mov x4, #4
-movz w5, #CCAA, lsl #0
-movk w5, #FFFF, lsl #16
+movz w5, 0xCCAA, lsl #0
+movk w5, 0xFFFF, lsl #16
 bl draw_rect
 
 mov x1, #414
 mov x2, #212
 mov x3, #4
 mov x4, #4
-movz w5, #3DA1, lsl #0
-movk w5, #FF2B, lsl #16
-bl draw_rect
+movz w5, 0x3DA1, lsl #0
+movk w5, 0x
 
-// segunda gota
-mov x1, #432
-mov x2, #168
-mov x3, #2
-mov x4, #2
-movz w5, #0000, lsl #0
-movk w5, #FFFF, lsl #16
-bl draw_rect
-
-// Delay 1 segundo
-movz x20, #0x00, lsl #0
-movk x20, #0x084D, lsl #16
-movk x20, #0x03B9, lsl #32
-
-// Tercer grupo
-mov x1, #414
-mov x2, #188
-mov x3, #4
-mov x4, #8
-movz w5, #3DC4, lsl #0
-movk w5, #FF5F, lsl #16
-bl draw_rect
-
-mov x1, #410
-mov x2, #188
-mov x3, #4
-mov x4, #16
-movz w5, #3DC4, lsl #0
-movk w5, #FF5F, lsl #16
-bl draw_rect
-
-mov x1, #406
-mov x2, #200
-mov x3, #4
-mov x4, #12
-movz w5, #3DC4, lsl #0
-movk w5, #FF5F, lsl #16
-bl draw_rect
-
-mov x1, #402
-mov x2, #212
-mov x3, #4
-mov x4, #4
-movz w5, #CCAA, lsl #0
-movk w5, #FFFF, lsl #16
-bl draw_rect
-
-mov x1, #410
-mov x2, #212
-mov x3, #4
-mov x4, #4
-movz w5, #0000, lsl #0
-movk w5, #FF00, lsl #16
-bl draw_rect
-
-mov x1, #414
-mov x2, #196
-mov x3, #4
-mov x4, #16
-movz w5, #3DA1, lsl #0
-movk w5, #FF2B, lsl #16
-bl draw_rect
-
-// tercera gota
-mov x1, #432
-mov x2, #170
-mov x3, #2
-mov x4, #2
-movz w5, #0000, lsl #0
-movk w5, #FFFF, lsl #16
-bl draw_rect
-
-// Delay 1 segundo
-movz x20, #0x00, lsl #0
-movk x20, #0x084D, lsl #16
-movk x20, #0x03B9, lsl #32
-bl delay_loop
-
-// Cuarto grupo
-mov x1, #414
-mov x2, #188
-mov x3, #4
-mov x4, #24
-movz w5, #3DC4, lsl #0
-movk w5, #FF5F, lsl #16
-bl draw_rect
-
-mov x1, #418
-mov x2, #212
-mov x3, #4
-mov x4, #4
-movz w5, #CCAA, lsl #0
-movk w5, #FFFF, lsl #16
-bl draw_rect
-
-mov x1, #406
-mov x2, #208
-mov x3, #4
-mov x4, #4
-movz w5, #0000, lsl #0
-movk w5, #FF00, lsl #16
-bl draw_rect
-
-mov x1, #406
-mov x2, #188
-mov x3, #4
-mov x4, #20
-movz w5, #3DA1, lsl #0
-movk w5, #FF2B, lsl #16
-bl draw_rect
-
-mov x1, #410
-mov x2, #188
-mov x3, #4
-mov x4, #24
-movz w5, #3DA1, lsl #0
-movk w5, #FF2B, lsl #16
-bl draw_rect
-
-// Delay final
-movz x20, #0x00, lsl #0
-movk x20, #0x084D, lsl #16
-movk x20, #0x03B9, lsl #32
-bl delay_loop
 
 
 

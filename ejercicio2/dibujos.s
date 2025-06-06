@@ -121,7 +121,7 @@ loop_dibujar_estrellas_interno:
     ldr w12, [x19], #4          // Alto/Otro parámetro
 
     // Aquí, x10 ya debería contener el color deseado (original o blanco)
-    bl double_mirror_loop       // Dibuja la estrella
+    bl mirror_loop       // Dibuja la estrella
 
     subs x21, x21, #1           // Decrementa contador
     b.ne loop_dibujar_estrellas_interno
@@ -1431,7 +1431,7 @@ dibujando_lucas:
 stp x29, x30, [sp, #-16]!  // Save frame pointer and link register
 
     ldr x19, =tabla_lucas       // dirección de la tabla
-    mov x21, #45              // cantidad de rectángulos 
+    mov x21, #44              // cantidad de rectángulos 
 
 loop_lucas:
     cbz x21, fin_lucas

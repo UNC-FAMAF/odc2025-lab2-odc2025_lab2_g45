@@ -1,0 +1,149 @@
+
+There are no discarded input sections
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD app.o
+LOAD data.o
+LOAD dibujos.o
+LOAD header.o
+LOAD start.o
+LOAD subrutinas.o
+                0x0000000000080000                . = 0x80000
+
+.text           0x0000000000080000    0x91604
+ *(.text.boot)
+ .text.boot     0x0000000000080000    0x100c8 start.o
+                0x0000000000080000                _start
+ *(.text*)
+ .text          0x00000000000900c8       0x48 app.o
+                0x00000000000900c8                main
+ .text          0x0000000000090110        0x0 data.o
+ .text          0x0000000000090110     0x1280 dibujos.o
+                0x0000000000090110                dibujando_celeste
+                0x0000000000090150                dibujando_purpura_inferior
+                0x000000000009018c                dibujando_purpura_superior
+                0x00000000000901c0                dibujando_estrellas
+                0x00000000000901f4                dibujando_arbustos_y_fondo
+                0x0000000000090238                dibujando_arboles_fondo
+                0x0000000000090274                dibujando_ODC2025
+                0x0000000000090308                dibujando_pasto
+                0x0000000000090344                draw_demogorgon
+                0x0000000000090ffc                dibujando_dustin
+                0x0000000000091034                dibujando_will
+                0x000000000009106c                dibujando_max
+                0x00000000000910a4                dibujando_lucas
+                0x00000000000910dc                dibujando_eleven
+                0x0000000000091114                dibujando_mike
+                0x000000000009114c                animacion
+ .text          0x0000000000091390        0x0 header.o
+ .text          0x0000000000091390    0x80000 start.o
+ .text          0x0000000000111390      0x274 subrutinas.o
+                0x0000000000111390                mirror_loop
+                0x0000000000111394                mirror_loop_y
+                0x0000000000111398                mirror_loop_x
+                0x00000000001113e8                double_mirror_loop
+                0x00000000001113ec                double_mirror_loop_y
+                0x00000000001113f0                double_mirror_loop_x
+                0x0000000000111470                inverted_mirror_loop
+                0x0000000000111474                inverted_mirror_loop_y
+                0x0000000000111478                inverted_mirror_loop_x
+                0x00000000001114cc                only_y_mirror_loop
+                0x00000000001114d0                only_y_mirror_loop_y
+                0x00000000001114d4                only_y_mirror_loop_x
+                0x0000000000111520                draw_rect
+                0x0000000000111580                draw_circle
+
+.iplt           0x0000000000111604        0x0
+ .iplt          0x0000000000111604        0x0 app.o
+
+.rela.dyn       0x0000000000111608        0x0
+ .rela.iplt     0x0000000000111608        0x0 app.o
+ .rela.text.boot
+                0x0000000000111608        0x0 app.o
+
+.data           0x0000000000111608     0x4a88
+ .data          0x0000000000111608        0x0 app.o
+ .data          0x0000000000111608     0x4a88 data.o
+                0x0000000000111608                purpura_coords
+                0x0000000000111770                purpura_superior_coords
+                0x00000000001118d8                tabla_estrellas
+                0x0000000000112a48                tabla_domo_arbustos
+                0x0000000000112e38                tabla_arboles_fondo
+                0x0000000000113968                tabla_dibujo_odc_double
+                0x00000000001139b8                tabla_dibujo_odc_only_y
+                0x0000000000113a98                tabla_rectangulos
+                0x0000000000113c58                tabla_pasto
+                0x0000000000113ef8                tabla_dustin
+                0x00000000001145b0                tabla_will
+                0x0000000000114ad8                tabla_max
+                0x0000000000114f60                tabla_lucas
+                0x0000000000115618                tabla_eleven
+                0x0000000000115a78                tabla_mike
+ .data          0x0000000000116090        0x0 dibujos.o
+ .data          0x0000000000116090        0x0 header.o
+ .data          0x0000000000116090        0x0 start.o
+ .data          0x0000000000116090        0x0 subrutinas.o
+
+.igot.plt       0x0000000000116090        0x0
+ .igot.plt      0x0000000000116090        0x0 app.o
+
+.bss            0x0000000000116090        0x0
+ *(.bss*)
+ .bss           0x0000000000116090        0x0 app.o
+ .bss           0x0000000000116090        0x0 data.o
+ .bss           0x0000000000116090        0x0 dibujos.o
+ .bss           0x0000000000116090        0x0 header.o
+ .bss           0x0000000000116090        0x0 start.o
+ .bss           0x0000000000116090        0x0 subrutinas.o
+
+.bss            0x0000000000116090        0x0
+                0x0000000000116090                . = ALIGN (0x10)
+                0x0000000000116090                __bss_start = .
+ *(.bss .bss.*)
+ *(COMMON)
+                0x0000000000116090                __bss_end = .
+                0x0000000000116090                _end = .
+                0x0000000000000000                __bss_size = ((__bss_end - __bss_start) >> 0x3)
+OUTPUT(kernel8.elf elf64-littleaarch64)
+LOAD linker stubs
+
+.debug_line     0x0000000000000000      0x635
+ .debug_line    0x0000000000000000       0x45 app.o
+ .debug_line    0x0000000000000045      0x4bd dibujos.o
+ .debug_line    0x0000000000000502       0x50 start.o
+ .debug_line    0x0000000000000552       0xe3 subrutinas.o
+
+.debug_info     0x0000000000000000       0xb8
+ .debug_info    0x0000000000000000       0x2e app.o
+ .debug_info    0x000000000000002e       0x2e dibujos.o
+ .debug_info    0x000000000000005c       0x2e start.o
+ .debug_info    0x000000000000008a       0x2e subrutinas.o
+
+.debug_abbrev   0x0000000000000000       0x50
+ .debug_abbrev  0x0000000000000000       0x14 app.o
+ .debug_abbrev  0x0000000000000014       0x14 dibujos.o
+ .debug_abbrev  0x0000000000000028       0x14 start.o
+ .debug_abbrev  0x000000000000003c       0x14 subrutinas.o
+
+.debug_aranges  0x0000000000000000       0xc0
+ .debug_aranges
+                0x0000000000000000       0x30 app.o
+ .debug_aranges
+                0x0000000000000030       0x30 dibujos.o
+ .debug_aranges
+                0x0000000000000060       0x30 start.o
+ .debug_aranges
+                0x0000000000000090       0x30 subrutinas.o
+
+.debug_str      0x0000000000000000       0x87
+ .debug_str     0x0000000000000000       0x87 app.o
+                                         0x68 (size before relaxing)
+ .debug_str     0x0000000000000087       0x6c dibujos.o
+ .debug_str     0x0000000000000087       0x6a start.o
+ .debug_str     0x0000000000000087       0x6f subrutinas.o

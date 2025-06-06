@@ -120,7 +120,6 @@ loop_dibujar_estrellas_interno:
     ldr w11, [x19], #4          // Ancho/Radio
     ldr w12, [x19], #4          // Alto/Otro parámetro
 
-    // Aquí, x10 ya debería contener el color deseado (original o blanco)
     bl mirror_loop       // Dibuja la estrella
 
     subs x21, x21, #1           // Decrementa contador

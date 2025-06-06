@@ -737,7 +737,7 @@ tabla_lucas:
 
 
 	tabla_eleven:
-.quad 418, 172, 8, 4, 0xFFDF8F7F // Cabeza: boca
+.quad 418, 172, 8, 4, 0xFFD38C7B // Cabeza: boca
 .quad 418, 140, 24, 4, 0xFFF4A58A // Cabeza: parte superior de la frente / pelo
 .quad 414, 144, 32, 32, 0xFFFFCCAA // Cabeza: base de la cabeza / cara
 .quad 414, 144, 32, 8, 0xFFF4A58A // Cabeza: parte del pelo (superpuesto a la cara)
@@ -750,7 +750,7 @@ tabla_lucas:
 .quad 446, 168, 4, 4, 0xFFFFCCAA // Cabeza: piel (parte inferior derecha de la cara)
 .quad 418, 176, 24, 4, 0xFFFFCCAA // Cabeza: barbilla / parte inferior de la cara
 .quad 426, 180, 8, 4, 0xFFFFCCAA // Cuello: parte inferior del cuello
-.quad 426, 170, 8, 4, 0xFFA0522D // Boca (repetido, asegúrate de que esto sea intencional si no, podría superponerse)
+.quad 426, 170, 8, 4, 0xFFD38C7B // Boca (repetido, asegúrate de que esto sea intencional si no, podría superponerse)
 .quad 422, 180, 4, 4, 0xFF5F3DC4 // Cuerpo: Borde izquierdo del cuello
 .quad 434, 180, 4, 4, 0xFF5F3DC4 // Cuerpo: Borde derecho del cuello
 .quad 418, 184, 24, 8, 0xFF5F3DC4 // Cuerpo: Hombros
@@ -784,7 +784,7 @@ tabla_mike:
 .quad 530, 160, 4, 12, 0xFF1C1C1C // Cabeza: pelo, lateral derecho
 .quad 490, 160, 4, 8, 0xFFFFCCAA // Cabeza: piel, lateral izquierdo de la cara
 .quad 526, 160, 4, 8, 0xFFFFCCAA // Cabeza: piel, lateral derecho de la cara
-.quad 505, 170, 8, 4, 0xFFD38C7B // Boca
+.quad 510, 170, 8, 4, 0xFFD38C7B // Boca
 .quad 498, 164, 4, 4, 0xFF000000 // Ojo izquierdo
 .quad 518, 164, 4, 4, 0xFF000000 // Ojo derecho
 .quad 526, 168, 4, 12, 0xFF1C1C1C // Pelo: detalle lateral 

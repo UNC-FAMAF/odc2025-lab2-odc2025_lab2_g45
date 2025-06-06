@@ -1663,7 +1663,7 @@ animacion:
 	bl draw_rect
 
 */
-/*
+
 
 
 //ODC 2025 TIPO STRANGER THINGS
@@ -1778,282 +1778,1015 @@ end_increment:
     b loop_start
 
 loop_end:
-*/
-//O
 
+
+///////////////////////////O////////////////////////
+    mov x28, #105 // x_actual (inicio en 440)
+    mov x29, #115 // x_fin_bucle
+    mov x27, #95  // y_actual (parte superior)
+bucle_dibujar_vertical_izquo:
+    cmp x28, x29
+    bgt fin_bucle_dibujar_vertical_izquo // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (X incrementando)
     movz x5, 0x0000, lsl #0
-    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
-    mov x1, #110             // x
-    mov x2, #85            // y
-    mov x3, 90            // ancho (width)
-    mov x4, #2            // alto (height)
-    bl draw_rect             // Call draw_rect function
-        movz x20, #1500, lsl #0
-    movk x20, #1000, lsl 16
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #115
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
     bl delay_loop
 
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_vertical_izquo
 
+fin_bucle_dibujar_vertical_izquo:
+       movz x5, 0x0000, lsl #0
+       movk x5, 0xFFFF, lsl #16        // Establezco el color rojo
+/////////////0////////////
+    mov x28, #110 // x_actual (inicio en 440)
+    mov x29, #200 // x_fin_bucle
+    mov x27, #90  // y_actual (parte superior)
+bucle_dibujar_horizontal_o:
+    cmp x28, x29
+    bgt fin_bucle_dibujar_horizontal_o // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (parte superior)
     movz x5, 0x0000, lsl #0
-    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
-    mov x1, #110             // x
-    mov x2, #86            // y
-    mov x3, 90            // ancho (width)
-    mov x4, #2            // alto (height)
-    bl draw_rect             // Call draw_rect function
-    movz x20, #1500, lsl #0
-    movk x20, #1000, lsl 16
-    bl delay_loop
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #15
+    bl draw_rect
 
-        movz x5, 0x0000, lsl #0
-    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
-    mov x1, #110             // x
-    mov x2, #87            // y
-    mov x3, 90            // ancho (width)
-    mov x4, #2            // alto (height)
-    bl draw_rect             // Call draw_rect function
-        movz x20, #1500, lsl #0
-    movk x20, #1000, lsl 16
-    bl delay_loop
-
-        movz x5, 0x0000, lsl #0
-    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
-    mov x1, #110             // x
-    mov x2, #88            // y
-    mov x3, 90            // ancho (width)
-    mov x4, #2            // alto (height)
-    bl draw_rect             // Call draw_rect function
-        movz x20, #1500, lsl #0
-    movk x20, #1000, lsl 16
-    bl delay_loop
-
-        movz x5, 0x0000, lsl #0
-    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
-    mov x1, #110             // x
-    mov x2, #89            // y
-    mov x3, 90            // ancho (width)
-    mov x4, #2            // alto (height)
-    bl draw_rect             // Call draw_rect function
-
-    movz x20, #1500, lsl #0
-    movk x20, #1000, lsl 16
-    bl delay_loop
-
-//
-
+    // Dibujar rectángulo ROJO (parte inferior, y=193)
     movz x5, 0x0000, lsl #0
-    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
-    mov x1, #105             // x
-    mov x2, #91            // y
-    mov x3, 100            // ancho (width)
-    mov x4, #2            // alto (height)
-    bl draw_rect             // Call draw_rect function
-    movz x5, 0xFF00, lsl #16 // Color: ¿negro
-    mov x1, #114             // x
-    mov x2, #91            // y
-    mov x3, 83            // ancho (width)
-    mov x4, #2            // alto (height)
-    bl draw_rect             // Call draw_rect function
-        movz x20, #1500, lsl #0
-    movk x20, #1000, lsl 16
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, #200
+    mov x3, #2
+    mov x4, #15
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
     bl delay_loop
 
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_horizontal_o
+
+fin_bucle_dibujar_horizontal_o:
+
+
+
+
+    mov x28, #195 // x_actual (inicio en 440)
+    mov x29, #205 // x_fin_bucle
+    mov x27, #95  // y_actual (parte superior)
+bucle_dibujar_vertical_dero:
+    cmp x28, x29
+    bgt fin_bucle_dibujar_vertical_dero // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (X incrementando)
     movz x5, 0x0000, lsl #0
-    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
-    mov x1, #105             // x
-    mov x2, #92            // y
-    mov x3, 100            // ancho (width)
-    mov x4, #2            // alto (height)
-    bl draw_rect             // Call draw_rect function
-        movz x5, 0xFF00, lsl #16 // Color: ¿negro
-    mov x1, #114             // x
-    mov x2, #92            // y
-    mov x3, 83            // ancho (width)
-    mov x4, #2            // alto (height)
-    bl draw_rect             // Call draw_rect function
-    movz x20, #1500, lsl #0
-    movk x20, #1000, lsl 16
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #115
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
     bl delay_loop
 
-        movz x5, 0x0000, lsl #0
-    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
-    mov x1, #105             // x
-    mov x2, #93            // y
-    mov x3, 100            // ancho (width)
-    mov x4, #2            // alto (height)
-    bl draw_rect             // Call draw_rect function
-        movz x5, 0xFF00, lsl #16 // Color: ¿negro
-    mov x1, #114             // x
-    mov x2, #93            // y
-    mov x3, 83            // ancho (width)
-    mov x4, #2            // alto (height)
-    bl draw_rect             // Call draw_rect function
-        movz x20, #1500, lsl #0
-    movk x20, #1000, lsl 16
-    bl delay_loop
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_vertical_dero
 
-        movz x5, 0x0000, lsl #0
-    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
-    mov x1, #105             // x
-    mov x2, #94            // y
-    mov x3, 100            // ancho (width)
-    mov x4, #2            // alto (height)
-    bl draw_rect             // Call draw_rect function
-            movz x5, 0xFF00, lsl #16 // Color: ¿negro
-    mov x1, #111             // x
-    mov x2, #94            // y
-    mov x3, 88            // ancho (width)
-    mov x4, #2            // alto (height)
-    bl draw_rect             // Call draw_rect function
-        movz x20, #1500, lsl #0
-    movk x20, #1000, lsl 16
-    bl delay_loop
+fin_bucle_dibujar_vertical_dero:
 
-        movz x5, 0x0000, lsl #0
-    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
-    mov x1, #105             // x
-    mov x2, #95            // y
-    mov x3, 100            // ancho (width)
-    mov x4, #2            // alto (height)
-    bl draw_rect             // Call draw_rect function
+///////////////////////////////D///////////////////////////////7
 
-    movz x5, 0xFF00, lsl #16 // Color: ¿negro
-    mov x1, #111             // x
-    mov x2, #95            // y
-    mov x3, 88            // ancho (width)
-    mov x4, #2            // alto (height)
-    bl draw_rect             // Call draw_rect function
-    movz x20, #1500, lsl #0
-    movk x20, #1000, lsl 16
-    bl delay_loop
-    
+// Animación de la letra 'D' (barra izquierda)
+    mov x21, #90 // y_actual (inicio en 90)
 
+bucle_dibujar_barra_izquierda_D:
+    cmp x21, #200
+    bgt fin_bucle_dibujar_barra_izquierda_D // Si y_actual > 200, terminar
 
-//
+    // Dibujar rectángulo ROJO
     movz x5, 0x0000, lsl #0
-    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
-    mov x1, #100             // x
-    mov x2, #96            // y
-    mov x3, 110            // ancho (width)
-    mov x4, #2            // alto (height)
-    bl draw_rect             // Call draw_rect function
-    movz x5, 0xFF00, lsl #16 // Color: ¿negro
-    mov x1, #111             // x
-    mov x2, #96            // y
-    mov x3, 88            // ancho (width)
-    mov x4, #2            // alto (height)
-    bl draw_rect             // Call draw_rect function
-        movz x20, #1500, lsl #0
-    movk x20, #1000, lsl 16
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, #260
+    mov x2, x21
+    mov x3, #20
+    mov x4, #2
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
     bl delay_loop
 
+    add x21, x21, #1 // Incrementar y_actual
+    b bucle_dibujar_barra_izquierda_D
+
+fin_bucle_dibujar_barra_izquierda_D:
+
+// Animación de la letra 'D' (líneas horizontales superior e inferior)
+    mov x28, #260 // x_actual (inicio en 260)
+    mov x29, #330 // x_fin_bucle
+    mov x27, #88  // y_actual (parte superior)
+
+bucle_dibujar_lineas_horizontales_D:
+    cmp x28, x29
+    bgt fin_bucle_dibujar_lineas_horizontales_D // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (parte superior)
     movz x5, 0x0000, lsl #0
-    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
-    mov x1, #100             // x
-    mov x2, #97            // y
-    mov x3, 110            // ancho (width)
-    mov x4, #2            // alto (height)
-    bl draw_rect             // Call draw_rect function
-    movz x5, 0xFF00, lsl #16 // Color: ¿negro
-    mov x1, #111             // x
-    mov x2, #97            // y
-    mov x3, 88            // ancho (width)
-    mov x4, #2            // alto (height)
-    bl draw_rect             // Call draw_rect function
-    movz x20, #1500, lsl #0
-    movk x20, #1000, lsl 16
-    bl delay_loop
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #15
+    bl draw_rect
 
-        movz x5, 0x0000, lsl #0
-    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
-    mov x1, #100             // x
-    mov x2, #98           // y
-    mov x3, 110            // ancho (width)
-    mov x4, #2            // alto (height)
-    bl draw_rect             // Call draw_rect function
-    movz x5, 0xFF00, lsl #16 // Color: ¿negro
-    mov x1, #108             // x
-    mov x2, #98            // y
-    mov x3, 92            // ancho (width)
-    mov x4, #2            // alto (height)
-    bl draw_rect             // Call draw_rect function
-        movz x20, #1500, lsl #0
-    movk x20, #1000, lsl 16
-    bl delay_loop
-
-        movz x5, 0x0000, lsl #0
-    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
-    mov x1, #100             // x
-    mov x2, #99            // y
-    mov x3, 110            // ancho (width)
-    mov x4, #2            // alto (height)
-    bl draw_rect             // Call draw_rect function
-        movz x5, 0xFF00, lsl #16 // Color: ¿negro
-    mov x1, #108             // x
-    mov x2, #98            // y
-    mov x3, 92            // ancho (width)
-    mov x4, #2            // alto (height)
-    bl draw_rect             // Call draw_rect function
-        movz x20, #1500, lsl #0
-    movk x20, #1000, lsl 16
-    bl delay_loop
-
-        movz x5, 0x0000, lsl #0
-    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
-    mov x1, #100             // x
-    mov x2, #100            // y
-    mov x3, 110            // ancho (width)
-    mov x4, #2            // alto (height)
-    bl draw_rect             // Call draw_rect function
-        movz x5, 0xFF00, lsl #16 // Color: ¿negro
-    mov x1, #108             // x
-    mov x2, #98            // y
-    mov x3, 94            // ancho (width)
-    mov x4, #2            // alto (height)
-    bl draw_rect             // Call draw_rect function
-    movz x20, #1500, lsl #0
-    movk x20, #1000, lsl 16
-    bl delay_loop
-
-// Initialize variables
-    mov x21, #100    // current_y (starting at 300 to decrement down to 200)
-
-// Loop label
-loop_start_y:
-    // Check loop condition: current_y >= 200
-    cmp x21, #210
-    bgt loop_end_y   // If x21 > 200, branch to loop_end_y
-
-    // --- Drawing the RED rectangle ---
+    // Dibujar rectángulo ROJO (parte inferior, y=200)
     movz x5, 0x0000, lsl #0
-    movk x5, 0xFFFF, lsl #16 // Color: Red (0x0000FFFF)
-    mov x1, #98             // x (constant for red)
-    mov x2, x21              // y (current_y for red)
-    mov x3, #114             // ancho (width, constant for red)
-    mov x4, #2               // alto (height, constant for red)
-    bl draw_rect             // Call draw_rect function for red
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, #200
+    mov x3, #2
+    mov x4, #15
+    bl draw_rect
 
-    // --- Drawing the BLACK fill rectangle ---
-    movz x5, 0x0000, lsl #0
-    movk x5, 0xFF00, lsl #16 // Color: Black (0x0000FF00)
-    mov x1, #106             // x (constant for black)
-    mov x2, x21              // y (current_y for black)
-    mov x3, #98             // ancho (width, constant for black)
-    mov x4, #2               // alto (height, constant for black)
-    bl draw_rect             // Call draw_rect function for black
-
-    // Delay loop (applies after both rectangles are drawn)
-    movz x20, #1500, lsl #0  // Reduced delay for smoother animation
-    movk x20, #1000, lsl 16
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
     bl delay_loop
 
-    // --- Update variable for the next iteration ---
-    add x21, x21, #1    // current_y -= 1 (decrement by 1)
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_lineas_horizontales_D
 
-    b loop_start_y      // Branch back to the start of the loop
+fin_bucle_dibujar_lineas_horizontales_D:
 
-loop_end_y:
+// Animación de la letra 'D' (curva parte 1)
+    mov x28, #310 // x_actual (inicio en 310)
+    mov x29, #350 // x_fin_bucle
+    mov x27, #95  // y_actual (parte superior)
+
+bucle_dibujar_lineas_curvas_D_parte_1:
+    cmp x28, x29
+    bgt fin_bucle_dibujar_lineas_curvas_D_parte_1 // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (parte superior)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #15
+    bl draw_rect
+
+    // Dibujar rectángulo ROJO (parte inferior, y=193)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, #193
+    mov x3, #2
+    mov x4, #15
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
+    bl delay_loop
+
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_lineas_curvas_D_parte_1
+
+fin_bucle_dibujar_lineas_curvas_D_parte_1:
+
+// Animación de la letra 'D' (curva parte 2)
+    mov x28, #340 // x_actual (inicio en 340)
+    mov x29, #360 // x_fin_bucle
+    mov x27, #100 // y_actual (parte superior)
+
+bucle_dibujar_lineas_curvas_D_parte_2:
+    cmp x28, x29
+    bgt fin_bucle_dibujar_lineas_curvas_D_parte_2 // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (parte superior)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #15
+    bl draw_rect
+
+    // Dibujar rectángulo ROJO (parte inferior, y=187)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, #187
+    mov x3, #2
+    mov x4, #15
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
+    bl delay_loop
+
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_lineas_curvas_D_parte_2
+
+fin_bucle_dibujar_lineas_curvas_D_parte_2:
+
+// Animación de la letra 'D' (línea vertical derecha)
+    mov x28, #345 // x_actual (inicio en 345)
+    mov x29, #366 // x_fin_bucle
+    mov x27, #110 // y_actual (constante)
+bucle_dibujar_linea_derecha_D:
+    cmp x28, x29
+    bgt fin_bucle_dibujar_linea_derecha_D // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (X incrementando)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #80
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
+    bl delay_loop
+
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_linea_derecha_D
+fin_bucle_dibujar_linea_derecha_D:
 
 
+///////////////////C//////////
+
+// Animación de la letra 'C' (barra izquierda)
+    mov x28, #420 // x_actual (inicio en 420)
+    mov x29, #441 // x_fin_bucle
+    mov x27, #110 // y_actual (constante)
+bucle_dibujar_barra_izquierda_C:
+    cmp x28, x29
+    bgt fin_bucle_dibujar_barra_izquierda_C // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (X incrementando)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #80
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
+    bl delay_loop
+
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_barra_izquierda_C
+
+fin_bucle_dibujar_barra_izquierda_C:
+
+// Animación de la letra 'C' (línea horizontal inferior)
+    mov x28, #430 // x_actual (inicio en 430)
+    mov x29, #450 // x_fin_bucle
+    mov x27, #100 // y_actual (parte superior)
+
+bucle_dibujar_horizontal_inferior_C:
+    cmp x28, x29
+    bgt fin_bucle_dibujar_horizontal_inferior_C // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (parte superior)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #15
+    bl draw_rect
+
+    // Dibujar rectángulo ROJO (parte inferior, y=187)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, #187
+    mov x3, #2
+    mov x4, #15
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
+    bl delay_loop
+
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_horizontal_inferior_C
+
+fin_bucle_dibujar_horizontal_inferior_C:
+
+// Animación de la letra 'C' (línea horizontal media)
+    mov x28, #440 // x_actual (inicio en 440)
+    mov x29, #480 // x_fin_bucle
+    mov x27, #95  // y_actual (parte superior)
+bucle_dibujar_horizontal_media_C:
+    cmp x28, x29
+    bgt fin_bucle_dibujar_horizontal_media_C // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (parte superior)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #15
+    bl draw_rect
+
+    // Dibujar rectángulo ROJO (parte inferior, y=193)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, #193
+    mov x3, #2
+    mov x4, #15
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
+    bl delay_loop
+
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_horizontal_media_C
+
+fin_bucle_dibujar_horizontal_media_C:
+
+// Animación de la letra 'C' (línea horizontal superior)
+    mov x28, #460 // x_actual (inicio en 460)
+    mov x29, #515 // x_fin_bucle
+    mov x27, #90  // y_actual (parte superior)
+
+bucle_dibujar_horizontal_superior_C:
+    cmp x28, x29
+    bgt fin_bucle_dibujar_horizontal_superior_C // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (parte superior)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #15
+    bl draw_rect
+
+    // Dibujar rectángulo ROJO (parte inferior, y=198)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, #198
+    mov x3, #2
+    mov x4, #15
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
+    bl delay_loop
+
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_horizontal_superior_C
+
+fin_bucle_dibujar_horizontal_superior_C:
+
+// Animación de la letra 'C' (línea horizontal de cierre)
+    mov x28, #505 // x_actual (inicio en 505)
+    mov x29, #520 // x_fin_bucle
+    mov x27, #93  // y_actual (parte superior)
+
+
+///////////////////////////2////////////////////////
+
+    mov x28, #120 // x_actual (era 120, se mantiene para la posición izquierda)
+    mov x29, #200 // x_fin_bucle (era 200)
+    mov x27, #280  // y_actual (parte superior)
+bucle_dibujar_horizontal_dos:
+    cmp x28, x29
+    bgt fin_bucle_dibujar_horizontal_dos // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (parte superior)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #15
+    bl draw_rect
+
+    // Dibujar rectángulo ROJO (parte inferior)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, #380 // Ajustado para ser como el segundo '2'
+    mov x3, #2
+    mov x4, #15
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
+    bl delay_loop
+
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_horizontal_dos
+
+fin_bucle_dibujar_horizontal_dos:
+
+    mov x28, #130 // x_actual (antes 130, se mantiene el ajuste del original)
+    mov x29, #190 // x_fin_bucle (antes 190)
+    mov x27, #330  // y_actual (parte media)
+bucle_dibujar_horizontal_1dos:
+    cmp x28, x29
+    bgt fin_bucle_dibujar_horizontal_1dos // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (parte media)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #15
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
+    bl delay_loop
+
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_horizontal_1dos
+
+fin_bucle_dibujar_horizontal_1dos:
+
+    mov x28, #120 // x_actual (ajustado de 340 para la izquierda)
+    mov x29, #130 // x_fin_bucle (ajustado de 350 para la izquierda)
+    mov x27, #335  // y_actual (parte vertical izquierda superior)
+bucle_dibujar_vertical_izquseg2_ajustado: // Nuevo nombre para evitar conflicto
+    cmp x28, x29
+    bgt fin_bucle_dibujar_vertical_izquseg2_ajustado // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (X incrementando)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #20
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
+    bl delay_loop
+
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_vertical_izquseg2_ajustado
+
+fin_bucle_dibujar_vertical_izquseg2_ajustado:
+
+
+    mov x28, #115 // x_actual (ajustado de 335 para la izquierda)
+    mov x29, #125 // x_fin_bucle (ajustado de 345 para la izquierda)
+    mov x27, #355 // y_actual (parte vertical izquierda inferior)
+bucle_dibujar_vertical_izquseg_ajustado: // Nuevo nombre para evitar conflicto
+    cmp x28, x29
+    bgt fin_bucle_dibujar_vertical_izquseg_ajustado // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (X incrementando)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #30
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
+    bl delay_loop
+
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_vertical_izquseg_ajustado
+
+fin_bucle_dibujar_vertical_izquseg_ajustado:
+
+
+    mov x28, #190 // x_actual (ajustado de 410 para la izquierda)
+    mov x29, #200 // x_fin_bucle (ajustado de 420 para la izquierda)
+    mov x27, #320  // y_actual (parte vertical derecha superior)
+bucle_dibujar_vertical_derseg2_ajustado: // Nuevo nombre para evitar conflicto
+    cmp x28, x29
+    bgt fin_bucle_dibujar_vertical_derseg2_ajustado // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (X incrementando)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #20
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
+    bl delay_loop
+
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_vertical_derseg2_ajustado
+
+fin_bucle_dibujar_vertical_derseg2_ajustado:
+
+    mov x28, #195 // x_actual (ajustado de 415 para la izquierda)
+    mov x29, #205 // x_fin_bucle (ajustado de 425 para la izquierda)
+    mov x27, #290 // y_actual (parte vertical derecha inferior)
+bucle_dibujar_vertical_derseg_ajustado: // Nuevo nombre para evitar conflicto
+    cmp x28, x29
+    bgt fin_bucle_dibujar_vertical_derseg_ajustado // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (X incrementando)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #35
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
+    bl delay_loop
+
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_vertical_derseg_ajustado
+
+fin_bucle_dibujar_vertical_derseg_ajustado:
+
+
+
+/////////////0////////////
+    mov x28, #240 // x_actual (inicio en 440)
+    mov x29, #300 // x_fin_bucle
+    mov x27, #280  // y_actual (parte superior)
+bucle_dibujar_horizontal_cero:
+    cmp x28, x29
+    bgt fin_bucle_dibujar_horizontal_cero // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (parte superior)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #15
+    bl draw_rect
+
+    // Dibujar rectángulo ROJO (parte inferior, y=193)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, #380
+    mov x3, #2
+    mov x4, #15
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
+    bl delay_loop
+
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_horizontal_cero
+
+fin_bucle_dibujar_horizontal_cero:
+
+
+    mov x28, #235 // x_actual (inicio en 440)
+    mov x29, #245 // x_fin_bucle
+    mov x27, #285  // y_actual (parte superior)
+bucle_dibujar_vertical_izqucero:
+    cmp x28, x29
+    bgt fin_bucle_dibujar_vertical_izqucero // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (X incrementando)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #100
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
+    bl delay_loop
+
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_vertical_izqucero
+
+fin_bucle_dibujar_vertical_izqucero:
+
+
+    mov x28, #295 // x_actual (inicio en 440)
+    mov x29, #305 // x_fin_bucle
+    mov x27, #285  // y_actual (parte superior)
+bucle_dibujar_vertical_dercero:
+    cmp x28, x29
+    bgt fin_bucle_dibujar_vertical_dercero // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (X incrementando)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #100
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
+    bl delay_loop
+
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_vertical_dercero
+
+fin_bucle_dibujar_vertical_dercero:
+
+////////////////////////"///////////////////2//////////////////"
+
+//dibujar segundo 2 (original, sin modificar):
+    mov x28, #340 // x_actual (inicio en 440)
+    mov x29, #420 // x_fin_bucle
+    mov x27, #280  // y_actual (parte superior)
+bucle_dibujar_horizontal_segundodos:
+    cmp x28, x29
+    bgt fin_bucle_dibujar_horizontal_segundodos // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (parte superior)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #15
+    bl draw_rect
+
+    // Dibujar rectángulo ROJO (parte inferior, y=193)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, #380
+    mov x3, #2
+    mov x4, #15
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
+    bl delay_loop
+
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_horizontal_segundodos
+
+fin_bucle_dibujar_horizontal_segundodos:
+
+
+    mov x28, #350 // x_actual (inicio en 440)
+    mov x29, #410 // x_fin_bucle
+    mov x27, #330  // y_actual (parte superior)
+bucle_dibujar_horizontal_2dos:
+    cmp x28, x29
+    bgt fin_bucle_dibujar_horizontal_2dos // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (parte superior)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #15
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
+    bl delay_loop
+
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_horizontal_2dos
+
+fin_bucle_dibujar_horizontal_2dos:
+
+    mov x28, #340 // x_actual (inicio en 440)
+    mov x29, #350 // x_fin_bucle
+    mov x27, #335  // y_actual (parte superior)
+bucle_dibujar_vertical_izquseg2:
+    cmp x28, x29
+    bgt fin_bucle_dibujar_vertical_izquseg2 // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (X incrementando)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #20
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
+    bl delay_loop
+
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_vertical_izquseg2
+
+fin_bucle_dibujar_vertical_izquseg2:
+
+
+    mov x28, #335 // x_actual (inicio en 420)
+    mov x29, #345 // x_fin_bucle
+    mov x27, #355 // y_actual (constante)
+bucle_dibujar_vertical_izquseg:
+    cmp x28, x29
+    bgt fin_bucle_dibujar_vertical_izquseg // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (X incrementando)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #30
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
+    bl delay_loop
+
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_vertical_izquseg
+
+fin_bucle_dibujar_vertical_izquseg:
+
+
+    mov x28, #410 // x_actual (inicio en 440)
+    mov x29, #420 // x_fin_bucle
+    mov x27, #320  // y_actual (parte superior)
+bucle_dibujar_vertical_derseg2:
+    cmp x28, x29
+    bgt fin_bucle_dibujar_vertical_derseg2 // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (X incrementando)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #20
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
+    bl delay_loop
+
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_vertical_derseg2
+
+fin_bucle_dibujar_vertical_derseg2:
+
+    mov x28, #415 // x_actual (inicio en 420)
+    mov x29, #425 // x_fin_bucle
+    mov x27, #290 // y_actual (constante)
+bucle_dibujar_vertical_derseg:
+    cmp x28, x29
+    bgt fin_bucle_dibujar_vertical_derseg // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (X incrementando)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #35
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
+    bl delay_loop
+
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_vertical_derseg
+
+fin_bucle_dibujar_vertical_derseg:
+
+
+//////////////////////////5///////////////////////
+
+    mov x28, #450 // x_actual (inicio en 440)
+    mov x29, #520 // x_fin_bucle
+    mov x27, #280  // y_actual (parte superior)
+bucle_dibujar_horizontal1_cinco:
+    cmp x28, x29
+    bgt fin_bucle_dibujar_horizontal1_cinco // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (parte superior)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #15
+    bl draw_rect
+
+    // Dibujar rectángulo ROJO (parte inferior, y=193)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, #380
+    mov x3, #2
+    mov x4, #15
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
+    bl delay_loop
+
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_horizontal1_cinco
+
+fin_bucle_dibujar_horizontal1_cinco:
+
+    mov x28, #445 // x_actual (inicio en 335 + 110 = 445)
+    mov x29, #455 // x_fin_bucle (345 + 110 = 455)
+    mov x27, #290 // y_actual (constante)
+bucle_dibujar_vertical_izqucinco:
+    cmp x28, x29
+    bgt fin_bucle_dibujar_vertical_izqucinco // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (X incrementando)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #30
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
+    bl delay_loop
+
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_vertical_izqucinco
+
+fin_bucle_dibujar_vertical_izqucinco:
+
+mov x28, #450 // x_actual (inicio en 340 + 110 = 450)
+    mov x29, #460 // x_fin_bucle (350 + 110 = 460)
+        mov x27, #320  // y_actual (parte superior)
+
+bucle_dibujar_vertical1_izqucinco:
+    cmp x28, x29
+    bgt fin_bucle_dibujar_vertical1_izqucinco // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (X incrementando)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #20
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
+    bl delay_loop
+
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_vertical1_izqucinco
+fin_bucle_dibujar_vertical1_izqucinco:
+
+
+    mov x28, #460 // x_actual (inicio en 440)
+    mov x29, #510 // x_fin_bucle
+    mov x27, #330  // y_actual (parte superior)
+bucle_dibujar_horizontal_cinco:
+    cmp x28, x29
+    bgt fin_bucle_dibujar_horizontal_cinco // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (parte superior)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #15
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
+    bl delay_loop
+
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_horizontal_cinco
+
+fin_bucle_dibujar_horizontal_cinco:
+
+
+    mov x28, #510 // x_actual (inicio en 410 + 110 = 520)
+    mov x29, #520 // x_fin_bucle (420 + 110 = 530)
+    mov x27, #335  // y_actual (parte superior)
+bucle_dibujar_vertical1_dercinco:
+    cmp x28, x29
+    bgt fin_bucle_dibujar_vertical1_dercinco // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (X incrementando)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #20
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
+    bl delay_loop
+
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_vertical1_dercinco
+
+fin_bucle_dibujar_vertical1_dercinco:
+
+    mov x28, #515 // x_actual (inicio en 415 + 110 = 525)
+    mov x29, #525 // x_fin_bucle (425 + 110 = 535)
+    mov x27, #355 // y_actual (constante)
+bucle_dibujar_vertical_dercinco:
+    cmp x28, x29
+    bgt fin_bucle_dibujar_vertical_dercinco // Si x_actual > x_fin_bucle, terminar
+
+    // Dibujar rectángulo ROJO (X incrementando)
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFFFF, lsl #16 // Color: Rojo
+    mov x1, x28
+    mov x2, x27
+    mov x3, #2
+    mov x4, #35
+    bl draw_rect
+
+    // Retraso
+movz x20, #750, lsl #0
+movk x20, #500, lsl 16
+    bl delay_loop
+
+    add x28, x28, #1 // Incrementar x_actual
+    b bucle_dibujar_vertical_dercinco
+
+fin_bucle_dibujar_vertical_dercinco:
+
+//cierre
        movz x20, #15000, lsl #0
        movk x20, #49000, lsl 16
        bl delay_loop

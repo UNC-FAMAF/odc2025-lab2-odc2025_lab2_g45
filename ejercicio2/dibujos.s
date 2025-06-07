@@ -3076,46 +3076,14 @@ bl delay_loop
     bl delay_loop
 
     // Cuarto Movimiento
-
-            mov x1, #414
-            mov x2, #188
-            mov x3, #4
-            mov x4, #24
-            movz x5, 0x3DC4, lsl #0
-            movk x5, 0xFF5F, lsl #16
-            bl draw_rect
-
-            mov x1, #418
-            mov x2, #212
-            mov x3, #4
-            mov x4, #4
-            movz x5, 0xCCAA, lsl #0
-            movk x5, 0xFFFF, lsl #16
-            bl draw_rect
-
-            mov x1, #406
-            mov x2, #208
-            mov x3, #4
-            mov x4, #4
-            movz x5, 0x0000, lsl #0
-            movk x5, 0xFF00, lsl #16
-            bl draw_rect
-
-            mov x1, #406
-            mov x2, #188
-            mov x3, #4
-            mov x4, #20
-            movz x5, 0x3DA1, lsl #0
-            movk x5, 0xFF2B, lsl #16
-            bl draw_rect
-
-            mov x1, #410
-            mov x2, #188
-            mov x3, #4
-            mov x4, #24
-            movz x5, 0x3DA1, lsl #0
-            movk x5, 0xFF2B, lsl #16
-            bl draw_rect
+        // tercera gota
+        mov x1, #432
+        mov x2, #172
+        mov x3, #2
+        mov x4, #2
+        movz x5, 0x0000, lsl #0
+        movk x5, 0xFFFF, lsl #16
+        bl draw_rect
 
     // Will (Arriba Original)
             mov x1, #176
@@ -3582,6 +3550,14 @@ bl delay_loop
     movz x5, 0x1C1C, lsl #0
     movk x5, 0xFF1C, lsl #16
     bl draw_rect
+        // tercera gota
+        mov x1, #432
+        mov x2, #174
+        mov x3, #2
+        mov x4, #2
+        movz x5, 0x0000, lsl #0
+        movk x5, 0xFFFF, lsl #16
+        bl draw_rect
 
 // Delay final
        movz x20, #15000, lsl #0
@@ -3591,157 +3567,262 @@ bl delay_loop
 
        // ------ VOY A HACER ACÁ LA ANIMACIÓN DEL FONDO NEGRO QUE SE VA COMIENDO TODO -----
       
- movz x5, 0x0000, lsl #0
-       movk x5, 0xFF00, lsl #16        // Establezco el color negro
+    // Primera parte
+    movz x5, 0x0000, lsl #0
+    movk x5, 0xFF00, lsl #16        // Establezco el color negro
 
-       movz x20, #15000, lsl #0        // Establezo el tiempo antes de que se pinte
-       movk x20, #15000, lsl 16
-       bl delay_loop
+    // Establezo el tiempo antes de que se pinte
+    movz x20, #50000, lsl 16
+    bl delay_loop
+    
+    mov x1, #100 // Centro X       // Círculo de arriba a la derecha
+    mov x2, #40 // Centro Y
+    mov x3, #16   // Radio
+    bl draw_circle
 
-       mov x1, #100 // Centro X
-       mov x2, #40 // Centro Y
-       mov x3, #16   // Radio
-       bl draw_circle
+    mov x1, #500 // Centro X       // Círculo de arriba a la izquierda
+    mov x2, #40 // Centro Y
+    mov x3, #16   // Radio
+    bl draw_circle
 
-       mov x1, #500 // Centro X
-       mov x2, #40 // Centro Y
-       mov x3, #16   // Radio
-       bl draw_circle
+    mov x1, #100 // Centro X       // Círculo de abajo a la derecha
+    mov x2, #440 // Centro Y
+    mov x3, #16   // Radio
+    bl draw_circle
 
+    mov x1, #500 // Centro X       // Círculo de abajo a la izquierda
+    mov x2, #440 // Centro Y
+    mov x3, #16   // Radio
+    bl draw_circle
 
-	mov x1, #50 
-	mov x2, #10 
-	mov x3, #20
-	mov x4, #220
-	bl draw_rect
+    // Segunda parte
+    movz x20, #50000, lsl 16
 
-	mov x1, #570 
-	mov x2, #10 
-	mov x3, #20
-	mov x4, #220
-	bl draw_rect
+    bl delay_loop
 
+    mov x1, #100 // Centro X        // Círculo de arriba a la derecha
+    mov x2, #40 // Centro Y
+    mov x3, #28   // Radio
+    bl draw_circle
 
-       movz x20, #15000, lsl #0
-       movk x20, #25000, lsl 16
+    mov x1, #500 // Centro X       // Círculo de arriba a la izquierda
+    mov x2, #40 // Centro Y
+    mov x3, #28   // Radio
+    bl draw_circle
 
-       bl delay_loop
+	mov x1, #100 // Centro X       // Círculo de abajo a la derecha
+    mov x2, #440 // Centro Y
+    mov x3, #28   // Radio
+    bl draw_circle
 
-       mov x1, #100 // Centro X
-       mov x2, #40 // Centro Y
-       mov x3, #28   // Radio
-       bl draw_circle
-
-       mov x1, #500 // Centro X
-       mov x2, #40 // Centro Y
-       mov x3, #28   // Radio
-       bl draw_circle
-
-	   
-	mov x1, #50 
-	mov x2, #10 
-	mov x3, #32
-	mov x4, #220
-	bl draw_rect
-
-	mov x1, #540 // 452 - 5
-	mov x2, #10 // 268 - 15
-	mov x3, #40
-	mov x4, #220
-	bl draw_rect
+    mov x1, #500 // Centro X       // Círculo de abajo a la izquierda
+    mov x2, #440 // Centro Y
+    mov x3, #28   // Radio
+    bl draw_circle
 
 
+    // Tercera parte
+    movz x20, #50000, lsl 16
 
-       movz x20, #15000, lsl #0
-       movk x20, #35000, lsl 16
+    bl delay_loop
 
-       bl delay_loop
+    mov x1, #100 // Centro X
+    mov x2, #35 // Centro Y
+    mov x3, #42   // Radio
+    bl draw_circle
 
-       mov x1, #100 // Centro X
-       mov x2, #35 // Centro Y
-       mov x3, #42   // Radio
-       bl draw_circle
+    mov x1, #500 // Centro X
+    mov x2, #35 // Centro Y
+    mov x3, #42   // Radio
+    bl draw_circle
 
-       mov x1, #500 // Centro X
-       mov x2, #35 // Centro Y
-       mov x3, #42   // Radio
-       bl draw_circle
+    mov x1, #100 // Centro X       // Círculo de abajo a la derecha
+    mov x2, #440 // Centro Y
+    mov x3, #42   // Radio
+    bl draw_circle
 
-	mov x1, #100 // 452 - 5
-	mov x2, #35 // 268 - 15
-	mov x3, #500
-	mov x4, #14
-	bl draw_rect
-
-
-       movz x20, #15000, lsl #0
-       movk x20, #45000, lsl 16
-
-       bl delay_loop
-
-       mov x1, #100 // Centro X
-       mov x2, #30 // Centro Y
-       mov x3, #64   // Radio
-       bl draw_circle
-
-       mov x1, #500 // Centro X
-       mov x2, #30 // Centro Y
-       mov x3, #64   // Radio
-       bl draw_circle
-
-	mov x1, #100 // 452 - 5
-	mov x2, #40 // 268 - 15
-	mov x3, #500
-	mov x4, #25
-	bl draw_rect
+    mov x1, #500 // Centro X       // Círculo de abajo a la izquierda
+    mov x2, #440 // Centro Y
+    mov x3, #42   // Radio
+    bl draw_circle
 
 
+    // Cuarta parte
+    movz x20, #50000, lsl 16
 
-       movz x20, #15000, lsl #0
-       movk x20, #47500, lsl 16
+    bl delay_loop
 
-       bl delay_loop
+    mov x1, #100 // Centro X
+    mov x2, #30 // Centro Y
+    mov x3, #64   // Radio
+    bl draw_circle
 
-       mov x1, #100 // Centro X
-       mov x2, #28 // Centro Y
-       mov x3, #84   // Radio
-       bl draw_circle
+    mov x1, #500 // Centro X
+    mov x2, #30 // Centro Y
+    mov x3, #64   // Radio
+    bl draw_circle
 
-       mov x1, #500 // Centro X
-       mov x2, #28 // Centro Y
-       mov x3, #84   // Radio
-       bl draw_circle
+    mov x1, #100 // Centro X    
+    mov x2, #440 // Centro Y
+    mov x3, #64   // Radio
+    bl draw_circle
 
-	mov x1, #100 // 452 - 5
-	mov x2, #50 // 268 - 15
-	mov x3, #500
-	mov x4, #50
-	bl draw_rect
+    mov x1, #500 // Centro X   
+    mov x2, #440 // Centro Y
+    mov x3, #64   // Radio
+    bl draw_circle
+
+    // Quinta parte
+    movz x20, #50000, lsl 16
+
+    bl delay_loop
+
+    mov x1, #100 // Centro X
+    mov x2, #28 // Centro Y
+    mov x3, #84   // Radio
+    bl draw_circle
+
+    mov x1, #500 // Centro X
+    mov x2, #28 // Centro Y
+    mov x3, #84   // Radio
+    bl draw_circle
+
+    mov x1, #100 // Centro X    
+    mov x2, #440 // Centro Y
+    mov x3, #84   // Radio
+    bl draw_circle
+
+    mov x1, #500 // Centro X   
+    mov x2, #440 // Centro Y
+    mov x3, #84   // Radio
+    bl draw_circle
+
+    // Sexta parte
+    movz x20, #50000, lsl 16
+    bl delay_loop
+
+    mov x1, #100 // Centro X
+    mov x2, #28 // Centro Y
+    mov x3, #110   // Radio
+    bl draw_circle
+
+    mov x1, #500 // Centro X
+    mov x2, #28 // Centro Y
+    mov x3, #110   // Radio
+    bl draw_circle
+
+    mov x1, #100 // Centro X    
+    mov x2, #440 // Centro Y
+    mov x3, #110   // Radio
+    bl draw_circle
+
+    mov x1, #500 // Centro X   
+    mov x2, #440 // Centro Y
+    mov x3, #110   // Radio
+    bl draw_circle
+
+    mov x1, #100 // Centro X    
+    mov x2, #220 // Centro Y
+    mov x3, #120   // Radio
+    bl draw_circle
+
+    mov x1, #555 // Centro X   
+    mov x2, #220 // Centro Y
+    mov x3, #120   // Radio
+    bl draw_circle
+
+    mov x1, #320 // Centro X    
+    mov x2, #0 // Centro Y
+    mov x3, #110   // Radio
+    bl draw_circle
+
+    mov x1, #320 // Centro X   
+    mov x2, #480 // Centro Y
+    mov x3, #110   // Radio
+    bl draw_circle
+
+    // Séptima parte
+    movz x20, #50000, lsl 16
+    bl delay_loop
+
+    mov x1, #100 // Centro X
+    mov x2, #28 // Centro Y
+    mov x3, #150   // Radio
+    bl draw_circle
+
+    mov x1, #500 // Centro X
+    mov x2, #28 // Centro Y
+    mov x3, #150   // Radio
+    bl draw_circle
+
+    mov x1, #100 // Centro X    
+    mov x2, #440 // Centro Y
+    mov x3, #150   // Radio
+    bl draw_circle
+
+    mov x1, #500 // Centro X   
+    mov x2, #440 // Centro Y
+    mov x3, #150   // Radio
+    bl draw_circle
+
+    mov x1, #100 // Centro X    
+    mov x2, #220 // Centro Y
+    mov x3, #160   // Radio
+    bl draw_circle
+
+    mov x1, #555 // Centro X   
+    mov x2, #220 // Centro Y
+    mov x3, #160   // Radio
+    bl draw_circle
+
+    mov x1, #320 // Centro X    
+    mov x2, #0 // Centro Y
+    mov x3, #150   // Radio
+    bl draw_circle
+
+    mov x1, #320 // Centro X   
+    mov x2, #480 // Centro Y
+    mov x3, #150   // Radio
+    bl draw_circle
+
+    // Octava parte
+    movz x20, #50000, lsl 16
+    bl delay_loop
+
+    mov x1, #100 // Centro X
+    mov x2, #28 // Centro Y
+    mov x3, #250   // Radio
+    bl draw_circle
+
+    mov x1, #500 // Centro X
+    mov x2, #28 // Centro Y
+    mov x3, #250   // Radio
+    bl draw_circle
+
+    mov x1, #100 // Centro X    
+    mov x2, #440 // Centro Y
+    mov x3, #250   // Radio
+    bl draw_circle
+
+    mov x1, #500 // Centro X   
+    mov x2, #440 // Centro Y
+    mov x3, #250   // Radio
+    bl draw_circle
+
+    // Novena parte
+    movz x20, #50000, lsl 16
+    bl delay_loop
+
+    mov x1, #320 // Centro X
+    mov x2, #220 // Centro Y
+    mov x3, #200   // Radio
+    bl draw_circle
 
 
-       movz x20, #15000, lsl #0
-       movk x20, #49000, lsl 16
 
 
-       bl delay_loop
-
-       mov x1, #100 // Centro X
-       mov x2, #28 // Centro Y
-       mov x3, #110   // Radio
-       bl draw_circle
-
-       mov x1, #500 // Centro X
-       mov x2, #28 // Centro Y
-       mov x3, #110   // Radio
-       bl draw_circle
-
-	mov x1, #100 // 452 - 5
-	mov x2, #60 // 268 - 15
-	mov x3, #500
-	mov x4, #80
-	bl draw_rect
-
-
+    movz x20, #60000, lsl 16
+    bl delay_loop
 
 
 
@@ -3876,8 +3957,9 @@ bucle_dibujar_vertical_izquo:
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -3913,8 +3995,9 @@ bucle_dibujar_horizontal_o:
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -3942,8 +4025,9 @@ bucle_dibujar_vertical_dero:
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -3970,8 +4054,9 @@ bucle_dibujar_barra_izquierda_D:
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x21, x21, #1 // Incrementar y_actual
@@ -4007,8 +4092,9 @@ bucle_dibujar_lineas_horizontales_D:
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -4044,8 +4130,9 @@ bucle_dibujar_lineas_curvas_D_parte_1:
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -4081,8 +4168,9 @@ bucle_dibujar_lineas_curvas_D_parte_2:
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -4108,8 +4196,9 @@ bucle_dibujar_linea_derecha_D:
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -4137,8 +4226,9 @@ bucle_dibujar_barra_izquierda_C:
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -4174,8 +4264,9 @@ bucle_dibujar_horizontal_inferior_C:
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -4210,8 +4301,9 @@ bucle_dibujar_horizontal_media_C:
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -4247,8 +4339,9 @@ bucle_dibujar_horizontal_superior_C:
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -4290,8 +4383,9 @@ bucle_dibujar_horizontal_dos:
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -4316,8 +4410,9 @@ bucle_dibujar_horizontal_1dos:
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -4342,8 +4437,9 @@ bucle_dibujar_vertical_izquseg2_ajustado: // Nuevo nombre para evitar conflicto
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -4369,8 +4465,9 @@ bucle_dibujar_vertical_izquseg_ajustado: // Nuevo nombre para evitar conflicto
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -4396,8 +4493,9 @@ bucle_dibujar_vertical_derseg2_ajustado: // Nuevo nombre para evitar conflicto
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -4422,8 +4520,9 @@ bucle_dibujar_vertical_derseg_ajustado: // Nuevo nombre para evitar conflicto
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -4460,8 +4559,9 @@ bucle_dibujar_horizontal_cero:
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -4487,8 +4587,9 @@ bucle_dibujar_vertical_izqucero:
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -4514,8 +4615,9 @@ bucle_dibujar_vertical_dercero:
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -4552,8 +4654,9 @@ bucle_dibujar_horizontal_segundodos:
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -4579,8 +4682,9 @@ bucle_dibujar_horizontal_2dos:
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -4605,8 +4709,9 @@ bucle_dibujar_vertical_izquseg2:
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -4632,8 +4737,9 @@ bucle_dibujar_vertical_izquseg:
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -4659,8 +4765,9 @@ bucle_dibujar_vertical_derseg2:
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -4685,8 +4792,9 @@ bucle_dibujar_vertical_derseg:
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -4723,8 +4831,9 @@ bucle_dibujar_horizontal1_cinco:
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -4749,8 +4858,9 @@ bucle_dibujar_vertical_izqucinco:
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -4776,8 +4886,9 @@ bucle_dibujar_vertical1_izqucinco:
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -4802,8 +4913,9 @@ bucle_dibujar_horizontal_cinco:
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -4829,8 +4941,9 @@ bucle_dibujar_vertical1_dercinco:
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -4855,8 +4968,9 @@ bucle_dibujar_vertical_dercinco:
     bl draw_rect
 
     // Retraso
-movz x20, #750, lsl #0
-movk x20, #500, lsl 16
+movz x20, #375, lsl #0  
+
+movk x20, #250, lsl 16
     bl delay_loop
 
     add x28, x28, #1 // Incrementar x_actual
@@ -4865,269 +4979,13 @@ movk x20, #500, lsl 16
 fin_bucle_dibujar_vertical_dercinco:
 
 
-
-       // ------ VOY A HACER ACÁ LA ANIMACIÓN DEL FONDO NEGRO QUE SE VA COMIENDO TODO -----
-      
-    // Primera parte
-    movz x5, 0x0000, lsl #0
-    movk x5, 0xFF00, lsl #16        // Establezco el color negro
-
-    // Establezo el tiempo antes de que se pinte
-    movz x20, #60000, lsl 16
-    bl delay_loop
-    
-    mov x1, #100 // Centro X       // Círculo de arriba a la derecha
-    mov x2, #40 // Centro Y
-    mov x3, #16   // Radio
-    bl draw_circle
-
-    mov x1, #500 // Centro X       // Círculo de arriba a la izquierda
-    mov x2, #40 // Centro Y
-    mov x3, #16   // Radio
-    bl draw_circle
-
-    mov x1, #100 // Centro X       // Círculo de abajo a la derecha
-    mov x2, #440 // Centro Y
-    mov x3, #16   // Radio
-    bl draw_circle
-
-    mov x1, #500 // Centro X       // Círculo de abajo a la izquierda
-    mov x2, #440 // Centro Y
-    mov x3, #16   // Radio
-    bl draw_circle
-
-    // Segunda parte
-    movz x20, #60000, lsl 16
-
-    bl delay_loop
-
-    mov x1, #100 // Centro X        // Círculo de arriba a la derecha
-    mov x2, #40 // Centro Y
-    mov x3, #28   // Radio
-    bl draw_circle
-
-    mov x1, #500 // Centro X       // Círculo de arriba a la izquierda
-    mov x2, #40 // Centro Y
-    mov x3, #28   // Radio
-    bl draw_circle
-
-	mov x1, #100 // Centro X       // Círculo de abajo a la derecha
-    mov x2, #440 // Centro Y
-    mov x3, #28   // Radio
-    bl draw_circle
-
-    mov x1, #500 // Centro X       // Círculo de abajo a la izquierda
-    mov x2, #440 // Centro Y
-    mov x3, #28   // Radio
-    bl draw_circle
-
-
-    // Tercera parte
-    movz x20, #60000, lsl 16
-
-    bl delay_loop
-
-    mov x1, #100 // Centro X
-    mov x2, #35 // Centro Y
-    mov x3, #42   // Radio
-    bl draw_circle
-
-    mov x1, #500 // Centro X
-    mov x2, #35 // Centro Y
-    mov x3, #42   // Radio
-    bl draw_circle
-
-    mov x1, #100 // Centro X       // Círculo de abajo a la derecha
-    mov x2, #440 // Centro Y
-    mov x3, #42   // Radio
-    bl draw_circle
-
-    mov x1, #500 // Centro X       // Círculo de abajo a la izquierda
-    mov x2, #440 // Centro Y
-    mov x3, #42   // Radio
-    bl draw_circle
-
-
-    // Cuarta parte
-    movz x20, #60000, lsl 16
-
-    bl delay_loop
-
-    mov x1, #100 // Centro X
-    mov x2, #30 // Centro Y
-    mov x3, #64   // Radio
-    bl draw_circle
-
-    mov x1, #500 // Centro X
-    mov x2, #30 // Centro Y
-    mov x3, #64   // Radio
-    bl draw_circle
-
-    mov x1, #100 // Centro X    
-    mov x2, #440 // Centro Y
-    mov x3, #64   // Radio
-    bl draw_circle
-
-    mov x1, #500 // Centro X   
-    mov x2, #440 // Centro Y
-    mov x3, #64   // Radio
-    bl draw_circle
-
-    // Quinta parte
-    movz x20, #60000, lsl 16
-
-    bl delay_loop
-
-    mov x1, #100 // Centro X
-    mov x2, #28 // Centro Y
-    mov x3, #84   // Radio
-    bl draw_circle
-
-    mov x1, #500 // Centro X
-    mov x2, #28 // Centro Y
-    mov x3, #84   // Radio
-    bl draw_circle
-
-    mov x1, #100 // Centro X    
-    mov x2, #440 // Centro Y
-    mov x3, #84   // Radio
-    bl draw_circle
-
-    mov x1, #500 // Centro X   
-    mov x2, #440 // Centro Y
-    mov x3, #84   // Radio
-    bl draw_circle
-
-    // Sexta parte
-    movz x20, #60000, lsl 16
-    bl delay_loop
-
-    mov x1, #100 // Centro X
-    mov x2, #28 // Centro Y
-    mov x3, #110   // Radio
-    bl draw_circle
-
-    mov x1, #500 // Centro X
-    mov x2, #28 // Centro Y
-    mov x3, #110   // Radio
-    bl draw_circle
-
-    mov x1, #100 // Centro X    
-    mov x2, #440 // Centro Y
-    mov x3, #110   // Radio
-    bl draw_circle
-
-    mov x1, #500 // Centro X   
-    mov x2, #440 // Centro Y
-    mov x3, #110   // Radio
-    bl draw_circle
-
-    mov x1, #100 // Centro X    
-    mov x2, #220 // Centro Y
-    mov x3, #120   // Radio
-    bl draw_circle
-
-    mov x1, #555 // Centro X   
-    mov x2, #220 // Centro Y
-    mov x3, #120   // Radio
-    bl draw_circle
-
-    mov x1, #320 // Centro X    
-    mov x2, #0 // Centro Y
-    mov x3, #110   // Radio
-    bl draw_circle
-
-    mov x1, #320 // Centro X   
-    mov x2, #480 // Centro Y
-    mov x3, #110   // Radio
-    bl draw_circle
-
-    // Séptima parte
-    movz x20, #60000, lsl 16
-    bl delay_loop
-
-    mov x1, #100 // Centro X
-    mov x2, #28 // Centro Y
-    mov x3, #150   // Radio
-    bl draw_circle
-
-    mov x1, #500 // Centro X
-    mov x2, #28 // Centro Y
-    mov x3, #150   // Radio
-    bl draw_circle
-
-    mov x1, #100 // Centro X    
-    mov x2, #440 // Centro Y
-    mov x3, #150   // Radio
-    bl draw_circle
-
-    mov x1, #500 // Centro X   
-    mov x2, #440 // Centro Y
-    mov x3, #150   // Radio
-    bl draw_circle
-
-    mov x1, #100 // Centro X    
-    mov x2, #220 // Centro Y
-    mov x3, #160   // Radio
-    bl draw_circle
-
-    mov x1, #555 // Centro X   
-    mov x2, #220 // Centro Y
-    mov x3, #160   // Radio
-    bl draw_circle
-
-    mov x1, #320 // Centro X    
-    mov x2, #0 // Centro Y
-    mov x3, #150   // Radio
-    bl draw_circle
-
-    mov x1, #320 // Centro X   
-    mov x2, #480 // Centro Y
-    mov x3, #150   // Radio
-    bl draw_circle
-
-    // Octava parte
-    movz x20, #60000, lsl 16
-    bl delay_loop
-
-    mov x1, #100 // Centro X
-    mov x2, #28 // Centro Y
-    mov x3, #250   // Radio
-    bl draw_circle
-
-    mov x1, #500 // Centro X
-    mov x2, #28 // Centro Y
-    mov x3, #250   // Radio
-    bl draw_circle
-
-    mov x1, #100 // Centro X    
-    mov x2, #440 // Centro Y
-    mov x3, #250   // Radio
-    bl draw_circle
-
-    mov x1, #500 // Centro X   
-    mov x2, #440 // Centro Y
-    mov x3, #250   // Radio
-    bl draw_circle
-
-    // Novena parte
-    movz x20, #60000, lsl 16
-    bl delay_loop
-
-    mov x1, #320 // Centro X
-    mov x2, #220 // Centro Y
-    mov x3, #200   // Radio
-    bl draw_circle
-
-
-
 //cierre
        movz x20, #15000, lsl #0
        movk x20, #49000, lsl 16
        bl delay_loop
 
 //hacemos branch main al ultimo para que se repita
-//b main
+b main
     ldp x29, x30, [sp], #16    
     ret                        
 // MÉTODO DE USO DE DELAY LOOP: 
